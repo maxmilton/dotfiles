@@ -25,6 +25,7 @@ PACKAGES=(
   fish
   git
   #hg
+  htop
   jsdoc
   prettier
   terraform
