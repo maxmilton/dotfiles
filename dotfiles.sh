@@ -7,6 +7,13 @@
 # multiple times is completely fine to update or install additional packages.
 #
 
+# TODO: Need a way to automatically backup existing files instead of throwing
+# an error and exiting -- maybe use something other than the --restow param?
+
+# TODO: Implement a way to create directories per package -- otherwise gnu stow
+# will create symlinks for the whole dir if it doesn't exist, which is often
+# undesireable.
+
 set -e
 
 # options
@@ -34,7 +41,10 @@ dryrun=true
 verbosity=v
 
 # check GNU Stow is installed
-hash stow 2>/dev/null || { echo -e >&2 "\n\e[1;91m❌ ERROR: \e[0mGNU Stow is required but not installed. Aborting."; exit 1; }
+hash stow 2>/dev/null || {
+  echo -e >&2 "\n\e[1;91m❌ ERROR: \e[0mGNU Stow is required but not installed. Aborting."
+  exit 1
+}
 
 # reset in case getopts has been used previously in the shell
 OPTIND=1
