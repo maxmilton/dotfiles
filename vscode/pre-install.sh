@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # TODO: Change this once the new dictionary project is ready.
-# DICTIONARY_DIR="$TARGET_DIR/Development/packages/dictionary"
-DICTIONARY_DIR="$TARGET_DIR/Development/hunspell-dictionary"
+# DICTIONARY_DIR=${DICTIONARY_DIR:-"$TARGET_DIR/Development/packages/dictionary"}
+DICTIONARY_DIR=${DICTIONARY_DIR:-"$TARGET_DIR/Development/hunspell-dictionary"}
 
 if [[ $dryrun = true ]]; then
   # dry run
