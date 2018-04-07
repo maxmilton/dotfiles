@@ -1,0 +1,30 @@
+[
+  {
+    "key": "ctrl+tab",
+    "command": "workbench.action.nextEditorInGroup"
+  },
+  {
+    "key": "ctrl+shift+tab",
+    "command": "workbench.action.previousEditorInGroup"
+  },
+  {
+    "key": "ctrl+space",
+    "command": "editor.action.quickFix",
+    "when": "editorHasCodeActionsProvider && editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "ctrl+shift+alt+u",
+    "command": "editor.action.transformToUppercase",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+shift+alt+l",
+    "command": "editor.action.transformToLowercase",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+shift+alt+a",
+    "command": "editor.action.selectHighlights",
+    "when": "editorFocus"
+  }
+]

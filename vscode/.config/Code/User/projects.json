@@ -1,0 +1,44 @@
+[
+  {
+    "name": "PRO",
+    "rootPath": "$home/Development/pro",
+    "paths": [],
+    "group": "WAG"
+  },
+  {
+    "name": "SHOP",
+    "rootPath": "$home/Development/shop",
+    "paths": [],
+    "group": "WAG"
+  },
+  {
+    "name": "SERVER",
+    "rootPath": "$home/Development/server",
+    "paths": [],
+    "group": "WAG"
+  },
+  {
+    "name": "wearegenkicom",
+    "rootPath": "$home/Development/wearegenkicom",
+    "paths": [],
+    "group": "WAG"
+  },
+  {
+    "name": "@w/UI",
+    "rootPath": "$home/Development/@wearegenki/ui",
+    "paths": [],
+    "group": "WAG"
+  },
+  {
+    "name": "@w/DB",
+    "rootPath": "$home/Development/@wearegenki/db",
+    "paths": [],
+    "group": "WAG"
+  },
+  {
+    "name": "new-tab",
+    "rootPath": "$home/Development/LABS/new-tab",
+    "paths": [],
+    "group": "MM"
+  }
+]
