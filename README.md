@@ -2,7 +2,7 @@
 
 ## Usage
 
-_NOTE: Requires [GNU Stow](https://www.gnu.org/software/stow/) do manage automatically symlinking config packages._
+_NOTE: Requires [GNU Stow](https://www.gnu.org/software/stow/) to automatically symlink config packages._
 
 ```bash
 # dry run
