@@ -1,6 +1,8 @@
 # Max Milton's Dotfiles
 
-# Usage
+## Usage
+
+_NOTE: Requires [GNU Stow](https://www.gnu.org/software/stow/) do manage automatically symlinking config packages._
 
 ```bash
 # dry run
@@ -16,4 +18,4 @@ The contents of this repo are MIT licensed open source. See [LICENCE](https://gi
 
 -----
 
-© 2018 [We Are Genki](https://wearegenki.com)
+© 2018 [Max Milton](https://maxmilton.com)
