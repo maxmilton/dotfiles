@@ -41,13 +41,13 @@ usage() {
   echo -e "
 Usage: \033[1;33m$(basename "$0") [OPTIONS]\033[0m
 
-Dotfiles installer script.
+Dotfiles package installer script.
 
 OPTIONS:
-  -h  Show this help text and exit
-  -i  Do install (does a dry run by default)
-  -q  Don't print info text to console
-  -v  Verbose mode
+  -h  Show this help text and exit.
+  -i  Install packages (without this a dry run is performed).
+  -q  Don't print info text to console.
+  -v  Enable verbose output.
   " >&1
 }
 
