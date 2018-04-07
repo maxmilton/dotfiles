@@ -1,0 +1,37 @@
+#[._]*.s[a-w][a-z]
+#[._]s[a-w][a-z]
+#*.un~
+Session.vim
+.netrwhist
+.*~
+*~
+
+# Linux trash
+.Trash-*
+
+# Rubish from non-*nix OS's
+.DS_Store
+Desktop.ini
+._*
+Thumbs.db
+
+# Files that might appear on external disks
+.Spotlight-V100
+.Trashes
+
+# Sublime Text project files
+*.sublime-project
+*.sublime-workspace
+
+# Node
+npm-debug.log*
+node_modules
+jspm_packages
+.npm
+.eslintcache
+.node_repl_history
+
+# Runtime data
+*.pid
+*.seed
+*.pid.lock
