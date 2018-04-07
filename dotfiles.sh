@@ -31,18 +31,41 @@ PACKAGES=(
 
 # settings
 dryrun=true
+verbosity=v
 
 # check GNU Stow is installed
 hash stow 2>/dev/null || { echo -e >&2 "\n\e[1;91m❌ ERROR: \e[0mGNU Stow is required but not installed. Aborting."; exit 1; }
 
-for package in "${PACKAGES[@]}"; do
-  echo -e "\n\e[33mInstall package \e[1;96m$package\e[0m\n"
-  #echo -e "stow -v --no --dir=$PACKAGES_DIR --target=$TARGET_DIR --restow $package"
-  if [[ $dryrun = true ]]; then
-    # dry run
-    stow -v --no --dir=$PACKAGES_DIR --target=$TARGET_DIR --restow $package
-  else
-    stow -v --dir=$PACKAGES_DIR --target=$TARGET_DIR --restow $package
-  fi
+# reset in case getopts has been used previously in the shell
+OPTIND=1
+
+# parse options
+while getopts "h?vi" opt; do
+  case "$opt" in
+  h|\?)
+    echo "TODO: Create help text..."
+    exit 0
+    ;;
+  v)
+    verbosity=vv
+    ;;
+  i)
+    dryrun=false
+    ;;
+  esac
 done
 
+shift $((OPTIND-1))
+[ "$1" = "--" ] && shift
+
+# do the actual linking for each package
+for package in "${PACKAGES[@]}"; do
+  echo -e "\n\e[33mInstall package \e[1;96m$package\e[0m\n"
+  if [[ $dryrun = true ]]; then
+    # dry run
+    stow -$verbosity --no --dir="$PACKAGES_DIR" --target="$TARGET_DIR" --restow "$package"
+  else
+    # install
+    stow -$verbosity --dir="$PACKAGES_DIR" --target="$TARGET_DIR" --restow "$package"
+  fi
+done
