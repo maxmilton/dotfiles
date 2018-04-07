@@ -10,10 +10,6 @@
 # TODO: Need a way to automatically backup existing files instead of throwing
 # an error and exiting -- maybe use something other than the --restow param?
 
-# TODO: Implement a way to create directories per package -- otherwise gnu stow
-# will create symlinks for the whole dir if it doesn't exist, which is often
-# undesireable.
-
 set -e
 
 # options
@@ -72,6 +68,7 @@ shift $((OPTIND-1))
 # do the actual linking for each package and run pre/post script hooks
 for package in "${PACKAGES[@]}"; do
   echo -e "\n\e[33mInstall package \e[1;96m$package\e[0m\n"
+
   if [[ $dryrun = true ]]; then
     # dry run
     [[ -f "$PACKAGES_DIR/$package/pre-setup.sh" ]] && source "$PACKAGES_DIR/$package/pre-setup.sh"
@@ -79,8 +76,8 @@ for package in "${PACKAGES[@]}"; do
     [[ -f "$PACKAGES_DIR/$package/post-setup.sh" ]] && source "$PACKAGES_DIR/$package/post-setup.sh"
   else
     # install
-    [[ -f "$PACKAGES_DIR/$package/pre-setup.sh" ]] && source "$PACKAGES_DIR/$package/pre-setup.sh" -i
+    [[ -f "$PACKAGES_DIR/$package/pre-setup.sh" ]] && source "$PACKAGES_DIR/$package/pre-setup.sh"
     stow -$verbosity --dir="$PACKAGES_DIR" --target="$TARGET_DIR" --restow "$package"
-    [[ -f "$PACKAGES_DIR/$package/post-setup.sh" ]] && source "$PACKAGES_DIR/$package/post-setup.sh" -i
+    [[ -f "$PACKAGES_DIR/$package/post-setup.sh" ]] && source "$PACKAGES_DIR/$package/post-setup.sh"
   fi
 done
