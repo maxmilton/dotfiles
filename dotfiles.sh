@@ -14,8 +14,6 @@ set -eo errtrace
 trap 'echo_err "Error during install!"' ERR
 
 # options
-PACKAGES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-TARGET_DIR=$HOME
 PACKAGES=(
   # disable a package by commenting it out
   bash
@@ -33,6 +31,9 @@ PACKAGES=(
   yarn
   zsh
 )
+PACKAGES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+TARGET_DIR=$HOME
+IGNORE_FILES="^(?:pre|post)-install\.sh"
 
 ################################################################################
 
@@ -79,7 +80,14 @@ process_packages() {
       [[ -f "$PACKAGES_DIR/$package/pre-install.sh" ]] \
         && source "$PACKAGES_DIR/$package/pre-install.sh" || true
 
-      stow -$verbosity --no --dir="$PACKAGES_DIR" --target="$TARGET_DIR" --restow "$package"
+      stow \
+        -$verbosity \
+        --no \
+        --dir="$PACKAGES_DIR" \
+        --target="$TARGET_DIR" \
+        --ignore=$IGNORE_FILES \
+        --restow \
+        "$package"
 
       [[ -f "$PACKAGES_DIR/$package/post-install.sh" ]] \
         && source "$PACKAGES_DIR/$package/post-install.sh" || true
@@ -87,7 +95,13 @@ process_packages() {
       [[ -f "$PACKAGES_DIR/$package/pre-install.sh" ]] \
         && source "$PACKAGES_DIR/$package/pre-install.sh" || true
 
-      stow -$verbosity --dir="$PACKAGES_DIR" --target="$TARGET_DIR" --restow "$package"
+      stow \
+        -$verbosity \
+        --dir="$PACKAGES_DIR" \
+        --target="$TARGET_DIR" \
+        --ignore=$IGNORE_FILES \
+        --restow \
+        "$package"
 
       [[ -f "$PACKAGES_DIR/$package/post-install.sh" ]] \
         && source "$PACKAGES_DIR/$package/post-install.sh" || true
