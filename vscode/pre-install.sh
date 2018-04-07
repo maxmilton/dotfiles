@@ -5,18 +5,21 @@
 DICTIONARY_DIR=${DICTIONARY_DIR:-"$TARGET_DIR/Development/hunspell-dictionary"}
 
 if [[ $dryrun = true ]]; then
-  # dry run
   echo_info "mkdir -v -p \"$TARGET_DIR/.config/Code/User\""
 
   # dictionaries
-  echo_info "mkdir -v -p /usr/share/hunspell"
-  echo_info "ln -i -v -s $DICTIONARY_DIR/*.{dic,aff} /usr/share/hunspell"
-  echo_info "ln -v -s /usr/share/hunspell \"$TARGET_DIR/.config/Code/Dictionaries\""
+  if [[ ! -d "$TARGET_DIR/.config/Code/Dictionaries" ]]; then
+    echo_info "mkdir -v -p /usr/share/hunspell"
+    echo_info "ln -i -v -s $DICTIONARY_DIR/*.{dic,aff} /usr/share/hunspell"
+    echo_info "ln -v -s /usr/share/hunspell \"$TARGET_DIR/.config/Code/Dictionaries\""
+  fi
 else
   mkdir -v -p "$TARGET_DIR/.config/Code/User"
 
   # dictionaries
-  mkdir -v -p /usr/share/hunspell
-  ln -i -v -s $DICTIONARY_DIR/*.{dic,aff} /usr/share/hunspell
-  ln -v -s /usr/share/hunspell "$TARGET_DIR/.config/Code/Dictionaries"
+  if [[ ! -d "$TARGET_DIR/.config/Code/Dictionaries" ]]; then
+    mkdir -v -p /usr/share/hunspell
+    ln -i -v -s $DICTIONARY_DIR/*.{dic,aff} /usr/share/hunspell
+    ln -v -s /usr/share/hunspell "$TARGET_DIR/.config/Code/Dictionaries"
+  fi
 fi
