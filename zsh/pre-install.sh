@@ -2,7 +2,7 @@
 
 if [[ $dryrun = true ]]; then
   # dry run
-  echo "mkdir -v -p \"$TARGET_DIR/.oh-my-zsh/themes\""
+  echo_info "mkdir -v -p \"$TARGET_DIR/.oh-my-zsh/themes\""
 else
   mkdir -v -p "$TARGET_DIR/.oh-my-zsh/themes"
 

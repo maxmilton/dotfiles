@@ -54,12 +54,12 @@ OPTIONS:
 # runtime settings
 dryrun=true
 quiet=false
-verbosity=v
+verbosity=-v
 
 # feedback utilities
 echo_err() { echo -e "\n\e[1;91m❌ ERROR:\e[0m $1\e[0m" 1>&2; echo -e "\a"; }
 echo_warn() { echo -e "\n\e[1;93m🔶 WARNING:\e[0m $1\e[0m" 1>&2; echo -e "\a"; }
-echo_info() { [[ $quiet != true ]] && echo -e "\n$1\e[0m\n" >&1; }
+echo_info() { [[ $quiet == true ]] || echo -e "\n$1\e[0m\n" >&1; }
 
 # check GNU Stow is installed
 if ! hash stow 2>/dev/null; then
@@ -81,7 +81,7 @@ process_packages() {
         && source "$PACKAGES_DIR/$package/pre-install.sh" || true
 
       stow \
-        -$verbosity \
+        $verbosity \
         --no \
         --dir="$PACKAGES_DIR" \
         --target="$TARGET_DIR" \
@@ -96,7 +96,7 @@ process_packages() {
         && source "$PACKAGES_DIR/$package/pre-install.sh" || true
 
       stow \
-        -$verbosity \
+        $verbosity \
         --dir="$PACKAGES_DIR" \
         --target="$TARGET_DIR" \
         --ignore=$IGNORE_FILES \
@@ -124,9 +124,10 @@ while getopts "h?iqv" opt; do
       ;;
     q )
       quiet=true
+      verbosity=''
       ;;
     v )
-      verbosity=vv
+      verbosity=-vv
       ;;
   esac
 done
