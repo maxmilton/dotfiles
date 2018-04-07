@@ -59,7 +59,7 @@ verbosity=-v
 # feedback utilities
 echo_err() { echo -e "\n\e[1;91m❌ ERROR:\e[0m $1\e[0m" 1>&2; echo -e "\a"; }
 echo_warn() { echo -e "\n\e[1;93m🔶 WARNING:\e[0m $1\e[0m" 1>&2; echo -e "\a"; }
-echo_info() { [[ $quiet == true ]] || echo -e "\n$1\e[0m\n" >&1; }
+echo_info() { [[ $quiet == true ]] || echo -e "$1\e[0m" >&1; }
 
 # check GNU Stow is installed
 if ! hash stow 2>/dev/null; then
@@ -74,7 +74,7 @@ process_packages() {
 
   # do the actual linking for each package and run pre/post script hooks
   for package in "${PACKAGES[@]}"; do
-    echo_info "\e[33mInstall package \e[1;96m$package"
+    echo_info "\n\e[94mInstalling \e[1;96m$package \e[0;94mpackage..."
 
     if [[ $dryrun = true ]]; then
       [[ -f "$PACKAGES_DIR/$package/pre-install.sh" ]] \
