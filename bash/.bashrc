@@ -94,6 +94,8 @@ alias fclw='watch -n 1 fleetctl list-units'
 alias fcf='fleetctl list-unit-files'
 alias fcm='fleetctl list-machines'
 alias ec='etcdctl'
+# roll back a system upgrade if something goes bad, needs a reboot
+alias rollback='cgpt prioritize "$(cgpt find -t coreos-usr | grep --invert-match "$(rootdev -s /usr)")"'
 
 # Aliases: CoreOS Logs
 alias jcf='journalctl -f -u nginx@1 -u varnish@1 -u php5@1 -u php7@1 -u php7-dev@1 -u php@1 -u php-dev@1 -u redis@1 -u smtp -u elasticsearch -u cron-1hour.service -u cron-1hour.timer -u cron-1minute.service -u cron-1minute.timer -u cron-3minute.service -u cron-3minute.timer'

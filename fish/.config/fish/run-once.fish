@@ -122,7 +122,7 @@ abbr --add dcd 'docker-compose down'
 abbr --add dcr 'docker-compose down; and docker-compose up'
 
 # Update ALL the things!
-abbr --add ppp 'pp -y; pp-gce; pp-fish; dup; pp-yarn; pp-git'
+abbr --add ppp 'pp; pp-gce; pp-fish; dup; pp-yarn; pp-git'
 
 # Google Cloud SDK
 set -U fish_user_paths $HOME/.google-cloud-sdk/bin $fish_user_paths
