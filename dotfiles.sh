@@ -69,14 +69,18 @@ done
 shift $((OPTIND-1))
 [ "$1" = "--" ] && shift
 
-# do the actual linking for each package
+# do the actual linking for each package and run pre/post script hooks
 for package in "${PACKAGES[@]}"; do
   echo -e "\n\e[33mInstall package \e[1;96m$package\e[0m\n"
   if [[ $dryrun = true ]]; then
     # dry run
+    [[ -f "$PACKAGES_DIR/$package/pre-setup.sh" ]] && source "$PACKAGES_DIR/$package/pre-setup.sh"
     stow -$verbosity --no --dir="$PACKAGES_DIR" --target="$TARGET_DIR" --restow "$package"
+    [[ -f "$PACKAGES_DIR/$package/post-setup.sh" ]] && source "$PACKAGES_DIR/$package/post-setup.sh"
   else
     # install
+    [[ -f "$PACKAGES_DIR/$package/pre-setup.sh" ]] && source "$PACKAGES_DIR/$package/pre-setup.sh" -i
     stow -$verbosity --dir="$PACKAGES_DIR" --target="$TARGET_DIR" --restow "$package"
+    [[ -f "$PACKAGES_DIR/$package/post-setup.sh" ]] && source "$PACKAGES_DIR/$package/post-setup.sh" -i
   fi
 done
