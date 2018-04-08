@@ -135,9 +135,8 @@
       "test"
     ],
     "atomKeymap.promptV3Features": true, // use ctrl+p to toggle on
-    "stylelint.enable": true,
-    "css.validate": false,
-    "scss.validate": false,
+    // "css.validate": false,
+    // "scss.validate": false,
     "vetur.format.scriptInitialIndent": true,
     "vetur.format.styleInitialIndent": true,
     "vetur.validation.style": false,
