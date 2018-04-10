@@ -141,9 +141,7 @@ shift $((OPTIND-1))
 [ "$1" = "--" ] && shift
 
 # handle manually specified package names
-if [ "$#" -eq 0 ]; then
-  PACKAGES=$PACKAGES
-else
+if [[ "$#" != 0 ]]; then
   PACKAGES=( "$@" )
 fi
 
