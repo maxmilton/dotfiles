@@ -39,7 +39,7 @@ IGNORE_FILES="^(?:pre|post)-install\.sh"
 
 usage() {
   echo -e "
-Usage: \033[1;33m$(basename "$0") [OPTIONS]\033[0m
+Usage: \e[1;33m$(basename "$0") [OPTIONS] [PACKAGES]\e[0m
 
 Dotfiles package installer script.
 
@@ -48,6 +48,11 @@ OPTIONS:
   -i  Install packages (without this a dry run is performed).
   -q  Don't print info text to console.
   -v  Enable verbose output.
+
+PACKAGES:
+  The name/s of config packages to install. The package name is
+  the same as the directory name. This is optional and if not
+  specified the default set of packages will be installed.
   " >&1
 }
 
@@ -134,6 +139,13 @@ done
 
 shift $((OPTIND-1))
 [ "$1" = "--" ] && shift
+
+# handle manually specified package names
+if [ "$#" -eq 0 ]; then
+  PACKAGES=$PACKAGES
+else
+  PACKAGES=( "$@" )
+fi
 
 # run main function
 process_packages
