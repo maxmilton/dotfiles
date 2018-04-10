@@ -5,10 +5,13 @@
 _NOTE: Requires [GNU Stow](https://www.gnu.org/software/stow/) to automatically symlink config packages._
 
 ```bash
-# dry run
+# view help text
+./dotfiles.sh -h
+
+# dry run with default packages
 ./dotfiles.sh
 
-# install
+# install (efault packages
 ./dotfiles.sh -i
 ```
 
