@@ -79,6 +79,7 @@ abbr --add t 'terraform'
 abbr --add getip 'curl -4 https://labs.wearegenki.com/ip' # Get public/WAN IP
 abbr --add getip6 'curl -6 icanhazip.com'
 abbr --add getptr 'curl -4 icanhazptr.com'
+abbr --add get 'aria2c --dir ~/Downloads'
 
 # Aliases: Git
 abbr --add g 'git'

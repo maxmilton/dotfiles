@@ -76,10 +76,10 @@
     },
     "git.confirmSync": false,
     "git.autofetch": true,
-    "files.associations": {
-      // "*.css": "postcss",
-      // "*.marko": "javascriptreact"
-    },
+    // "files.associations": {
+    //   // "*.css": "postcss",
+    //   // "*.marko": "javascriptreact"
+    // },
     "extensions.ignoreRecommendations": true,
     "todohighlight.keywords": [
       {
@@ -135,7 +135,7 @@
       "test"
     ],
     "atomKeymap.promptV3Features": true, // use ctrl+p to toggle on
-    // "css.validate": false,
+    "css.validate": false,
     // "scss.validate": false,
     "vetur.format.scriptInitialIndent": true,
     "vetur.format.styleInitialIndent": true,
