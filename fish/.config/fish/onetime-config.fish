@@ -135,8 +135,9 @@ abbr --add ga 'git add'
 abbr --add gd 'git diff'
 abbr --add gdd 'git diff --staged'
 # review changes from last pull
-abbr --add gdd "git log --reverse --no-merges --stat '@{1}..'"
-abbr --add gca 'gc --all'
+abbr --add gpd "git log --reverse --no-merges --stat '@{1}..'"
+abbr --add gc 'env GIT_EDITOR="vim +startinsert" git commit --verbose'
+abbr --add gca 'env GIT_EDITOR="vim +startinsert" git commit --verbose --all'
 abbr --add gg 'gchkout'
 abbr --add gco 'git checkout' # better to use gg/gchkout function most of the time
 abbr --add gb 'git branch'
