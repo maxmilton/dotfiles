@@ -24,6 +24,7 @@ PACKAGES=(
   htop
   #jsdoc
   #prettier
+  ssh
   #terraform
   #tmux
   #tslint
