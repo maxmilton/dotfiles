@@ -26,7 +26,7 @@ set -U fish_user_paths $HOME/.google-cloud-sdk/bin $fish_user_paths
 set -U FZF_LEGACY_KEYBINDINGS 0
 
 # Misc
-abbr --add C 'calc' # calculator function
+abbr --add C 'math' # calculator function
 abbr --add get 'aria2c --dir ~/Downloads' # download via CLI
 abbr --add ppp 'pp; pp-gce; pp-fish; dup; pp-yarn; pp-git' # run full system update
 abbr --add p 'yaourt' # Arch Linux package manager
