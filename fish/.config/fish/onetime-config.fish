@@ -63,6 +63,8 @@ abbr --add getip 'curl -4 icanhazip.com'
 abbr --add getip6 'curl -6 icanhazip.com'
 abbr --add getptr 'curl -4 icanhazptr.com'
 abbr --add t 'terraform'
+# remove all broken symlinks in a dir
+abbr --add lnrm 'find -L . -maxdepth 1 -type l -delete'
 
 # Docker
 abbr --add d 'docker'
@@ -75,7 +77,9 @@ abbr --add dpa 'docker ps -a'
 abbr --add ds 'docker stats (docker ps -q)'
 # run interactively then remove
 abbr --add dr 'docker run -ti --rm'
-abbr --add dra 'docker run -ti --rm alpine:edge sh'
+abbr --add drr 'docker run -ti --rm alpine:edge sh'
+# run dev box with persistence
+abbr --add alpine 'docker start -i alpine; or docker run -ti --name alpine alpine:edge sh; or docker exec -ti alpine'
 # pull image from the hub.docker.com
 abbr --add dp 'docker pull'
 # get latest container ID
