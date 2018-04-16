@@ -17,19 +17,20 @@ trap 'echo_err "Error during install!"' ERR
 PACKAGES=(
   # disable a package by commenting it out
   bash
+  curl
   fish
   git
   #hg
   htop
-  jsdoc
-  prettier
-  terraform
-  tmux
-  tslint
+  #jsdoc
+  #prettier
+  #terraform
+  #tmux
+  #tslint
   vim
   vscode
   yarn
-  zsh
+  #zsh
 )
 PACKAGES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 TARGET_DIR=$HOME

@@ -8,11 +8,12 @@
 #source "$ZSH"/oh-my-zsh.sh
 
 # Pure ZSH
+# https://github.com/sindresorhus/pure#install
 autoload -U promptinit; promptinit
 prompt pure
 
 # Z jumper
-source $HOME/Development/0__github_projects/z/z.sh
+#source $HOME/Development/0__github_projects/z/z.sh
 
 # VIM = <3
 export EDITOR="vim"
