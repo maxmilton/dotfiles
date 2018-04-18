@@ -7,7 +7,7 @@ function pp -d 'Get system package updates'
     case Fedora
       sudo dnf update --refresh -y
     case Ubuntu Debian
-      sudo apt update && sudo apt-get upgrade -y
+      sudo apt update; and sudo apt-get upgrade -y
     case "Alpine Linux"
       apk upgrade --update-cache
   end
