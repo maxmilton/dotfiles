@@ -1,3 +1,3 @@
-function clear -d 'Clear the console buffer'
+function clr -d 'Clear the console buffer'
   printf "\ec"
 end
