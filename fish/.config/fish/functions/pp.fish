@@ -1,7 +1,5 @@
 function pp -d 'Get system package updates'
-  DISTRO=(awk -F "=" '/^NAME/ {print $2}' /etc/os-release | tr -d '"')
-
-  switch $DISTRO
+  switch (awk -F "=" '/^NAME/ {print $2}' /etc/os-release | tr -d '"')
     case "Arch Linux"
       yaourt -Syu --aur $argv
     case Fedora
