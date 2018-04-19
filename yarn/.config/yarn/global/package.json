@@ -2,7 +2,6 @@
   "dependencies": {
     "@wearegenki/dev": "^0.10.0",
     "eslint": "^4.19.1",
-    "js-yaml": "^3.11.0",
     "npm-check-updates": "^2.14.1",
     "postcss": "^6.0.21",
     "prettier": "^1.11.1",
