@@ -1,4 +1,4 @@
-function dbox -d 'Alpine dev box with persistence'
+function dbox -d 'Dockerized dev box with persistence'
   if docker container inspect dbox >/dev/null 2>&1
     docker start -i dbox
   else
