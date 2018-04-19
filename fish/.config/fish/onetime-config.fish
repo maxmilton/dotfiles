@@ -1,5 +1,5 @@
 #
-# FISH ALIASES
+# FISH GLOBALS & ALIASES
 #
 # Fish saves a compiled version of these commands after running once so they
 # only need to be called one time initially or when updated. This is done
@@ -22,13 +22,13 @@ set -U NODE_PRESERVE_SYMLINKS 1
 # Google Cloud SDK
 set -U fish_user_paths $HOME/.google-cloud-sdk/bin $fish_user_paths
 
-# fzf fisherman plugin
+# fisherman plugins
 set -U FZF_LEGACY_KEYBINDINGS 0
 
 # Misc
-abbr --add C 'math' # calculator function
+abbr --add C 'math' # CLI calculator
 abbr --add get 'aria2c --dir ~/Downloads' # download via CLI
-abbr --add ppp 'pp; pp-gce; pp-fish; dup; pp-yarn; pp-git' # run full system update
+abbr --add ppp 'pp; pp-fish; pp-gce; dup; pp-yarn; pp-git' # run full system update
 abbr --add p 'yaourt' # Arch Linux package manager
 
 # System
@@ -39,7 +39,7 @@ abbr --add .... 'cd ../../..'
 abbr --add ..... 'cd ../../../..'
 abbr --add ...... 'cd ../../../../..'
 abbr --add ....... 'cd ../../../../../..'
-abbr --add -- - 'cd --' # single dash will go back to previous dir
+abbr --add -- - 'cd --' # single dash to go back to previous dir
 abbr --add cp 'cp -i'
 abbr --add mv 'mv -i'
 abbr --add l 'ls -lFA --group-directories-first'
@@ -78,8 +78,6 @@ abbr --add ds 'docker stats (docker ps -q)'
 # run interactively then remove
 abbr --add dr 'docker run -ti --rm'
 abbr --add drr 'docker run -ti --rm alpine:edge sh'
-# run dev box with persistence
-abbr --add alpine 'docker start -i alpine; or docker run -ti --name alpine alpine:edge sh; or docker exec -ti alpine'
 # pull image from the hub.docker.com
 abbr --add dp 'docker pull'
 # get latest container ID
@@ -105,7 +103,7 @@ abbr --add krs 'kubectl rollout status deployments/'
 abbr --add krus 'kubectl rollout undo deployments/'
 abbr --add ke 'kubectl exec'
 abbr --add kp 'kubectl proxy'
-abbr --add kpass 'k config view --minify'
+abbr --add kpass 'kubectl config view --minify'
 
 # Development
 abbr --add uu 'ncu; and yarn; and yarn upgrade'
@@ -116,9 +114,7 @@ abbr --add yy 'clr; y'
 abbr --add yyb 'clr; y build'
 abbr --add yyt 'clr; y lint; and y test --coverage'
 abbr --add yi 'yarn info'
-abbr --add travis 'docker run -ti --rm -v $PWD:/project maxmilton/travis'
 abbr --add ttl 'travis lint ./.travis.yml'
-abbr --add gogo 'docker run --rm -v $PWD:/go/src/app -w /go/src/app golang:alpine go'
 
 # Git
 abbr --add g 'git'
