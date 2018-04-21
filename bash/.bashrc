@@ -43,24 +43,12 @@ fi
 # update system packages
 pp() {
   case $(awk -F "=" '/^NAME/ {print $2}' /etc/os-release | tr -d '"') in
-    "Arch Linux" )
-      yaourt -Syu --aur $@
-      ;;
-    Fedora )
-      dnf update --refresh -y
-      ;;
-    "Debian GNU/Linux" | Ubuntu )
-      apt update && apt-get upgrade --no-install-recommends -y
-      ;;
-    "Alpine Linux" )
-      apk upgrade --update-cache -y
-      ;;
-    "CentOS Linux" | "Red Hat Enterprise Linux" )
-      yum update -y
-      ;;
-    "Container Linux by CoreOS" )
-      update_engine_client -update
-      ;;
+    "Arch Linux" ) yaourt -Syu --aur ;;
+    Fedora ) dnf update --refresh -y ;;
+    "Debian GNU/Linux" | Ubuntu ) apt update && apt upgrade --no-install-recommends -y ;;
+    "Alpine Linux" ) apk upgrade --update-cache -y ;;
+    "CentOS Linux" | "Red Hat Enterprise Linux Server" ) yum update -y ;;
+    "Container Linux by CoreOS" ) update_engine_client -update ;;
   esac
 }
 
