@@ -42,7 +42,7 @@ fi
 pp() {
   case $(awk -F "=" '/^NAME/ {print $2}' /etc/os-release | tr -d '"') in
     "Arch Linux" )
-      yaourt -Syu --aur $argv
+      yaourt -Syu --aur $@
       ;;
     Fedora )
       dnf update --refresh -y
