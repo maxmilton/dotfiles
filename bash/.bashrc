@@ -32,10 +32,12 @@ alias ls='ls $LS_OPTIONS'
 
 # add sudo if not root
 if [ $UID -ne 0 ]; then
+  alias systemctl='sudo systemctl'
+  alias journalctl='sudo journalctl'
   alias apt='sudo apt'
   alias dnf='sudo dnf'
   alias yum='sudo yum'
-  alias snap='sudo snap'
+  alias docker-compose='sudo docker-compose'
 fi
 
 # update system packages
@@ -77,9 +79,6 @@ alias cp='cp -i'
 alias mv='mv -i'
 alias l='ls -aCFhlX --group-directories-first'
 alias ll='ls -lh'
-alias la='ls -lAh'
-alias lsa='ls -lah'
-alias lsd='ls -lad */ .*/'
 alias dux='du -hs | sort -h'
 alias dus='du --block-size=MiB --max-depth=1 | sort -n'
 alias 755='find . -type d -exec chmod 755 {} \; && echo "Done!";'
@@ -104,13 +103,13 @@ alias ta='tmux attach'
 alias ccze="ccze -A"
 
 # Aliases: Containers
+alias k='kubectl'
 alias d='docker'
 alias di='docker images'
 alias dps='docker ps'
 alias dpa='docker ps -a'
 # monitor all containers
 alias ds='docker stats $(docker ps -q)'
-alias dr='docker run -t -i'
 alias dp='docker pull'
 # get latest container ID
 alias dl='docker ps -l -q'
@@ -122,12 +121,11 @@ alias drm='docker rm $(docker ps -a -q)'
 alias drmi='docker rmi $(docker images -q -f dangling=true)'
 # remove orphaned volumes
 alias drmv='docker volume ls -qf dangling=true | xargs -r docker volume rm'
-alias dc='sudo docker-compose'
+alias dc='docker-compose'
 # update all docker images
 dup() { alias | docker images | awk '(NR>1) && ($2!~/none/) {print $1":"$2}'| xargs -L1 docker pull; }
 # enter docker container or execute command
 de() { if [ -z "$2" ]; then docker exec -ti -u root "$1" /bin/sh; else docker exec "$1" "$2"; fi }
-alias k='kubectl'
 
 # Aliases: CoreOS
 alias fc='fleetctl'
