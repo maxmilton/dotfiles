@@ -136,6 +136,10 @@ abbr --add gd 'git diff'
 abbr --add gdd 'git diff --staged'
 # review changes from last pull
 abbr --add gpd "git log --reverse --no-merges --stat '@{1}..'"
+# see unpushed commits
+abbr --add gout 'git log --stat "@{u}"..'
+# see unpulled commit
+abbr --add gin 'git log --stat .."@{u}"'
 abbr --add gc 'env GIT_EDITOR="vim +startinsert" git commit --verbose'
 abbr --add gca 'env GIT_EDITOR="vim +startinsert" git commit --verbose --all'
 abbr --add gg 'gchkout'
