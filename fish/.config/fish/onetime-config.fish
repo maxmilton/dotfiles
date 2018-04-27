@@ -138,6 +138,8 @@ abbr --add gdd 'git diff --staged'
 abbr --add gpd "git log --reverse --no-merges --stat '@{1}..'"
 # see unpushed commits
 abbr --add gout 'git log --stat "@{u}"..'
+# see unpushed commits on all branches
+abbr --add gouta 'git log --stat --decorate --branches --not --remotes'
 # see unpulled commit
 abbr --add gin 'git log --stat .."@{u}"'
 abbr --add gc 'env GIT_EDITOR="vim +startinsert" git commit --verbose'
