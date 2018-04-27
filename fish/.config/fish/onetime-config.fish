@@ -63,7 +63,7 @@ abbr --add getip 'curl -4 icanhazip.com'
 abbr --add getip6 'curl -6 icanhazip.com'
 abbr --add getptr 'curl -4 icanhazptr.com'
 abbr --add t 'terraform'
-# remove all broken symlinks in a dir
+# remove all broken symlinks in dir
 abbr --add lnrm 'find -L . -maxdepth 1 -type l -delete'
 
 # Docker
@@ -121,8 +121,8 @@ abbr --add g 'git'
 abbr --add gs 'git status --short --branch --show-stash'
 abbr --add gp 'git pull --prune'
 # 1. Configure upstream remote - ref: https://help.github.com/articles/configuring-a-remote-for-a-fork/
-# 2. Sync fork with upstream: run ggll - ref: https://help.github.com/articles/syncing-a-fork/
-abbr --add gpp 'git fetch upstream; and git merge upstream/master master'
+# 2. Sync fork with upstream: run gpp - ref: https://help.github.com/articles/syncing-a-fork/
+abbr --add gpp 'git fetch upstream; and git merge upstream/master master; and git push origin master'
 # flat log (great for quick reference)
 abbr --add gl "git log --format='%C(auto)%h %s %Cgreen%cr %Cblue%an%C(auto)%d%Creset' --no-merges"
 # simple log

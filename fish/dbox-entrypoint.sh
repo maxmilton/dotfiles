@@ -19,7 +19,7 @@ echo " \\/__,_ /\\/___/  \\/___/ \\//\\/_/"
 echo ""
 
 if ! command -v fish >/dev/null 2>&1; then
-  echo "New dbox, running first-time setup..."
+  echo -e "\e[1;93mNew dbox, running first-time setup...\e[0m"
   echo ""
 
   # install base deps
