@@ -74,6 +74,9 @@ if ! hash stow 2>/dev/null; then
   exit 1
 fi
 
+# variables for use in install scripts
+DISTRO=$(awk -F "=" '/^NAME/ {print $2}' /etc/os-release | tr -d '"')
+
 process_packages() {
   if [[ $dryrun = true ]]; then
     echo_warn "Doing dry run, check output then run \e[1;33m$(basename "$0") -i"
