@@ -35,7 +35,7 @@ PACKAGES=(
 )
 PACKAGES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 TARGET_DIR=$HOME
-IGNORE_FILES="^(?:pre|post)-install\.sh"
+IGNORE_FILES="^((pre|post)-install|.*-entrypoint)\.sh$"
 
 ################################################################################
 
