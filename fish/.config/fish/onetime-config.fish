@@ -46,14 +46,15 @@ abbr --add l 'ls -lFA --group-directories-first'
 abbr --add ll 'ls -lFA'
 abbr --add lll 'ls -CFA'
 abbr --add lh 'ls -lFAh --group-directories-first'
+# list dirs (not files) recursively, excluding .git and node_modules
+abbr --add ld 'find -O3 . -type d \( -name .git -o -name node_modules \) -prune -o -type d -print'
 abbr --add find 'find -O3'
-abbr --add ffind 'find -O3 . ! -path "node_modules" ! -path ".git" -type f -iname "*xx*"' # better to use CTRL+f (fzf)
 abbr --add dux 'du -hs | sort -h'
 abbr --add dus 'du --block-size=MiB --max-depth=1 | sort -n'
-abbr --add 755 'find . -type d -exec chmod 755 {} \; and echo "Done!"'
-abbr --add 700 'find . -type d -exec chmod 700 {} \; and echo "Done!"'
-abbr --add 644 'find . -type f ! -name ".git" ! -name "*.sh" ! -executable -exec chmod 644 {} \; and echo "Done!"'
-abbr --add 600 'find . -type f ! -name ".git" ! -name "*.sh" ! -executable -exec chmod 600 {} \; and echo "Done!"'
+abbr --add 755 'find -O3 . -type d -name .git -prune -o -type d -exec chmod 755 "{}" \;'
+abbr --add 700 'find -O3 . -type d -name .git -prune -o -type d -exec chmod 700 "{}" \;'
+abbr --add 644 'find -O3 . -type d -name .git -prune -o -type f ! -name "*.sh" ! -executable -exec chmod 644 "{}" \;'
+abbr --add 600 'find -O3 . -type d -name .git -prune -o -type f ! -name "*.sh" ! -executable -exec chmod 600 "{}" \;'
 
 # Sysadmin
 abbr --add gce 'while not gce-ssh; echo "retrying..."; sleep 3; end'
@@ -64,7 +65,9 @@ abbr --add getip6 'curl -6 icanhazip.com'
 abbr --add getptr 'curl -4 icanhazptr.com'
 abbr --add t 'terraform'
 # remove all broken symlinks in dir
-abbr --add lnrm 'find -L . -maxdepth 1 -type l -delete'
+abbr --add rmln 'find -L . -maxdepth 1 -type l -delete'
+# remove all node_modules dirs recursively
+abbr --add rmnm 'find -O3 . -type d -name .git -prune -o -type d -name node_modules -prune -exec rm -rf "{}" \;'
 
 # Docker
 abbr --add d 'docker'
