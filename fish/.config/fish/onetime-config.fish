@@ -68,6 +68,8 @@ abbr --add t 'terraform'
 abbr --add rmln 'find -L . -maxdepth 1 -type l -delete'
 # remove all node_modules dirs recursively
 abbr --add rmnm 'find -O3 . -type d -name .git -prune -o -type d -name node_modules -prune -exec rm -rf "{}" \;'
+# remove all yarn-error.log files recursively
+abbr --add rmye 'find -O3 . -type d \( -name .git -o -name node_modules \) -prune -o -type f -name yarn-error.log -exec rm "{}" \;'
 
 # Docker
 abbr --add d 'docker'
