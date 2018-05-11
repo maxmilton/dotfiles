@@ -1,189 +1,187 @@
 {
-    "telemetry.enableCrashReporter": false,
-    "telemetry.enableTelemetry": false,
-    "update.channel": "none", // no need on Arch Linux when using AUR
-    "window.restoreWindows": "all",
-    "window.menuBarVisibility": "toggle",
-    "window.zoomLevel": 0,
-    "workbench.startupEditor": "newUntitledFile",
-    "workbench.colorTheme": "One Dark Pro Vivid",
-    "explorer.confirmDragAndDrop": false,
-    "explorer.confirmDelete": false,
-    "editor.tokenColorCustomizations": {
-      "textMateRules": [
-        {
-          "scope": "comment, punctuation.definition.comment",
-          "settings": {
-            "foreground": "#5C6370"
-          }
-        },
-        {
-          "scope": "comment.line.double-slash,comment.block.documentation",
-          "settings": {
-            "fontStyle": "italic"
-          }
-        }
-      ]
-    },
-    "editor.smoothScrolling": true,
-    "editor.snippetSuggestions": "top",
-    "editor.folding": false,
-    "editor.accessibilitySupport": "off",
-    "editor.fontSize": 15,
-    // "editor.fontFamily": "'Roboto Mono Medium'",
-    "editor.rulers": [80, 100],
-    "editor.wordWrap": "on",
-    "editor.tabSize": 2,
-    // "editor.multiCursorModifier": "ctrlCmd",
-    "editor.formatOnPaste": true,
-    "editor.renderWhitespace": "all",
-    "editor.renderControlCharacters": true,
-    // "search.location": "panel",
-    "files.insertFinalNewline": true,
-    "files.trimTrailingWhitespace": true,
-    // "files.useExperimentalFileWatcher": false,
-    "files.exclude": {
-      // "**/.vscode": true,
-      "**/.git": true,
-      "**/node_modules": true,
-      "**/test/*/coverage": true,
-      // "**/dist": true,
-      "**/tmp": true,
-      "**/.*cache": true,
-      "**/.sapper": true,
-      "**/yarn.lock": true,
-      "**/package-lock.json": true
-    },
-    "files.watcherExclude": {
-      "**/.vscode": true,
-      "**/.git/objects/**": true,
-      "**/.git/subtree-cache/**": true,
-      "**/node_modules/**": true,
-      "**/build/**": true,
-      "**/coverage/**": true,
-      "**/dist/**": true,
-      "**/export/**": true,
-      "**/public/**": true,
-      "**/tmp/**": true,
-      "**/.*cache": true,
-      "**/.sapper": true,
-      "**/*.min.*": true,
-      "**/*.map": true,
-      "**/*.log": true,
-      "**/package-lock.json": true,
-      "**/yarn.lock": true
-    },
-    "git.confirmSync": false,
-    "git.autofetch": true,
-    // "files.associations": {
-    //   // "*.css": "postcss",
-    //   // "*.marko": "javascriptreact"
-    // },
-    "extensions.ignoreRecommendations": true,
-    "todohighlight.keywords": [
+  "telemetry.enableCrashReporter": false,
+  "telemetry.enableTelemetry": false,
+  "update.channel": "none", // no need on Arch Linux when using AUR
+  "window.restoreWindows": "all",
+  "window.menuBarVisibility": "toggle",
+  "window.zoomLevel": 0,
+  "workbench.startupEditor": "newUntitledFile",
+  "workbench.colorTheme": "One Dark Pro Vivid",
+  "explorer.confirmDragAndDrop": false,
+  "explorer.confirmDelete": false,
+  "editor.tokenColorCustomizations": {
+    "textMateRules": [
       {
-        "text": "XXX:", // for implementation details or notes
-        "color": "#ecf2fa",
-        "backgroundColor": "#3477ca"
+        "scope": "comment, punctuation.definition.comment",
+        "settings": {
+          "foreground": "#5C6370"
+        }
       },
-      "README:",
-      "NOTE:",
-      "REF:" // reference (e.g. a link to an article)
-    ],
-    "todohighlight.defaultStyle": {
-      "color": "unset",
-      "backgroundColor": "unset",
-      "overviewRulerColor": "grey"
+      {
+        "scope": "comment.line.double-slash,comment.block.documentation",
+        "settings": {
+          "fontStyle": "italic"
+        }
+      }
+    ]
+  },
+  "editor.smoothScrolling": true,
+  "editor.snippetSuggestions": "top",
+  "editor.folding": false,
+  "editor.accessibilitySupport": "off",
+  "editor.fontSize": 15,
+  // "editor.fontFamily": "'Roboto Mono Medium'",
+  "editor.rulers": [80, 100],
+  "editor.wordWrap": "on",
+  "editor.tabSize": 2,
+  // "editor.multiCursorModifier": "ctrlCmd",
+  "editor.formatOnPaste": true,
+  "editor.renderWhitespace": "all",
+  "editor.renderControlCharacters": true,
+  // "search.location": "panel",
+  "files.insertFinalNewline": true,
+  "files.trimTrailingWhitespace": true,
+  // "files.useExperimentalFileWatcher": false,
+  "files.exclude": {
+    // "**/.vscode": true,
+    "**/.git": true,
+    "**/node_modules": true,
+    "**/test/*/coverage": true,
+    // "**/dist": true,
+    "**/tmp": true,
+    "**/.*cache": true,
+    "**/.sapper": true,
+    "**/yarn.lock": true,
+    "**/package-lock.json": true
+  },
+  "files.watcherExclude": {
+    "**/.vscode": true,
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+    "**/node_modules/**": true,
+    "**/build/**": true,
+    "**/coverage/**": true,
+    "**/dist/**": true,
+    "**/export/**": true,
+    "**/public/**": true,
+    "**/tmp/**": true,
+    "**/.*cache": true,
+    "**/.sapper": true,
+    "**/*.min.*": true,
+    "**/*.map": true,
+    "**/*.log": true,
+    "**/package-lock.json": true,
+    "**/yarn.lock": true
+  },
+  "git.confirmSync": false,
+  "git.autofetch": true,
+  "files.associations": {
+    // "*.css": "postcss",
+    // "*.css": "scss", // XXX: Experimental; try to get built in validation working with PostCSS
+    // "*.postcss": "scss",
+    // "*.pcss": "scss",
+    "*.svelte": "html"
+  },
+  "css.validate": false,
+  // "scss.validate": false,
+  // "vetur.format.scriptInitialIndent": true,
+  // "vetur.format.styleInitialIndent": true,
+  // "vetur.validation.style": false,
+  // "vetur.validation.template": false, // use project based linting instead
+  "extensions.ignoreRecommendations": true,
+  "npm.enableScriptExplorer": true,
+  "npm.exclude": [
+    "**/.git",
+    "**/node_modules",
+  ],
+  "npm.packageManager": "yarn",
+  "todohighlight.keywords": [
+    {
+      "text": "XXX:", // for implementation details or notes
+      "color": "#ecf2fa",
+      "backgroundColor": "#3477ca"
     },
-    "emmet.showSuggestionsAsSnippets": true,
-    "javascript.implicitProjectConfig.checkJs": true, // FIXME: Might be better as a per project setting
-    "eslint.validate": [
-      "html",
-      "javascript",
-      "javascriptreact",
-      "marko",
-      "vue"
-    ],
-    "projectManager.treeview.visible": false,
-    // "projectManager.checkInvalidPathsBeforeListing": false,
-    "projectManager.groupList": true,
-    "projectManager.git.baseFolders": [
-      "/home/max/Development"
-    ],
-    "projectManager.vscode.baseFolders": [
-      "/home/max/Development"
-    ],
-    // "projectManager.git.maxDepthRecursion": 3,
-    // "projectManager.vscode.maxDepthRecursion": 3,
-    "projectManager.svn.maxDepthRecursion": 1,
-    "projectManager.git.ignoredFolders": [
-      "node_modules",
-      "dist",
-      "out",
-      "typings",
-      "test",
-      ".cache",
-      ".haxelib"
-    ],
-    "projectManager.vscode.ignoredFolders": [
-      "node_modules",
-      "dist",
-      "out",
-      "typings",
-      ".cache",
-      "test"
-    ],
-    "atomKeymap.promptV3Features": true, // use ctrl+p to toggle on
-    "css.validate": false,
-    // "scss.validate": false,
-    "vetur.format.scriptInitialIndent": true,
-    "vetur.format.styleInitialIndent": true,
-    "vetur.validation.style": false,
-    "vetur.validation.template": false, // use project based linting instead
-    "javascript.implicitProjectConfig.experimentalDecorators": true,
-    "[markdown]": {
-      "editor.lineNumbers": "interval",
-      "editor.rulers": [],
-      "editor.wordWrap": "bounded",
-      "editor.wrappingIndent": "indent",
-      "editor.quickSuggestions": false
-    },
-    "spellright.language": "en_AU",
-    "spellright.suggestionsInHints": false,
-    "spellright.configurationUpdate": false,
-    "spellright.notificationClass": "warning",
-    "spellright.spellContext": "body code comments strings",
-    "spellright.documentTypes": [
-      "css",
-      "html",
-      "javascript",
-      "javascriptreact",
-      "json",
-      "jsonc",
-      "markdown",
-      "marko",
-      "plaintext",
-      "postcss",
-      "terraform",
-      "text",
-      "vue",
-      "yml"
-    ],
-    "gitlens.advanced.messages": {
-      "suppressCommitHasNoPreviousCommitWarning": false,
-      "suppressCommitNotFoundWarning": false,
-      "suppressFileNotUnderSourceControlWarning": false,
-      "suppressGitVersionWarning": false,
-      "suppressLineUncommittedWarning": false,
-      "suppressNoRepositoryWarning": false,
-      "suppressResultsExplorerNotice": false,
-      "suppressShowKeyBindingsNotice": true,
-      "suppressUpdateNotice": true,
-      "suppressWelcomeNotice": true
-    },
-    "tslint.jsEnable": true,
-    "tslint.packageManager": "yarn",
-    "eslint.packageManager": "yarn",
-    "gitlens.codeLens.enabled": false,
-    "gitlens.keymap": "none",
-  }
+    "README:",
+    "NOTE:",
+    "REF:" // reference (e.g. a link to an article)
+  ],
+  "todohighlight.defaultStyle": {
+    "color": "unset",
+    "backgroundColor": "unset",
+    "overviewRulerColor": "grey"
+  },
+  "emmet.showSuggestionsAsSnippets": true,
+  "javascript.implicitProjectConfig.checkJs": true, // FIXME: Might be better as a per project setting
+  "eslint.validate": ["html", "javascript", "javascriptreact", "vue"],
+  "projectManager.treeview.visible": false,
+  // "projectManager.checkInvalidPathsBeforeListing": false,
+  "projectManager.groupList": true,
+  "projectManager.git.baseFolders": ["/home/max/Development"],
+  "projectManager.vscode.baseFolders": ["/home/max/Development"],
+  // "projectManager.git.maxDepthRecursion": 3,
+  // "projectManager.vscode.maxDepthRecursion": 3,
+  "projectManager.svn.maxDepthRecursion": 1,
+  "projectManager.git.ignoredFolders": [
+    "node_modules",
+    "dist",
+    "out",
+    "typings",
+    "test",
+    ".cache",
+    ".haxelib"
+  ],
+  "projectManager.vscode.ignoredFolders": [
+    "node_modules",
+    "dist",
+    "out",
+    "typings",
+    ".cache",
+    "test"
+  ],
+  "atomKeymap.promptV3Features": true, // use ctrl+p to toggle on
+  "javascript.implicitProjectConfig.experimentalDecorators": true,
+  "[markdown]": {
+    "editor.lineNumbers": "interval",
+    "editor.rulers": [],
+    "editor.wordWrap": "bounded",
+    "editor.wrappingIndent": "indent",
+    "editor.quickSuggestions": false
+  },
+  "spellright.language": "en_AU",
+  "spellright.suggestionsInHints": false,
+  "spellright.configurationUpdate": false,
+  "spellright.notificationClass": "warning",
+  "spellright.spellContext": "body code comments strings",
+  "spellright.documentTypes": [
+    "css",
+    "html",
+    "javascript",
+    "javascriptreact",
+    "json",
+    "jsonc",
+    "markdown",
+    "plaintext",
+    "postcss",
+    "terraform",
+    "text",
+    // "vue",
+    "yml"
+  ],
+  "gitlens.advanced.messages": {
+    "suppressCommitHasNoPreviousCommitWarning": false,
+    "suppressCommitNotFoundWarning": false,
+    "suppressFileNotUnderSourceControlWarning": false,
+    "suppressGitVersionWarning": false,
+    "suppressLineUncommittedWarning": false,
+    "suppressNoRepositoryWarning": false,
+    "suppressResultsExplorerNotice": false,
+    "suppressShowKeyBindingsNotice": true,
+    "suppressUpdateNotice": true,
+    "suppressWelcomeNotice": true
+  },
+  "tslint.jsEnable": true,
+  "tslint.packageManager": "yarn",
+  "eslint.packageManager": "yarn",
+  "gitlens.codeLens.enabled": false,
+  "gitlens.keymap": "none"
+}

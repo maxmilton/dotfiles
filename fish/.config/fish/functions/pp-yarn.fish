@@ -1,3 +1,3 @@
 function pp-yarn -d 'Update global yarn packages'
-  yarn global upgrade
+  yarn global upgrade --save
 end
