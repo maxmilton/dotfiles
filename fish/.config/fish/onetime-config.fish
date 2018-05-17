@@ -8,6 +8,9 @@
 # $ ./dotfiles.sh -i fish
 #
 
+# Erase all previous fish abbreviations
+set -e fish_user_abbreviations
+
 # Disable welcome message
 set -U fish_greeting
 
