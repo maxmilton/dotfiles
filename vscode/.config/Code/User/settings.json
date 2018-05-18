@@ -179,9 +179,11 @@
     "suppressUpdateNotice": true,
     "suppressWelcomeNotice": true
   },
-  "tslint.jsEnable": true,
-  "tslint.packageManager": "yarn",
-  "eslint.packageManager": "yarn",
   "gitlens.codeLens.enabled": false,
-  "gitlens.keymap": "none"
+  "gitlens.keymap": "none",
+  "gitlens.gitExplorer.enabled": false,
+  "gitlens.historyExplorer.enabled": false,
+  "eslint.packageManager": "yarn",
+  "tslint.packageManager": "yarn",
+  "tslint.jsEnable": true
 }
