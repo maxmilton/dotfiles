@@ -19,11 +19,17 @@ set -U EDITOR vim
 set -U VISUAL vim
 
 # Node.js
-set -U fish_user_paths $HOME/.config/yarn/global/node_modules/.bin $fish_user_paths
-set -U NODE_PRESERVE_SYMLINKS 1
+set node_bin_path $HOME/.config/yarn/global/node_modules/.bin
+if test -d $node_bin_path
+  set -U fish_user_paths $node_bin_path $fish_user_paths
+  set -U NODE_PRESERVE_SYMLINKS 1
+end
 
 # Google Cloud SDK
-set -U fish_user_paths $HOME/.google-cloud-sdk/bin $fish_user_paths
+set gcloud_bin_path $HOME/.google-cloud-sdk/bin
+if test -d $gcloud_bin_path
+  set -U fish_user_paths $gcloud_bin_path $fish_user_paths
+end
 
 # fisherman plugins
 set -U FZF_LEGACY_KEYBINDINGS 0
@@ -118,6 +124,7 @@ abbr --add uu 'ncu; and yarn; and yarn upgrade'
 abbr --add uuu 'ncu --upgradeAll; and yarn; and yarn upgrade'
 abbr --add yb 'y build'
 abbr --add yt 'y lint; and y test --coverage'
+abbr --add ytt 'y test:dev'
 abbr --add yx 'y export; and serve export'
 abbr --add yy 'clr; y'
 abbr --add yyb 'clr; y build'
