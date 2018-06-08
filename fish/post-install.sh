@@ -1,4 +1,6 @@
 #!/bin/bash
+set -euo pipefail
+IFS=$'\n\t'
 
 # check if Fisherman is installed
 if [[ ! -f "$TARGET_DIR/.config/fish/functions/fisher.fish" ]]; then

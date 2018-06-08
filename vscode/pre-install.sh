@@ -1,4 +1,6 @@
 #!/bin/bash
+set -euo pipefail
+IFS=$'\n\t'
 
 # TODO: Change this once the new dictionary project is ready.
 # DICTIONARY_DIR=${DICTIONARY_DIR:-"$TARGET_DIR/Development/packages/dictionary"}

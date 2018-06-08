@@ -1,4 +1,6 @@
 #!/bin/bash
+set -euo pipefail
+IFS=$'\n\t'
 
 #
 # INSTALL DOTFILES
@@ -35,13 +37,13 @@ PACKAGES=(
 )
 PACKAGES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 TARGET_DIR=$HOME
-IGNORE_FILES="^((pre|post)-install|.*-entrypoint)\.sh$"
+IGNORE_FILES="^((pre|post)-install|.*-entrypoint)\\.sh$"
 
 ################################################################################
 
 usage() {
   echo -e "
-Usage: \e[1;33m$(basename "$0") [OPTIONS] [PACKAGES]\e[0m
+Usage: ${yellow}$(basename "$0") [OPTIONS] [PACKAGES]${reset}
 
 Dotfiles package installer script.
 
@@ -58,15 +60,25 @@ PACKAGES:
   " >&1
 }
 
+################################################################################
+
 # runtime settings
 dryrun=true
 quiet=false
 verbosity=-v
 
+# colours
+reset='\e[0m'
+red_bold='\e[1;91m'
+yellow_bold='\e[1;93m'
+yellow='\e[0;33m'
+blue='\e[0;94m'
+cyan_bold='\e[1;96m'
+
 # feedback utilities
-echo_err() { echo -e "\n\e[1;91m❌ ERROR:\e[0m $1\e[0m" 1>&2; echo -e "\a"; }
-echo_warn() { echo -e "\n\e[1;93m🔶 WARNING:\e[0m $1\e[0m" 1>&2; echo -e "\a"; }
-echo_info() { [[ $quiet == true ]] || echo -e "$1\e[0m" >&1; }
+echo_err() { echo -e "\\n${red_bold}❌ ERROR:${reset} $1${reset}" 1>&2; echo -e "\\a"; }
+echo_warn() { echo -e "\\n${yellow_bold}🔶 WARNING:${reset} $1${reset}" 1>&2; echo -e "\\a"; }
+echo_info() { [[ $quiet == true ]] || echo -e "$1${reset}" >&1; }
 
 # check GNU Stow is installed
 if ! hash stow 2>/dev/null; then
@@ -79,12 +91,12 @@ DISTRO=$(awk -F "=" '/^NAME/ {print $2}' /etc/os-release | tr -d '"')
 
 process_packages() {
   if [[ $dryrun = true ]]; then
-    echo_warn "Doing dry run, check output then run \e[1;33m$(basename "$0") -i"
+    echo_warn "Doing dry run, check output then run ${yellow}$(basename "$0") -i"
   fi
 
   # do the actual linking for each package and run pre/post script hooks
   for package in "${PACKAGES[@]}"; do
-    echo_info "\n\e[94mInstalling \e[1;96m$package \e[0;94mpackage..."
+    echo_info "\\n${blue}Installing ${cyan_bold}$package ${blue}package..."
 
     if [[ $dryrun = true ]]; then
       [[ -f "$PACKAGES_DIR/$package/pre-install.sh" ]] \
@@ -95,7 +107,7 @@ process_packages() {
         --no \
         --dir="$PACKAGES_DIR" \
         --target="$TARGET_DIR" \
-        --ignore=$IGNORE_FILES \
+        --ignore="$IGNORE_FILES" \
         --restow \
         "$package"
 
@@ -109,7 +121,7 @@ process_packages() {
         $verbosity \
         --dir="$PACKAGES_DIR" \
         --target="$TARGET_DIR" \
-        --ignore=$IGNORE_FILES \
+        --ignore="$IGNORE_FILES" \
         --restow \
         "$package"
 
@@ -125,25 +137,24 @@ OPTIND=1
 # parse options
 while getopts "h?iqv" opt; do
   case "$opt" in
-    h |\? )
+    h|\?)
       usage
       exit 0
       ;;
-    i )
+    i)
       dryrun=false
       ;;
-    q )
+    q)
       quiet=true
       verbosity=''
       ;;
-    v )
+    v)
       verbosity=-vv
       ;;
   esac
 done
 
 shift $((OPTIND-1))
-[ "$1" = "--" ] && shift
 
 # handle manually specified package names
 if [[ "$#" != 0 ]]; then

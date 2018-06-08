@@ -1,4 +1,6 @@
 #!/bin/bash
+set -euo pipefail
+IFS=$'\n\t'
 
 if [[ $dryrun = true ]]; then
   # dry run
