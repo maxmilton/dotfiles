@@ -46,7 +46,7 @@ pp() {
     "Arch Linux" ) yaourt -Syu --aur ;;
     Fedora ) dnf update --refresh -y ;;
     "Debian GNU/Linux" | Ubuntu ) apt update && apt upgrade --no-install-recommends -y ;;
-    "Alpine Linux" ) apk upgrade --update-cache -y ;;
+    "Alpine Linux" ) apk upgrade --update-cache ;;
     "CentOS Linux" | "Red Hat Enterprise Linux Server" ) yum update -y ;;
     "Container Linux by CoreOS" ) update_engine_client -update ;;
   esac
