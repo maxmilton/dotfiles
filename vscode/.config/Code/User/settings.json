@@ -38,19 +38,12 @@
   "editor.formatOnPaste": true,
   "editor.renderWhitespace": "all",
   "editor.renderControlCharacters": true,
-  // "search.location": "panel",
   "files.insertFinalNewline": true,
   "files.trimTrailingWhitespace": true,
-  // "files.useExperimentalFileWatcher": false,
   "files.exclude": {
-    // "**/.vscode": true,
     "**/.git": true,
     "**/node_modules": true,
-    "**/test/*/coverage": true,
-    // "**/dist": true,
     "**/tmp": true,
-    "**/.*cache": true,
-    "**/.sapper": true,
     "**/yarn.lock": true,
     "**/package-lock.json": true
   },
@@ -65,7 +58,6 @@
     "**/export/**": true,
     "**/public/**": true,
     "**/tmp/**": true,
-    "**/.*cache": true,
     "**/.sapper": true,
     "**/*.min.*": true,
     "**/*.map": true,
@@ -75,19 +67,7 @@
   },
   "git.confirmSync": false,
   "git.autofetch": true,
-  "files.associations": {
-    // "*.css": "postcss",
-    // "*.css": "scss", // XXX: Experimental; try to get built in validation working with PostCSS
-    // "*.postcss": "scss",
-    // "*.pcss": "scss",
-    "*.svelte": "html"
-  },
   "css.validate": false,
-  // "scss.validate": false,
-  // "vetur.format.scriptInitialIndent": true,
-  // "vetur.format.styleInitialIndent": true,
-  // "vetur.validation.style": false,
-  // "vetur.validation.template": false, // use project based linting instead
   "extensions.ignoreRecommendations": true,
   "npm.enableScriptExplorer": true,
   "npm.exclude": [
@@ -110,35 +90,29 @@
     "backgroundColor": "unset",
     "overviewRulerColor": "grey"
   },
-  "emmet.showSuggestionsAsSnippets": true,
-  "javascript.implicitProjectConfig.checkJs": true, // FIXME: Might be better as a per project setting
-  "eslint.validate": ["html", "javascript", "javascriptreact", "vue"],
+  // "emmet.showSuggestionsAsSnippets": true,
+  "javascript.implicitProjectConfig.checkJs": true,
+  "eslint.validate": ["html", "javascript", "javascriptreact"],
   "projectManager.treeview.visible": false,
-  // "projectManager.checkInvalidPathsBeforeListing": false,
   "projectManager.groupList": true,
   "projectManager.git.baseFolders": ["/home/max/Development"],
   "projectManager.vscode.baseFolders": ["/home/max/Development"],
-  // "projectManager.git.maxDepthRecursion": 3,
-  // "projectManager.vscode.maxDepthRecursion": 3,
   "projectManager.svn.maxDepthRecursion": 1,
   "projectManager.git.ignoredFolders": [
     "node_modules",
     "dist",
-    "out",
+    "export",
     "typings",
-    "test",
-    ".cache",
-    ".haxelib"
+    "test"
   ],
   "projectManager.vscode.ignoredFolders": [
     "node_modules",
     "dist",
-    "out",
+    "export",
     "typings",
-    ".cache",
     "test"
   ],
-  "atomKeymap.promptV3Features": true, // use ctrl+p to toggle on
+  "atomKeymap.promptV3Features": true,
   "javascript.implicitProjectConfig.experimentalDecorators": true,
   "[markdown]": {
     "editor.lineNumbers": "interval",
@@ -164,7 +138,6 @@
     "postcss",
     "terraform",
     "text",
-    // "vue",
     "yml"
   ],
   "gitlens.advanced.messages": {
