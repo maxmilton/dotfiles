@@ -12,7 +12,7 @@ IFS=$'\n\t'
 # TODO: Need a way to automatically backup existing files instead of throwing
 # an error and exiting -- maybe use something other than the --restow param?
 
-set -eo errtrace
+set -o errtrace
 trap 'echo_err "Error during install!"' ERR
 
 # options

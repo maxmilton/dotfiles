@@ -1,3 +1,5 @@
 function pp-yarn -d 'Update global yarn packages'
-  yarn global upgrade --save
+  if type -q yarn
+    yarn global upgrade --save
+  end
 end

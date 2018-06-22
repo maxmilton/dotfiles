@@ -37,7 +37,7 @@ set -U FZF_LEGACY_KEYBINDINGS 0
 # Misc
 abbr --add C 'math' # CLI calculator
 abbr --add get 'aria2c --dir ~/Downloads' # download via CLI
-abbr --add ppp 'pp; pp-fish; pp-gce; dup; pp-yarn; pp-git' # run full system update
+abbr --add ppp 'pp; pp-fish; pp-gce; dup; pp-yarn; pp-git; pp-hosts' # run full system update
 abbr --add p 'yaourt' # Arch Linux package manager
 
 # System
