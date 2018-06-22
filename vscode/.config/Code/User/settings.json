@@ -29,8 +29,10 @@
   "editor.snippetSuggestions": "top",
   "editor.folding": false,
   "editor.accessibilitySupport": "off",
-  "editor.fontSize": 15,
+  // "editor.fontSize": 15,
+  "editor.fontSize": 16,
   // "editor.fontFamily": "'Roboto Mono Medium'",
+  "editor.fontFamily": "'Roboto Mono'",
   "editor.rulers": [80, 100],
   "editor.wordWrap": "on",
   "editor.tabSize": 2,
@@ -99,21 +101,26 @@
   "projectManager.vscode.baseFolders": ["/home/max/Development"],
   "projectManager.svn.maxDepthRecursion": 1,
   "projectManager.git.ignoredFolders": [
-    "node_modules",
     "dist",
     "export",
-    "typings",
-    "test"
+    "node_modules",
+    "public",
+    "test",
+    "typings"
   ],
   "projectManager.vscode.ignoredFolders": [
-    "node_modules",
     "dist",
     "export",
-    "typings",
-    "test"
+    "node_modules",
+    "public",
+    "test",
+    "typings"
   ],
   "atomKeymap.promptV3Features": true,
   "javascript.implicitProjectConfig.experimentalDecorators": true,
+  "files.associations": {
+    "*.vue": "html"
+  },
   "[markdown]": {
     "editor.lineNumbers": "interval",
     "editor.rulers": [],
