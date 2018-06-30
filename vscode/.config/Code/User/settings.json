@@ -126,7 +126,8 @@
     "editor.rulers": [],
     "editor.wordWrap": "bounded",
     "editor.wrappingIndent": "indent",
-    "editor.quickSuggestions": false
+    "editor.quickSuggestions": false,
+    "files.trimTrailingWhitespace": false
   },
   "spellright.language": "en_AU",
   "spellright.suggestionsInHints": false,
