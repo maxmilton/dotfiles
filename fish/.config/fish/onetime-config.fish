@@ -121,15 +121,14 @@ abbr --add kpass 'kubectl config view --minify'
 
 # Development
 abbr --add uu 'yarn upgrade-interactive --latest'
-abbr --add yb 'y build'
-abbr --add yt 'y lint; and y test --coverage'
-abbr --add ytt 'y test:dev'
-abbr --add yx 'y export; and serve export'
 abbr --add yy 'clr; y'
+abbr --add yb 'y build'
 abbr --add yyb 'clr; y build'
-abbr --add yyt 'clr; y lint; and y test --coverage'
+abbr --add yt 'y lint; and y jest --coverage'
+abbr --add yyt 'clr; y lint; and y jest --coverage'
+abbr --add yx 'y export; and serve export'
 abbr --add yi 'yarn info'
-abbr --add ttl 'travis lint ./.travis.yml'
+abbr --add tl 'travis lint ./.travis.yml'
 
 # Git
 abbr --add g 'git'
