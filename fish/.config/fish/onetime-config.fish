@@ -35,7 +35,7 @@ end
 set -U FZF_LEGACY_KEYBINDINGS 0
 
 # Misc
-abbr --add C 'math' # CLI calculator
+abbr --add C 'math -s10 ""' # CLI calculator
 abbr --add get 'aria2c --dir ~/Downloads' # download via CLI
 abbr --add ppp 'pp; pp-fish; pp-gce; dup; pp-yarn; pp-git; pp-hosts' # run full system update
 abbr --add p 'yaourt' # Arch Linux package manager
@@ -120,8 +120,7 @@ abbr --add kp 'kubectl proxy'
 abbr --add kpass 'kubectl config view --minify'
 
 # Development
-abbr --add uu 'ncu; and yarn; and yarn upgrade'
-abbr --add uuu 'ncu --upgradeAll; and yarn; and yarn upgrade'
+abbr --add uu 'yarn upgrade-interactive --latest'
 abbr --add yb 'y build'
 abbr --add yt 'y lint; and y test --coverage'
 abbr --add ytt 'y test:dev'
