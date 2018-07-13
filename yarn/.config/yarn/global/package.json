@@ -1,6 +1,8 @@
 {
   "dependencies": {
-    "eslint": "^4.19.1",
+    "eslint": "^5.1.0",
+    "jest": "^23.4.0",
+    "npm": "^6.1.0",
     "postcss": "^6.0.22",
     "prettier": "^1.13.5",
     "serve": "^9.0.0",
