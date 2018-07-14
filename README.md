@@ -1,4 +1,4 @@
-# 💻 Max Milton's Dotfiles
+# Max Milton's Dotfiles
 
 For use with a Linux OS.
 
