@@ -1,4 +1,6 @@
-# Max Milton's Dotfiles
+# 💻 Max Milton's Dotfiles
+
+For use with a Linux OS.
 
 ## Usage
 
@@ -11,7 +13,7 @@ _NOTE: Requires [GNU Stow](https://www.gnu.org/software/stow/) to automatically 
 # dry run with default packages
 ./dotfiles.sh
 
-# install (efault packages
+# install default packages
 ./dotfiles.sh -i
 ```
 
