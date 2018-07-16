@@ -80,6 +80,23 @@ abbr --add rmnm 'find -O3 . -type d -name .git -prune -o -type d -name node_modu
 # remove all yarn-error.log files recursively
 abbr --add rmye 'find -O3 . -type d \( -name .git -o -name node_modules \) -prune -o -type f -name yarn-error.log -exec rm "{}" \;'
 
+# Net tools
+abbr --add nt 'docker run -ti --rm --network=host --volume="$PWD":/data local/net-tools'
+# abbr --add curl 'docker run -ti --rm --network=host --volume="$PWD":/data local/net-tools curl'
+abbr --add drill 'docker run -ti --rm local/net-tools drill'
+abbr --add htop 'docker run -ti --rm --pid=host local/net-tools htop'
+abbr --add iperf 'docker run -ti --rm --network=host local/net-tools iperf'
+abbr --add jq 'docker run -ti --rm --volume="$PWD":/data local/net-tools jq'
+abbr --add mtr 'docker run -ti --rm local/net-tools mtr'
+abbr --add nmap 'docker run -ti --rm --network=host --volume="$PWD":/data local/net-tools nmap'
+abbr --add ncat 'docker run -ti --rm --network=host --volume="$PWD":/data local/net-tools ncat'
+abbr --add nping 'docker run -ti --rm --network=host local/net-tools nping'
+# abbr --add ssh 'docker run -ti --rm --network=host --volume="$PWD":/data local/net-tools ssh'
+# abbr --add sftp 'docker run -ti --rm --network=host --volume="$PWD":/data local/net-tools sftp'
+# abbr --add scp 'docker run -ti --rm --network=host --volume="$PWD":/data local/net-tools scp'
+abbr --add tcpdump 'docker run -ti --rm --network=host --volume="$PWD":/data local/net-tools tcpdump'
+abbr --add whois 'docker run -ti --rm local/net-tools whois'
+
 # Docker
 abbr --add d 'docker'
 abbr --add di 'docker images'
