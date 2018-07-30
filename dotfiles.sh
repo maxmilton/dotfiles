@@ -87,7 +87,12 @@ if ! hash stow 2>/dev/null; then
 fi
 
 # variables for use in install scripts
+OS=$(uname)
+DISTRO='Not Linux'
+
+if [[ "$OS" = 'Linux' ]]; then
 DISTRO=$(awk -F "=" '/^NAME/ {print $2}' /etc/os-release | tr -d '"')
+fi
 
 process_packages() {
   if [[ $dryrun = true ]]; then
