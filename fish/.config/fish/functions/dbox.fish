@@ -1,15 +1,25 @@
 function dbox -d 'Dockerized dev box with persistence'
   if docker container inspect dbox >/dev/null 2>&1
+    # start dbox container if it exists but is not running
     if test (docker inspect -f '{{.State.Running}}' dbox) != 'true'
       docker start dbox
     end
-    docker exec -ti dbox entrypoint.sh $argv
+
+    if test -n "$argv"
+      # run command as root
+      docker exec -ti dbox entrypoint.sh "$argv"
+    else
+      # enter as dbox user
+      docker exec -ti dbox entrypoint.sh
+    end
   else
     # no previous dbox container exists; first-time run
     docker run -ti \
       --name dbox \
-      --volume ~/Development/dotfiles/fish/dbox-entrypoint.sh:/usr/bin/entrypoint.sh \
+      --env GID=(id -g) \
+      --volume "$HOME":/home/"$USER" \
+      --volume "$HOME"/Development/dotfiles/fish/dbox-entrypoint.sh:/usr/bin/entrypoint.sh \
       --entrypoint entrypoint.sh \
-      alpine:edge $argv
+      alpine:edge "$argv"
   end
 end
