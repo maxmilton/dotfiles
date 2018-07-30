@@ -1,6 +1,6 @@
 # Max Milton's Dotfiles
 
-For use with a Linux OS.
+Intended for use with a Linux OS. Limited support for macOS, BSD, and UNIX-like OS.
 
 ## Usage
 
