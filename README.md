@@ -6,15 +6,34 @@ Intended for use with a Linux OS. Limited support for macOS, BSD, and UNIX-like 
 
 _NOTE: Requires [GNU Stow](https://www.gnu.org/software/stow/) to automatically symlink config packages._
 
-```bash
-# view help text
+View help text:
+
+```sh
 ./dotfiles.sh -h
+```
 
-# dry run with default packages
+Dry run with default packages:
+
+```sh
 ./dotfiles.sh
+```
 
-# install default packages
+Install default packages:
+
+```sh
 ./dotfiles.sh -i
+```
+
+Install a specific package:
+
+```sh
+./dotfiles.sh -i fish
+```
+
+Install multiple specific packages:
+
+```sh
+./dotfiles.sh -i bash git yarn
 ```
 
 ## Licence
