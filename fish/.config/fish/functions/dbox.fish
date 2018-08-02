@@ -17,8 +17,8 @@ function dbox -d 'Dockerized dev box with persistence'
     docker run -ti \
       --name dbox \
       --env GID=(id -g) \
-      --volume "$HOME":/home/"$USER" \
-      --volume "$HOME"/Development/dotfiles/fish/dbox-entrypoint.sh:/usr/bin/entrypoint.sh \
+      --volume "$HOME":"/home/""$USER" \
+      --volume "$HOME""/Development/dotfiles/fish/dbox-entrypoint.sh":"/usr/bin/entrypoint.sh":ro \
       --entrypoint entrypoint.sh \
       alpine:edge "$argv"
   end
