@@ -74,7 +74,8 @@ abbr --add getip6 'curl -6 icanhazip.com'
 abbr --add getptr 'curl -4 icanhazptr.com'
 abbr --add t 'terraform'
 # remove all broken symlinks in dir
-abbr --add rmln 'find -L . -maxdepth 1 -type l -delete'
+# abbr --add rmln 'find -L . -maxdepth 1 -type l -delete'
+abbr --add rmln 'find -L . -name . -o -type d -prune -o -type l -delete'
 # remove all node_modules dirs recursively
 abbr --add rmnm 'find -O3 . -type d -name .git -prune -o -type d -name node_modules -prune -exec rm -rf "{}" \;'
 # remove all yarn-error.log files recursively

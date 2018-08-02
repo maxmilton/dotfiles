@@ -2,3 +2,4 @@
 .fuse_hidden*
 .Trash-*
 .nfs*
+.DS_Store
