@@ -44,16 +44,17 @@ if [ ! -f /first-run ]; then
   # install base deps + tools
   apk add --update \
     curl \
+    docs \
     docker \
     fish \
     git \
+    less \
     man \
+    man-pages \
     mdocml-apropos \
     sudo
-    # man-pages \
-    # less \
-    # less-doc \
-    # util-linux pciutils usbutils coreutils binutils findutils grep \
+    # XXX: If busybox built-ins are not enough, install:
+    # util-linux pciutils usbutils coreutils binutils findutils grep
 
   # no password sudo access
   echo -e "%wheel\\tALL=(ALL) NOPASSWD: ALL" > /etc/sudoers
@@ -97,6 +98,7 @@ EOF
   # write fish shell config file for dbox user
   cat > /home/dbox/.config/fish/config.fish <<'EOF'
 alias docker 'sudo docker'
+set -xU PAGER 'less'
 EOF
 
   echo '0' > /first-run
