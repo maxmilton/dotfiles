@@ -26,20 +26,20 @@ PACKAGES=(
   htop
   #jsdoc
   #prettier
-  ssh
+  #ssh
   #terraform
   #tmux
   #tslint
   vim
-  vscode
-  yarn
+  #vscode
+  #yarn
   #zsh
 )
 PACKAGES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 TARGET_DIR=$HOME
 IGNORE_FILES="^((pre|post)-install|.*-entrypoint)\\.sh$"
 
-################################################################################
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 usage() {
   echo -e "
@@ -68,12 +68,12 @@ quiet=false
 verbosity=-v
 
 # colours
-reset='\e[0m'
-red_bold='\e[1;91m'
-yellow_bold='\e[1;93m'
-yellow='\e[0;33m'
-blue='\e[0;94m'
-cyan_bold='\e[1;96m'
+reset='\x1B[0m'
+red_bold='\x1B[1;91m'
+yellow_bold='\x1B[1;93m'
+yellow='\x1B[0;33m'
+blue='\x1B[0;94m'
+cyan_bold='\x1B[1;96m'
 
 # feedback utilities
 echo_err() { echo -e "\\n${red_bold}❌ ERROR:${reset} $1${reset}" 1>&2; echo -e "\\a"; }

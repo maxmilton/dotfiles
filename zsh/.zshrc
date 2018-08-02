@@ -55,30 +55,30 @@ alias C='noglob calc'
 
 # Compare gzip'd sizes of a file
 gz() {
-  echo -e "\e[93moriginal (bytes / kilobytes / percent): \e[0m"
+  echo -e "\\x1B[93moriginal (bytes / kilobytes / percent): \\x1B[0m"
   orig=$(wc -c < "$1")
   sizek=$(printf "%0.2f\n" $(calc $orig / 1024))
   echo "$orig B / $sizek K"
 
-  echo -e "\e[91mgzip -1: \e[0m"
+  echo -e "\\x1B[91mgzip -1: \\x1B[0m"
   size=$(gzip -c -1 "$1" | wc -c)
   sizek=$(printf "%0.2f\n" $(calc $size / 1024))
   percent=$(printf "%0.2f\n" $(calc "($size / $orig) * 100"))
   echo "$size B / $sizek K / $percent %"
 
-  echo -e "\e[91mgzip -5: \e[0m"
+  echo -e "\\x1B[91mgzip -5: \\x1B[0m"
   size=$(gzip -c -5 "$1" | wc -c)
   sizek=$(printf "%0.2f\n" $(calc $size / 1024))
   percent=$(printf "%0.2f\n" $(calc "($size / $orig) * 100"))
   echo "$size B / $sizek K / $percent %"
 
-  echo -e "\e[91mgzip -6: \e[0m"
+  echo -e "\\x1B[91mgzip -6: \\x1B[0m"
   size=$(gzip -c -6 "$1" | wc -c)
   sizek=$(printf "%0.2f\n" $(calc $size / 1024))
   percent=$(printf "%0.2f\n" $(calc "($size / $orig) * 100"))
   echo "$size B / $sizek K / $percent %"
 
-  echo -e "\e[91mgzip -9: \e[0m"
+  echo -e "\\x1B[91mgzip -9: \\x1B[0m"
   size=$(gzip -c -9 "$1" | wc -c)
   sizek=$(printf "%0.2f\n" $(calc $size / 1024))
   percent=$(printf "%0.2f\n" $(calc "($size / $orig) * 100"))
@@ -95,7 +95,7 @@ alias lsd='ls -lad */ .*/'
 alias find='find -O3 . ! -path "node_modules" ! -path ".git" -type f -iname "*xx*"'
 alias dux='du -hs | sort -h'
 alias dus='du --block-size=MiB --max-depth=1 | sort -n'
-alias clr='printf "\ec"'
+alias clr='printf "\\x1Bc"'
 alias 775='find . -type d -exec chmod 775 {} \; && echo "Done!"'
 alias 755='find . -type d -exec chmod 755 {} \; && echo "Done!"'
 alias 700='find . -type d -exec chmod 700 {} \; && echo "Done!"'
