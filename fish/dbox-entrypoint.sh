@@ -87,7 +87,8 @@ EOF
   # install fisherman plugins
   sudo -u dbox fish -c 'fisher MaxMilton/pure'
 
-  # compile fish config
+  # compile fish config (for root and dbox users)
+  fish /home/dbox/.dotfiles/fish/.config/fish/onetime-config.fish
   sudo -u dbox fish /home/dbox/.dotfiles/fish/.config/fish/onetime-config.fish
 
   # change root shell
