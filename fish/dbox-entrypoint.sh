@@ -3,7 +3,7 @@ set -euo pipefail
 
 # Bootstrap Dev Box Environment
 #
-# Minimal docker container with persistence for quick experiments and
+# Minimal docker container with loose persistence for quick experiments and
 # protptyping. Luncher script function in: ./config/fish/functions/dbox.fish
 #
 
@@ -93,6 +93,9 @@ EOF
   sed -i -- 's/root:\/bin\/ash/root:\/usr\/bin\/fish/' /etc/passwd
 
   echo '0' > /first-run
+else
+  # update dot files (in the background)
+  nohup git -C /home/dbox/.dotfiles pull --update-shallow &>/dev/null &
 fi
 
 # allow docker '--user' argument or run as root if commands are passed in
