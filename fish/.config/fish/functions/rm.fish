@@ -3,14 +3,14 @@ function rm -d 'Move files into trash'
     # Linux
     set -l distro (awk -F "=" '/^NAME/ {print $2}' /etc/os-release | tr -d '"')
 
-    if test $distro = 'Alpine Linux'
+    if test "$distro" = 'Alpine Linux'
       # delete immediately since Alpine is almost always CLI only
-      rm $argv
+      command rm "$argv"
     else
-      gio trash $argv
+      gio trash "$argv"
     end
   else
     # macOS
-    rmtrash $argv
+    rmtrash "$argv"
   end
 end
