@@ -87,7 +87,12 @@ if ! hash stow 2>/dev/null; then
 fi
 
 # variables for use in install scripts
-DISTRO=$(awk -F "=" '/^NAME/ {print $2}' /etc/os-release | tr -d '"')
+OS=$(uname)
+DISTRO='Not Linux'
+
+if [[ "$OS" = 'Linux' ]]; then
+  DISTRO=$(awk -F "=" '/^NAME/ {print $2}' /etc/os-release | tr -d '"')
+fi
 
 process_packages() {
   if [[ $dryrun = true ]]; then
@@ -99,8 +104,9 @@ process_packages() {
     echo_info "\\n${blue}Installing ${cyan_bold}$package ${blue}package..."
 
     if [[ $dryrun = true ]]; then
-      [[ -f "$PACKAGES_DIR/$package/pre-install.sh" ]] \
-        && source "$PACKAGES_DIR/$package/pre-install.sh" || true
+      if [[ -f "$PACKAGES_DIR/$package/pre-install.sh" ]]; then
+        source "$PACKAGES_DIR/$package/pre-install.sh"
+      fi
 
       stow \
         $verbosity \
@@ -111,11 +117,13 @@ process_packages() {
         --restow \
         "$package"
 
-      [[ -f "$PACKAGES_DIR/$package/post-install.sh" ]] \
-        && source "$PACKAGES_DIR/$package/post-install.sh" || true
+      if [[ -f "$PACKAGES_DIR/$package/post-install.sh" ]]; then
+        source "$PACKAGES_DIR/$package/post-install.sh"
+      fi
     else
-      [[ -f "$PACKAGES_DIR/$package/pre-install.sh" ]] \
-        && source "$PACKAGES_DIR/$package/pre-install.sh" || true
+      if [[ -f "$PACKAGES_DIR/$package/pre-install.sh" ]]; then
+        source "$PACKAGES_DIR/$package/pre-install.sh"
+      fi
 
       stow \
         $verbosity \
@@ -125,8 +133,9 @@ process_packages() {
         --restow \
         "$package"
 
-      [[ -f "$PACKAGES_DIR/$package/post-install.sh" ]] \
-        && source "$PACKAGES_DIR/$package/post-install.sh" || true
+      if [[ -f "$PACKAGES_DIR/$package/post-install.sh" ]]; then
+        source "$PACKAGES_DIR/$package/post-install.sh"
+      fi
     fi
   done
 }

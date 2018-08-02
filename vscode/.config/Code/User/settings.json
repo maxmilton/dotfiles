@@ -114,8 +114,8 @@
   "projectManager.groupList": true,
   "projectManager.git.baseFolders": ["/home/max/Development"],
   "projectManager.vscode.baseFolders": ["/home/max/Development"],
-  "projectManager.svn.maxDepthRecursion": 1,
   "projectManager.git.ignoredFolders": [
+    "0__backups",
     "dist",
     "export",
     "node_modules",
@@ -124,6 +124,7 @@
     "typings"
   ],
   "projectManager.vscode.ignoredFolders": [
+    "0__backups",
     "dist",
     "export",
     "node_modules",
@@ -143,11 +144,14 @@
     "javascriptreact",
     "json",
     "jsonc",
+    "less",
     "markdown",
     "plaintext",
     "postcss",
+    "sass",
     "terraform",
     "text",
+    "toml",
     "yml"
   ],
   "gitlens.advanced.messages": {
