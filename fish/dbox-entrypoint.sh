@@ -41,9 +41,10 @@ if [ ! -f /first-run ]; then
   chown dbox:dbox /tmp/logpipe
   cat <> /tmp/logpipe 1>&2 &
 
-  # install base deps
+  # install base deps + tools
   apk add --update \
     curl \
+    docker \
     fish \
     git \
     man \
@@ -91,6 +92,11 @@ EOF
 
   # change root shell
   sed -i -- 's/root:\/bin\/ash/root:\/usr\/bin\/fish/' /etc/passwd
+
+  # write fish shell config file for dbox user
+  cat > /home/dbox/.config/fish/config.fish <<'EOF'
+alias docker 'sudo docker'
+EOF
 
   echo '0' > /first-run
 else
