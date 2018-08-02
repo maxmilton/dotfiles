@@ -29,9 +29,12 @@ if [ ! -f /first-run ]; then
   adduser -D -u 6805 -S -h /home/dbox -s /usr/bin/fish -G dbox dbox
   addgroup dbox wheel
 
-  # add host gid for access permissions to host user home files
-  addgroup -g "$GID" -S hostgrp
-  addgroup dbox hostgrp
+  # create group with host user gid if one doesn't already exist
+  if ! getent group "$GID" >/dev/null 2>&1; then
+    addgroup -g "$GID" -S hostgrp
+  fi
+  # add user to group for access permissions to host user home files
+  addgroup dbox $(getent group "$GID" | cut -d: -f1)
 
   # allow dbox user to write to /dev/stderr
   mkfifo -m 600 /tmp/logpipe
