@@ -5,12 +5,12 @@ function rm -d 'Move files into trash'
 
     if test "$distro" = 'Alpine Linux'
       # delete immediately since Alpine is almost always CLI only
-      command rm "$argv"
+      command rm $argv
     else
-      gio trash "$argv"
+      gio trash $argv
     end
   else
     # macOS
-    rmtrash "$argv"
+    rmtrash $argv
   end
 end
