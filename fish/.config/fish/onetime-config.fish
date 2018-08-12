@@ -15,8 +15,8 @@ set -e fish_user_abbreviations
 set -U fish_greeting
 
 # VIM = <3
-set -U EDITOR vim
-set -U VISUAL vim
+set -Ux EDITOR vim
+set -Ux VISUAL vim
 
 # Node.js
 set node_bin_path $HOME/.config/yarn/global/node_modules/.bin
@@ -135,7 +135,8 @@ abbr --add krs 'kubectl rollout status deployments/'
 abbr --add krus 'kubectl rollout undo deployments/'
 abbr --add ke 'kubectl exec'
 abbr --add kp 'kubectl proxy'
-abbr --add kpass 'kubectl config view --minify'
+abbr --add kpass 'kubectl -n kube-system describe secret (kubectl -n kube-system get secret | grep admin-user | awk \'{print $1}\')'
+abbr --add h 'helm'
 
 # Development
 abbr --add uu 'yarn upgrade-interactive --latest'
