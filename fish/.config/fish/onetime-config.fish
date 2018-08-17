@@ -145,7 +145,7 @@ abbr --add yb 'y build'
 abbr --add yyb 'clr; y build'
 abbr --add yt 'y lint; and y jest --coverage'
 abbr --add yyt 'clr; y lint; and y jest --coverage'
-abbr --add yx 'y export; and serve export'
+abbr --add ys 'y serve'
 abbr --add yi 'yarn info'
 abbr --add tl 'travis lint ./.travis.yml'
 
