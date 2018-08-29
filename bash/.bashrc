@@ -110,6 +110,8 @@ alias drmi='docker rmi $(docker images -q -f dangling=true)'
 # remove orphaned volumes
 alias drmv='docker volume ls -qf dangling=true | xargs -r docker volume rm'
 alias dc='docker-compose'
+# get a shell in the host via docker
+alias dnse='docker run -it --rm --privileged --pid=host justincormack/nsenter1'
 # update all docker images
 dup() { alias | docker images | awk '(NR>1) && ($2!~/none/) {print $1":"$2}'| xargs -L1 docker pull; }
 # enter docker container or execute command
