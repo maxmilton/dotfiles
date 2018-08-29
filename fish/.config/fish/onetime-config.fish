@@ -122,6 +122,8 @@ abbr --add dc 'docker-compose'
 abbr --add dcu 'docker-compose up'
 abbr --add dcd 'docker-compose down'
 abbr --add dcr 'docker-compose down; and docker-compose up'
+# get a shell in the host via docker
+abbr --add dnse 'docker run -it --rm --privileged --pid=host justincormack/nsenter1'
 
 # K8s
 abbr --add k 'kubectl'
