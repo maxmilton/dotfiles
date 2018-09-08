@@ -40,34 +40,35 @@
   "editor.formatOnPaste": true,
   "editor.renderWhitespace": "all",
   "editor.renderControlCharacters": true,
+  "breadcrumbs.enabled": true,
   "files.insertFinalNewline": true,
   "files.trimTrailingWhitespace": true,
   "files.exclude": {
     "**/.git": true,
+    "**/.stylelintcache": true,
     "**/node_modules": true,
-    "**/tmp": true,
-    "**/yarn.lock": true,
     "**/package-lock.json": true,
-    "**/.stylelintcache": true
+    "**/tmp": true,
+    "**/yarn.lock": true
   },
   "files.watcherExclude": {
-    "**/.vscode": true,
     "**/.git/objects/**": true,
     "**/.git/subtree-cache/**": true,
-    "**/node_modules/**": true,
+    "**/.sapper": true,
+    "**/.stylelintcache": true,
+    "**/.vscode": true,
+    "**/*.log": true,
+    "**/*.map": true,
+    "**/*.min.*": true,
     "**/build/**": true,
     "**/coverage/**": true,
     "**/dist/**": true,
     "**/export/**": true,
+    "**/node_modules/**": true,
+    "**/package-lock.json": true,
     "**/public/**": true,
     "**/tmp/**": true,
-    "**/.sapper": true,
-    "**/*.min.*": true,
-    "**/*.map": true,
-    "**/*.log": true,
-    "**/package-lock.json": true,
-    "**/yarn.lock": true,
-    "**/.stylelintcache": true
+    "**/yarn.lock": true
   },
   "files.associations": {
     "*.css": "less", // better syntax highlighting for PostCSS
@@ -154,20 +155,27 @@
     "toml",
     "yml"
   ],
-  "gitlens.advanced.messages": {
-    "suppressCommitHasNoPreviousCommitWarning": false,
-    "suppressCommitNotFoundWarning": false,
-    "suppressFileNotUnderSourceControlWarning": false,
-    "suppressGitVersionWarning": false,
-    "suppressLineUncommittedWarning": false,
-    "suppressNoRepositoryWarning": false,
-    "suppressResultsExplorerNotice": false,
-    "suppressShowKeyBindingsNotice": true,
-    "suppressUpdateNotice": true,
-    "suppressWelcomeNotice": true
-  },
-  "gitlens.codeLens.enabled": false,
-  "gitlens.keymap": "none",
-  "gitlens.gitExplorer.enabled": false,
-  "gitlens.historyExplorer.enabled": false
+  "spellright.ignoreFiles": [
+    "**/.gitignore",
+    "**/.spellignore",
+    "**/*.log",
+    "**/package-lock.json",
+    "**/yarn.lock"
+  ],
+  // "gitlens.advanced.messages": {
+  //   "suppressCommitHasNoPreviousCommitWarning": false,
+  //   "suppressCommitNotFoundWarning": false,
+  //   "suppressFileNotUnderSourceControlWarning": false,
+  //   "suppressGitVersionWarning": false,
+  //   "suppressLineUncommittedWarning": false,
+  //   "suppressNoRepositoryWarning": false,
+  //   "suppressResultsExplorerNotice": false,
+  //   "suppressShowKeyBindingsNotice": true,
+  //   "suppressUpdateNotice": true,
+  //   "suppressWelcomeNotice": true
+  // },
+  // "gitlens.codeLens.enabled": false,
+  // "gitlens.keymap": "none",
+  // "gitlens.gitExplorer.enabled": false,
+  // "gitlens.historyExplorer.enabled": false
 }
