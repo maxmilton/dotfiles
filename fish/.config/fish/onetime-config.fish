@@ -39,6 +39,7 @@ abbr --add C 'math -s10 ""' # CLI calculator
 abbr --add get 'aria2c --dir ~/Downloads' # download via CLI
 abbr --add ppp 'pp; pp-fish; pp-gce; dup; pp-yarn; pp-git; pp-hosts' # run full system update
 abbr --add p 'yaourt' # Arch Linux package manager
+abbr --add f 'flatpak'
 
 # System
 abbr --add s 'sudo -i'
