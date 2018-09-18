@@ -39,6 +39,7 @@ abbr --add C 'math -s10 ""' # CLI calculator
 abbr --add get 'aria2c --dir ~/Downloads' # download via CLI
 abbr --add ppp 'pp; pp-fish; pp-gce; dup; pp-yarn; pp-git; pp-hosts' # run full system update
 abbr --add p 'yaourt' # Arch Linux package manager
+abbr --add f 'flatpak'
 
 # System
 abbr --add s 'sudo -i'
@@ -124,6 +125,8 @@ abbr --add dc 'docker-compose'
 abbr --add dcu 'docker-compose up'
 abbr --add dcd 'docker-compose down'
 abbr --add dcr 'docker-compose down; and docker-compose up'
+# get a shell in the host via docker
+abbr --add dnse 'docker run -it --rm --privileged --pid=host justincormack/nsenter1'
 
 # K8s
 abbr --add k 'kubectl'
@@ -177,6 +180,10 @@ abbr --add glooo "git log --graph --pretty=format:'%C(auto)%h %Cgreen%cr%C(auto)
 abbr --add ga 'git add'
 abbr --add gd 'git diff'
 abbr --add gdd 'git diff --staged'
+# see changes in origin
+abbr --add gpd 'git diff master..origin/master'
+# see changes in upstream
+abbr --add gpd 'git fetch upstream; git diff master..upstream/master'
 # review changes from last pull
 abbr --add gpd "git log --reverse --no-merges --stat '@{1}..'"
 # see unpushed commits

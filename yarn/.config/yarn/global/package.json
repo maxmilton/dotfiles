@@ -5,6 +5,7 @@
     "npm": "^6.1.0",
     "postcss": "^7.0.1",
     "prettier": "^1.13.5",
+    "sirv-cli": "^0.2.1",
     "stylelint": "^9.3.0",
     "tslint": "^5.10.0",
     "typescript": "^3.0.1"
