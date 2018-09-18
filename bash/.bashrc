@@ -117,15 +117,6 @@ dup() { alias | docker images | awk '(NR>1) && ($2!~/none/) {print $1":"$2}'| xa
 # enter docker container or execute command
 de() { if [ -z "$2" ]; then docker exec -ti -u root "$1" /bin/sh; else docker exec "$1" "$2"; fi }
 
-# Aliases: CoreOS
-alias fc='fleetctl'
-alias fcl='fleetctl list-units'
-alias fclw='watch -n 1 fleetctl list-units'
-alias fcf='fleetctl list-unit-files'
-alias fcm='fleetctl list-machines'
-alias ec='etcdctl'
-# roll back a system upgrade if something goes bad, needs reboot
-alias rollback='cgpt prioritize "$(cgpt find -t coreos-usr | grep --invert-match "$(rootdev -s /usr)")"'
 
 # check for active tmux sessions (if tmux is installed)
 command -v tmux >/dev/null 2>&1 && (echo "🔹 tmux ls" && tmux ls) || true
