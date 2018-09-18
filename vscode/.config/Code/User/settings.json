@@ -3,10 +3,15 @@
   "telemetry.enableTelemetry": false,
   "update.channel": "none", // no need on Arch Linux when using AUR
   "window.restoreWindows": "all",
-  "window.menuBarVisibility": "toggle",
+  "window.titleBarStyle": "custom",
+  // "window.menuBarVisibility": "toggle",
   "window.zoomLevel": 0,
   "workbench.startupEditor": "newUntitledFile",
   "workbench.colorTheme": "One Dark Pro",
+  "workbench.enableExperiments": false,
+  // "workbench.fontAliasing": "auto",
+  "workbench.settings.editor": "json",
+  "workbench.tips.enabled": false,
   "explorer.confirmDragAndDrop": false,
   "explorer.confirmDelete": false,
   "editor.tokenColorCustomizations": {
@@ -17,26 +22,23 @@
           "foreground": "#5C6370"
         }
       },
-      {
-        "scope": "comment.line.double-slash,comment.block.documentation",
-        "settings": {
-          "fontStyle": "italic"
-        }
-      }
+      // {
+      //   "scope": "comment.line.double-slash,comment.block.documentation",
+      //   "settings": {
+      //     "fontStyle": "italic"
+      //   }
+      // }
     ]
   },
-  "editor.smoothScrolling": true,
+  // "editor.smoothScrolling": true,
   "editor.snippetSuggestions": "top",
   "editor.folding": false,
   "editor.accessibilitySupport": "off",
-  // "editor.fontSize": 15,
   "editor.fontSize": 16,
   "editor.fontFamily": "'Roboto Mono Medium'",
-  // "editor.fontFamily": "'Roboto Mono'",
   "editor.rulers": [80, 100],
   "editor.wordWrap": "on",
   "editor.tabSize": 2,
-  // "editor.multiCursorModifier": "ctrlCmd",
   "editor.formatOnPaste": true,
   "editor.renderWhitespace": "all",
   "editor.renderControlCharacters": true,
