@@ -81,6 +81,8 @@ abbr --add rmln 'find -L . -name . -o -type d -prune -o -type l -delete'
 abbr --add rmnm 'find -O3 . -type d -name .git -prune -o -type d -name node_modules -prune -exec rm -rf "{}" \;'
 # remove all yarn-error.log files recursively
 abbr --add rmye 'find -O3 . -type d \( -name .git -o -name node_modules \) -prune -o -type f -name yarn-error.log -exec rm "{}" \;'
+# list open ports on macOS
+abbr --add netls 'sudo lsof -iTCP -sTCP:LISTEN -n -P'
 
 # Net tools
 abbr --add nt 'docker run -ti --rm --network=host --volume="$PWD":/data local/net-tools'
