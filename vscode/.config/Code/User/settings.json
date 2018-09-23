@@ -9,7 +9,7 @@
   "workbench.startupEditor": "newUntitledFile",
   "workbench.colorTheme": "One Dark Pro",
   "workbench.enableExperiments": false,
-  // "workbench.fontAliasing": "auto",
+  // "workbench.fontAliasing": "auto", // macOS
   "workbench.settings.editor": "json",
   "workbench.tips.enabled": false,
   "explorer.confirmDragAndDrop": false,
@@ -22,15 +22,9 @@
           "foreground": "#5C6370"
         }
       },
-      // {
-      //   "scope": "comment.line.double-slash,comment.block.documentation",
-      //   "settings": {
-      //     "fontStyle": "italic"
-      //   }
-      // }
     ]
   },
-  // "editor.smoothScrolling": true,
+  "editor.smoothScrolling": true, // otherwise choppy scroll on Linux
   "editor.snippetSuggestions": "top",
   "editor.folding": false,
   "editor.accessibilitySupport": "off",
