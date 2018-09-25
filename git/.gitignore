@@ -1,7 +1,10 @@
-*.code-workspace
-*.bak
-*~
-.fuse_hidden*
-.Trash-*
-.nfs*
+# https://git-scm.com/docs/gitignore
+
 .DS_Store
+.fuse_hidden*
+.nfs*
+.Trash-*
+*.bak
+*.code-workspace
+*~
+\#*
