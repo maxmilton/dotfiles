@@ -1,15 +1,15 @@
 {
   "dependencies": {
-    "eslint": "5.6.0",
-    "jest": "23.6.0",
-    "ndb": "1.0.26",
-    "npm": "6.4.1",
-    "postcss": "7.0.2",
-    "prettier": "1.14.3",
-    "sirv-cli": "0.2.1",
-    "stylelint": "9.5.0",
-    "tslint": "5.11.0",
-    "tslint-react": "3.6.0",
-    "typescript": "3.0.3"
+    "eslint": "^5.6.0",
+    "jest": "^23.6.0",
+    "ndb": "^1.0.26",
+    "npm": "^6.4.1",
+    "postcss": "^7.0.2",
+    "prettier": "^1.14.3",
+    "sirv-cli": "^0.2.2",
+    "stylelint": "^9.5.0",
+    "tslint": "^5.11.0",
+    "tslint-react": "^3.6.0",
+    "typescript": "^3.0.3"
   }
 }
