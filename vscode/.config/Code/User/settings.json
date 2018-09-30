@@ -67,7 +67,7 @@
     "**/yarn.lock": true
   },
   "files.associations": {
-    "*.css": "less", // better syntax highlighting for PostCSS
+    "*.css": "scss", // better syntax highlighting for PostCSS
     "*.vue": "html"
   },
   "git.confirmSync": false,
@@ -79,6 +79,8 @@
   "npm.packageManager": "yarn",
   "extensions.showRecommendationsOnlyOnDemand": true,
   "javascript.implicitProjectConfig.checkJs": true,
+  "typescript.referencesCodeLens.enabled": true,
+  "typescript.implementationsCodeLens.enabled": true,
   "[markdown]": {
     "editor.lineNumbers": "interval",
     "editor.rulers": [],
@@ -107,28 +109,28 @@
   "eslint.packageManager": "yarn",
   "tslint.packageManager": "yarn",
   "tslint.jsEnable": true,
-  "projectManager.treeview.visible": false,
-  "projectManager.groupList": true,
-  "projectManager.git.baseFolders": ["/home/max/Development"],
-  "projectManager.vscode.baseFolders": ["/home/max/Development"],
-  "projectManager.git.ignoredFolders": [
-    "0__backups",
-    "dist",
-    "export",
-    "node_modules",
-    "public",
-    "test",
-    "typings"
-  ],
-  "projectManager.vscode.ignoredFolders": [
-    "0__backups",
-    "dist",
-    "export",
-    "node_modules",
-    "public",
-    "test",
-    "typings"
-  ],
+  // "projectManager.treeview.visible": false,
+  // "projectManager.groupList": true,
+  // "projectManager.git.baseFolders": ["/home/max/Development"],
+  // "projectManager.vscode.baseFolders": ["/home/max/Development"],
+  // "projectManager.git.ignoredFolders": [
+  //   "0__backups",
+  //   "dist",
+  //   "export",
+  //   "node_modules",
+  //   "public",
+  //   "test",
+  //   "typings"
+  // ],
+  // "projectManager.vscode.ignoredFolders": [
+  //   "0__backups",
+  //   "dist",
+  //   "export",
+  //   "node_modules",
+  //   "public",
+  //   "test",
+  //   "typings"
+  // ],
   "spellright.language": "en_AU",
   "spellright.suggestionsInHints": false,
   "spellright.configurationUpdate": false,
