@@ -8,6 +8,9 @@
 # $ ./dotfiles.sh -i fish
 #
 
+# update completions
+fish_update_completions
+
 # Erase all previous fish abbreviations
 set -e fish_user_abbreviations
 
