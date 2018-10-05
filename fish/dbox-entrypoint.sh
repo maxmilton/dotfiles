@@ -34,7 +34,7 @@ if [ ! -f /first-run ]; then
     addgroup -g "$GID" -S hostgrp
   fi
   # add user to group for access permissions to host user home files
-  addgroup dbox $(getent group "$GID" | cut -d: -f1)
+  addgroup dbox "$(getent group "$GID" | cut -d: -f1)"
 
   # allow dbox user to write to /dev/stderr
   mkfifo -m 600 /tmp/logpipe
@@ -69,16 +69,16 @@ if [ ! -f /first-run ]; then
 
   # write fish shell config file for root user
   cat > ~/.config/fish/config.fish <<'EOF'
-set -U fish_path /home/dbox/.config/fish
+set -U fisher_path /home/dbox/.config/fish
 set -U fisher_config /home/dbox/.config/fisherman
 set -U fisher_cache /home/dbox/.cache/fisherman
 
-for file in $fish_path/conf.d/*.fish
+for file in $fisher_path/conf.d/*.fish
   builtin source $file 2> /dev/null
 end
 
-set fish_function_path $fish_path/functions $fish_function_path
-set fish_complete_path $fish_path/completions $fish_complete_path
+set fish_function_path $fisher_path/functions $fish_function_path
+set fish_complete_path $fisher_path/completions $fish_complete_path
 EOF
 
   # install fisherman
@@ -92,7 +92,7 @@ EOF
   chown -R dbox:dbox /home/dbox
 
   # install fisherman plugins
-  sudo -u dbox fish -c 'fisher MaxMilton/pure'
+  sudo -u dbox fish -c 'fisher add MaxMilton/pure'
 
   # compile fish config (for root and dbox users)
   fish /home/dbox/.dotfiles/fish/.config/fish/onetime-config.fish
@@ -107,8 +107,9 @@ alias docker 'sudo docker'
 set -xU PAGER 'less'
 EOF
 
-  echo '0' > /first-run
+  echo '1' > /first-run
 else
+  # FIXME: After this compile the fish config again
   # update dot files (in the background)
   nohup git -C /home/dbox/.dotfiles pull --update-shallow &>/dev/null &
 fi
