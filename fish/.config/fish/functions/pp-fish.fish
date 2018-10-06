@@ -1,3 +1,4 @@
 function pp-fish -d 'Update fish shell'
-  fisher update
+  fisher self-update
+  fisher ls | fisher add
 end
