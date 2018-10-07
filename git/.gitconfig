@@ -191,4 +191,5 @@
 
   email = max@wearegenki.com
   name = Max Milton
-  signingkey = 04D9C9AB0399B439
+  # signingkey = 04D9C9AB0399B439
+  signingkey = D6A0226FCD5F7243
