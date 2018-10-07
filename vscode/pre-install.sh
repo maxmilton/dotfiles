@@ -6,39 +6,21 @@ IFS=$'\n\t'
 # DICTIONARY_DIR=${DICTIONARY_DIR:-"$TARGET_DIR/Development/packages/dictionary"}
 DICTIONARY_DIR=${DICTIONARY_DIR:-"$TARGET_DIR/Development/hunspell-dictionary"}
 
-if [[ $dryrun = true ]]; then
-  if [[ "$OS" != 'Darwin' ]]; then
-    echo_info "mkdir -v -p \"$TARGET_DIR/.config/Code/User\""
+if [[ "$OS" != 'Darwin' ]]; then
+  $cmd mkdir -v -p "$TARGET_DIR/.config/Code/User"
 
-    # dictionaries
-    if [[ ! -d "$TARGET_DIR/.config/Code/Dictionaries" ]]; then
-      if [[ ! -d "/usr/share/hunspell" ]]; then
-        if [[ $DISTRO = "Fedora" ]]; then
-          echo_info "sudo ln -v -s /usr/share/myspell /usr/share/hunspell"
-        else
-          echo_info "sudo mkdir -v -p /usr/share/hunspell"
-        fi
+  # dictionaries
+  if [[ ! -d "$TARGET_DIR/.config/Code/Dictionaries" ]]; then
+    if [[ ! -d "/usr/share/hunspell" ]]; then
+      if [[ $DISTRO = "Fedora" ]]; then
+        $cmd sudo ln -v -s /usr/share/myspell /usr/share/hunspell
+      else
+        $cmd sudo mkdir -v -p /usr/share/hunspell
       fi
-      echo_info "mkdir -v -p /usr/share/hunspell"
-      echo_info "sudo ln -i -v -s $DICTIONARY_DIR/*.{dic,aff} /usr/share/hunspell"
-      echo_info "sudo ln -v -s /usr/share/hunspell \"$TARGET_DIR/.config/Code/Dictionaries\""
     fi
+    $cmd sudo ln -i -v -s $DICTIONARY_DIR/*.{dic,aff} /usr/share/hunspell
+    $cmd sudo ln -v -s /usr/share/hunspell "$TARGET_DIR/.config/Code/Dictionaries"
   fi
 else
-  if [[ "$OS" != 'Darwin' ]]; then
-    mkdir -v -p "$TARGET_DIR/.config/Code/User"
-
-    # dictionaries
-    if [[ ! -d "$TARGET_DIR/.config/Code/Dictionaries" ]]; then
-      if [[ ! -d "/usr/share/hunspell" ]]; then
-        if [[ $DISTRO = "Fedora" ]]; then
-          sudo ln -v -s /usr/share/myspell /usr/share/hunspell
-        else
-          sudo mkdir -v -p /usr/share/hunspell
-        fi
-      fi
-      sudo ln -i -v -s $DICTIONARY_DIR/*.{dic,aff} /usr/share/hunspell
-      sudo ln -v -s /usr/share/hunspell "$TARGET_DIR/.config/Code/Dictionaries"
-    fi
-  fi
+  echo_warn "You need to manually set up VS Code directories on macOS."
 fi
