@@ -64,22 +64,25 @@ PACKAGES:
 ################################################################################
 
 # runtime settings
-dryrun=true
-quiet=false
+export cmd=
+export dryrun=true
+export quiet=false
 verbosity=-v
 
 # colours
-reset='\x1B[0m'
-red_bold='\x1B[1;91m'
-yellow_bold='\x1B[1;93m'
-yellow='\x1B[0;33m'
-blue='\x1B[0;94m'
-cyan_bold='\x1B[1;96m'
+export reset='\x1B[0m'
+export cyan_bold='\x1B[1;96m'
+export green_bold='\x1B[1;92m'
+export red_bold='\x1B[1;91m'
+export yellow_bold='\x1B[1;93m'
+export blue='\x1B[0;94m'
+export yellow='\x1B[0;33m'
 
 # feedback utilities
-echo_err() { echo -e "\\n${red_bold}❌ ERROR:${reset} $1${reset}" 1>&2; echo -e "\\a"; }
-echo_warn() { echo -e "\\n${yellow_bold}🔶 WARNING:${reset} $1${reset}" 1>&2; echo -e "\\a"; }
-echo_info() { [[ $quiet == true ]] || echo -e "$1${reset}" >&1; }
+echo_err() { printf "\\a\\n%b❌ ERROR:%b %s%b\\n" "$red_bold" "$reset" "$*" "$reset" 1>&2; }
+echo_warn() { printf "\\a\\n%b🔶 WARNING:%b %s%b\\n" "$yellow_bold" "$reset" "$*" "$reset" 1>&2; }
+echo_info() { [[ $quiet == true ]] || printf "%b\\n" "$*$reset" >&1; }
+echo_dryrun() { printf "\\n%bDRY RUN:%b %s\\n" "$green_bold" "$reset" "$*"; }
 
 # check GNU Stow is installed
 if ! hash stow 2>/dev/null; then
@@ -95,6 +98,9 @@ if [[ "$OS" = 'Linux' ]]; then
   DISTRO=$(awk -F "=" '/^NAME/ {print $2}' /etc/os-release | tr -d '"')
 fi
 
+export OS
+export DISTRO
+
 process_packages() {
   if [[ $dryrun = true ]]; then
     echo_warn "Doing dry run, check output then run ${yellow}$(basename "$0") -i"
@@ -104,11 +110,12 @@ process_packages() {
   for package in "${PACKAGES[@]}"; do
     echo_info "\\n${blue}Installing ${cyan_bold}$package ${blue}package..."
 
-    if [[ $dryrun = true ]]; then
-      if [[ -f "$PACKAGES_DIR/$package/pre-install.sh" ]]; then
-        source "$PACKAGES_DIR/$package/pre-install.sh"
-      fi
+    if [[ -f "$PACKAGES_DIR/$package/pre-install.sh" ]]; then
+      # shellcheck source=/dev/null
+      source "$PACKAGES_DIR/$package/pre-install.sh"
+    fi
 
+    if [[ $dryrun = true ]]; then
       stow \
         $verbosity \
         --no \
@@ -117,15 +124,7 @@ process_packages() {
         --ignore="$IGNORE_FILES" \
         --restow \
         "$package"
-
-      if [[ -f "$PACKAGES_DIR/$package/post-install.sh" ]]; then
-        source "$PACKAGES_DIR/$package/post-install.sh"
-      fi
     else
-      if [[ -f "$PACKAGES_DIR/$package/pre-install.sh" ]]; then
-        source "$PACKAGES_DIR/$package/pre-install.sh"
-      fi
-
       stow \
         $verbosity \
         --dir="$PACKAGES_DIR" \
@@ -133,10 +132,11 @@ process_packages() {
         --ignore="$IGNORE_FILES" \
         --restow \
         "$package"
+    fi
 
-      if [[ -f "$PACKAGES_DIR/$package/post-install.sh" ]]; then
-        source "$PACKAGES_DIR/$package/post-install.sh"
-      fi
+    if [[ -f "$PACKAGES_DIR/$package/post-install.sh" ]]; then
+      # shellcheck source=/dev/null
+      source "$PACKAGES_DIR/$package/post-install.sh"
     fi
   done
 }
@@ -152,10 +152,10 @@ while getopts "h?iqv" opt; do
       exit 0
       ;;
     i)
-      dryrun=false
+      export dryrun=false
       ;;
     q)
-      quiet=true
+      export quiet=true
       verbosity=''
       ;;
     v)
@@ -168,7 +168,11 @@ shift $((OPTIND-1))
 
 # handle manually specified package names
 if [[ "$#" != 0 ]]; then
-  PACKAGES=( "$@" )
+  PACKAGES=("$@")
+fi
+
+if [[ $dryrun = true ]]; then
+  export cmd=echo_dryrun
 fi
 
 # run main function
