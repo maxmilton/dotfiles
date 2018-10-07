@@ -72,17 +72,17 @@ verbosity=-v
 # colours
 export reset='\x1B[0m'
 export cyan_bold='\x1B[1;96m'
-export green_bold='\x1B[1;92m'
+export green='\x1B[0;92m'
 export red_bold='\x1B[1;91m'
 export yellow_bold='\x1B[1;93m'
 export blue='\x1B[0;94m'
 export yellow='\x1B[0;33m'
 
 # feedback utilities
-echo_err() { printf "\\a\\n%b❌ ERROR:%b %s%b\\n" "$red_bold" "$reset" "$*" "$reset" 1>&2; }
-echo_warn() { printf "\\a\\n%b🔶 WARNING:%b %s%b\\n" "$yellow_bold" "$reset" "$*" "$reset" 1>&2; }
-echo_info() { [[ $quiet == true ]] || printf "%b\\n" "$*$reset" >&1; }
-echo_dryrun() { printf "\\n%bDRY RUN:%b %s\\n" "$green_bold" "$reset" "$*"; }
+echo_err() { local IFS=' '; printf "\\a\\n%b❌ ERROR:%b %s%b\\n" "$red_bold" "$reset" "$*" "$reset" 1>&2; }
+echo_warn() { local IFS=' '; printf "\\a\\n%b🔶 WARNING:%b %s%b\\n" "$yellow_bold" "$reset" "$*" "$reset" 1>&2; }
+echo_info() { local IFS=' '; [[ $quiet == true ]] || printf "%b\\n" "$*$reset" >&1; }
+echo_dryrun() { local IFS=' '; printf "%bDRY RUN:%b %s\\n" "$green" "$reset" "$*"; }
 
 # check GNU Stow is installed
 if ! hash stow 2>/dev/null; then
