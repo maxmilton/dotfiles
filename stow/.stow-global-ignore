@@ -1,0 +1,13 @@
+\.hg
+\.git
+\.gitignore
+
+.+~
+.+\.bak
+
+^/README.*
+^/LICENSE.*
+
+node_modules
+yarn\.lock
+.+\.log
