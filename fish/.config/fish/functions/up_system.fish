@@ -1,4 +1,4 @@
-function pp -d 'Update system packages'
+function up_system -d 'Update system packages'
   switch (awk -F "=" '/^NAME/ {print $2}' /etc/os-release | tr -d '"')
     case "Alpine Linux"
       apk upgrade --update-cache

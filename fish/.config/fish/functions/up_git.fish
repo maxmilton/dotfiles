@@ -1,4 +1,4 @@
-function pp-git -d 'Update git repos'
+function up_git -d 'Update git repos'
   function echo-info -d 'Print information about a git repo'
     set -l dir $argv[1]
     set -l reset (set_color normal)

@@ -1,4 +1,4 @@
-function pp-hosts -d 'Update ad blocking hosts file'
+function up_hosts -d 'Update ad blocking hosts file'
   if type -q dnsmasq
     set -l URL https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/fakenews/hosts
     set -l TEMP_FILE /tmp/hosts
