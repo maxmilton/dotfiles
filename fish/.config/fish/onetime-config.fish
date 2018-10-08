@@ -41,7 +41,7 @@ set -U FZF_COMPLETE 1
 # Misc
 abbr --add C 'math -s10 ""' # CLI calculator
 abbr --add get 'aria2c --dir ~/Downloads' # download via CLI
-abbr --add ppp 'up-system; up-fish; up-gce; dup; up-yarn; up-git; up-hosts' # run full system update
+abbr --add ppp 'up_system; up_fish; up_gce; dup; up_yarn; up_git; up_hosts' # run full system update
 abbr --add p 'yaourt' # Arch Linux package manager
 abbr --add f 'flatpak'
 
