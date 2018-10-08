@@ -142,4 +142,8 @@
     "suppressWelcomeNotice": true
   },
   "gitlens.keymap": "none",
+
+  // EXPERIMENTS
+  "javascript.format.enable": false,
+  "prettier.eslintIntegration": true,
 }
