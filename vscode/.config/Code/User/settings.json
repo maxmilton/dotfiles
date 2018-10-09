@@ -24,12 +24,14 @@
       },
     ]
   },
-  "editor.smoothScrolling": true, // otherwise choppy scroll on Linux
+  "editor.smoothScrolling": true, // fix choppy scroll
   "editor.snippetSuggestions": "top",
   "editor.folding": false,
   "editor.accessibilitySupport": "off",
   "editor.fontSize": 16,
-  "editor.fontFamily": "'Roboto Mono Medium'",
+  // "editor.fontFamily": "'Roboto Mono Medium'",
+  "editor.fontFamily": "'Roboto Mono'",
+  "editor.fontWeight": "500",
   "editor.rulers": [80, 100],
   "editor.wordWrap": "on",
   "editor.tabSize": 2,
@@ -81,6 +83,8 @@
   "javascript.implicitProjectConfig.checkJs": true,
   "typescript.referencesCodeLens.enabled": true,
   "typescript.implementationsCodeLens.enabled": true,
+  "javascript.format.enable": false,
+  "prettier.eslintIntegration": true,
   "[markdown]": {
     "editor.lineNumbers": "interval",
     "editor.rulers": [],
@@ -142,8 +146,5 @@
     "suppressWelcomeNotice": true
   },
   "gitlens.keymap": "none",
-
-  // EXPERIMENTS
-  "javascript.format.enable": false,
-  "prettier.eslintIntegration": true,
+  "atomKeymap.promptV3Features": true,
 }
