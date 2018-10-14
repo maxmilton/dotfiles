@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "all-the-package-names": "^1.3545.0",
+    "all-the-package-names": "^1.3552.0",
     "eslint": "^5.6.0",
     "jest": "^23.6.0",
     "ndb": "^1.0.26",
@@ -12,6 +12,6 @@
     "stylelint": "^9.5.0",
     "tslint": "^5.11.0",
     "tslint-react": "^3.6.0",
-    "typescript": "^3.0.3"
+    "typescript": "^3.1.3"
   }
 }

@@ -12,7 +12,7 @@ IFS=$'\n\t'
 # TODO: Need a way to automatically backup existing files instead of throwing
 # an error and exiting -- maybe use something other than the --restow param?
 
-set -o errtrace
+set -o errtrace # trap errors inside functions
 trap 'echo_err "Error during install!"' ERR
 
 # options
@@ -67,7 +67,7 @@ PACKAGES:
 export cmd=
 export dryrun=true
 export quiet=false
-verbosity=-v
+export verbosity=-v
 
 # colours
 export reset='\x1B[0m'
@@ -156,10 +156,10 @@ while getopts "h?iqv" opt; do
       ;;
     q)
       export quiet=true
-      verbosity=''
+      export verbosity=''
       ;;
     v)
-      verbosity=-vv
+      export verbosity=-vv
       ;;
   esac
 done

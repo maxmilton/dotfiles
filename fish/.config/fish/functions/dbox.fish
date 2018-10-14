@@ -21,6 +21,8 @@ function dbox -d 'Dockerized dev box with persistence'
       --volume "$HOME""/Development/dotfiles/fish/dbox-entrypoint.sh":"/usr/bin/entrypoint.sh":ro \
       --volume /var/run/docker.sock:/var/run/docker.sock \
       --entrypoint entrypoint.sh \
-      alpine:edge "$argv"
+      alpine:3.8 $argv
+      # FIXME: Edge image breaks bootstraping, something wrong with sudo and getentropy()
+      # alpine:edge $argv
   end
 end
