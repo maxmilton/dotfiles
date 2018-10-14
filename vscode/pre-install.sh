@@ -10,7 +10,7 @@ if [[ "$OS" != 'Darwin' ]]; then
   CODE_DIR="$TARGET_DIR"/.config/Code
   INSIDERS_DIR="$TARGET_DIR""/.config/Code - Insiders"
 
-  $cmd mkdir $verbosity -p "$CODE_DIR"/User
+  $cmd mkdir $verbosity -p "$CODE_DIR"/User/snippets
 
   # dictionaries
   if [[ ! -d "$CODE_DIR/Dictionaries" ]]; then
@@ -27,6 +27,7 @@ if [[ "$OS" != 'Darwin' ]]; then
 
   # VS Code insiders (only if dir exists)
   if [[ -d "$INSIDERS_DIR" ]]; then
+    $cmd mkdir $verbosity -p "$INSIDERS_DIR"/User/snippets
     $cmd ln $verbosity -sf "$CODE_DIR"/Dictionaries "$INSIDERS_DIR"
     $cmd ln $verbosity -sf "$CODE_DIR"/User/settings.json "$INSIDERS_DIR"/User
     $cmd ln $verbosity -sf "$CODE_DIR"/User/keybindings.json "$INSIDERS_DIR"/User
