@@ -37,6 +37,7 @@ end
 # fisherman plugins
 set -U FZF_LEGACY_KEYBINDINGS 0
 set -U FZF_COMPLETE 1
+set -U FZF_ENABLE_OPEN_PREVIEW 1
 
 # Misc
 abbr --add C 'math -s10 ""' # CLI calculator
