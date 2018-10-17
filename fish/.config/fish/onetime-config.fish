@@ -42,7 +42,7 @@ set -U FZF_ENABLE_OPEN_PREVIEW 1
 # Misc
 abbr --add C 'math -s10 ""' # CLI calculator
 abbr --add get 'aria2c --dir ~/Downloads' # download via CLI
-abbr --add ppp 'up_system; up_fish; up_gce; dup; up_yarn; up_git; up_hosts' # run full system update
+abbr --add ppp 'up_system; up_fish; up_yarn; up_gce; dup; up_git; up_hosts' # run full system update
 abbr --add p 'yaourt' # Arch Linux package manager
 abbr --add f 'flatpak'
 
@@ -87,7 +87,7 @@ abbr --add rmnm 'find -O3 . -type d -name .git -prune -o -type d -name node_modu
 # remove all yarn-error.log files recursively
 abbr --add rmye 'find -O3 . -type d \( -name .git -o -name node_modules \) -prune -o -type f -name yarn-error.log -exec rm "{}" \;'
 # list open ports
-abbr --add lsports 'sudo ss -plant'
+abbr --add lsport 'sudo ss -plant'
 # list open ports on macOS
 abbr --add netls 'sudo lsof -iTCP -sTCP:LISTEN -n -P'
 
