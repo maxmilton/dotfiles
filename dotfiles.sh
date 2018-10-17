@@ -12,10 +12,13 @@ IFS=$'\n\t'
 # TODO: Need a way to automatically backup existing files instead of throwing
 # an error and exiting -- maybe use something other than the --restow param?
 
+# TODO: Add an example .stowrc or at least document its use
+
 set -o errtrace # trap errors inside functions
 trap 'echo_err "Error during install!"' ERR
 
 # options
+# TODO: Consider moving this array into a text file for easy user customisation
 PACKAGES=(
   # disable a package by commenting it out
   bash
