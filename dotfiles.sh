@@ -28,14 +28,14 @@ PACKAGES=(
   #hg
   htop
   #jsdoc
-  #prettier
+  prettier
   ssh
   stow
   #terraform
   #tmux
-  #tslint
+  tslint
   vim
-  #vscode
+  vscode
   yarn
   #zsh
 )
