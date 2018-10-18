@@ -112,7 +112,7 @@
   "eslint.packageManager": "yarn",
   "tslint.packageManager": "yarn",
   "tslint.jsEnable": true,
-  "spellright.language": ["en_AU"],
+  "spellright.language": ["en_GB"],
   "spellright.notificationClass": "hint",
   "spellright.spellContext": "body code comments strings",
   "spellright.documentTypes": [
@@ -127,6 +127,7 @@
     "plaintext",
     "postcss",
     "sass",
+    "shellscript",
     "terraform",
     "typescript",
     "typescriptreact",
