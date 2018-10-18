@@ -21,14 +21,21 @@ if [[ "$OS" != 'Darwin' ]]; then
         $cmd sudo mkdir $verbosity -p /usr/share/hunspell
       fi
     fi
-    $cmd sudo ln -i $verbosity -sf "$DICTIONARY_DIR"/*.{dic,aff} /usr/share/hunspell
-    $cmd sudo ln $verbosity -s /usr/share/hunspell "$CODE_DIR"/Dictionaries
+
+    if [[ ! -d "/usr/share/hunspell" ]]; then
+      $cmd sudo ln -i $verbosity -sf "$DICTIONARY_DIR"/*.{dic,aff} /usr/share/hunspell
+    fi
+    if [[ ! -d "$CODE_DIR""/Dictionaries" ]]; then
+      $cmd sudo ln $verbosity -sf /usr/share/hunspell "$CODE_DIR"/Dictionaries
+    fi
   fi
 
-  # VS Code insiders (only if dir exists)
-  if [[ -d "$INSIDERS_DIR" ]]; then
+  # VS Code insiders
+  if type code-insiders; then
     $cmd mkdir $verbosity -p "$INSIDERS_DIR"/User/snippets
-    $cmd ln $verbosity -sf "$CODE_DIR"/Dictionaries "$INSIDERS_DIR"
+    if [[ ! -d "$INSIDERS_DIR""/Dictionaries" ]]; then
+      $cmd ln $verbosity -sf /usr/share/hunspell "$INSIDERS_DIR"/Dictionaries
+    fi
     $cmd ln $verbosity -sf "$CODE_DIR"/User/settings.json "$INSIDERS_DIR"/User
     $cmd ln $verbosity -sf "$CODE_DIR"/User/keybindings.json "$INSIDERS_DIR"/User
     $cmd ln $verbosity -sf "$CODE_DIR"/User/snippets/*.json "$INSIDERS_DIR"/User/snippets
