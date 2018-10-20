@@ -1,4 +1,4 @@
-// spellcheck-off
+/* spellcheck-off */
 {
   "telemetry.enableCrashReporter": false,
   "telemetry.enableTelemetry": false,
@@ -19,10 +19,10 @@
       {
         "scope": "comment, punctuation.definition.comment",
         "settings": {
-          "foreground": "#5C6370"
-        }
+          "foreground": "#5C6370",
+        },
       },
-    ]
+    ],
   },
   "editor.smoothScrolling": true, // fix choppy scroll
   "editor.snippetSuggestions": "top",
@@ -47,7 +47,7 @@
     "**/node_modules": true,
     "**/package-lock.json": true,
     "**/tmp": true,
-    "**/yarn.lock": true
+    "**/yarn.lock": true,
   },
   "files.watcherExclude": {
     "**/.git/objects/**": true,
@@ -66,11 +66,11 @@
     "**/package-lock.json": true,
     "**/public/**": true,
     "**/tmp/**": true,
-    "**/yarn.lock": true
+    "**/yarn.lock": true,
   },
   "files.associations": {
     "*.css": "scss", // better syntax highlighting for PostCSS
-    "*.vue": "html"
+    // "*.vue": "html",
   },
   "git.confirmSync": false,
   "git.autofetch": true,
@@ -91,7 +91,7 @@
     "editor.wordWrap": "bounded",
     "editor.wrappingIndent": "indent",
     "editor.quickSuggestions": false,
-    "files.trimTrailingWhitespace": false
+    "files.trimTrailingWhitespace": false,
   },
   "todohighlight.keywords": [
     {
@@ -99,21 +99,23 @@
       "color": "#ecf2fa",
       "backgroundColor": "#3477ca"
     },
-    "README:",
     "NOTE:",
-    "REF:" // reference (e.g. a link to an article)
+    "README:",
+    "REFERENCE:",
+    "TIPS:",
+    "USAGE:",
   ],
   "todohighlight.defaultStyle": {
     "color": "unset",
     "backgroundColor": "unset",
-    "overviewRulerColor": "grey"
+    "overviewRulerColor": "grey",
   },
   "eslint.validate": ["html", "javascript", "javascriptreact"],
   "eslint.packageManager": "yarn",
   "tslint.packageManager": "yarn",
   "tslint.jsEnable": true,
   "spellright.language": ["en_GB"],
-  "spellright.notificationClass": "hint",
+  "spellright.notificationClass": "information",
   "spellright.spellContext": "body code comments strings",
   "spellright.documentTypes": [
     "css",
@@ -126,25 +128,25 @@
     "markdown",
     "plaintext",
     "postcss",
-    "sass",
+    "scss",
     "shellscript",
     "terraform",
     "typescript",
     "typescriptreact",
     "text",
     "toml",
-    "yml"
+    "yml",
   ],
   "spellright.ignoreFiles": [
     "**/.gitignore",
     "**/.spellignore",
     "**/*.log",
     "**/package-lock.json",
-    "**/yarn.lock"
+    "**/yarn.lock",
   ],
   "gitlens.advanced.messages": {
     "suppressUpdateNotice": true,
-    "suppressWelcomeNotice": true
+    "suppressWelcomeNotice": true,
   },
   "gitlens.keymap": "none",
   "atomKeymap.promptV3Features": true,
