@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "all-the-package-names": "^1.3552.0",
+    "all-the-package-names": "^1.3557.0",
     "eslint": "^5.6.0",
     "jest": "^23.6.0",
     "ndb": "^1.0.26",
