@@ -18,30 +18,10 @@ set -o errtrace # trap errors inside functions
 trap 'echo_err "Error during install!"' ERR
 
 # options
-# TODO: Consider moving this array into a text file for easy user customisation
-PACKAGES=(
-  # disable a package by commenting it out
-  bash
-  curl
-  fish
-  git
-  #hg
-  htop
-  #jsdoc
-  prettier
-  ssh
-  stow
-  #terraform
-  #tmux
-  tslint
-  vim
-  vscode
-  yarn
-  #zsh
-)
-PACKAGES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SOURCE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 TARGET_DIR=$HOME
 IGNORE_FILES="^((pre|post)-install|.*-entrypoint)\\.sh$"
+CONFIG_FILENAME=.dotfilesrc
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
@@ -60,38 +40,34 @@ OPTIONS:
 PACKAGES:
   The name/s of config packages to install. The package name is
   the same as the directory name. This is optional and if not
-  specified the default set of packages will be installed.
+  specified the packages will be installed from ${cyan}.dotfilesrc${reset}.
+
+  You can place a ${cyan}.dotfilesrc${reset} in your home directory to
+  customise which packages are installed, otherwise the script
+  will fallback to the ${cyan}.dotfilesrc${reset} supplied in the repo.
+  ${cyan}.dotfilesrc${reset} should be a line seperated list of packages.
   " >&1
 }
 
-################################################################################
-
-# runtime settings
-export cmd=
-export dryrun=true
-export quiet=false
-export verbosity=-v
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 # colours
-export reset='\x1B[0m'
-export cyan_bold='\x1B[1;96m'
-export green='\x1B[0;92m'
-export red_bold='\x1B[1;91m'
-export yellow_bold='\x1B[1;93m'
-export blue='\x1B[0;94m'
-export yellow='\x1B[0;33m'
+export readonly reset='\x1B[0m'
+export readonly blue='\x1B[0;94m'
+export readonly cyan_bold='\x1B[1;96m'
+export readonly cyan='\x1B[0;96m'
+export readonly green='\x1B[0;92m'
+export readonly red_bold='\x1B[1;91m'
+export readonly yellow_bold='\x1B[1;93m'
+export readonly yellow='\x1B[0;33m'
 
-# feedback utilities
-echo_err() { local IFS=' '; printf "\\a\\n%b❌ ERROR:%b %s%b\\n" "$red_bold" "$reset" "$*" "$reset" 1>&2; }
-echo_warn() { local IFS=' '; printf "\\a\\n%b🔶 WARNING:%b %s%b\\n" "$yellow_bold" "$reset" "$*" "$reset" 1>&2; }
-echo_info() { local IFS=' '; [[ $quiet == true ]] || printf "%b\\n" "$*$reset" >&1; }
-echo_dryrun() { local IFS=' '; printf "%bDRY RUN:%b %s\\n" "$green" "$reset" "$*"; }
+packages=
 
-# check GNU Stow is installed
-if ! hash stow 2>/dev/null; then
-  echo_err "GNU Stow is required but not installed. Aborting."
-  exit 1
-fi
+# runtime settings
+export cmd=echo_dryrun
+export dryrun=true
+export quiet=false
+export v=-v
 
 # variables for use in install scripts
 OS=$(uname)
@@ -101,45 +77,82 @@ if [[ "$OS" = 'Linux' ]]; then
   DISTRO=$(awk -F "=" '/^NAME/ {print $2}' /etc/os-release | tr -d '"')
 fi
 
-export OS
-export DISTRO
+export readonly OS
+export readonly DISTRO
 
-process_packages() {
+# feedback utilities
+echo_err() { echo -e "\\n${red_bold}❌ ERROR:${reset} ${*}${reset}" 1>&2; }
+echo_warn() { echo -e "\\n${yellow_bold}🔶 WARNING:${reset} ${*}${reset}" 1>&2; }
+echo_info() { [[ $quiet == true ]] || echo -e "${*}${reset}" >&1; }
+echo_dryrun() { local IFS=' '; echo -e "${green}DRY RUN:${reset} ${*}"; }
+
+check_requirements() {
+  # check minimum version of bash
+  if [[ $(bash --version | awk '{print $2}') < 4.0.0 ]]; then
+    echo_err 'Bash version 4.0.0 or higher is required. Aborting.'
+    exit 1
+  fi
+
+  # check GNU Stow is installed
+  if ! hash stow 2>/dev/null; then
+    echo_err 'GNU Stow is required but not installed. Aborting.'
+    exit 1
+  fi
+}
+
+get_dotfilesrc() {
+  if [[ -f "$HOME"/"$CONFIG_FILENAME" ]]; then
+    echo "$HOME"/"$CONFIG_FILENAME"
+  else
+   echo "$SOURCE_DIR"/"$CONFIG_FILENAME"
+  fi
+}
+
+install_packages() {
+  if [[ -z "$packages" ]]; then
+    local dotfilesrc
+    dotfilesrc=$(get_dotfilesrc)
+
+    echo_info "Using packages from ${dotfilesrc}"
+
+    readarray -t packages < "$dotfilesrc"
+  fi
+
   if [[ $dryrun = true ]]; then
-    echo_warn "Doing dry run, check output then run ${yellow}$(basename "$0") -i"
+    echo_warn "Doing dry run. Check output then run ${yellow}$(basename "$0") -i ${BASH_ARGV[*]}"
   fi
 
   # do the actual linking for each package and run pre/post script hooks
-  for package in "${PACKAGES[@]}"; do
+  for package in "${packages[@]}"; do
     echo_info "\\n${blue}Installing ${cyan_bold}$package ${blue}package..."
 
-    if [[ -f "$PACKAGES_DIR/$package/pre-install.sh" ]]; then
+    if [[ -f "$SOURCE_DIR/$package/pre-install.sh" ]]; then
       # shellcheck source=/dev/null
-      source "$PACKAGES_DIR/$package/pre-install.sh"
+      source "$SOURCE_DIR/$package/pre-install.sh"
     fi
 
     if [[ $dryrun = true ]]; then
       stow \
-        $verbosity \
+        $v \
         --no \
-        --dir="$PACKAGES_DIR" \
+        --dir="$SOURCE_DIR" \
         --target="$TARGET_DIR" \
         --ignore="$IGNORE_FILES" \
         --restow \
         "$package"
     else
       stow \
-        $verbosity \
-        --dir="$PACKAGES_DIR" \
+        $v \
+        --dir="$SOURCE_DIR" \
         --target="$TARGET_DIR" \
         --ignore="$IGNORE_FILES" \
         --restow \
         "$package"
     fi
 
-    if [[ -f "$PACKAGES_DIR/$package/post-install.sh" ]]; then
+    if [[ -f "$SOURCE_DIR/$package/post-install.sh" ]]; then
       # shellcheck source=/dev/null
-      source "$PACKAGES_DIR/$package/post-install.sh"
+      source "$SOURCE_DIR/$package/post-install.sh"
     fi
   done
 }
@@ -156,27 +169,25 @@ while getopts "h?iqv" opt; do
       ;;
     i)
       export dryrun=false
+      export cmd=
       ;;
     q)
       export quiet=true
-      export verbosity=''
+      export v=
       ;;
     v)
-      export verbosity=-vv
+      export v=-vv
       ;;
   esac
 done
 
 shift $((OPTIND-1))
 
-# handle manually specified package names
+# handle package names passed in as args
 if [[ "$#" != 0 ]]; then
-  PACKAGES=("$@")
+  packages=("$@")
 fi
 
-if [[ $dryrun = true ]]; then
-  export cmd=echo_dryrun
-fi
-
-# run main function
-process_packages
+# run functions
+check_requirements
+install_packages
