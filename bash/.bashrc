@@ -37,7 +37,6 @@ if [ $UID -ne 0 ]; then
   alias apt='sudo apt'
   alias dnf='sudo dnf'
   alias yum='sudo yum'
-  alias docker-compose='sudo docker-compose'
 fi
 
 # update system packages
@@ -81,14 +80,12 @@ alias jcd='journalctl --disk-usage && journalctl --verify'
 alias jcdd='journalctl --vacuum-size=1G'
 
 # Aliases: Sysadmin
-alias t='terraform'
-alias ti='terraform init'
-alias tp='terraform plan'
 alias getip='curl -4 icanhazip.com'
 alias getip6='curl -6 icanhazip.com'
 alias getptr='curl -4 icanhazptr.com'
 alias ta='tmux attach'
 alias ccze="ccze -A"
+alias t='terraform'
 
 # Aliases: Containers
 alias k='kubectl'
@@ -116,11 +113,6 @@ alias dnse='docker run -it --rm --privileged --pid=host justincormack/nsenter1'
 dup() { alias | docker images | awk '(NR>1) && ($2!~/none/) {print $1":"$2}'| xargs -L1 docker pull; }
 # enter docker container or execute command
 de() { if [ -z "$2" ]; then docker exec -ti -u root "$1" /bin/sh; else docker exec "$1" "$2"; fi }
-
-# macOS specific
-if [ $(uname) = 'Darwin' ]; then
-  PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-fi
 
 # check for active tmux sessions (if tmux is installed)
 command -v tmux >/dev/null 2>&1 && (echo "🔹 tmux ls" && tmux ls) || true
