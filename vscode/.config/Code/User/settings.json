@@ -29,7 +29,6 @@
   "editor.folding": false,
   "editor.accessibilitySupport": "off",
   "editor.fontSize": 16,
-  // "editor.fontFamily": "'Roboto Mono Medium'",
   "editor.fontFamily": "'Roboto Mono'",
   "editor.fontWeight": "500",
   "editor.rulers": [80, 100],
