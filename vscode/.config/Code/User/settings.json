@@ -120,15 +120,17 @@
   ],
   "spellright.documentTypes": [
     "css",
+    "dockerfile",
     "html",
     "javascript",
+    "javascriptreact",
     "json",
     "jsonc",
     "markdown",
     "plaintext",
     "properties",
     "scss",
-    "typescript",
+    "typescript"
   ],
   "spellright.spellContext": "body code comments strings",
   "spellright.suggestionsInHints": false,
@@ -137,6 +139,7 @@
     "**/.spellignore",
     "**/*.log",
     "**/package-lock.json",
+    "**/tsconfig.json",
     "**/yarn.lock",
   ],
   "gitlens.advanced.messages": {
