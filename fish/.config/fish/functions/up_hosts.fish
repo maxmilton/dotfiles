@@ -29,8 +29,9 @@ function up_hosts -d 'Update ad blocking hosts file'
         -e 's/#.*$//' \
         # remove empty lines
         -e '/^[[:space:]]*$/d' \
-        # remove broken domain (otherwise dnsmasq will fail to start)
-        -e '/r6---sn-5ualdne7.c.2mdn.net$/d' \
+        # remove broken domains (otherwise dnsmasq won't start)
+        -e '/^0.0.0.0 -/d' \
+        -e '/--/d' \
         "$TEMP_FILE"
 
       # add sorted list
