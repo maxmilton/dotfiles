@@ -67,7 +67,7 @@
     "**/yarn.lock": true,
   },
   "files.associations": {
-    "*.css": "scss", // better syntax highlighting for PostCSS
+    "*.css": "scss", // better syntax highlighting for minna-ui
     "*.vue": "html",
   },
   "git.confirmSync": false,
@@ -82,7 +82,6 @@
   "typescript.referencesCodeLens.enabled": true,
   "typescript.implementationsCodeLens.enabled": true,
   "javascript.format.enable": false,
-  "prettier.eslintIntegration": true,
   "[markdown]": {
     "editor.lineNumbers": "interval",
     "editor.rulers": [],
