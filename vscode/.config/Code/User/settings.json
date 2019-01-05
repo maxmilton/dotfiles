@@ -1,5 +1,6 @@
 /* spellcheck-off */
 {
+  // "git.enabled": false, // disable git features when too much WIP makes it slow
   "telemetry.enableCrashReporter": false,
   "telemetry.enableTelemetry": false,
   "update.channel": "none", // no need on Linux
@@ -10,7 +11,6 @@
   "workbench.colorTheme": "One Dark Pro",
   "workbench.enableExperiments": false,
   // "workbench.fontAliasing": "auto", // macOS
-  "workbench.settings.editor": "json",
   "workbench.tips.enabled": false,
   "explorer.confirmDragAndDrop": false,
   "explorer.confirmDelete": false,
@@ -19,17 +19,17 @@
       {
         "scope": "comment, punctuation.definition.comment",
         "settings": {
-          "foreground": "#5C6370",
-        },
-      },
-    ],
+          "foreground": "#5C6370"
+        }
+      }
+    ]
   },
   "editor.smoothScrolling": true, // fix choppy scroll
   "editor.snippetSuggestions": "top",
   "editor.folding": false,
   "editor.accessibilitySupport": "off",
   "editor.fontSize": 16,
-  "editor.fontFamily": "'Roboto Mono'",
+  "editor.fontFamily": "'Roboto Mono', monospace",
   "editor.fontWeight": "500",
   "editor.rulers": [80, 100],
   "editor.wordWrap": "on",
@@ -40,12 +40,13 @@
   "files.insertFinalNewline": true,
   "files.trimTrailingWhitespace": true,
   "files.exclude": {
+    "**/.eslintcache": true,
     "**/.git": true,
     "**/.stylelintcache": true,
     "**/node_modules": true,
     "**/package-lock.json": true,
     "**/tmp": true,
-    "**/yarn.lock": true,
+    "**/yarn.lock": true
   },
   "files.watcherExclude": {
     "**/.git/objects/**": true,
@@ -64,7 +65,7 @@
     "**/package-lock.json": true,
     "**/public/**": true,
     "**/tmp/**": true,
-    "**/yarn.lock": true,
+    "**/yarn.lock": true
   },
   "files.associations": {
     "*.css": "scss", // better syntax highlighting for minna-ui
@@ -72,10 +73,7 @@
   },
   "git.confirmSync": false,
   "git.autofetch": true,
-  "npm.exclude": [
-    "**/.git",
-    "**/node_modules",
-  ],
+  "npm.exclude": ["**/.git", "**/node_modules"],
   "npm.packageManager": "yarn",
   "extensions.showRecommendationsOnlyOnDemand": true,
   "javascript.implicitProjectConfig.checkJs": true,
@@ -88,7 +86,7 @@
     "editor.wordWrap": "bounded",
     "editor.wrappingIndent": "indent",
     "editor.quickSuggestions": false,
-    "files.trimTrailingWhitespace": false,
+    "files.trimTrailingWhitespace": false
   },
   "todohighlight.keywords": [
     {
@@ -109,13 +107,10 @@
   },
   "eslint.validate": ["html", "javascript", "javascriptreact"],
   "eslint.packageManager": "yarn",
-  "tslint.packageManager": "yarn",
   "tslint.jsEnable": true,
   "spellright.configurationScope": "user",
   "spellright.notificationClass": "information",
-  "spellright.language": [
-    "en_GB"
-  ],
+  "spellright.language": ["en_GB"],
   "spellright.documentTypes": [
     "css",
     "dockerfile",
@@ -128,7 +123,8 @@
     "plaintext",
     "properties",
     "scss",
-    "typescript"
+    "typescript",
+    "typescriptreact"
   ],
   "spellright.spellContext": "body code comments strings",
   "spellright.suggestionsInHints": false,
@@ -138,12 +134,12 @@
     "**/*.log",
     "**/package-lock.json",
     "**/tsconfig.json",
-    "**/yarn.lock",
+    "**/yarn.lock"
   ],
   "gitlens.advanced.messages": {
     "suppressUpdateNotice": true,
-    "suppressWelcomeNotice": true,
+    "suppressWelcomeNotice": true
   },
   "gitlens.keymap": "none",
-  "atomKeymap.promptV3Features": true,
+  "atomKeymap.promptV3Features": true
 }
