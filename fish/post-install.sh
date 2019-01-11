@@ -18,7 +18,7 @@ if hash fish 2>/dev/null; then
 
   # generate a compiled fish user config
   echo_info "Setting up fish user config."
-  $cmd fish "$TARGET_DIR/.config/fish/onetime-config.fish"
+  $cmd fish "$TARGET_DIR/.config/fish/oneshot-config.fish"
 else
   echo_err "Fish shell is required to install Fisher plugins. Skipping."
 fi

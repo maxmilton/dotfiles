@@ -95,8 +95,8 @@ EOF
   sudo -u dbox fish -c 'fisher add MaxMilton/pure'
 
   # compile fish config (for root and dbox users)
-  fish /home/dbox/.dotfiles/fish/.config/fish/onetime-config.fish
-  sudo -u dbox fish /home/dbox/.dotfiles/fish/.config/fish/onetime-config.fish
+  fish /home/dbox/.dotfiles/fish/.config/fish/oneshot-config.fish
+  sudo -u dbox fish /home/dbox/.dotfiles/fish/.config/fish/oneshot-config.fish
 
   # change root shell
   sed -i -- 's/root:\/bin\/ash/root:\/usr\/bin\/fish/' /etc/passwd
