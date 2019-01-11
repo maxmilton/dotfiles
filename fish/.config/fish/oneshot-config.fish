@@ -35,12 +35,11 @@ if test -d $gcloud_bin_path
 end
 
 # fisherman plugins
-set -U FZF_LEGACY_KEYBINDINGS 0
-set -U FZF_COMPLETE 1
-set -U FZF_ENABLE_OPEN_PREVIEW 1
+# set -U FZF_LEGACY_KEYBINDINGS 0
+# set -U FZF_COMPLETE 3
 
 # Misc
-abbr --add C 'math -s10 ""' # CLI calculator
+abbr --add C 'math ' # CLI calculator
 abbr --add get 'aria2c --dir ~/Downloads' # download via CLI
 abbr --add ppp 'up_system; up_fish; up_yarn; up_gce; dup; up_git; up_hosts' # run full system update
 abbr --add p 'yaourt' # Arch Linux package manager
@@ -66,10 +65,10 @@ abbr --add ld 'find -O3 . -type d \( -name .git -o -name node_modules \) -prune 
 abbr --add find 'find -O3'
 abbr --add dux 'du -hs | sort -h'
 abbr --add dus 'du --block-size=MiB --max-depth=1 | sort -n'
-abbr --add 755 'find -O3 . -type d -name .git -prune -o -type d -exec chmod 755 "{}" \;'
-abbr --add 700 'find -O3 . -type d -name .git -prune -o -type d -exec chmod 700 "{}" \;'
-abbr --add 644 'find -O3 . -type d -name .git -prune -o -type f ! -name "*.sh" ! -executable -exec chmod 644 "{}" \;'
-abbr --add 600 'find -O3 . -type d -name .git -prune -o -type f ! -name "*.sh" ! -executable -exec chmod 600 "{}" \;'
+abbr --add 755 'find -O3 . -type d -name .git -prune -o -type d -exec chmod 755 {} \;'
+abbr --add 700 'find -O3 . -type d -name .git -prune -o -type d -exec chmod 700 {} \;'
+abbr --add 644 'find -O3 . -type d -name .git -prune -o -type f ! -name "*.sh" ! -executable -exec chmod 644 {} \;'
+abbr --add 600 'find -O3 . -type d -name .git -prune -o -type f ! -name "*.sh" ! -executable -exec chmod 600 {} \;'
 
 # Sysadmin
 abbr --add gce 'while not gce-ssh; echo "retrying..."; sleep 3; end'
@@ -83,9 +82,9 @@ abbr --add t 'terraform'
 # abbr --add rmln 'find -L . -maxdepth 1 -type l -delete'
 abbr --add rmln 'find -L . -name . -o -type d -prune -o -type l -delete'
 # remove all node_modules dirs recursively
-abbr --add rmnm 'find -O3 . -type d -name .git -prune -o -type d -name node_modules -prune -exec rm -rf "{}" \;'
+abbr --add rmnm 'find -O3 . -type d -name .git -prune -o -type d -name node_modules -prune -exec rm -rf {} \;'
 # remove all yarn-error.log files recursively
-abbr --add rmye 'find -O3 . -type d \( -name .git -o -name node_modules \) -prune -o -type f -name yarn-error.log -exec rm "{}" \;'
+abbr --add rmye 'find -O3 . -type d \( -name .git -o -name node_modules \) -prune -o -type f -name yarn-error.log -exec rm {} \;'
 # list open ports
 abbr --add lsport 'sudo ss -plant'
 # list open ports on macOS

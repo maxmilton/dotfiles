@@ -14,7 +14,8 @@ fi
 if hash fish 2>/dev/null; then
   # install Fisherman plugins (always exit 0 to prevent stopping package install)
   echo_info "Installing Fisher theme and plugins."
-  $cmd fish -c 'fisher add MaxMilton/pure jethrokuan/fzf jethrokuan/z' || true
+  # $cmd fish -c 'fisher add MaxMilton/pure jethrokuan/fzf jethrokuan/z' || true
+  $cmd fish -c 'fisher add MaxMilton/pure'
 
   # generate a compiled fish user config
   echo_info "Setting up fish user config."
