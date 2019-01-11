@@ -90,23 +90,23 @@
     "editor.quickSuggestions": false,
     "files.trimTrailingWhitespace": false,
   },
-  "todohighlight.keywords": [
-    {
-      "text": "XXX:", // for implementation details or notes
-      "color": "#ecf2fa",
-      "backgroundColor": "#3477ca"
-    },
-    "NOTE:",
-    "README:",
-    "REFERENCE:",
-    "TIPS:",
-    "USAGE:",
-  ],
-  "todohighlight.defaultStyle": {
-    "color": "unset",
-    "backgroundColor": "unset",
-    "overviewRulerColor": "grey",
-  },
+  // "todohighlight.keywords": [
+  //   {
+  //     "text": "XXX:", // for implementation details or notes
+  //     "color": "#ecf2fa",
+  //     "backgroundColor": "#3477ca"
+  //   },
+  //   "NOTE:",
+  //   "README:",
+  //   "REFERENCE:",
+  //   "TIPS:",
+  //   "USAGE:",
+  // ],
+  // "todohighlight.defaultStyle": {
+  //   "color": "unset",
+  //   "backgroundColor": "unset",
+  //   "overviewRulerColor": "grey",
+  // },
   "eslint.validate": ["html", "javascript", "javascriptreact"],
   "eslint.packageManager": "yarn",
   "tslint.packageManager": "yarn",
@@ -118,17 +118,16 @@
   ],
   "spellright.documentTypes": [
     "css",
-    "dockerfile",
     "html",
     "javascript",
-    "javascriptreact",
     "json",
     "jsonc",
     "markdown",
     "plaintext",
     "properties",
     "scss",
-    "typescript"
+    "typescript",
+    "todo"
   ],
   "spellright.spellContext": "body code comments strings",
   "spellright.suggestionsInHints": false,
@@ -140,10 +139,42 @@
     "**/tsconfig.json",
     "**/yarn.lock",
   ],
-  "gitlens.advanced.messages": {
-    "suppressUpdateNotice": true,
-    "suppressWelcomeNotice": true,
-  },
-  "gitlens.keymap": "none",
+  // "gitlens.advanced.messages": {
+  //   "suppressUpdateNotice": true,
+  //   "suppressWelcomeNotice": true,
+  // },
+  // "gitlens.keymap": "none",
   "atomKeymap.promptV3Features": true,
+  // "highlight.regexes": {
+  //   "(// ?TODO:?)(.*)": [
+  //     {
+  //       "overviewRulerColor": "#ffcc00",
+  //       "backgroundColor": "#ffcc00",
+  //       "color": "#1f1f1f",
+  //       "fontWeight": "bold"
+  //     },
+  //     {
+  //       "backgroundColor": "#d9ad00",
+  //       "color": "#1f1f1f"
+  //     }
+  //   ],
+  //   "(// ?FIXME:?)(.*)": [
+  //     {
+  //       "overviewRulerColor": "#ff0000",
+  //       "backgroundColor": "#ff0000",
+  //       "color": "#1f1f1f",
+  //       "fontWeight": "bold"
+  //     },
+  //     {
+  //       "backgroundColor": "#d90000",
+  //       "color": "#1f1f1f"
+  //     }
+  //   ],
+  //   "(// )(@\\w+)": [
+  //     {},
+  //     {
+  //       "color": "#4de0ff"
+  //     }
+  //   ]
+  // }
 }
