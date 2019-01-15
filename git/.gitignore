@@ -8,3 +8,6 @@
 *.code-workspace
 *~
 \#*
+
+# VS Code related
+spellright.dict
