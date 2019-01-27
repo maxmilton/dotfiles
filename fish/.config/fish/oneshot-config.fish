@@ -35,8 +35,8 @@ if test -d $gcloud_bin_path
 end
 
 # fisherman plugins
-# set -U FZF_LEGACY_KEYBINDINGS 0
-# set -U FZF_COMPLETE 3
+set -U FZF_LEGACY_KEYBINDINGS 0
+set -U FZF_COMPLETE 0
 
 # Misc
 abbr --add C 'math ' # CLI calculator
