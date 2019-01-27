@@ -1,22 +1,15 @@
 // https://prettier.io/docs/en/options.html
 
 module.exports = {
-  printWidth: 80,
   arrowParens: 'always',
-  semi: true,
+  endOfLine: 'lf',
   singleQuote: true,
   trailingComma: 'es5',
   overrides: [
     {
-      files: '*.css',
+      files: '*.html',
       options: {
-        singleQuote: false,
-      },
-    },
-    {
-      files: '*.md',
-      options: {
-        proseWrap: 'never',
+        requirePragma: true,
       },
     },
   ],
