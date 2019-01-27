@@ -13,7 +13,7 @@ IFS=$'\n\t'
 # an error and exiting -- maybe use something other than the --restow param?
 
 set -o errtrace # trap errors inside functions
-trap 'echo -e "\x1B[1;91mError during install!\x1B[0m"' ERR EXIT
+trap 'echo -e "\x1B[1;91mInstall error!\x1B[0m"' ERR
 
 # options
 SOURCE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
