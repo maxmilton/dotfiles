@@ -2,24 +2,21 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-# check if Fisherman is installed
-if [[ ! -f "$TARGET_DIR/.config/fish/functions/fisher.fish" ]]; then
-  echo_warn "Fisher is not installed, installing it now..."
-
-  # install Fisher
-  $cmd curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish
-fi
-
 # check fish shell is installed
 if hash fish 2>/dev/null; then
-  # install Fisherman plugins (always exit 0 to prevent stopping package install)
-  echo_info "Installing Fisher theme and plugins."
-  # $cmd fish -c 'fisher add MaxMilton/pure jethrokuan/fzf jethrokuan/z' || true
-  $cmd fish -c 'fisher add MaxMilton/pure'
+  # check if fisher is installed
+  if ! fish -c 'functions -q fisher' 2>/dev/null; then
+    echo_warn "Fisher not found, installing it now..."
+    XDG_CONFIG_HOME=${XDG_CONFIG_HOME:="~/.config"}
+    $CMD curl https://git.io/fisher --create-dirs -sLo "$XDG_CONFIG_HOME/fish/functions/fisher.fish"
+  fi
 
-  # generate a compiled fish user config
-  echo_info "Setting up fish user config."
-  $cmd fish "$TARGET_DIR/.config/fish/oneshot-config.fish"
+  echo_info "Installing Fisher packages"
+  $CMD fish -c fisher
+
+  # generate compiled fish user config
+  echo_info "Setting up fish user config"
+  $CMD fish "$TARGET_DIR/.config/fish/oneshot-config.fish"
 else
-  echo_err "Fish shell is required to install Fisher plugins. Skipping."
+  echo_err "Fish shell is required to install user fish config. Skipping."
 fi
