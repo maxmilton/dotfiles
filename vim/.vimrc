@@ -110,6 +110,8 @@ nnoremap <C-l> <C-w>l
 
 syntax enable
 set t_Co=256               " 256 colors
+let base16colorspace=256   " Enable 256 color support in theme
+colorscheme base16-summerfruit-dark
 set background=dark
 colorscheme grb256
 set mouse=a                " Automatically enable mouse usage
