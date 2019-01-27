@@ -12,10 +12,8 @@ IFS=$'\n\t'
 # TODO: Need a way to automatically backup existing files instead of throwing
 # an error and exiting -- maybe use something other than the --restow param?
 
-# TODO: Add an example .stowrc or at least document its use
-
 set -o errtrace # trap errors inside functions
-trap 'echo_err "Error during install!"' ERR
+trap 'echo -e "\x1B[1;91mError during install!\x1B[0m"' ERR EXIT
 
 # options
 SOURCE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -27,7 +25,7 @@ CONFIG_FILENAME=.dotfilesrc
 
 usage() {
   echo -e "
-Usage: ${yellow}$(basename "$0") [OPTIONS] [PACKAGES]${reset}
+Usage: ${YELLOW}$(basename "$0") [OPTIONS] [PACKAGES]${RESET}
 
 Dotfiles package installer script.
 
@@ -40,36 +38,21 @@ OPTIONS:
 PACKAGES:
   The name/s of config packages to install. The package name is
   the same as the directory name. This is optional and if not
-  specified the packages will be installed from ${cyan}.dotfilesrc${reset}.
+  specified the packages will be installed from ${CYAN}.dotfilesrc${RESET}.
 
-  You can place a ${cyan}.dotfilesrc${reset} in your home directory to
+  You can place a ${CYAN}.dotfilesrc${RESET} in your home directory to
   customise which packages are installed, otherwise the script
-  will fallback to the ${cyan}.dotfilesrc${reset} supplied in the repo.
-  ${cyan}.dotfilesrc${reset} should be a line seperated list of packages.
+  will fallback to the ${CYAN}.dotfilesrc${RESET} supplied in the repo.
+  ${CYAN}.dotfilesrc${RESET} should be a line seperated list of packages.
   " >&1
 }
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
-# colours
-export readonly reset='\x1B[0m'
-export readonly blue='\x1B[0;94m'
-export readonly cyan_bold='\x1B[1;96m'
-export readonly cyan='\x1B[0;96m'
-export readonly green='\x1B[0;92m'
-export readonly red_bold='\x1B[1;91m'
-export readonly yellow_bold='\x1B[1;93m'
-export readonly yellow='\x1B[0;33m'
+# initialise variables
 
 packages=
-
-# runtime settings
-export cmd=echo_dryrun
-export dryrun=true
-export quiet=false
-export v=-v
-
-# variables for use in install scripts
+ARGV=("$@")
 OS=$(uname)
 DISTRO='Not Linux'
 
@@ -77,14 +60,41 @@ if [[ "$OS" = 'Linux' ]]; then
   DISTRO=$(awk -F "=" '/^NAME/ {print $2}' /etc/os-release | tr -d '"')
 fi
 
+# variables for use in install scripts
+
+# colours
+export readonly RESET='\x1B[0m'
+export readonly BLUE='\x1B[0;94m'
+export readonly CYAN_BOLD='\x1B[1;96m'
+export readonly CYAN='\x1B[0;96m'
+export readonly GREEN='\x1B[0;92m'
+export readonly RED_BOLD='\x1B[1;91m'
+export readonly YELLOW_BOLD='\x1B[1;93m'
+export readonly YELLOW='\x1B[0;33m'
+
+# runtime settings
+export readonly ARGV
+export readonly SOURCE_DIR
+export readonly TARGET_DIR
+export readonly IGNORE_FILES
+export readonly CONFIG_FILENAME
 export readonly OS
 export readonly DISTRO
+export readonly CMD=echo_dryrun
+export readonly DRYRUN=true
+export readonly QUIET=false
+export readonly V=-v
 
 # feedback utilities
-echo_err() { echo -e "\\n${red_bold}❌ ERROR:${reset} ${*}${reset}" 1>&2; }
-echo_warn() { echo -e "\\n${yellow_bold}🔶 WARNING:${reset} ${*}${reset}" 1>&2; }
-echo_info() { [[ $quiet == true ]] || echo -e "${*}${reset}" >&1; }
-echo_dryrun() { local IFS=' '; echo -e "${green}DRY RUN:${reset} ${*}"; }
+echo_err() { echo -e "\\n${RED_BOLD}❌ ERROR:${RESET} ${*}${RESET}" 1>&2; }
+echo_warn() { echo -e "\\n${YELLOW_BOLD}🔶 WARNING:${RESET} ${*}${RESET}" 1>&2; }
+echo_info() { [[ $QUIET == true ]] || echo -e "${*}${RESET}" >&1; }
+echo_dryrun() { local IFS=' '; echo -e "${GREEN}DRY RUN:${RESET} ${*}"; }
+
+export -f echo_err
+export -f echo_warn
+export -f echo_info
+export -f echo_dryrun
 
 check_requirements() {
   # check minimum version of bash
@@ -97,6 +107,11 @@ check_requirements() {
   if ! hash stow 2>/dev/null; then
     echo_err 'GNU Stow is required but not installed. Aborting.'
     exit 1
+  fi
+
+  # check curl is installed
+  if ! hash curl 2>/dev/null; then
+    echo_warn 'Curl is required by some packages but not installed.'
   fi
 }
 
@@ -113,27 +128,28 @@ install_packages() {
     local dotfilesrc
     dotfilesrc=$(get_dotfilesrc)
 
-    echo_info "Using packages from ${dotfilesrc}"
+    echo_info "Using packages configured in ${dotfilesrc}"
 
     readarray -t packages < "$dotfilesrc"
   fi
 
-  if [[ $dryrun = true ]]; then
-    echo_warn "Doing dry run. Check output then run ${yellow}$(basename "$0") -i ${BASH_ARGV[*]}"
+  if [[ $DRYRUN = true ]]; then
+    local IFS=' '
+    echo_warn "Doing dry run. Check output then run ${YELLOW}$(basename "$0") -i ${ARGV[*]}"
   fi
 
   # do the actual linking for each package and run pre/post script hooks
   for package in "${packages[@]}"; do
-    echo_info "\\n${blue}Installing ${cyan_bold}$package ${blue}package..."
+    echo_info "\\n${BLUE}Installing ${CYAN_BOLD}$package ${BLUE}package..."
 
     if [[ -f "$SOURCE_DIR/$package/pre-install.sh" ]]; then
       # shellcheck source=/dev/null
       source "$SOURCE_DIR/$package/pre-install.sh"
     fi
 
-    if [[ $dryrun = true ]]; then
+    if [[ $DRYRUN = true ]]; then
       stow \
-        $v \
+        $V \
         --no \
         --dir="$SOURCE_DIR" \
         --target="$TARGET_DIR" \
@@ -142,7 +158,7 @@ install_packages() {
         "$package"
     else
       stow \
-        $v \
+        $V \
         --dir="$SOURCE_DIR" \
         --target="$TARGET_DIR" \
         --ignore="$IGNORE_FILES" \
@@ -157,7 +173,7 @@ install_packages() {
   done
 }
 
-# reset in case getopts has been used previously in the shell
+# Reset var in case getopts had been previously used in the shell
 OPTIND=1
 
 # parse options
@@ -168,15 +184,15 @@ while getopts "h?iqv" opt; do
       exit 0
       ;;
     i)
-      export dryrun=false
-      export cmd=
+      export readonly DRYRUN=false
+      export readonly CMD=
       ;;
     q)
-      export quiet=true
-      export v=
+      export readonly QUIET=true
+      export readonly V=
       ;;
     v)
-      export v=-vv
+      export readonly V=-vv
       ;;
   esac
 done
