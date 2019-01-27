@@ -1,6 +1,5 @@
 /* spellcheck-off */
 {
-  // "git.enabled": false, // disable git features when too much WIP makes it slow
   "telemetry.enableCrashReporter": false,
   "telemetry.enableTelemetry": false,
   "update.channel": "none", // no need on Linux
@@ -8,7 +7,7 @@
   "window.titleBarStyle": "custom",
   "window.zoomLevel": 0,
   "workbench.startupEditor": "newUntitledFile",
-  "workbench.colorTheme": "One Dark Pro",
+  "workbench.colorTheme": "One Dark Pro Bold",
   "workbench.enableExperiments": false,
   // "workbench.fontAliasing": "auto", // macOS
   "workbench.tips.enabled": false,
@@ -16,6 +15,7 @@
   "explorer.confirmDelete": false,
   "editor.tokenColorCustomizations": {
     "textMateRules": [
+      // darker comments when using `One Dark Pro` theme
       {
         "scope": "comment, punctuation.definition.comment",
         "settings": {
@@ -24,13 +24,12 @@
       }
     ]
   },
-  "editor.smoothScrolling": true, // fix choppy scroll
+  // "editor.smoothScrolling": true, // fix choppy scroll
   "editor.snippetSuggestions": "top",
   "editor.folding": false,
   "editor.accessibilitySupport": "off",
   "editor.fontSize": 16,
-  "editor.fontFamily": "'Roboto Mono', monospace",
-  "editor.fontWeight": "500",
+  "editor.fontFamily": "Hack, 'Roboto Mono', monospace, 'Noto Color Emoji'",
   "editor.rulers": [80, 100],
   "editor.wordWrap": "on",
   "editor.tabSize": 2,
@@ -40,18 +39,17 @@
   "files.insertFinalNewline": true,
   "files.trimTrailingWhitespace": true,
   "files.exclude": {
-    "**/.eslintcache": true,
+    "**/.*cache": true,
     "**/.git": true,
-    "**/.stylelintcache": true,
     "**/node_modules": true,
     "**/package-lock.json": true,
     "**/tmp": true,
     "**/yarn.lock": true
   },
   "files.watcherExclude": {
+    "**/__sapper__/**": true,
     "**/.git/objects/**": true,
     "**/.git/subtree-cache/**": true,
-    "**/.sapper": true,
     "**/.stylelintcache": true,
     "**/.vscode": true,
     "**/*.log": true,
@@ -67,10 +65,6 @@
     "**/tmp/**": true,
     "**/yarn.lock": true
   },
-  "files.associations": {
-    "*.css": "scss", // better syntax highlighting for minna-ui
-    "*.vue": "html",
-  },
   "git.confirmSync": false,
   "git.autofetch": true,
   "npm.exclude": ["**/.git", "**/node_modules"],
@@ -79,7 +73,6 @@
   "javascript.implicitProjectConfig.checkJs": true,
   "typescript.referencesCodeLens.enabled": true,
   "typescript.implementationsCodeLens.enabled": true,
-  "javascript.format.enable": false,
   "[markdown]": {
     "editor.lineNumbers": "interval",
     "editor.rulers": [],
@@ -88,26 +81,23 @@
     "editor.quickSuggestions": false,
     "files.trimTrailingWhitespace": false
   },
-  // "todohighlight.keywords": [
-  //   {
-  //     "text": "XXX:", // for implementation details or notes
-  //     "color": "#ecf2fa",
-  //     "backgroundColor": "#3477ca"
-  //   },
-  //   "NOTE:",
-  //   "README:",
-  //   "REFERENCE:",
-  //   "TIPS:",
-  //   "USAGE:",
-  // ],
-  // "todohighlight.defaultStyle": {
-  //   "color": "unset",
-  //   "backgroundColor": "unset",
-  //   "overviewRulerColor": "grey",
-  // },
-  "eslint.validate": ["html", "javascript", "javascriptreact"],
-  "eslint.packageManager": "yarn",
-  "tslint.jsEnable": true,
+  "atomKeymap.promptV3Features": true,
+  "todohighlight.keywords": [
+    {
+      "text": "XXX:", // for implementation details or notes
+      "color": "#ecf2fa",
+      "backgroundColor": "#3477ca"
+    },
+    "NOTE:",
+    "README:",
+    "REFERENCE:",
+    "USAGE:",
+  ],
+  "todohighlight.defaultStyle": {
+    "color": "unset",
+    "backgroundColor": "unset",
+    "overviewRulerColor": "grey",
+  },
   "spellright.configurationScope": "user",
   "spellright.notificationClass": "information",
   "spellright.language": ["en_GB"],
@@ -135,42 +125,9 @@
     "**/tsconfig.json",
     "**/yarn.lock"
   ],
-  // "gitlens.advanced.messages": {
-  //   "suppressUpdateNotice": true,
-  //   "suppressWelcomeNotice": true,
-  // },
-  // "gitlens.keymap": "none",
-  "atomKeymap.promptV3Features": true,
-  // "highlight.regexes": {
-  //   "(// ?TODO:?)(.*)": [
-  //     {
-  //       "overviewRulerColor": "#ffcc00",
-  //       "backgroundColor": "#ffcc00",
-  //       "color": "#1f1f1f",
-  //       "fontWeight": "bold"
-  //     },
-  //     {
-  //       "backgroundColor": "#d9ad00",
-  //       "color": "#1f1f1f"
-  //     }
-  //   ],
-  //   "(// ?FIXME:?)(.*)": [
-  //     {
-  //       "overviewRulerColor": "#ff0000",
-  //       "backgroundColor": "#ff0000",
-  //       "color": "#1f1f1f",
-  //       "fontWeight": "bold"
-  //     },
-  //     {
-  //       "backgroundColor": "#d90000",
-  //       "color": "#1f1f1f"
-  //     }
-  //   ],
-  //   "(// )(@\\w+)": [
-  //     {},
-  //     {
-  //       "color": "#4de0ff"
-  //     }
-  //   ]
-  // }
+  "gitlens.advanced.messages": {
+    "suppressUpdateNotice": true,
+    "suppressWelcomeNotice": true,
+  },
+  "gitlens.keymap": "none",
 }
