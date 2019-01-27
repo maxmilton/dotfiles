@@ -6,7 +6,17 @@ set encoding=utf-8
 setglobal fileencoding=utf-8
 set fileencodings=utf-8
 scriptencoding utf-8
+set tenc=utf8
 
+" Minimize escape delay
+set ttimeoutlen=10
+if ! has('gui_running')
+  augroup FastEscape
+    autocmd!
+    au InsertEnter * set timeoutlen=0
+    au InsertLeave * set timeoutlen=1000
+  augroup END
+endif
 
 " ----------------------------------------------------------------------------
 "  External Files
@@ -48,7 +58,6 @@ if exists("+undofile")
   set undofile
 endif
 
-
 " ----------------------------------------------------------------------------
 "  Text Formatting
 " ----------------------------------------------------------------------------
@@ -56,20 +65,26 @@ endif
 set autoindent             " Automaticly indent new lines
 set smartindent            " Be smart about it
 inoremap # X<BS>#
-set scrolloff=7            " Show min 3 lines when scrolling
+set scrolloff=7            " Show bonus lines when scrolling
 set softtabstop=2
 set shiftwidth=2
 set tabstop=4
 set expandtab              " Expand tabs to spaces
-set nosmarttab             " No tabs
+"set nosmarttab             " No tabs
+set smarttab
 set formatoptions+=n       " Support for numbered/bullet lists
 set textwidth=80           " Wrap at 80 chars by default
+set colorcolumn=80
 set virtualedit=block      " allow virtual edit in visual block ..
 set wrap                   " Do wrap lines
-set linebreak
-set nolist                 " list disables linebreak
+set showbreak=↪\ "
+set listchars=space:·,tab:»\ ,eol:¬,nbsp:␣,extends:⟩,precedes:⟨
+match ErrorMsg '\s\+$'
+set list
+set tags=./tags,tags,codex.tags
 set formatoptions-=t       " Disable auto wraping while typing
-
+set clipboard+=unnamed     " Yank and paste with the system clipboard
+set go+=a                  " Visual selection automatically copied to the clipboard
 
 " ----------------------------------------------------------------------------
 "  Remapping
@@ -103,23 +118,33 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
-
 " ----------------------------------------------------------------------------
 "  UI
 " ----------------------------------------------------------------------------
 
+set ttyfast
 syntax enable
 set t_Co=256               " 256 colors
 let base16colorspace=256   " Enable 256 color support in theme
 colorscheme base16-summerfruit-dark
 set background=dark
-colorscheme grb256
+" Override colorscheme bg to look proper under any terminal, just a hack
+"highlight Normal ctermbg=NONE
+set cursorline
+set cursorcolumn
 set mouse=a                " Automatically enable mouse usage
 set mousehide              " Hide the mouse cursor while typing
 set ruler                  " Show the cursor position all the time
-set noshowcmd              " Don't display incomplete commands
-set nolazyredraw           " Turn off lazy redraw
+set lazyredraw
 set number                 " Line numbers
+set complete=.,w,b,u,U,t,i,d
+"set completeopt-=preview
+set completeopt=longest,menuone
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
+  \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+inoremap <expr> <M-,> pumvisible() ? '<C-n>' :
+  \ '<C-x><C-o><C-n><C-p><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
 set wildmenu               " Turn on wild menu
 set wildmode=list:longest,full
 set ch=2                   " Command line height
@@ -128,10 +153,9 @@ set whichwrap+=<,>,h,l,[,] " Backspace and cursor keys wrap to
 set shortmess=filtIoOA     " Shorten messages
 set report=0               " Tell us about changes
 set nostartofline          " Don't jump to the start of line when scrolling
-set relativenumber         " Show line number relative to cursor
+"set relativenumber         " Show line number relative to cursor
 set history=1000           " Store a ton of history (default is 20)
 set hidden                 " Allow buffer switching without saving
-
 
 " ----------------------------------------------------------------------------
 " Visual Cues
@@ -147,14 +171,22 @@ set hlsearch               " Highlight searches
 set visualbell             " No audible bell
 set timeoutlen=50          " Prevent pause leaving insert mode
 
+"Update terminal title
+if $SHELL != "/usr/bin/fish"
+  set title
+  set titleold=
+  "set titlestring=%t%(\ %M%)%(\ (%{expand(\"%:p:h\")})%)%(\ %a%)\ -\ %{v:servername}
+  "set titlestring=...%{strpart(expand(\"%:p:h\"),stridx(expand(\"%:p:h\"),\"/\",strlen(expand(\"%:p:h\"))-12))}%=%n.\ \ %{expand(\"%:t:r\")}\ %m\ %Y\ \ \ \ %l\ of\ %L
+  "set titlestring=%p%h\ ・\ %t%(\ %M%)%(\ (%{expand(\"%:p:h\")})%)%(\ %a%)
+endif
 
 " ---------------------------------------------------------------------------
-"  Custom Extras
+"  Extras
 " ---------------------------------------------------------------------------
 
 " Strip all trailing whitespace in file
 function! StripWhitespace ()
-    exec ':%s/ \+$//gc'
+  exec ':%s/ \+$//gc'
 endfunction
 map ,s :call StripWhitespace ()<CR>
 
@@ -175,32 +207,47 @@ cmap w!! w !sudo tee >/dev/null %
 
 " Shift key fixes
 if has("user_commands")
-    command! -bang -nargs=* -complete=file E e<bang> <args>
-    command! -bang -nargs=* -complete=file W w<bang> <args>
-    command! -bang -nargs=* -complete=file Wq wq<bang> <args>
-    command! -bang -nargs=* -complete=file WQ wq<bang> <args>
-    command! -bang Wa wa<bang>
-    command! -bang WA wa<bang>
-    command! -bang Q q<bang>
-    command! -bang QA qa<bang>
-    command! -bang Qa qa<bang>
+  command! -bang -nargs=* -complete=file E e<bang> <args>
+  command! -bang -nargs=* -complete=file W w<bang> <args>
+  command! -bang -nargs=* -complete=file Wq wq<bang> <args>
+  command! -bang -nargs=* -complete=file WQ wq<bang> <args>
+  command! -bang Wa wa<bang>
+  command! -bang WA wa<bang>
+  command! -bang Q q<bang>
+  command! -bang QA qa<bang>
+  command! -bang Qa qa<bang>
 endif
 
 " For markdown mode on md files
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
+" Faster text blocks
+onoremap p i(
+onoremap m i{
+onoremap " i"
+onoremap ' i'
+
+" Rainbow parens
+let g:rainbow_active = 1
+nnoremap <silent> <leader>p :RainbowToggle<cr>
+
+"let g:rainbow_conf = {
+"\  'ctermfgs': ['magenta', 'blue', 'yellow', 'cyan', 'lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
+"\}
+
+" Copy selection in visual mode (enter visual mode by selecting with the mouse)
+vnoremap <C-C> "+y
 
 " ----------------------------------------------------------------------------
-"  FOR LEARNING
+"  For Learning
 " ----------------------------------------------------------------------------
 
-"" Disable arrow keys
-"nnoremap <up> <nop>
-"nnoremap <down> <nop>
-"nnoremap <left> <nop>
-"nnoremap <right> <nop>
-"inoremap <up> <nop>
-"inoremap <down> <nop>
-"inoremap <left> <nop>
-"inoremap <right> <nop>
-"nnoremap j gj
+" Disable arrow keys
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+nnoremap <left> <nop>
+nnoremap <right> <nop>
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
