@@ -116,10 +116,10 @@ check_requirements() {
 }
 
 get_dotfilesrc() {
-  if [[ -f "$HOME"/"$CONFIG_FILENAME" ]]; then
-    echo "$HOME"/"$CONFIG_FILENAME"
+  if [[ -f "$HOME"'/'"$CONFIG_FILENAME" ]]; then
+    echo "$HOME"'/'"$CONFIG_FILENAME"
   else
-   echo "$SOURCE_DIR"/"$CONFIG_FILENAME"
+   echo "$SOURCE_DIR"'/'"$CONFIG_FILENAME"
   fi
 }
 
@@ -133,23 +133,23 @@ install_packages() {
     readarray -t packages < "$dotfilesrc"
   fi
 
-  if [[ $DRYRUN = true ]]; then
+  if [[ "$DRYRUN" = true ]]; then
     local IFS=' '
     echo_warn "Doing dry run. Check output then run ${YELLOW}$(basename "$0") -i ${ARGV[*]}"
   fi
 
   # do the actual linking for each package and run pre/post script hooks
   for package in "${packages[@]}"; do
-    echo_info "\\n${BLUE}Installing ${CYAN_BOLD}$package ${BLUE}package..."
+    echo_info "\\n${BLUE}Installing ${CYAN_BOLD}${package} ${BLUE}package..."
 
-    if [[ -f "$SOURCE_DIR/$package/pre-install.sh" ]]; then
+    if [[ -f "$SOURCE_DIR"'/'"$package"'/pre-install.sh' ]]; then
       # shellcheck source=/dev/null
-      source "$SOURCE_DIR/$package/pre-install.sh"
+      source "$SOURCE_DIR"'/'"$package"'/pre-install.sh'
     fi
 
-    if [[ $DRYRUN = true ]]; then
+    if [[ "$DRYRUN" = true ]]; then
       stow \
-        $V \
+        "$V" \
         --no \
         --dir="$SOURCE_DIR" \
         --target="$TARGET_DIR" \
@@ -158,7 +158,7 @@ install_packages() {
         "$package"
     else
       stow \
-        $V \
+        "$V" \
         --dir="$SOURCE_DIR" \
         --target="$TARGET_DIR" \
         --ignore="$IGNORE_FILES" \
@@ -166,9 +166,9 @@ install_packages() {
         "$package"
     fi
 
-    if [[ -f "$SOURCE_DIR/$package/post-install.sh" ]]; then
+    if [[ -f "$SOURCE_DIR"'/'"$package"'/''post-install.sh' ]]; then
       # shellcheck source=/dev/null
-      source "$SOURCE_DIR/$package/post-install.sh"
+      source "$SOURCE_DIR"'/'"$package"'/post-install.sh'
     fi
   done
 }

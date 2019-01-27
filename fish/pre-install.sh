@@ -2,4 +2,4 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-$cmd mkdir -v -p "$TARGET_DIR/.config/fish/functions"
+$CMD mkdir "$V" -p "$TARGET_DIR"'/.config/fish/functions'
