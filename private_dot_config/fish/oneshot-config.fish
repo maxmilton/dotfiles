@@ -28,6 +28,12 @@ if test -d $node_bin_path
   set -U NODE_PRESERVE_SYMLINKS 1
 end
 
+# Golang
+set go_bin_path $HOME/go/bin
+if test -d $go_bin_path
+  set -U fish_user_paths $go_bin_path $fish_user_paths
+end
+
 # Google Cloud SDK
 set gcloud_bin_path $HOME/.google-cloud-sdk/bin
 if test -d $gcloud_bin_path
