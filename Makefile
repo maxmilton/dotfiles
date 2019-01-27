@@ -1,3 +1,41 @@
+# fish pre
+#!/bin/bash
+set -euo pipefail
+IFS=$'\n\t'
+
+$CMD mkdir "$V" -p "$TARGET_DIR"'/.config/fish/functions'
+
+# fish post
+set -euo pipefail
+IFS=$'\n\t'
+
+# check fish shell is installed
+if hash fish 2>/dev/null; then
+  # check if fisher is installed
+  if ! fish -c 'functions -q fisher' 2>/dev/null; then
+    echo_warn "Fisher not found, installing it now..."
+    XDG_CONFIG_HOME=${XDG_CONFIG_HOME:="~/.config"}
+    $CMD curl https://git.io/fisher --create-dirs -sLo "$XDG_CONFIG_HOME/fish/functions/fisher.fish"
+  fi
+
+  echo_info "Installing Fisher packages"
+  $CMD fish -c fisher
+
+  # generate compiled fish user config
+  echo_info "Setting up fish user config"
+  $CMD fish "$TARGET_DIR/.config/fish/oneshot-config.fish"
+else
+  echo_err "Fish shell is required to install user fish config. Skipping."
+fi
+
+# vim pre
+#!/bin/bash
+set -euo pipefail
+IFS=$'\n\t'
+
+$CMD mkdir "$V" -p "$TARGET_DIR"/.vim/{backup,swap,undo}
+
+# vscode pre
 #!/bin/bash
 set -euo pipefail
 IFS=$'\n\t'
@@ -43,3 +81,10 @@ if [[ "$OS" != 'Darwin' ]]; then
 else
   echo_warn "You need to manually set up VS Code directories on macOS."
 fi
+
+# yarn pre
+#!/bin/bash
+set -euo pipefail
+IFS=$'\n\t'
+
+$CMD mkdir "$V" -p "$TARGET_DIR"'/.config/yarn/global'

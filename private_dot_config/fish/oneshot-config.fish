@@ -41,9 +41,10 @@ set -U FZF_COMPLETE 0
 # Misc
 abbr --add C 'math ' # CLI calculator
 abbr --add get 'aria2c --dir ~/Downloads' # download via CLI
-abbr --add ppp 'up_system; up_fish; up_yarn; up_gce; dup; up_git; up_hosts' # run full system update
+abbr --add ppp 'up_system; up_fish; up_yarn; up_gce; up_docker; up_git; up_hosts; up_flatpak' # run full system update
 abbr --add p 'yaourt' # Arch Linux package manager
-abbr --add f 'flatpak'
+abbr --add f 'flatpak' # generic app image manager
+abbr --add dot 'chezmoi' # dotfiles manager
 
 # System
 abbr --add s 'sudo -i'
@@ -80,7 +81,7 @@ abbr --add getptr 'curl -4 icanhazptr.com'
 abbr --add t 'terraform'
 # remove all broken symlinks in dir
 # abbr --add rmln 'find -L . -maxdepth 1 -type l -delete'
-abbr --add rmln 'find -L . -name . -o -type d -prune -o -type l -delete'
+abbr --add rmln 'find -L . -name . -o -type d -prune -o -type l -exec rm -rf {} \;'
 # remove all node_modules dirs recursively
 abbr --add rmnm 'find -O3 . -type d -name .git -prune -o -type d -name node_modules -prune -exec rm -rf {} \;'
 # remove all yarn-error.log files recursively

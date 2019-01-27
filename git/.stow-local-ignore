@@ -1,7 +1,0 @@
-# GNU stow ignores .gitignore by default, so we need to override that behaviour
-# REF: http://www.gnu.org/software/stow/manual/html_node/Types-And-Syntax-Of-Ignore-Lists.html
-
-\.git
-
-^/README.*
-^/LICENSE.*
