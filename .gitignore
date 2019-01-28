@@ -1,2 +1,2 @@
-.stowrc
-*PRIVATE*
+# system customisations may contain secrets
+private_dot_config/chezmoi/chezmoi.yaml
