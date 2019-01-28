@@ -1,39 +1,37 @@
 # Max Milton's Dotfiles
 
-Intended for use with a Linux OS. Limited support for macOS, BSD, and UNIX-like OS.
+Intended for use with a Linux OS. Limited support for macOS, BSD, or UNIX-like OS. Uses [chezmoi](https://github.com/twpayne/chezmoi) to manage the dotfiles.
 
 ## Usage
 
-_NOTE: Requires [GNU Stow](https://www.gnu.org/software/stow/) to automatically symlink config packages._
+### Install
 
-View help text:
+Download the latest version of `chezmoi` from <https://github.com/twpayne/chezmoi/releases> or install from source (recommended when you have a go compiler toolchain):
 
 ```sh
-./dotfiles.sh -h
+go get -u github.com/twpayne/chezmoi
 ```
 
-Dry run with default packages:
+Initialise the `chezmoi` local state:
 
 ```sh
-./dotfiles.sh
+chezmoi init git@github.com:MaxMilton/dotfiles.git -v
 ```
 
-Install default packages:
+Run post install script
 
 ```sh
-./dotfiles.sh -i
+# bash
+sh $(chezmoi source-path)/post-install.sh
+
+# fish
+sh (chezmoi source-path)/post-install.sh
 ```
 
-Install a specific package:
+### Update
 
 ```sh
-./dotfiles.sh -i fish
-```
-
-Install multiple specific packages:
-
-```sh
-./dotfiles.sh -i bash git yarn
+chezmoi update -v
 ```
 
 ## Licence
@@ -42,4 +40,4 @@ The contents of this repo are MIT licensed open source. See [LICENCE](https://gi
 
 -----
 
-© 2018 [Max Milton](https://maxmilton.com)
+© 2019 [Max Milton](https://maxmilton.com)
