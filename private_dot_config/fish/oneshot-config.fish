@@ -1,18 +1,16 @@
 #
 # FISH GLOBALS & ALIASES
 #
-# Fish saves a compiled version of these commands after running once so they
-# only need to be called one time initially or when updated. This is done
-# automatically if using the dotfiles.sh script, so to reload this file run:
+# Fish saves a compiled version of these commands on execution so they only
+# need to be called once initially and again after this file is updated.
 #
-# $ ./dotfiles.sh -i fish
-#
+
+# erase fish abbreviations and paths
+# set -e fish_user_abbreviations # FIXME: This doesn't work with fish v3
+set -e fish_user_paths
 
 # update completions
 fish_update_completions
-
-# Erase all previous fish abbreviations
-set -e fish_user_abbreviations
 
 # Disable welcome message
 set -U fish_greeting
@@ -20,6 +18,12 @@ set -U fish_greeting
 # VIM = <3
 set -Ux EDITOR vim
 set -Ux VISUAL vim
+
+# Google Cloud SDK
+set gcloud_bin_path $HOME/.google-cloud-sdk/bin
+if test -d $gcloud_bin_path
+  set -U fish_user_paths $gcloud_bin_path $fish_user_paths
+end
 
 # Node.js
 set node_bin_path $HOME/.config/yarn/global/node_modules/.bin
@@ -34,23 +38,25 @@ if test -d $go_bin_path
   set -U fish_user_paths $go_bin_path $fish_user_paths
 end
 
-# Google Cloud SDK
-set gcloud_bin_path $HOME/.google-cloud-sdk/bin
-if test -d $gcloud_bin_path
-  set -U fish_user_paths $gcloud_bin_path $fish_user_paths
-end
-
-# fisherman plugins
+# fisher plugins
+set -U FZF_COMPLETE 2
+set -U FZF_FIND_FILE_COMMAND "fd --type f . \$dir"
 set -U FZF_LEGACY_KEYBINDINGS 0
-set -U FZF_COMPLETE 0
 
 # Misc
-abbr --add C 'math ' # CLI calculator
+abbr --add C 'math' # CLI calculator
 abbr --add get 'aria2c --dir ~/Downloads' # download via CLI
 abbr --add ppp 'up_system; up_fish; up_yarn; up_gce; up_docker; up_git; up_hosts; up_flatpak' # run full system update
 abbr --add p 'yaourt' # Arch Linux package manager
 abbr --add f 'flatpak' # generic app image manager
-abbr --add dot 'chezmoi' # dotfiles manager
+abbr --add x 'chezmoi' # dotfiles manager
+abbr --add xa 'chezmoi apply'
+abbr --add xu 'chezmoi update'
+
+# common tool replacements
+abbr --add cat bat
+abbr --add ls exa
+abbr --add find fd
 
 # System
 abbr --add s 'sudo -i'
@@ -69,7 +75,7 @@ abbr --add lll 'ls -CFA'
 abbr --add lh 'ls -lFAh --group-directories-first'
 # list dirs (not files) recursively, excluding .git and node_modules
 abbr --add ld 'find -O3 . -type d \( -name .git -o -name node_modules \) -prune -o -type d -print'
-abbr --add find 'find -O3'
+# abbr --add find 'find -O3'
 abbr --add dux 'du -hs | sort -h'
 abbr --add dus 'du --block-size=MiB --max-depth=1 | sort -n'
 abbr --add 755 'find -O3 . -type d -name .git -prune -o -type d -exec chmod 755 {} \;'
@@ -86,7 +92,6 @@ abbr --add getip6 'curl -6 icanhazip.com'
 abbr --add getptr 'curl -4 icanhazptr.com'
 abbr --add t 'terraform'
 # remove all broken symlinks in dir
-# abbr --add rmln 'find -L . -maxdepth 1 -type l -delete'
 abbr --add rmln 'find -L . -name . -o -type d -prune -o -type l -exec rm -rf {} \;'
 # remove all node_modules dirs recursively
 abbr --add rmnm 'find -O3 . -type d -name .git -prune -o -type d -name node_modules -prune -exec rm -rf {} \;'
@@ -94,8 +99,8 @@ abbr --add rmnm 'find -O3 . -type d -name .git -prune -o -type d -name node_modu
 abbr --add rmye 'find -O3 . -type d \( -name .git -o -name node_modules \) -prune -o -type f -name yarn-error.log -exec rm {} \;'
 # list open ports
 abbr --add lsport 'sudo ss -plant'
-# list open ports on macOS
-abbr --add netls 'sudo lsof -iTCP -sTCP:LISTEN -n -P'
+# list open ports on BSD/macOS
+abbr --add lsnet 'sudo lsof -iTCP -sTCP:LISTEN -n -P'
 # debug bash script
 abbr --add bashx 'env PS4="\$(if [[ \$? == 0 ]]; then echo \"\033[0;33mEXIT: \$? ✔\"; else echo \"\033[1;91mEXIT: \$? ❌\033[0;33m\"; fi)\n\nSTACK:\n\${BASH_SOURCE[0]}:\${LINENO}\n\${BASH_SOURCE[*]:1}\n\033[0m" bash -x'
 

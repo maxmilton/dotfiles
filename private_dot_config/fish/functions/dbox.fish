@@ -13,12 +13,15 @@ function dbox -d 'Dockerized dev box with persistence'
       docker exec -ti dbox entrypoint.sh
     end
   else
+    # pull latest base image
+    docker pull alpine:edge
+
     # no previous dbox container exists; first-time run
     docker run -ti \
       --name dbox \
       --env GID=(id -g) \
-      --volume "$HOME":"/home/""$USER" \
-      --volume "$HOME""/Projects/dotfiles/fish/dbox-entrypoint.sh":"/usr/bin/entrypoint.sh":ro \
+      --volume "$HOME":'/home/'"$USER" \
+      --volume "$HOME"'/.config/fish/dbox-entrypoint.sh':/usr/bin/entrypoint.sh:ro \
       --volume /var/run/docker.sock:/var/run/docker.sock \
       --entrypoint entrypoint.sh \
       alpine:edge $argv
