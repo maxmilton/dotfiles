@@ -1,6 +1,6 @@
 # Max Milton's Dotfiles
 
-Intended for use with a Linux OS. Limited support for macOS, BSD, or UNIX-like OS. Uses [chezmoi](https://github.com/twpayne/chezmoi) to manage the dotfiles.
+Intended for use on a Linux OS. Limited support for macOS, BSD, or UNIX-like OSes. Uses [chezmoi](https://github.com/twpayne/chezmoi) to manage the dotfiles.
 
 ## Usage
 
