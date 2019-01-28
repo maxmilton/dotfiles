@@ -9,8 +9,9 @@
 # set -e fish_user_abbreviations # FIXME: This doesn't work with fish v3
 set -e fish_user_paths
 
-# update completions
-fish_update_completions
+# fresh variables file -- NOTE: This is destructive!
+# mv $HOME/.config/fish/fish_variables $HOME/.config/fish/fish_variables-(date --iso-8601=minutes).bak
+# fish -i -c 'echo OK; exit 0'
 
 # Disable welcome message
 set -U fish_greeting
@@ -50,8 +51,9 @@ abbr --add ppp 'up_system; up_fish; up_yarn; up_gce; up_docker; up_git; up_hosts
 abbr --add p 'yaourt' # Arch Linux package manager
 abbr --add f 'flatpak' # generic app image manager
 abbr --add x 'chezmoi' # dotfiles manager
-abbr --add xa 'chezmoi apply'
-abbr --add xu 'chezmoi update'
+abbr --add xd 'chezmoi diff'
+abbr --add xa 'chezmoi apply -v'
+abbr --add xu 'chezmoi update -v'
 
 # common tool replacements
 abbr --add cat bat
@@ -224,3 +226,6 @@ abbr --add gm 'git merge'
 abbr --add gt 'git tag'
 # remove missing files
 abbr --add grm 'git ls-files --deleted -z | xargs -0 git rm'
+
+# update completions
+fish_update_completions
