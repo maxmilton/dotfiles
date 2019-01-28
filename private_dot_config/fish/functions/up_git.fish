@@ -7,7 +7,7 @@ function up_git -d 'Update git repos'
   end
 
   # update my forked repos
-  for dir in $HOME/Development/0__github_forks/*/
+  for dir in $HOME/Projects/0__github_forks/*/
     echo-info $dir
     git -C $dir fetch upstream
     and git -C $dir merge upstream/master master
@@ -15,7 +15,7 @@ function up_git -d 'Update git repos'
   end
 
   # update cloned repos
-  for dir in $HOME/Development/0__github_clones/*/
+  for dir in $HOME/Projects/0__github_clones/*/
     echo-info $dir
     git -C $dir pull --prune
   end

@@ -12,7 +12,7 @@ echo_err() { printf "%b" "\\n${red}ERROR:${reset} ${*}${reset}" 1>&2; }
 echo_warn() { printf "%b" "\\n${yellow}WARNING:${reset} ${*}${reset}" 1>&2; }
 
 # notify error on non-zero exit codes
-handle_err () { [ $? -eq 0 ] || echo_err 'Install error!'; }
+handle_err () { [ $? -eq 0 ] && exit; echo_err 'Install error!'; }
 trap handle_err EXIT
 
 # initialise vars
@@ -66,7 +66,8 @@ mkdir -v -p "$target_dir"/.vim/undo
 if [ "$os" = Darwin ]; then
   echo_warn 'You need to manually set up VS Code directories on macOS.'
 else
-  dictionary_dir="$target_dir"/Development/packages/dictionary
+  hunspell_dir=/usr/share/hunspell
+  dictionary_dir="$target_dir"/Projects/packages/dictionary
   code_dir="$target_dir"/.config/Code
   insiders_dir="$target_dir"'/.config/Code - Insiders'
 
@@ -74,20 +75,20 @@ else
 
   # dictionaries
   if [ ! -d "$code_dir"/Dictionaries ]; then
-    if [ ! -d /usr/share/hunspell ]; then
+    if [ ! -d "$hunspell_dir" ]; then
       if [ "$distro" = Fedora ]; then
-        sudo ln -v -s /usr/share/myspell /usr/share/hunspell
+        sudo ln -v -s /usr/share/myspell "$hunspell_dir"
       else
-        sudo mkdir -v -p /usr/share/hunspell
+        sudo mkdir -v -p "$hunspell_dir"
       fi
     fi
 
-    if [ ! -d /usr/share/hunspell ]; then
-      sudo ln -i -v -sf "$dictionary_dir"/en_GB.dic /usr/share/hunspell
-      sudo ln -i -v -sf "$dictionary_dir"/en_GB.aff /usr/share/hunspell
+    if [ ! -d "$hunspell_dir" ]; then
+      sudo ln -i -v -sf "$dictionary_dir"/en_GB.dic "$hunspell_dir"
+      sudo ln -i -v -sf "$dictionary_dir"/en_GB.aff "$hunspell_dir"
     fi
     if [ ! -d "$code_dir"/Dictionaries ]; then
-      sudo ln -v -s /usr/share/hunspell "$code_dir"/Dictionaries
+      sudo ln -v -s "$hunspell_dir" "$code_dir"/Dictionaries
     fi
   fi
 
@@ -95,7 +96,7 @@ else
   if type code-insiders > /dev/null 2>&1; then
     mkdir -v -p "$insiders_dir"/User/snippets
     if [ ! -d "$insiders_dir"/Dictionaries ]; then
-      ln -v -s /usr/share/hunspell "$insiders_dir"/Dictionaries
+      ln -v -s "$hunspell_dir" "$insiders_dir"/Dictionaries
     fi
     if [ ! -d "$insiders_dir"/User/settings.json ]; then
       ln -v -s "$code_dir"/User/settings.json "$insiders_dir"/User
