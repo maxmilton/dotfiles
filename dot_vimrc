@@ -1,253 +1,170 @@
-set nocompatible      " Needed for advanced features
-set modelines=0       " Disable modlines for security
+""""""""
+" Plug "
+""""""""
 
-" Compatibility with multibyte characters (日本語 & 한글)
-set encoding=utf-8
-setglobal fileencoding=utf-8
-set fileencodings=utf-8
-scriptencoding utf-8
-set tenc=utf8
+call plug#begin('~/.vim/plugged')
 
-" Minimize escape delay
-set ttimeoutlen=10
-if ! has('gui_running')
-  augroup FastEscape
-    autocmd!
-    au InsertEnter * set timeoutlen=0
-    au InsertLeave * set timeoutlen=1000
-  augroup END
+" File/session management
+Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
+Plug 'jremmen/vim-ripgrep', { 'on': 'Rg' }
+Plug 'xolox/vim-misc'
+Plug 'xolox/vim-session'
+Plug 'wesQ3/vim-windowswap'
+
+" Syntax and linting
+Plug 'sheerun/vim-polyglot'
+Plug 'scrooloose/syntastic'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'chrisbra/Colorizer', { 'on': 'ColorHighlight' }
+Plug 'mattn/emmet-vim'
+Plug 'prettier/vim-prettier', { 'do': 'npm install', 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql'] }
+
+" Git
+Plug 'tpope/vim-fugitive'
+Plug 'gregsexton/gitv', { 'on': 'Gitv' }
+Plug 'airblade/vim-gitgutter'
+
+" Session
+Plug 'christoomey/vim-tmux-navigator'
+
+" Status line
+Plug 'itchyny/lightline.vim'
+
+" REST
+Plug 'diepm/vim-rest-console', { 'for': 'rest' }
+
+" Misc
+Plug 'andrewradev/linediff.vim'
+Plug 'easymotion/vim-easymotion'
+
+call plug#end()
+
+"""""""""""""""""""
+" Plugin settings "
+"""""""""""""""""""
+
+" NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+nnoremap <leader>p :NERDTreeFind<cr>
+let NERDTreeMapOpenVSplit = 'v'
+let NERDTreeMapOpenSplit = 's'
+
+" CtrlP
+if executable('rg')
+  " Command to get list of all files for fuzzy matching.
+  let g:ctrlp_user_command = 'rg --files-with-matches --color never --fixed-strings --hidden "" %s'
 endif
 
-" ----------------------------------------------------------------------------
-"  External Files
-" ----------------------------------------------------------------------------
+" fzy
+if executable('fzy') && executable('rg')
 
-" Allow unsaved background buffers and remember marks/undo
-set hidden
+	function! FzyCommand(choice_command, vim_command)
+		let output = system(a:choice_command . " | fzy ")
+		redraw!
+		if v:shell_error == 0 && !empty(output)
+			exec a:vim_command . ' ' . output
+		endif
+	endfunction
 
-" Backup files
-if isdirectory($HOME . '/.vim/backup') == 0
-  :silent !mkdir -p ~/.vim/backup >/dev/null 2>&1
-endif
-set backupdir-=.
-set backupdir+=.
-set backupdir-=~/
-set backupdir^=~/.vim/backup/
-set backupdir^=./.vim-backup/
-set backup
+	nnoremap <leader>e :call FzyCommand("rg --files-with-matches --color never --fixed-strings '' . 2> /dev/null", ":e")<cr>
+	nnoremap <leader>v :call FzyCommand("rg --files-with-matches --color never --fixed-strings '' . 2> /dev/null", ":vs")<cr>
+	nnoremap <leader>s :call FzyCommand("rg --files-with-matches --color never --fixed-strings '' . 2> /dev/null", ":sp")<cr>
+	nnoremap <leader>t :call FzyCommand("rg --files-with-matches --color never --fixed-strings '' . 2> /dev/null", ":tabe")<cr>
 
-" Swap files
-if isdirectory($HOME . '/.vim/swap') == 0
-  :silent !mkdir -p ~/.vim/swap >/dev/null 2>&1
-endif
-set directory=./.vim-swap//
-set directory+=~/.vim/swap//
-set directory+=~/tmp//
-set directory+=.
-
-" Store state of previous editing session
-set viminfo+=n~/.vim/viminfo
-
-if exists("+undofile")
-  " Allow persistent undo even after exiting
-  if isdirectory($HOME . '/.vim/undo') == 0
-    :silent !mkdir -p ~/.vim/undo > /dev/null 2>&1
-  endif
-  set undodir=./.vim-undo//
-  set undodir+=~/.vim/undo//
-  set undofile
 endif
 
-" ----------------------------------------------------------------------------
-"  Text Formatting
-" ----------------------------------------------------------------------------
+" Vim-session
+let g:session_autoload = 'no'
+let g:session_autosave = 'no'
 
-set autoindent             " Automaticly indent new lines
-set smartindent            " Be smart about it
-inoremap # X<BS>#
-set scrolloff=7            " Show bonus lines when scrolling
-set softtabstop=2
-set shiftwidth=2
-set tabstop=4
-set expandtab              " Expand tabs to spaces
-"set nosmarttab             " No tabs
-set smarttab
-set formatoptions+=n       " Support for numbered/bullet lists
-set textwidth=80           " Wrap at 80 chars by default
-set colorcolumn=80
-set virtualedit=block      " allow virtual edit in visual block ..
-set wrap                   " Do wrap lines
-set showbreak=↪\ "
-set listchars=space:·,tab:»\ ,eol:¬,nbsp:␣,extends:⟩,precedes:⟨
-match ErrorMsg '\s\+$'
-set list
-set tags=./tags,tags,codex.tags
-set formatoptions-=t       " Disable auto wraping while typing
-set clipboard+=unnamed     " Yank and paste with the system clipboard
-set go+=a                  " Visual selection automatically copied to the clipboard
+" Lightline
+let g:lightline = {
+  \ 'colorscheme': 'ThemerVimLightline',
+  \ 'component': {
+  \   'readonly': '%{&readonly?"":""}',
+  \ },
+  \ 'separator': { 'left': '', 'right': '' },
+  \ 'subseparator': { 'left': '', 'right': '' }
+  \ }
 
-" ----------------------------------------------------------------------------
-"  Remapping
-" ----------------------------------------------------------------------------
+" TypeScript
+let g:tsuquyomi_disable_quickfix = 1
+let g:syntastic_typescript_checkers = ['tsuquyomi']
 
-" Lead with ,
-let mapleader = ","
+" Prettier
+let g:prettier#config#trailing_comma = 'es5'
 
-" Exit to normal mode with 'jj'
-inoremap jj <ESC>
+"""""""""""""""""
+" Custom config "
+"""""""""""""""""
 
-" Reflow paragraph with Q in normal and visual mode
-nnoremap Q gqap
-vnoremap Q gq
-
-" Sane movement with wrap turned on
-nnoremap j gj
-nnoremap k gk
-vnoremap j gj
-vnoremap k gk
-nnoremap <Down> gj
-nnoremap <Up> gk
-vnoremap <Down> gj
-vnoremap <Up> gk
-inoremap <Down> <C-o>gj
-inoremap <Up> <C-o>gk
-
-" Remap movement in split windows
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
-
-" ----------------------------------------------------------------------------
-"  UI
-" ----------------------------------------------------------------------------
-
-set ttyfast
-syntax enable
-set t_Co=256               " 256 colors
-let base16colorspace=256   " Enable 256 color support in theme
-colorscheme base16-summerfruit-dark
+syntax on
 set background=dark
-" Override colorscheme bg to look proper under any terminal, just a hack
-"highlight Normal ctermbg=NONE
+colorscheme ThemerVim
+
+set backspace=indent,eol,start
+set autoindent
+set number
 set cursorline
-set cursorcolumn
-set mouse=a                " Automatically enable mouse usage
-set mousehide              " Hide the mouse cursor while typing
-set ruler                  " Show the cursor position all the time
-set lazyredraw
-set number                 " Line numbers
-set complete=.,w,b,u,U,t,i,d
-"set completeopt-=preview
-set completeopt=longest,menuone
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
-  \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
-inoremap <expr> <M-,> pumvisible() ? '<C-n>' :
-  \ '<C-x><C-o><C-n><C-p><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
-set wildmenu               " Turn on wild menu
-set wildmode=list:longest,full
-set ch=2                   " Command line height
-set backspace=2            " Allow backspacing over everything in insert mode
-set whichwrap+=<,>,h,l,[,] " Backspace and cursor keys wrap to
-set shortmess=filtIoOA     " Shorten messages
-set report=0               " Tell us about changes
-set nostartofline          " Don't jump to the start of line when scrolling
-"set relativenumber         " Show line number relative to cursor
-set history=1000           " Store a ton of history (default is 20)
-set hidden                 " Allow buffer switching without saving
-
-" ----------------------------------------------------------------------------
-" Visual Cues
-" ----------------------------------------------------------------------------
-
-set showmatch              " Brackets/braces that is
-set mat=5                  " Duration to show matching brace (1/10 sec)
-set incsearch              " Do incremental searching
-set laststatus=2           " Always show the status line
-set ignorecase             " Ignore case when searching
-set smartcase              " Search case if you use uppercase character
-set hlsearch               " Highlight searches
-set visualbell             " No audible bell
-set timeoutlen=50          " Prevent pause leaving insert mode
-
-"Update terminal title
-if $SHELL != "/usr/bin/fish"
-  set title
-  set titleold=
-  "set titlestring=%t%(\ %M%)%(\ (%{expand(\"%:p:h\")})%)%(\ %a%)\ -\ %{v:servername}
-  "set titlestring=...%{strpart(expand(\"%:p:h\"),stridx(expand(\"%:p:h\"),\"/\",strlen(expand(\"%:p:h\"))-12))}%=%n.\ \ %{expand(\"%:t:r\")}\ %m\ %Y\ \ \ \ %l\ of\ %L
-  "set titlestring=%p%h\ ・\ %t%(\ %M%)%(\ (%{expand(\"%:p:h\")})%)%(\ %a%)
-endif
-
-" ---------------------------------------------------------------------------
-"  Extras
-" ---------------------------------------------------------------------------
-
-" Strip all trailing whitespace in file
-function! StripWhitespace ()
-  exec ':%s/ \+$//gc'
-endfunction
-map ,s :call StripWhitespace ()<CR>
-
-" Make and switch to virtical split screen
-nnoremap <leader>w <C-w>v<C-w>l
-
-" Toggle paste mode with F2
-nnoremap <F2> :set invpaste paste?<CR>
-set pastetoggle=<F2>
+set history=50
+set ruler
+set showcmd
 set showmode
+set scrolloff=15
+set textwidth=0
+set formatoptions=tcronj
+set laststatus=2
+set nowrap
+set ttimeoutlen=0
+set ignorecase
+set expandtab
 
-" Toggle spell checking
-set spelllang=en_au
-nmap <F7> :set spell!<CR>
+set foldmethod=indent
+set nofoldenable
+set noswapfile
 
-" Force write as sudo
-cmap w!! w !sudo tee >/dev/null %
+set shiftwidth=2
+set softtabstop=2
 
-" Shift key fixes
-if has("user_commands")
-  command! -bang -nargs=* -complete=file E e<bang> <args>
-  command! -bang -nargs=* -complete=file W w<bang> <args>
-  command! -bang -nargs=* -complete=file Wq wq<bang> <args>
-  command! -bang -nargs=* -complete=file WQ wq<bang> <args>
-  command! -bang Wa wa<bang>
-  command! -bang WA wa<bang>
-  command! -bang Q q<bang>
-  command! -bang QA qa<bang>
-  command! -bang Qa qa<bang>
+" defaults from nvim
+set autoread
+set display=lastline
+set encoding=utf-8
+set hlsearch
+set incsearch
+set langnoremap
+set listchars=tab:>-,trail:-,nbsp:+
+set wildmenu
+
+" turn off background color erase
+set t_ut=
+
+" allows for quick editing of a different file in the same directory.
+cabbr <expr> %% expand('%:p:h')
+
+" expand two newlines and start typing between them
+nnoremap <Leader>o i<CR><Esc>O
+
+" rounding utility
+function! RoundTo(n_digits)
+  exec ':s/\d\+\.\d\{'.a:n_digits.',}/\=printf("%.'.a:n_digits.'f",str2float(submatch(0)))/g'
+endfunc
+
+" show highlight groups, from https://jordanelver.co.uk/blog/2015/05/27/working-with-vim-colorschemes/
+nmap <leader>sp :call <SID>SynStack()<CR>
+function! <SID>SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
+
+""""""""""""""
+" True color "
+""""""""""""""
+
+if has('termguicolors') " used starting nvim 0.1.5
+  set termguicolors
+else
+  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 endif
-
-" For markdown mode on md files
-autocmd BufNewFile,BufReadPost *.md set filetype=markdown
-
-" Faster text blocks
-onoremap p i(
-onoremap m i{
-onoremap " i"
-onoremap ' i'
-
-" Rainbow parens
-let g:rainbow_active = 1
-nnoremap <silent> <leader>p :RainbowToggle<cr>
-
-"let g:rainbow_conf = {
-"\  'ctermfgs': ['magenta', 'blue', 'yellow', 'cyan', 'lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
-"\}
-
-" Copy selection in visual mode (enter visual mode by selecting with the mouse)
-vnoremap <C-C> "+y
-
-" ----------------------------------------------------------------------------
-"  For Learning
-" ----------------------------------------------------------------------------
-
-" Disable arrow keys
-nnoremap <up> <nop>
-nnoremap <down> <nop>
-nnoremap <left> <nop>
-nnoremap <right> <nop>
-inoremap <up> <nop>
-inoremap <down> <nop>
-inoremap <left> <nop>
-inoremap <right> <nop>
