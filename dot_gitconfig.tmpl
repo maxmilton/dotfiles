@@ -191,5 +191,9 @@
 
   email = max@wearegenki.com
   name = Max Milton
+  {{- if eq .chezmoi.hostname "max-genki" }}
   signingkey = 04D9C9AB0399B439
-  #signingkey = D6A0226FCD5F7243
+  {{- end }}
+  {{- if eq .chezmoi.hostname "max-clients" }}
+  signingkey = D6A0226FCD5F7243
+  {{- end }}
