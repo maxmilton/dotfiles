@@ -2,14 +2,16 @@
 {
   "telemetry.enableCrashReporter": false,
   "telemetry.enableTelemetry": false,
-  "update.channel": "none", // no need on Linux
+  {{- if eq .chezmoi.os "linux" }}
+  "update.channel": "none", // use package manager on Linux
+  {{- end }}
   "window.restoreWindows": "all",
-  "window.titleBarStyle": "custom",
-  "window.zoomLevel": 0,
   "workbench.startupEditor": "newUntitledFile",
   "workbench.colorTheme": "One Dark Pro Bold",
   "workbench.enableExperiments": false,
-  // "workbench.fontAliasing": "auto", // macOS
+  {{- if eq .chezmoi.os "darwin" }}
+  "workbench.fontAliasing": "auto", // macOS only
+  {{- end }}
   "workbench.tips.enabled": false,
   "explorer.confirmDragAndDrop": false,
   "explorer.confirmDelete": false,
@@ -64,6 +66,9 @@
     "**/public/**": true,
     "**/tmp/**": true,
     "**/yarn.lock": true
+  },
+  "files.associations": {
+    "*.tmpl": "go"
   },
   "git.confirmSync": false,
   "git.autofetch": true,
@@ -130,4 +135,5 @@
     "suppressWelcomeNotice": true,
   },
   "gitlens.keymap": "none",
+  "editor.renderLineHighlight": "all",
 }
