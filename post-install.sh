@@ -1,6 +1,5 @@
 #!/bin/sh
-set -euo pipefail
-IFS=$'\n\t'
+set -euf
 
 # colours
 reset='\x1B[0m'
@@ -9,12 +8,12 @@ red='\x1B[1;91m'
 yellow='\x1B[1;93m'
 
 # feedback utils
-echo_err() { echo -e "\\n${red}ERROR:${reset} ${*}${reset}" 1>&2; }
-echo_warn() { echo -e "\\n${yellow}WARNING:${reset} ${*}${reset}" 1>&2; }
+echo_err() { printf "%b" "\\n${red}ERROR:${reset} ${*}${reset}" 1>&2; }
+echo_warn() { printf "%b" "\\n${yellow}WARNING:${reset} ${*}${reset}" 1>&2; }
 
-# also trap errors inside functions, subshells, etc.
-set -o errtrace
-trap 'echo_err "Install error!"' ERR
+# notify error on non-zero exit codes
+handle_err () { [ $? -eq 0 ] || echo_err 'Install error!'; }
+trap handle_err EXIT
 
 # initialise vars
 target_dir="$HOME"
@@ -31,7 +30,9 @@ if ! hash chezmoi 2>/dev/null; then
   exit 1
 fi
 
-# Fish + Fisher
+########
+# Fish #
+########
 
 # check fish shell is installed
 if hash fish 2>/dev/null; then
@@ -45,18 +46,26 @@ if hash fish 2>/dev/null; then
   fish -c fisher
 
   # generate compiled fish user config
-  fish "${target_dir}/.config/fish/oneshot-config.fish"
+  fish "$target_dir"/.config/fish/oneshot-config.fish
 else
   echo_err 'Fish shell is required to install user fish config. Skipping.'
 fi
 
-# VIM
+#######
+# VIM #
+#######
 
-mkdir -v -p "$target_dir"/.vim/{backup,swap,undo}
+mkdir -v -p "$target_dir"/.vim/backup
+mkdir -v -p "$target_dir"/.vim/swap
+mkdir -v -p "$target_dir"/.vim/undo
 
-# VS Code
+###########
+# VS Code #
+###########
 
-if [ "$os" != Darwin ]; then
+if [ "$os" = Darwin ]; then
+  echo_warn 'You need to manually set up VS Code directories on macOS.'
+else
   dictionary_dir="$target_dir"/Development/packages/dictionary
   code_dir="$target_dir"/.config/Code
   insiders_dir="$target_dir"'/.config/Code - Insiders'
@@ -74,7 +83,8 @@ if [ "$os" != Darwin ]; then
     fi
 
     if [ ! -d /usr/share/hunspell ]; then
-      sudo ln -i -v -sf "$dictionary_dir"/*.{dic,aff} /usr/share/hunspell
+      sudo ln -i -v -sf "$dictionary_dir"/en_GB.dic /usr/share/hunspell
+      sudo ln -i -v -sf "$dictionary_dir"/en_GB.aff /usr/share/hunspell
     fi
     if [ ! -d "$code_dir"/Dictionaries ]; then
       sudo ln -v -s /usr/share/hunspell "$code_dir"/Dictionaries
@@ -82,17 +92,21 @@ if [ "$os" != Darwin ]; then
   fi
 
   # VS Code insiders
-  if type code-insiders > /dev/null 2&>1; then
+  if type code-insiders > /dev/null 2>&1; then
     mkdir -v -p "$insiders_dir"/User/snippets
     if [ ! -d "$insiders_dir"/Dictionaries ]; then
       ln -v -s /usr/share/hunspell "$insiders_dir"/Dictionaries
     fi
-    ln -v -s "$code_dir"/User/settings.json "$insiders_dir"/User
-    ln -v -s "$code_dir"/User/keybindings.json "$insiders_dir"/User
-    ln -v -s "$code_dir"'/User/snippets/*.json' "$insiders_dir"/User/snippets
+    if [ ! -d "$insiders_dir"/User/settings.json ]; then
+      ln -v -s "$code_dir"/User/settings.json "$insiders_dir"/User
+    fi
+    if [ ! -d "$insiders_dir"/User/keybindings.json ]; then
+      ln -v -s "$code_dir"/User/keybindings.json "$insiders_dir"/User
+    fi
+    if [ ! -d "$insiders_dir"/User/snippets ]; then
+      ln -v -s "$code_dir"/User/snippets "$insiders_dir"/User
+    fi
   fi
-else
-  echo_warn 'You need to manually set up VS Code directories on macOS.'
 fi
 
-echo -e "${green}Finished successfully${reset}"
+printf "%b" "${green}Finished successfully${reset}"
