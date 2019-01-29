@@ -5,16 +5,60 @@
 # need to be called once initially and again after this file is updated.
 #
 
+# update completions
+fish_update_completions
+
 # erase fish abbreviations and paths
 # set -e fish_user_abbreviations # FIXME: This doesn't work with fish v3
-set -e fish_user_paths
+# set -e fish_user_paths
 
 # fresh variables file -- NOTE: This is destructive!
-# mv $HOME/.config/fish/fish_variables $HOME/.config/fish/fish_variables-(date --iso-8601=minutes).bak
-# fish -i -c 'echo OK; exit 0'
+mv $HOME/.config/fish/fish_variables $HOME/.config/fish/fish_variables-(date --iso-8601=minutes).bak
 
-# Disable welcome message
+# disable welcome message
 set -U fish_greeting
+
+# theme
+set -U fish_term24bit 1
+# set -U fish_color_autosuggestion 555 brblack
+set -U fish_color_autosuggestion brblack
+set -U fish_color_cancel -r
+# set -U fish_color_command 005fd7
+set -U fish_color_command blue
+# set -U fish_color_comment 990000
+set -U fish_color_comment 847e85
+set -U fish_color_cwd green
+# set -U fish_color_cwd_root red
+set -U fish_color_cwd_root magenta
+# set -U fish_color_end 009900
+set -U fish_color_end brgreen
+# set -U fish_color_error ff0000
+set -U fish_color_error red
+# set -U fish_color_escape 00a6b2
+set -U fish_color_escape cyan
+set -U fish_color_history_current --bold
+set -U fish_color_host normal
+set -U fish_color_match --background=brblue
+set -U fish_color_normal normal
+# set -U fish_color_operator 00a6b2
+set -U fish_color_operator cyan
+# set -U fish_color_param 00afff
+set -U fish_color_param brblue
+# set -U fish_color_quote 999900
+set -U fish_color_quote yellow
+# set -U fish_color_redirection 00afff
+set -U fish_color_redirection brblue
+set -U fish_color_search_match bryellow --background=brblack
+set -U fish_color_selection white --bold --background=brblack
+set -U fish_color_user brgreen
+set -U fish_color_valid_path --underline
+set -U fish_pager_color_completion \x1d
+# set -U fish_pager_color_description B3A06D yellow
+set -U fish_pager_color_description yellow
+set -U fish_pager_color_prefix white --bold --underline
+set -U fish_pager_color_progress brwhite --background=cyan
+
+print_fish_colors
 
 # VIM = <3
 set -Ux EDITOR vim
@@ -226,6 +270,3 @@ abbr --add gm 'git merge'
 abbr --add gt 'git tag'
 # remove missing files
 abbr --add grm 'git ls-files --deleted -z | xargs -0 git rm'
-
-# update completions
-fish_update_completions
