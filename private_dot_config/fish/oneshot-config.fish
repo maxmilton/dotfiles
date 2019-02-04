@@ -10,6 +10,7 @@ fish_update_completions
 
 # remove universal variables to start afresh -- NOTE: This is destructive!
 mv $HOME/.config/fish/fish_variables $HOME/.config/fish/fish_variables-(date --iso-8601=minutes).bak
+touch $HOME/.config/fish/fish_variables
 
 # disable welcome message
 set -U fish_greeting
@@ -79,6 +80,7 @@ abbr --add ppp 'up_system; up_fish; up_yarn; up_gce; up_docker; up_git; up_hosts
 abbr --add p 'yaourt' # Arch Linux package manager
 abbr --add f 'flatpak' # generic app image manager
 abbr --add x 'chezmoi' # dotfiles manager
+abbr --add xe 'chezmoi edit'
 abbr --add xd 'chezmoi diff'
 abbr --add xa 'chezmoi apply -v'
 abbr --add xu 'chezmoi update -v'
