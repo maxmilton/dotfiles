@@ -9,8 +9,8 @@
 fish_update_completions
 
 # remove universal variables to start afresh -- NOTE: This is destructive!
-mv $HOME/.config/fish/fish_variables $HOME/.config/fish/fish_variables-(date --iso-8601=minutes).bak
-touch $HOME/.config/fish/fish_variables
+mv "$HOME"/.config/fish/fish_variables "$HOME"/.config/fish/fish_variables-(date --iso-8601=minutes).bak
+touch "$HOME"/.config/fish/fish_variables
 
 # disable welcome message
 set -U fish_greeting
@@ -50,20 +50,20 @@ set -Ux EDITOR vim
 set -Ux VISUAL vim
 
 # Google Cloud SDK
-set gcloud_bin_path $HOME/.google-cloud-sdk/bin
+set gcloud_bin_path "$HOME"/.google-cloud-sdk/bin
 if test -d $gcloud_bin_path
   set -U fish_user_paths $gcloud_bin_path $fish_user_paths
 end
 
 # Node.js
-set node_bin_path $HOME/.config/yarn/global/node_modules/.bin
+set node_bin_path "$HOME"/.config/yarn/global/node_modules/.bin
 if test -d $node_bin_path
   set -U fish_user_paths $node_bin_path $fish_user_paths
   set -U NODE_PRESERVE_SYMLINKS 1
 end
 
 # Golang
-set go_bin_path $HOME/go/bin
+set go_bin_path "$HOME"/go/bin
 if test -d $go_bin_path
   set -U fish_user_paths $go_bin_path $fish_user_paths
 end
