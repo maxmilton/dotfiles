@@ -84,6 +84,7 @@ abbr --add xe 'chezmoi edit'
 abbr --add xd 'chezmoi diff'
 abbr --add xa 'chezmoi apply -v'
 abbr --add xu 'chezmoi update -v'
+abbr --add fu 'fish ~/.config/fish/oneshot-config.fish'
 
 # common tool replacements
 abbr --add cat bat
