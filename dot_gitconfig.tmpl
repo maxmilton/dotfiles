@@ -136,6 +136,8 @@
 
 [diff]
 
+  tool = vimdiff
+
   # Detect copies as well as renames
   renames = copies
 
@@ -144,12 +146,18 @@
   # Use `hexdump` to diff binary files
   textconv = hexdump -v -C
 
+[difftool]
+
+  prompt = false
+
 [help]
 
   # Automatically correct and execute mistyped commands
   autocorrect = 1
 
 [merge]
+
+  tool = vimdiff
 
   # Include summaries of merged commits in newly created merge commit messages
   log = true

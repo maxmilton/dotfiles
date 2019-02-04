@@ -9,7 +9,8 @@
 fish_update_completions
 
 # remove universal variables to start afresh -- NOTE: This is destructive!
-mv $HOME/.config/fish/fish_variables $HOME/.config/fish/fish_variables-(date --iso-8601=minutes).bak
+mv "$HOME"/.config/fish/fish_variables "$HOME"/.config/fish/fish_variables-(date --iso-8601=minutes).bak
+touch "$HOME"/.config/fish/fish_variables
 
 # disable welcome message
 set -U fish_greeting
@@ -49,20 +50,20 @@ set -Ux EDITOR vim
 set -Ux VISUAL vim
 
 # Google Cloud SDK
-set gcloud_bin_path $HOME/.google-cloud-sdk/bin
+set gcloud_bin_path "$HOME"/.google-cloud-sdk/bin
 if test -d $gcloud_bin_path
   set -U fish_user_paths $gcloud_bin_path $fish_user_paths
 end
 
 # Node.js
-set node_bin_path $HOME/.config/yarn/global/node_modules/.bin
+set node_bin_path "$HOME"/.config/yarn/global/node_modules/.bin
 if test -d $node_bin_path
   set -U fish_user_paths $node_bin_path $fish_user_paths
   set -U NODE_PRESERVE_SYMLINKS 1
 end
 
 # Golang
-set go_bin_path $HOME/go/bin
+set go_bin_path "$HOME"/go/bin
 if test -d $go_bin_path
   set -U fish_user_paths $go_bin_path $fish_user_paths
 end
@@ -83,6 +84,7 @@ abbr --add xe 'chezmoi edit'
 abbr --add xd 'chezmoi diff'
 abbr --add xa 'chezmoi apply -v'
 abbr --add xu 'chezmoi update -v'
+abbr --add fu 'fish ~/.config/fish/oneshot-config.fish'
 
 # common tool replacements
 abbr --add cat bat
@@ -217,6 +219,8 @@ abbr --add tl 'travis lint ./.travis.yml'
 
 # Git
 abbr --add g 'git'
+# edit all files with changes
+abbr --add ge 'vim -p (git diff --name-only)'
 abbr --add gs 'git status --short --branch --show-stash'
 abbr --add gp 'git pull --prune'
 # 1. Configure upstream remote - ref: https://help.github.com/articles/configuring-a-remote-for-a-fork/
@@ -232,6 +236,7 @@ abbr --add gloo 'git log --decorate --graph --abbrev-commit --date=relative'
 abbr --add glooo "git log --graph --pretty=format:'%C(auto)%h %Cgreen%cr%C(auto)%d %s %Cblue%an%Creset' --abbrev-commit"
 abbr --add ga 'git add'
 abbr --add gd 'git diff'
+abbr --add gdt 'git difftool'
 abbr --add gdd 'git diff --staged'
 # see changes in origin
 abbr --add gpd 'git diff master..origin/master'
