@@ -2,9 +2,9 @@
 # yarn lockfile v1
 
 
-disable-self-update-check true
 "--add.audit" true
 "--emoji" true
 "--install.audit" true
-lastUpdateCheck 1548614513787
-
+disable-self-update-check true
+lastUpdateCheck 1549219618197
+yarn-offline-mirror "/home/max/.config/yarn/mirror"
