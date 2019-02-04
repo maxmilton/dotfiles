@@ -116,5 +116,14 @@ dup() { alias | docker images | awk '(NR>1) && ($2!~/none/) {print $1":"$2}'| xa
 # enter docker container or execute command
 de() { if [ -z "$2" ]; then docker exec -ti -u root "$1" /bin/sh; else docker exec "$1" "$2"; fi }
 
+# Git
+alias g='git'
+alias gs='git status --short --branch --show-stash'
+alias gl='git log --format='%C(auto)%h %s %Cgreen%cr %Cblue%an%C(auto)%d%Creset' --no-merges'
+alias gp='git pull --prune'
+alias gd='git diff'
+alias ga='git add'
+alias gc='git commit --verbose'
+
 # check for active tmux sessions (if tmux is installed)
 command -v tmux >/dev/null 2>&1 && (echo "🔹 tmux ls" && tmux ls) || true
