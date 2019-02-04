@@ -2,6 +2,7 @@
 # yarn lockfile v1
 
 
+disable-self-update-check true
 "--add.audit" true
 "--emoji" true
 "--install.audit" true
