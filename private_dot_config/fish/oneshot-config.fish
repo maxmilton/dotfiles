@@ -79,6 +79,7 @@ abbr --add ppp 'up_system; up_fish; up_yarn; up_gce; up_docker; up_git; up_hosts
 abbr --add p 'yaourt' # Arch Linux package manager
 abbr --add f 'flatpak' # generic app image manager
 abbr --add x 'chezmoi' # dotfiles manager
+abbr --add xe 'chezmoi edit'
 abbr --add xd 'chezmoi diff'
 abbr --add xa 'chezmoi apply -v'
 abbr --add xu 'chezmoi update -v'
@@ -100,9 +101,8 @@ abbr --add -- - 'cd --' # single dash to go back to previous dir
 abbr --add cp 'cp -i'
 abbr --add mv 'mv -i'
 abbr --add l 'exa -lFa --group-directories-first'
-abbr --add ll 'exa -lFa'
-abbr --add lll 'exa -lFa --bytes'
-abbr --add lh 'exa -lFah --group-directories-first'
+abbr --add ll 'exa -lFa --bytes --group-directories-first'
+abbr --add lll 'exa -lFa'
 # list dirs (not files) recursively, excluding .git and node_modules
 abbr --add ld 'find -O3 . -type d \( -name .git -o -name node_modules \) -prune -o -type d -print'
 # abbr --add find 'find -O3'
