@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "all-the-package-names": "^1.3557.0",
+    "lighthouse": "^4.1.0",
     "npm": "^6.4.1",
     "sirv-cli": "^0.2.2"
   }
