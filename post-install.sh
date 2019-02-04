@@ -76,7 +76,7 @@ if hash fish 2>/dev/null; then
   # check fisher is installed
   if ! fish -c 'functions -q fisher' 2>/dev/null; then
     echo_warn "Fisher not found, downloading..."
-    XDG_CONFIG_HOME=${XDG_CONFIG_HOME:="~/.config"}
+    XDG_CONFIG_HOME=${XDG_CONFIG_HOME:="${target_dir}/.config"}
     curl https://git.io/fisher --create-dirs -sLo "$XDG_CONFIG_HOME"'/fish/functions/fisher.fish'
   fi
 
@@ -148,3 +148,9 @@ else
 fi
 
 printf "%b" "${green}Finished successfully${reset}"
+
+########
+# Yarn #
+########
+
+mkdir -vp "$target_dir"/.config/yarn/mirror
