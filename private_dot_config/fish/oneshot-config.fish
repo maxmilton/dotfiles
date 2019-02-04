@@ -219,6 +219,8 @@ abbr --add tl 'travis lint ./.travis.yml'
 
 # Git
 abbr --add g 'git'
+# edit all files with changes
+abbr --add ge 'vim -p (git diff --name-only)'
 abbr --add gs 'git status --short --branch --show-stash'
 abbr --add gp 'git pull --prune'
 # 1. Configure upstream remote - ref: https://help.github.com/articles/configuring-a-remote-for-a-fork/
@@ -234,6 +236,7 @@ abbr --add gloo 'git log --decorate --graph --abbrev-commit --date=relative'
 abbr --add glooo "git log --graph --pretty=format:'%C(auto)%h %Cgreen%cr%C(auto)%d %s %Cblue%an%Creset' --abbrev-commit"
 abbr --add ga 'git add'
 abbr --add gd 'git diff'
+abbr --add gdt 'git difftool'
 abbr --add gdd 'git diff --staged'
 # see changes in origin
 abbr --add gpd 'git diff master..origin/master'
