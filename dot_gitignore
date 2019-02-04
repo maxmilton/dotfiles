@@ -1,14 +1,16 @@
 # https://git-scm.com/docs/gitignore
 
+# System
 .DS_Store
 .fuse_hidden*
 .nfs*
 .Trash-*
 *.bak
-*.code-workspace
 *~
 \#*
 
-# VS Code related
-spellright.dict
+# Development
+*.code-workspace
 .*cache
+.vscode/spellright.dict
+node_modules

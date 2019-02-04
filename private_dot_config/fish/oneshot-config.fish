@@ -226,14 +226,9 @@ abbr --add gp 'git pull --prune'
 # 1. Configure upstream remote - ref: https://help.github.com/articles/configuring-a-remote-for-a-fork/
 # 2. Sync fork with upstream: run gpp - ref: https://help.github.com/articles/syncing-a-fork/
 abbr --add gpp 'git fetch upstream; and git merge upstream/master master; and git push origin master'
-# flat log (great for quick reference)
-abbr --add gl "git log --format='%C(auto)%h %s %Cgreen%cr %Cblue%an%C(auto)%d%Creset' --no-merges"
-# simple log
-abbr --add glo 'git log --decorate --oneline --graph'
-# full log
-abbr --add gloo 'git log --decorate --graph --abbrev-commit --date=relative'
-# fancy log
-abbr --add glooo "git log --graph --pretty=format:'%C(auto)%h %Cgreen%cr%C(auto)%d %s %Cblue%an%Creset' --abbrev-commit"
+abbr --add gl "git log --graph --pretty=format:'%C(yellow)%h%Creset%C(blue)%d%Creset %C(white bold)%s%Creset %C(white dim)(by %an %ar)%Creset'"
+abbr --add gll 'git log --oneline -n 40'
+abbr --add glll 'git log --graph --abbrev-commit --date=relative'
 abbr --add ga 'git add'
 abbr --add gd 'git diff'
 abbr --add gdt 'git difftool'
@@ -247,7 +242,7 @@ abbr --add gpd "git log --reverse --no-merges --stat '@{1}..'"
 # see unpushed commits
 abbr --add gout 'git log --stat "@{u}"..'
 # see unpushed commits on all branches
-abbr --add gouta 'git log --stat --decorate --branches --not --remotes'
+abbr --add gouta 'git log --stat --branches --not --remotes'
 # see unpulled commit
 abbr --add gin 'git log --stat .."@{u}"'
 abbr --add gc 'env GIT_EDITOR="vim +startinsert" git commit --verbose'
