@@ -44,25 +44,24 @@ echo DISTRO $distro
 if [ "$distro" = 'Arch Linux' ]; then
   # update package database
   sudo pacman -Sy
-  # isntall packages if missing
+  # install packages if missing
   sudo pacman -S --needed \
     bat \
     docker \
     exa \
     fd \
     fish \
-    # flatpak \
-    # fzf \
     fzy \
     git \
     ripgrep \
     tmux \
-    vim
+    vim \
+    # flatpak \
+    # fzf \
 elif [ "$distro" = 'Ubuntu' ]; then
-  # sudo apt update
-  # sudo apt install -y fish vim git ripgrep fd fzf docker
+  sudo apt update
+  sudo apt install -y fish vim git ripgrep fd fzf docker
 fi
-exit1
 
 ########
 # Fish #
@@ -131,18 +130,17 @@ else
 
   # VS Code insiders
   if type code-insiders > /dev/null 2>&1; then
-    mkdir -vp "$insiders_dir"/User/snippets
     if [ ! -d "$insiders_dir"/Dictionaries ]; then
-      ln -vs "$hunspell_dir" "$insiders_dir"/Dictionaries
+      ln -vsr "$hunspell_dir" "$insiders_dir"/Dictionaries
     fi
     if [ ! -f "$insiders_dir"/User/settings.json ]; then
-      ln -vs "$code_dir"/User/settings.json "$insiders_dir"/User
+      ln -vsr "$code_dir"/User/settings.json "$insiders_dir"/User
     fi
     if [ ! -f "$insiders_dir"/User/keybindings.json ]; then
-      ln -vs "$code_dir"/User/keybindings.json "$insiders_dir"/User
+      ln -vsr "$code_dir"/User/keybindings.json "$insiders_dir"/User
     fi
     if [ ! -d "$insiders_dir"/User/snippets ]; then
-      ln -vs "$code_dir"/User/snippets "$insiders_dir"/User
+      ln -vsr "$code_dir"/User/snippets "$insiders_dir"/User/
     fi
   fi
 fi
