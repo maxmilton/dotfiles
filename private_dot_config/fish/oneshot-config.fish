@@ -10,7 +10,8 @@ fish_update_completions
 
 # remove universal variables to start afresh -- NOTE: This is destructive!
 mv "$HOME"/.config/fish/fish_variables "$HOME"/.config/fish/fish_variables-(date --iso-8601=minutes).bak
-touch "$HOME"/.config/fish/fish_variables
+# set arbitrary var to initialise `fish_variables` file
+set -U fish_user_paths
 
 # disable welcome message
 set -U fish_greeting
