@@ -60,7 +60,7 @@ end
 set node_bin_path "$HOME"/.config/yarn/global/node_modules/.bin
 if test -d $node_bin_path
   set -U fish_user_paths $node_bin_path $fish_user_paths
-  set -U NODE_PRESERVE_SYMLINKS 1
+  set -Ux NODE_PRESERVE_SYMLINKS 1
 end
 
 # Golang
