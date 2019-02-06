@@ -119,7 +119,7 @@ de() { if [ -z "$2" ]; then docker exec -ti -u root "$1" /bin/sh; else docker ex
 # Git
 alias g='git'
 alias gs='git status --short --branch --show-stash'
-alias gl='git log --format='%C(auto)%h %s %Cgreen%cr %Cblue%an%C(auto)%d%Creset' --no-merges'
+alias gl="git log --graph --pretty=format:'%C(yellow)%h%Creset%C(blue)%d%Creset %C(white bold)%s%Creset %C(white dim)(by %an %ar)%Creset'"
 alias gp='git pull --prune'
 alias gd='git diff'
 alias ga='git add'
