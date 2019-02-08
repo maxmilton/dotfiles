@@ -92,6 +92,7 @@ abbr --add cat bat
 abbr --add ls exa
 abbr --add find fd
 abbr --add grep rg
+abbr --add rgi 'rg --no-ignore'
 
 # System
 abbr --add s 'sudo -i'
