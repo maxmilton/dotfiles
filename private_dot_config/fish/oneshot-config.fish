@@ -91,6 +91,7 @@ abbr --add fu 'fish ~/.config/fish/oneshot-config.fish'
 abbr --add cat bat
 abbr --add ls exa
 abbr --add find fd
+abbr --add grep rg
 
 # System
 abbr --add s 'sudo -i'
