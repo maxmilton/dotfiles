@@ -133,7 +133,7 @@ abbr --add rmnm 'find -O3 . -type d -name .git -prune -o -type d -name node_modu
 # remove all yarn-error.log files recursively
 abbr --add rmye 'find -O3 . -type d \( -name .git -o -name node_modules \) -prune -o -type f -name yarn-error.log -exec rm {} \;'
 # list open ports
-abbr --add lsport 'sudo ss -plant'
+abbr --add lsport 'sudo ss -plant | fzf'
 # list open ports on BSD/macOS
 abbr --add lsnet 'sudo lsof -iTCP -sTCP:LISTEN -n -P'
 # debug bash script
