@@ -50,8 +50,9 @@ print_fish_colors
 set -Ux EDITOR vim
 set -Ux VISUAL vim
 
-# Prevent downloading huge file
+# Use local chrome instead of downloading every time
 set -Ux PUPPETEER_SKIP_CHROMIUM_DOWNLOAD 1
+set -Ux PUPPETEER_EXECUTABLE_PATH /usr/bin/google-chrome-unstable
 
 # Google Cloud SDK
 set gcloud_bin_path "$HOME"/.google-cloud-sdk/bin
