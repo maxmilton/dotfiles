@@ -106,6 +106,7 @@ else
   dictionary_dir="$target_dir"/Projects/packages/dictionary/dist
   code_dir="$target_dir"/.config/Code
   insiders_dir="$target_dir"'/.config/Code - Insiders'
+  oss_dir="$target_dir"'/.config/Code - OSS'
 
   mkdir -vp "$code_dir"/User/snippets
 
@@ -141,6 +142,24 @@ else
     fi
     if [ ! -d "$insiders_dir"/User/snippets ]; then
       ln -vsr "$code_dir"/User/snippets "$insiders_dir"/User/
+    fi
+  fi
+
+  # VS Code OSS
+  if type code > /dev/null 2>&1; then
+    if [ -d "$oss_dir" ]; then
+      if [ ! -d "$oss_dir"/Dictionaries ]; then
+        ln -vsr "$hunspell_dir" "$oss_dir"/Dictionaries
+      fi
+      if [ ! -f "$oss_dir"/User/settings.json ]; then
+        ln -vsr "$code_dir"/User/settings.json "$oss_dir"/User
+      fi
+      if [ ! -f "$oss_dir"/User/keybindings.json ]; then
+        ln -vsr "$code_dir"/User/keybindings.json "$oss_dir"/User
+      fi
+      if [ ! -d "$oss_dir"/User/snippets ]; then
+        ln -vsr "$code_dir"/User/snippets "$oss_dir"/User/
+      fi
     fi
   fi
 fi
