@@ -50,6 +50,9 @@ print_fish_colors
 set -Ux EDITOR vim
 set -Ux VISUAL vim
 
+# Prevent downloading huge file
+set -Ux PUPPETEER_SKIP_CHROMIUM_DOWNLOAD 1
+
 # Google Cloud SDK
 set gcloud_bin_path "$HOME"/.google-cloud-sdk/bin
 if test -d $gcloud_bin_path
