@@ -4,8 +4,10 @@
   "telemetry.enableTelemetry": false,
   {{- if eq .chezmoi.os "linux" }}
   "update.channel": "none", // use package manager on Linux
+  "window.titleBarStyle": "native",
   {{- end }}
   "window.restoreWindows": "all",
+  "window.menuBarVisibility": "toggle",
   "workbench.startupEditor": "newUntitledFile",
   "workbench.colorTheme": "One Dark Pro",
   "workbench.enableExperiments": false,

@@ -129,6 +129,7 @@ abbr --add scr 'sc restart'
 abbr --add getip 'curl -4 icanhazip.com'
 abbr --add getip6 'curl -6 icanhazip.com'
 abbr --add getptr 'curl -4 icanhazptr.com'
+abbr --add kk 'kill_process'
 abbr --add t 'terraform'
 # remove all broken symlinks in dir
 abbr --add rmln 'find -L . -name . -o -type d -prune -o -type l -exec rm -rf {} \;'
