@@ -180,7 +180,7 @@ abbr --add dp 'docker pull'
 # get latest container ID
 abbr --add dl 'docker ps -l -q'
 # get container IP
-abbr --add dip "docker inspect --format '{{ .NetworkSettings.IPAddress }}'"
+abbr --add dip "docker inspect --format '{{"{{"}} .NetworkSettings.IPAddress {{"}}"}}'"
 # remove orphaned volumes
 # abbr --add drmv 'docker volume ls -qf dangling=true | xargs -r docker volume rm'
 # get shell in host via docker
