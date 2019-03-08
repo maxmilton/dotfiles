@@ -1,20 +1,14 @@
-# shellcheck shell=bash
-
-#
-# BASH CONFIG
-#
-
-# if not running interactively, don't do anything
+# only interactive
 [[ $- != *i* ]] && return
 
-# source global definitions
+# use global definitions
 if [ -f /etc/bashrc ]; then
 	source /etc/bashrc
 fi
 
 PS1="\$(if [[ \$? == 0 ]]; then echo \"\[\033[01;32m\]:)\"; else echo \"\[\033[01;31m\]:(\"; fi) $(if [[ ${EUID} == 0 ]]; then echo '\[\033[01;31m\]\h\[\033[01;34m\] \w \$'; else echo '\[\033[01;32m\]\u@\h\[\033[01;34m\] \w \#'; fi) \[\033[00m\] "
 
-# better bash auto completion
+# better auto completion
 if [ -f /etc/bash_completion ]; then
 	source /etc/bash_completion
 fi
@@ -26,30 +20,21 @@ bind 'TAB:menu-complete'
 # default editor
 export EDITOR='vim'
 export VISUAL='vim'
+export GIT_EDITOR='vim +startinsert'
 
 # colorized ls
 export LS_OPTIONS='--color=auto'
 eval "$(dircolors --sh)"
 alias ls='ls $LS_OPTIONS'
 
-# add sudo if not root
-if [ $UID -ne 0 ]; then
-  alias systemctl='sudo systemctl'
-  alias journalctl='sudo journalctl'
-  alias apt='sudo apt'
-  alias dnf='sudo dnf'
-  alias yum='sudo yum'
-fi
-
 # update system packages
-pp() {
+ppp() {
   case $(awk -F "=" '/^NAME/ {print $2}' /etc/os-release | tr -d '"') in
     'Arch Linux' ) yaourt -Syu --aur ;;
     Fedora ) dnf update --refresh -y ;;
     'Debian GNU/Linux' | Ubuntu ) apt update && apt upgrade --no-install-recommends -y ;;
     'Alpine Linux' ) apk upgrade --update-cache ;;
     'CentOS Linux' | 'Red Hat Enterprise Linux Server' ) yum update -y ;;
-    'Container Linux by CoreOS' ) update_engine_client -update ;;
   esac
 }
 
@@ -70,10 +55,8 @@ alias l='ls -aCFhlX --group-directories-first'
 alias ll='ls -lh'
 alias dux='du -hs | sort -h'
 alias dus='du --block-size=MiB --max-depth=1 | sort -n'
-alias 755='find . -type d -exec chmod 755 {} \; && echo "Done!";'
-alias 644="find . -type f -not -name '.git' -not -name '*.sh' -exec chmod 644 {} \; && echo 'Done!';"
-# remove all broken symlinks in dir
-alias lnrm='find -L . -maxdepth 1 -type l -delete'
+alias 755='find -O3 . -type d -name .git -prune -o -type d -exec chmod 755 {} \;'
+alias 644='find -O3 . -type d -name .git -prune -o -type f ! -name "*.sh" ! -executable -exec chmod 644 {} \;'
 alias sc='systemctl'
 alias scs='systemctl status'
 alias scr='systemctl restart'
@@ -82,36 +65,19 @@ alias jcd='journalctl --disk-usage && journalctl --verify'
 alias jcdd='journalctl --vacuum-size=1G'
 
 # Aliases: Sysadmin
-alias getip='curl -4 icanhazip.com'
-alias getip6='curl -6 icanhazip.com'
-alias getptr='curl -4 icanhazptr.com'
+alias getip='curl icanhazip.com'
 alias ta='tmux attach'
-alias ccze="ccze -A"
-alias t='terraform'
 
 # Aliases: Containers
 alias k='kubectl'
 alias d='docker'
 alias di='docker images'
-alias dps='docker ps'
-alias dpa='docker ps -a'
-# monitor all containers
-alias ds='docker stats $(docker ps -q)'
+alias dps='docker ps -a'
 alias dp='docker pull'
-# get latest container ID
-alias dl='docker ps -l -q'
-# get container IP
-alias dip="docker inspect --format '{{ .NetworkSettings.IPAddress }}'"
-# remove stopped containers
-alias drm='docker rm $(docker ps -a -q)'
-# remove untagged images
-alias drmi='docker rmi $(docker images -q -f dangling=true)'
-# remove orphaned volumes
-alias drmv='docker volume ls -qf dangling=true | xargs -r docker volume rm'
-alias dc='docker-compose'
-# get a shell in the host via docker
+alias drm='docker system prune'
+# get shell in host via docker
 alias dnse='docker run -it --rm --privileged --pid=host justincormack/nsenter1'
-# update all docker images
+# update docker images
 dup() { alias | docker images | awk '(NR>1) && ($2!~/none/) {print $1":"$2}'| xargs -L1 docker pull; }
 # enter docker container or execute command
 de() { if [ -z "$2" ]; then docker exec -ti -u root "$1" /bin/sh; else docker exec "$1" "$2"; fi }
