@@ -49,6 +49,7 @@ print_fish_colors
 # VIM = <3
 set -Ux EDITOR vim
 set -Ux VISUAL vim
+set -Ux GIT_EDITOR 'vim +startinsert'
 
 # Use local chrome instead of downloading every time
 set -Ux PUPPETEER_SKIP_CHROMIUM_DOWNLOAD 1
@@ -97,6 +98,7 @@ abbr --add fu 'fish ~/.config/fish/oneshot-config.fish'
 
 # Common tool replacements
 abbr --add cat bat
+abbr --add catt 'bat --plain'
 abbr --add ls exa
 abbr --add find fd
 abbr --add grep rg
@@ -117,33 +119,29 @@ abbr --add mv 'mv -i'
 abbr --add l 'exa -lFa --group-directories-first'
 abbr --add ll 'exa -lFa --bytes --group-directories-first'
 abbr --add lll 'exa -lFa'
-# list dirs (not files) recursively, excluding .git and node_modules
-abbr --add ld 'find -O3 . -type d \( -name .git -o -name node_modules \) -prune -o -type d -print'
-# abbr --add find 'find -O3'
+abbr --add ld 'exa --tree --only-dirs'
 abbr --add dux 'du -hs | sort -h'
 abbr --add dus 'du --block-size=MiB --max-depth=1 | sort -n'
-abbr --add 755 'find -O3 . -type d -name .git -prune -o -type d -exec chmod 755 {} \;'
-abbr --add 700 'find -O3 . -type d -name .git -prune -o -type d -exec chmod 700 {} \;'
-abbr --add 644 'find -O3 . -type d -name .git -prune -o -type f ! -name "*.sh" ! -executable -exec chmod 644 {} \;'
-abbr --add 600 'find -O3 . -type d -name .git -prune -o -type f ! -name "*.sh" ! -executable -exec chmod 600 {} \;'
+abbr --add 755 'fd --type directory --hidden --exec chmod 755 {}'
+abbr --add 644 'fd --type file --hidden --exclude \'*.sh\' --exec chmod 644 {}'
+# also exclude all files with executable permissions
+abbr --add 644e 'find -O3 . -type d -name .git -prune -o -type f ! -name "*.sh" ! -executable -exec chmod 644 {} \;'
 
 # Sysadmin
 abbr --add gce 'while not gce-ssh; echo "retrying..."; sleep 3; end'
 abbr --add scs 'sc status' # systemctl
 abbr --add scr 'sc restart'
-abbr --add getip 'curl -4 icanhazip.com'
-abbr --add getip6 'curl -6 icanhazip.com'
-abbr --add getptr 'curl -4 icanhazptr.com'
+abbr --add getip 'curl icanhazip.com'
 abbr --add kk 'kill_process'
 abbr --add t 'terraform'
-# remove all broken symlinks in dir
+# remove broken symlinks in dir
 abbr --add rmln 'find -L . -name . -o -type d -prune -o -type l -exec rm -rf {} \;'
-# remove all node_modules dirs recursively
-abbr --add rmnm 'find -O3 . -type d -name .git -prune -o -type d -name node_modules -prune -exec rm -rf {} \;'
-# remove all yarn-error.log files recursively
-abbr --add rmye 'find -O3 . -type d \( -name .git -o -name node_modules \) -prune -o -type f -name yarn-error.log -exec rm {} \;'
+# remove node_modules dirs recursively
+abbr --add rmnm 'fd --type directory --hidden --no-ignore-vcs --exec rm -rf {} \; node_modules .'
+# remove yarn-error.log files recursively
+abbr --add rmye 'fd --type file --hidden --exec rm -rf {} \; yarn-error.log .'
 # list open ports
-abbr --add lsport 'sudo ss -plant | fzf'
+abbr --add lsport 'sudo echo -n; and sudo ss -plant | fzy --lines=max'
 # list open ports on BSD/macOS
 abbr --add lsnet 'sudo lsof -iTCP -sTCP:LISTEN -n -P'
 # debug bash script
@@ -169,10 +167,9 @@ abbr --add whois 'docker run -ti --rm local/net-tools whois'
 # Docker
 abbr --add d 'docker'
 abbr --add di 'docker images'
-# show running containers
-abbr --add dps 'docker ps'
-# show all containers including stopped
-abbr --add dpa 'docker ps -a'
+abbr --add drm 'docker system prune'
+# show containers
+abbr --add dps 'docker ps -a'
 # monitor all containers
 abbr --add ds 'docker stats (docker ps -q)'
 # run interactively then remove
@@ -185,12 +182,8 @@ abbr --add dl 'docker ps -l -q'
 # get container IP
 abbr --add dip "docker inspect --format '{{ .NetworkSettings.IPAddress }}'"
 # remove orphaned volumes
-abbr --add drmv 'docker volume ls -qf dangling=true | xargs -r docker volume rm'
-abbr --add dc 'docker-compose'
-abbr --add dcu 'docker-compose up'
-abbr --add dcd 'docker-compose down'
-abbr --add dcr 'docker-compose down; and docker-compose up'
-# get a shell in the host via docker
+# abbr --add drmv 'docker volume ls -qf dangling=true | xargs -r docker volume rm'
+# get shell in host via docker
 abbr --add dnse 'docker run -it --rm --privileged --pid=host justincormack/nsenter1'
 
 # K8s
@@ -258,8 +251,8 @@ abbr --add gout 'git log --stat "@{u}"..'
 abbr --add gouta 'git log --stat --branches --not --remotes'
 # see unpulled commit
 abbr --add gin 'git log --stat .."@{u}"'
-abbr --add gc 'env GIT_EDITOR="vim +startinsert" git commit --verbose'
-abbr --add gca 'env GIT_EDITOR="vim +startinsert" git commit --verbose --all'
+abbr --add gc 'git commit --verbose'
+abbr --add gca 'git commit --verbose --all'
 abbr --add gg 'gchkout'
 abbr --add gco 'git checkout' # better to use gg/gchkout function most of the time
 abbr --add gb 'git branch'
