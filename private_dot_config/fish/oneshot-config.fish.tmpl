@@ -73,6 +73,11 @@ if test -d $go_bin_path
   set -U fish_user_paths $go_bin_path $fish_user_paths
 end
 
+{{- if eq .chezmoi.os "darwin" }}
+# macOS
+set -U fish_user_paths (brew --prefix coreutils)/libexec/gnubin $fish_user_paths
+{{- end }}
+
 # fisher plugins
 set -U FZF_COMPLETE 2
 set -U FZF_FIND_FILE_COMMAND "fd --type f . \$dir"
@@ -85,13 +90,12 @@ abbr --add ppp 'up_system; up_fish; up_yarn; up_gce; up_docker; up_git; up_hosts
 abbr --add p 'yaourt' # Arch Linux package manager
 abbr --add f 'flatpak' # generic app image manager
 abbr --add x 'chezmoi' # dotfiles manager
-abbr --add xe 'chezmoi edit'
 abbr --add xd 'chezmoi diff'
 abbr --add xa 'chezmoi apply -v'
 abbr --add xu 'chezmoi update -v'
 abbr --add fu 'fish ~/.config/fish/oneshot-config.fish'
 
-# common tool replacements
+# Common tool replacements
 abbr --add cat bat
 abbr --add ls exa
 abbr --add find fd
@@ -100,6 +104,7 @@ abbr --add rgi 'rg --no-ignore'
 
 # System
 abbr --add s 'sudo -i'
+abbr --add man 'man -a'
 abbr --add .. 'cd ..'
 abbr --add ... 'cd ../..'
 abbr --add .... 'cd ../../..'
