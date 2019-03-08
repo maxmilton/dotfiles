@@ -1,4 +1,5 @@
 # https://github.com/twpayne/chezmoi
 
 data:
+  # TODO: This is just an example, replace with actual useful stuff
   email: max@wearegenki.com
