@@ -2,8 +2,7 @@
   "Disabler comments": {
     "prefix": "dis",
     "body": [
-      "/* eslint-disable *//* tslint:disable */// @ts-nocheck",
-      "// spellcheck-off"
+      "/* spellcheck-off */ /* eslint-disable */ // @ts-nocheck",
     ],
     "description": "Disable JS linting, TS intellisense, and spell check"
   }
