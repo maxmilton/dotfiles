@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "ndb": "^1.0.44",
     "npm": "^6.4.1",
     "sirv-cli": "^0.2.2"
   }
