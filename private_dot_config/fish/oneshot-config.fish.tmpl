@@ -69,7 +69,8 @@ if test -d $node_bin_path
 end
 
 # Golang
-set go_bin_path "$HOME"/go/bin
+set -Ux GOPATH="$HOME"/Projects/go
+set go_bin_path "$GOPATH"/bin
 if test -d $go_bin_path
   set -U fish_user_paths $go_bin_path $fish_user_paths
 end
