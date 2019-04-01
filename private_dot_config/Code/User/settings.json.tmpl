@@ -3,7 +3,7 @@
   "telemetry.enableCrashReporter": false,
   "telemetry.enableTelemetry": false,
   {{- if eq .chezmoi.os "linux" }}
-  "update.channel": "none", // use package manager on Linux
+  "update.mode": "none", // use package manager on Linux
   "window.titleBarStyle": "native",
   {{- end }}
   "window.restoreWindows": "all",
@@ -92,6 +92,9 @@
     "files.trimTrailingWhitespace": false
   },
   "atomKeymap.promptV3Features": true,
+  "eslint.packageManager": "yarn",
+  "eslint.autoFixOnSave": false, // be careful in projects without eslint setup properly
+  "eslint.validate": ["javascript", "javascriptreact", "html"],
   "todohighlight.keywords": [
     {
       "text": "XXX:", // for implementation details or notes
@@ -101,12 +104,12 @@
     "NOTE:",
     "README:",
     "REFERENCE:",
-    "USAGE:",
+    "USAGE:"
   ],
   "todohighlight.defaultStyle": {
     "color": "unset",
     "backgroundColor": "unset",
-    "overviewRulerColor": "grey",
+    "overviewRulerColor": "grey"
   },
   "spellright.configurationScope": "user",
   "spellright.notificationClass": "information",
@@ -137,7 +140,7 @@
   ],
   "gitlens.advanced.messages": {
     "suppressUpdateNotice": true,
-    "suppressWelcomeNotice": true,
+    "suppressWelcomeNotice": true
   },
   "gitlens.keymap": "none"
 }
