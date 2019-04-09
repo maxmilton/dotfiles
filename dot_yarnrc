@@ -4,10 +4,7 @@
 
 "--add.audit" true
 "--emoji" true
-"--add.audit" true
 "--install.audit" true
-"--upgrade.audit" true
-"--upgrade-interactive.audit" true
 "--add.mutex" "file:/tmp/.yarn-mutex"
 "--install.mutex" "file:/tmp/.yarn-mutex"
 "--upgrade.mutex" "file:/tmp/.yarn-mutex"
