@@ -59,20 +59,18 @@ endif
 
 " fzy
 if executable('fzy') && executable('rg')
+  function! FzyCommand(choice_command, vim_command)
+    let output = system(a:choice_command . " | fzy ")
+    redraw!
+    if v:shell_error == 0 && !empty(output)
+      exec a:vim_command . ' ' . output
+    endif
+  endfunction
 
-	function! FzyCommand(choice_command, vim_command)
-		let output = system(a:choice_command . " | fzy ")
-		redraw!
-		if v:shell_error == 0 && !empty(output)
-			exec a:vim_command . ' ' . output
-		endif
-	endfunction
-
-	nnoremap <leader>e :call FzyCommand("rg --files-with-matches --color never --fixed-strings '' . 2> /dev/null", ":e")<cr>
-	nnoremap <leader>v :call FzyCommand("rg --files-with-matches --color never --fixed-strings '' . 2> /dev/null", ":vs")<cr>
-	nnoremap <leader>s :call FzyCommand("rg --files-with-matches --color never --fixed-strings '' . 2> /dev/null", ":sp")<cr>
-	nnoremap <leader>t :call FzyCommand("rg --files-with-matches --color never --fixed-strings '' . 2> /dev/null", ":tabe")<cr>
-
+  nnoremap <leader>e :call FzyCommand("rg --files-with-matches --color never --fixed-strings '' . 2> /dev/null", ":e")<cr>
+  nnoremap <leader>v :call FzyCommand("rg --files-with-matches --color never --fixed-strings '' . 2> /dev/null", ":vs")<cr>
+  nnoremap <leader>s :call FzyCommand("rg --files-with-matches --color never --fixed-strings '' . 2> /dev/null", ":sp")<cr>
+  nnoremap <leader>t :call FzyCommand("rg --files-with-matches --color never --fixed-strings '' . 2> /dev/null", ":tabe")<cr>
 endif
 
 " Vim-session
@@ -170,3 +168,10 @@ if has('termguicolors') " used starting nvim 0.1.5
 else
   let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 endif
+
+""""""""""""""
+" File types "
+""""""""""""""
+
+au BufRead,BufNewFile *.svelte setfiletype html
+au BufRead,BufNewFile *.pcss setfiletype scss
