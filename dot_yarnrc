@@ -5,7 +5,11 @@
 "--add.audit" true
 "--emoji" true
 "--install.audit" true
+"--mutex" "file:/tmp/.yarn-mutex"
 disable-self-update-check true
+init-license "Apache-2.0"
+init-version "0.0.0"
 lastUpdateCheck 1549219618197
+version-git-sign true
 yarn-offline-mirror "/home/max/.config/yarn/mirror"
 yarn-offline-mirror-pruning true
