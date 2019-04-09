@@ -4,8 +4,14 @@
 
 "--add.audit" true
 "--emoji" true
+"--add.audit" true
 "--install.audit" true
-"--mutex" "file:/tmp/.yarn-mutex"
+"--upgrade.audit" true
+"--upgrade-interactive.audit" true
+"--add.mutex" "file:/tmp/.yarn-mutex"
+"--install.mutex" "file:/tmp/.yarn-mutex"
+"--upgrade.mutex" "file:/tmp/.yarn-mutex"
+"--upgrade-interactive.mutex" "file:/tmp/.yarn-mutex"
 disable-self-update-check true
 init-license "Apache-2.0"
 init-version "0.0.0"
