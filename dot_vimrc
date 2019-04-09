@@ -38,6 +38,7 @@ Plug 'diepm/vim-rest-console', { 'for': 'rest' }
 " Misc
 Plug 'andrewradev/linediff.vim'
 Plug 'easymotion/vim-easymotion'
+Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 
 call plug#end()
 
