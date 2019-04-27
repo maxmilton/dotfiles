@@ -1,7 +1,7 @@
-function up_hosts -d 'Update ad blocking hosts file'
+function up_hosts -d 'Update dnsmasq blacklist hosts file'
   if type --quiet dnsmasq
     if systemctl is-enabled dnsmasq.service 2>/dev/null
-      set --local URL https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/fakenews/hosts
+      set --local URL https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/fakenews-gambling-porn-social/hosts
       set --local TEMP_FILE /tmp/hosts
       set --local FILE /etc/dnsmasq.d/hosts
 
