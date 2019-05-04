@@ -22,10 +22,9 @@ export EDITOR='vim'
 export VISUAL='vim'
 export GIT_EDITOR='vim +startinsert'
 
-# colorized ls
-export LS_OPTIONS='--color=auto'
-eval "$(dircolors --sh)"
-alias ls='ls $LS_OPTIONS'
+# ls performance
+export LS_COLORS='ex=00:su=00:sg=00:ca=00:'
+alias ls='ls --color=auto'
 
 # update system packages
 ppp() {
