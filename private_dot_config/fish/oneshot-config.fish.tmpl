@@ -53,7 +53,12 @@ set -Ux GIT_EDITOR 'vim +startinsert'
 
 # Use local chrome instead of downloading every time
 set -Ux PUPPETEER_SKIP_CHROMIUM_DOWNLOAD 1
-set -Ux PUPPETEER_EXECUTABLE_PATH /usr/bin/google-chrome-unstable
+set -Ux PUPPETEER_EXECUTABLE_PATH (type -p google-chrome-unstable)
+
+{{- if eq .chezmoi.os "darwin" }}
+# macOS
+set -U fish_user_paths (brew --prefix coreutils)/libexec/gnubin $fish_user_paths
+{{- end }}
 
 # Google Cloud SDK
 set gcloud_bin_path "$HOME"/.google-cloud-sdk/bin
@@ -74,11 +79,6 @@ set go_bin_path "$GOPATH"/bin
 if test -d $go_bin_path
   set -U fish_user_paths $go_bin_path $fish_user_paths
 end
-
-{{- if eq .chezmoi.os "darwin" }}
-# macOS
-set -U fish_user_paths (brew --prefix coreutils)/libexec/gnubin $fish_user_paths
-{{- end }}
 
 # fisher plugins
 set -U FZF_COMPLETE 2
