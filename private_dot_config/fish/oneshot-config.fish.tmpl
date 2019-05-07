@@ -80,6 +80,12 @@ if test -d $go_bin_path
   set -U fish_user_paths $go_bin_path $fish_user_paths
 end
 
+# Rust
+set rust_bin_path "$HOME"/.cargo/bin
+if test -d $rust_bin_path
+  set -U fish_user_paths $rust_bin_path $fish_user_paths
+end
+
 # fisher plugins
 set -U FZF_COMPLETE 2
 set -U FZF_FIND_FILE_COMMAND "fd --type f . \$dir"
