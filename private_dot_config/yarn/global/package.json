@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "autocannon": "3.2.1",
+    "autocannon": "3.2.2",
     "clinic": "4.0.3",
     "eslint": "5.16.0",
     "ndb": "1.0.44",
