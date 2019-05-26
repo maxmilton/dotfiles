@@ -3,7 +3,7 @@ function up_system -d 'Update system packages'
     case "Alpine Linux"
       apk upgrade --update-cache
     case "Arch Linux"
-      yaourt -Syu --aur $argv
+      yay -Syu $argv
     case "Debian GNU/Linux" Ubuntu
       sudo apt update; and sudo apt upgrade -y; and sudo apt dist-upgrade -y
     case Fedora
