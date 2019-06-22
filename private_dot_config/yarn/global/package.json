@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "eslint": "5.16.0",
+    "eslint": "6.0.0",
     "ndb": "1.0.45",
     "npm": "6.9.0",
     "sirv-cli": "0.4.4",
