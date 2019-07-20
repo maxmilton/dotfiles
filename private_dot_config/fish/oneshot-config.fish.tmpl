@@ -73,6 +73,12 @@ if test -d $node_bin_path
   set -Ux NODE_PRESERVE_SYMLINKS 1
 end
 
+# Deno
+set deno_bin_path "$HOME"/.deno/bin
+if test -d $deno_bin_path
+  set -U fish_user_paths $deno_bin_path $fish_user_paths
+end
+
 # Golang
 set -Ux GOPATH "$HOME"/Projects/go
 set go_bin_path "$GOPATH"/bin
