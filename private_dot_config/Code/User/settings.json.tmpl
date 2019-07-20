@@ -3,7 +3,7 @@
   "telemetry.enableCrashReporter": false,
   "telemetry.enableTelemetry": false,
   {{- if eq .chezmoi.os "linux" }}
-  "update.mode": "none", // use package manager on Linux
+  "update.mode": "none", // Use package manager on Linux
   "window.titleBarStyle": "native",
   {{- end }}
   "window.restoreWindows": "all",
@@ -30,8 +30,8 @@
       }
     ]
   },
-  "editor.smoothScrolling": true, // fix choppy scroll
-  "editor.cursorSmoothCaretAnimation": true,
+  // "editor.smoothScrolling": true, // Fix choppy scroll
+  // "editor.cursorSmoothCaretAnimation": true,
   "editor.snippetSuggestions": "top",
   "editor.renderLineHighlight": "all",
   "editor.folding": false,
@@ -45,7 +45,7 @@
   "editor.renderControlCharacters": true,
   "editor.suggestSelection": "first",
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+  "vsintellicode.modify.editor.suggestSelection": "choseToUpdateConfiguration",
   "breadcrumbs.enabled": true,
   "files.insertFinalNewline": true,
   "files.trimTrailingWhitespace": true,
@@ -60,25 +60,26 @@
   },
   "files.watcherExclude": {
     "**/__sapper__/**": true,
+    "**/.*cache": true,
     "**/.git/objects/**": true,
     "**/.git/subtree-cache/**": true,
-    "**/.stylelintcache": true,
     "**/.tsbuildinfo": true,
     "**/.vscode": true,
     "**/*.log": true,
     "**/*.map": true,
     "**/*.min.*": true,
     "**/build/**": true,
-    "**/coverage/**": true,
     "**/dist/**": true,
     "**/export/**": true,
     "**/node_modules/**": true,
     "**/package-lock.json": true,
     "**/public/**": true,
+    "**/test/**": true,
     "**/tmp/**": true,
     "**/yarn.lock": true
   },
   "files.associations": {
+    "*.svelte": "html",
     "*.tmpl": "go"
   },
   "git.confirmSync": false,
@@ -99,31 +100,26 @@
   },
   "atomKeymap.promptV3Features": true,
   "eslint.packageManager": "yarn",
-  "eslint.autoFixOnSave": false, // be careful in projects without eslint setup properly
-  "eslint.validate": ["javascript", "javascriptreact", "html"],
-  "todohighlight.keywords": [
-    {
-      "text": "XXX:", // for implementation details or notes
-      "color": "#ecf2fa",
-      "backgroundColor": "#3477ca"
-    },
-    "NOTE:",
-    "README:",
-    "REFERENCE:",
-    "USAGE:"
+  "eslint.autoFixOnSave": false, // In case a project doesn't have ESLint
+  "eslint.validate": [
+    "html",
+    "javascript",
+    "javascriptreact",
+    "markdown",
+    "typescript",
+    "typescriptreact"
   ],
-  "todohighlight.defaultStyle": {
-    "color": "unset",
-    "backgroundColor": "unset",
-    "overviewRulerColor": "grey"
-  },
   "spellright.configurationScope": "user",
   "spellright.notificationClass": "information",
+  "spellright.notificationClassByParser": {
+    "code": "hint"
+  },
   "spellright.language": ["en_GB"],
   "spellright.documentTypes": [
     "css",
     "html",
     "javascript",
+    "javascriptreact",
     "json",
     "jsonc",
     "markdown",
@@ -137,6 +133,7 @@
   "spellright.spellContext": "body code comments strings",
   "spellright.suggestionsInHints": false,
   "spellright.ignoreFiles": [
+    "**/.*cache",
     "**/.gitignore",
     "**/.spellignore",
     "**/*.log",
@@ -154,6 +151,7 @@
   "gitlens.views.lineHistory.location": "explorer",
   "gitlens.views.compare.location": "scm",
   "gitlens.views.search.location": "scm",
-  "sourcegraph.url": "http://localhost:7080",
+  "vsintellicode.java.completionsEnabled": false,
+  "vsintellicode.python.completionsEnabled": false,
   "platformio-ide.activateOnlyOnPlatformIOProject": true
 }
