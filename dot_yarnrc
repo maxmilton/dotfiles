@@ -2,17 +2,19 @@
 # yarn lockfile v1
 
 
-"--add.audit" true
-"--emoji" true
-"--install.audit" true
-"--add.mutex" "file:/tmp/.yarn-mutex"
-"--install.mutex" "file:/tmp/.yarn-mutex"
-"--upgrade.mutex" "file:/tmp/.yarn-mutex"
-"--upgrade-interactive.mutex" "file:/tmp/.yarn-mutex"
+--add.audit" true
+--add.mutex" "file:/tmp/.yarn-mutex"
+--emoji" true
+--install.audit" true
+--install.mutex" "file:/tmp/.yarn-mutex"
+--upgrade-interactive.mutex" "file:/tmp/.yarn-mutex"
+--upgrade.mutex" "file:/tmp/.yarn-mutex"
 disable-self-update-check true
-init-license "Apache-2.0"
+email max@wearegenki.com
+init-license Apache-2.0
 init-version "0.0.0"
 lastUpdateCheck 1549219618197
+username maxmilton
 version-git-sign true
 yarn-offline-mirror "/home/max/.config/yarn/mirror"
 yarn-offline-mirror-pruning true

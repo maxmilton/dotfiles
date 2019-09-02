@@ -60,6 +60,12 @@ set -Ux PUPPETEER_EXECUTABLE_PATH (type -p google-chrome-unstable)
 set -U fish_user_paths (brew --prefix coreutils)/libexec/gnubin $fish_user_paths
 {{- end }}
 
+# Chezmoi
+set chezmoi_bin_path "$HOME"/.local/share/chezmoi/bin
+if test -d $chezmoi_bin_path
+  set -U fish_user_paths $chezmoi_bin_path $fish_user_paths
+end
+
 # Google Cloud SDK
 set gcloud_bin_path "$HOME"/.google-cloud-sdk/bin
 if test -d $gcloud_bin_path

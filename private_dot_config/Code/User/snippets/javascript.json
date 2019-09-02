@@ -1,9 +1,16 @@
 {
+  "Console dir": {
+    "prefix": "dir",
+    "description": "console.dir()",
+    "body": [
+      "console.dir($1, { depth: null });"
+    ]
+  },
   "Disabler comments": {
     "prefix": "dis",
+    "description": "Disable JS linting, TS intellisense, and spell check",
     "body": [
-      "/* spellcheck-off */ /* eslint-disable */ // @ts-nocheck",
-    ],
-    "description": "Disable JS linting, TS intellisense, and spell check"
+      "/* spellcheck-off */ /* eslint-disable */ // @ts-nocheck"
+    ]
   }
 }
