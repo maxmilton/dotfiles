@@ -2,7 +2,7 @@
   "dependencies": {
     "eslint": "6.3.0",
     "ndb": "1.1.4",
-    "npm": "6.11.2",
+    "npm": "6.11.3",
     "sirv-cli": "0.4.4",
     "vim-node-rpc": "0.1.34"
   }
