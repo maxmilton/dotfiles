@@ -2,13 +2,13 @@
 # yarn lockfile v1
 
 
---add.audit" true
---add.mutex" "file:/tmp/.yarn-mutex"
---emoji" true
---install.audit" true
---install.mutex" "file:/tmp/.yarn-mutex"
---upgrade-interactive.mutex" "file:/tmp/.yarn-mutex"
---upgrade.mutex" "file:/tmp/.yarn-mutex"
+"--add.audit" true
+"--add.mutex" "file:/tmp/.yarn-mutex"
+"--emoji" true
+"--install.audit" true
+"--install.mutex" "file:/tmp/.yarn-mutex"
+"--upgrade-interactive.mutex" "file:/tmp/.yarn-mutex"
+"--upgrade.mutex" "file:/tmp/.yarn-mutex"
 disable-self-update-check true
 email max@wearegenki.com
 init-license Apache-2.0
