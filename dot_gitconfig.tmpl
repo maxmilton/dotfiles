@@ -1,7 +1,7 @@
 [user]
   email = max@wearegenki.com
   name = Max Milton
-  {{- if eq .chezmoi.hostname "max-genki" }}
+  {{- if eq .chezmoi.hostname "max-genki" "max-archd" }}
   signingkey = 04D9C9AB0399B439
   {{- end }}
   {{- if eq .chezmoi.hostname "max-clients" }}
