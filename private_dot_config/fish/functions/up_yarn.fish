@@ -9,9 +9,7 @@ function up_yarn --description 'Update global yarn packages'
       popd
 
       # do the actual upgrades
-      yarn global upgrade --save &
-      set --local PID %last
-      echo "Updating yarn global packages in background with PID" "$PID"
+      yarn global upgrade --save
     else
       echo "Yarn global directory not found;" "$yarn_global_dir"
     end
