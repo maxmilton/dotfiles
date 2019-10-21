@@ -1,33 +1,33 @@
-# only interactive
+# Only interactive
 [[ $- != *i* ]] && return
 
-# use global definitions
+# Use global definitions
 if [ -f /etc/bashrc ]; then
-	source /etc/bashrc
+  source /etc/bashrc
 fi
 
 PS1="\$(if [[ \$? == 0 ]]; then echo \"\[\033[01;32m\]:)\"; else echo \"\[\033[01;31m\]:(\"; fi) $(if [[ ${EUID} == 0 ]]; then echo '\[\033[01;31m\]\h\[\033[01;34m\] \w \$'; else echo '\[\033[01;32m\]\u@\h\[\033[01;34m\] \w \#'; fi) \[\033[00m\] "
 
-# better auto completion
+# Better auto completion
 if [ -f /etc/bash_completion ]; then
-	source /etc/bash_completion
+  source /etc/bash_completion
 fi
 bind 'set completion-ignore-case on'
 bind 'set show-all-if-ambiguous on'
 bind 'set show-all-if-unmodified on'
 bind 'TAB:menu-complete'
 
-# default editor
+# Default editor
 export EDITOR='vim'
 export VISUAL='vim'
 export GIT_EDITOR='vim +startinsert'
 
-# ls performance
+# Better ls performance
 export LS_COLORS='ex=00:su=00:sg=00:ca=00:'
 alias ls='ls --color=auto'
 
-# update system packages
-ppp() {
+# Update system packages
+up_system() {
   case $(awk -F "=" '/^NAME/ {print $2}' /etc/os-release | tr -d '"') in
     'Arch Linux' ) yaourt -Syu --aur ;;
     Fedora ) dnf update --refresh -y ;;
@@ -64,6 +64,7 @@ alias jcd='journalctl --disk-usage && journalctl --verify'
 alias jcdd='journalctl --vacuum-size=1G'
 
 # Aliases: Sysadmin
+alias ppp='up_system'
 alias getip='curl icanhazip.com'
 alias ta='tmux attach'
 
@@ -75,13 +76,13 @@ alias dps='docker ps -a'
 alias dp='docker pull'
 alias drm='docker system prune'
 # get shell in host via docker
-alias dnse='docker run -it --rm --privileged --pid=host justincormack/nsenter1'
+#alias dnse='docker run -it --rm --privileged --pid=host justincormack/nsenter1'
 # update docker images
 dup() { alias | docker images | awk '(NR>1) && ($2!~/none/) {print $1":"$2}'| xargs -L1 docker pull; }
 # enter docker container or execute command
 de() { if [ -z "$2" ]; then docker exec -ti -u root "$1" /bin/sh; else docker exec "$1" "$2"; fi }
 
-# Git
+# Aliases: Git
 alias g='git'
 alias gs='git status --short --branch --show-stash'
 alias gl="git log --graph --pretty=format:'%C(yellow)%h%Creset%C(blue)%d%Creset %C(white bold)%s%Creset %C(white dim)(by %an %ar)%Creset'"
@@ -90,5 +91,5 @@ alias gd='git diff'
 alias ga='git add'
 alias gc='git commit --verbose'
 
-# check for active tmux sessions (if tmux is installed)
+# Check for active tmux sessions (if tmux is installed)
 command -v tmux >/dev/null 2>&1 && (echo "🔹 tmux ls" && tmux ls) || true
