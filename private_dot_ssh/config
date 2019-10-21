@@ -18,6 +18,5 @@ Host *
   UseKeychain yes
   AddKeysToAgent yes
 
-
 # Host configs seperate for privacy
 Include hosts.conf
