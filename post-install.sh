@@ -54,10 +54,10 @@ if [ "$distro" = 'Arch Linux' ]; then
     fzy \
     git \
     ripgrep \
-    tmux \
-    vim \
+    neovim \
     # flatpak \
     # fzf \
+    #tmux \
 elif [ "$distro" = 'Ubuntu' ]; then
   sudo apt update
   sudo apt install -y fish vim git ripgrep fd fzf docker
