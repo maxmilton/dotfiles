@@ -1,4 +1,4 @@
-function up_gce -d 'Update Google Cloud SDK'
+function up_gce --description 'Update Google Cloud SDK'
   if type -q gcloud
     yes | gcloud components update
   else

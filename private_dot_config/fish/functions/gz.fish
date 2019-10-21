@@ -1,4 +1,4 @@
-function gz -d 'Compare gzip\'d sizes of a file'
+function gz --description 'Compare gzip\'d sizes of a file'
   cat $argv ^/dev/null | tr -d '\n' | read -l input
   set -ql input; or set -l input $argv[1]
 

@@ -1,4 +1,4 @@
-function n -d 'Run npm dev script (default) or another script'
+function n --description 'Run npm dev script (default) or another script'
   # disable proxy (squid via net-cache in docker)
   set --local HTTP_PROXY ''
   set --local HTTPS_PROXY ''

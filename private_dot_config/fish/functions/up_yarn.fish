@@ -1,4 +1,4 @@
-function up_yarn -d 'Update global yarn packages'
+function up_yarn --description 'Update global yarn packages'
   if type --quiet yarn
     set --local yarn_global_dir "$HOME"/.config/yarn/global
 

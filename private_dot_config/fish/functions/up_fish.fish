@@ -1,4 +1,4 @@
-function up_fish -d 'Update fish shell'
+function up_fish --description 'Update fish shell'
   fisher self-update
   fisher
 end

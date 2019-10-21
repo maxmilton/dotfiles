@@ -1,11 +1,14 @@
-function kill_process --description "Kill processes"
+function kill_process --description 'Kill processes'
   set -l __kp__pid ''
 
   if contains -- '--tcp' $argv
-    set __kp__pid (lsof -Pwni tcp | sed 1d | eval "fzf $FZF_DEFAULT_OPTS -m --header='[kill:tcp]'" | awk '{print $2}')
+    #set __kp__pid (lsof -Pwni tcp | sed 1d | eval "fzf $FZF_DEFAULT_OPTS -m --header='[kill:tcp]'" | awk '{print $2}')
+    set __kp__pid (lsof -Pwni tcp | sed 1d | fzy | awk '{print $2}')
   else
-    set __kp__pid (ps -ef | sed 1d | eval "fzf $FZF_DEFAULT_OPTS -m --header='[kill:process]'" | awk '{print $2}')
+    #set __kp__pid (ps -ef | sed 1d | eval "fzf $FZF_DEFAULT_OPTS -m --header='[kill:process]'" | awk '{print $2}')
+    set __kp__pid (ps -ef | sed 1d | fzy | awk '{print $2}')
   end
+
   set -l __kp__kc $argv[1]
 
   if test "x$__kp__pid" != "x"
@@ -14,6 +17,7 @@ function kill_process --description "Kill processes"
     else
       echo $__kp__pid | xargs kill -9
     end
+
     kill_process
   end
 end

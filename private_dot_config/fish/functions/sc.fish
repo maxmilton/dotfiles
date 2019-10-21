@@ -1,4 +1,4 @@
-function sc -d 'Run systemctl'
+function sc --description 'Run systemctl'
   if test (id -u) -ne 0
     sudo systemctl
   else

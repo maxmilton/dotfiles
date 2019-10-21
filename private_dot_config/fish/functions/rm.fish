@@ -1,4 +1,4 @@
-function rm -d 'Move files into trash'
+function rm --description 'Move files into trash'
   if test (uname -s) != 'Darwin'
     # Linux
     set -l distro (awk -F "=" '/^NAME/ {print $2}' /etc/os-release | tr -d '"')

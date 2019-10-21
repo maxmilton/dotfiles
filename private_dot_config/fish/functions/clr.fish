@@ -1,4 +1,4 @@
-function clr -d 'Clear console buffer'
+function clr --description 'Clear console buffer'
   printf "\x1Bc"
 
   # clear scrollback buffer on macOS

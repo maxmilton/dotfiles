@@ -1,4 +1,4 @@
-function gchkout -d 'Switch master🔁dev or checkout branch (create if not exists)'
+function gchkout --description 'Switch master🔁dev or checkout branch (create if not exists)'
   if test -z $argv[1]
     if test (git symbolic-ref --short HEAD) = "master"
       git checkout dev
