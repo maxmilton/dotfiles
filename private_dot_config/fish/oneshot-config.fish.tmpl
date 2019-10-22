@@ -105,7 +105,7 @@ set -U FZF_LEGACY_KEYBINDINGS 0
 
 # Misc
 abbr --add C 'math' # CLI calculator
-abbr --add get 'aria2c --dir ~/Downloads' # download via CLI
+#abbr --add get 'aria2c --dir ~/Downloads' # download via CLI
 abbr --add ppp 'up_system; up_flatpak; up_docker; up_git; up_hosts; up_yarn; up_fish' # run full system update
 abbr --add p 'yay' # Arch Linux package manager
 abbr --add f 'flatpak' # generic app image manager
@@ -176,23 +176,24 @@ abbr --add pkgcache 'docker run --rm -ti --network=host --volume=/var/lib/pacman
 
 # Net tools
 abbr --add nt 'docker run --rm -ti --network=host --volume="$PWD":/data local/net-tools'
-#abbr --add curl 'docker run --rm -ti --network=host --volume="$PWD":/data local/net-tools curl'
-#abbr --add darkhttpd 'docker run --rm -ti --network=host --volume="$PWD":/data local/net-tools darkhttpd'
-#abbr --add darkstat 'docker run --rm -ti --network=host --volume="$PWD":/data local/net-tools darkstat'
-abbr --add drill 'docker run --rm -ti local/net-tools drill'
+abbr --add get 'docker run --rm -ti --volume="$HOME"/Downloads:/data local/net-tools aria2c --dir /data'
+abbr --add curl 'docker run --rm -i --network=host --volume="$HOME"/.curlrc:/root/.curlrc local/net-tools curl'
+#abbr --add darkhttpd 'docker run --rm --network=host --volume="$PWD":/data local/net-tools darkhttpd'
+#abbr --add darkstat 'docker run --rm --network=host local/net-tools darkstat'
+abbr --add drill 'docker run --rm local/net-tools drill'
 abbr --add htop 'docker run --rm -ti --pid=host --volume="$HOME"/.config/htop/htoprc:/root/.config/htop/htoprc local/net-tools htop'
 #abbr --add iperf 'docker run --rm -ti --network=host local/net-tools iperf'
-abbr --add jq 'docker run --rm -ti --volume="$PWD":/data local/net-tools jq'
+abbr --add jq 'docker run --rm -i local/net-tools jq \'.\''
 #abbr --add mtr 'docker run --rm -ti local/net-tools mtr'
-abbr --add nmap 'docker run --rm -ti --network=host --volume="$PWD":/data local/net-tools nmap'
-abbr --add ncat 'docker run --rm -ti --network=host --volume="$PWD":/data local/net-tools ncat'
-#abbr --add nping 'docker run --rm -ti --network=host local/net-tools nping'
-#abbr --add rsync 'docker run --rm -ti --network=host --volume="$HOME"/.ssh:/root/.ssh:ro --volume="$PWD":/data local/net-tools rsync'
-#abbr --add ssh 'docker run --rm -ti --network=host --volume="$HOME"/.ssh:/root/.ssh:ro --volume="$PWD":/data local/net-tools ssh'
-#abbr --add sftp 'docker run --rm -ti --network=host --volume="$HOME"/.ssh:/root/.ssh:ro --volume="$PWD":/data local/net-tools sftp'
-#abbr --add scp 'docker run --rm -ti --network=host --volume="$HOME"/.ssh:/root/.ssh:ro --volume="$PWD":/data local/net-tools scp'
-#abbr --add tcpdump 'docker run --rm -ti --network=host --volume="$PWD":/data local/net-tools tcpdump'
-abbr --add whois 'docker run --rm -ti local/net-tools whois'
+abbr --add nmap 'docker run --rm -i --network=host local/net-tools nmap'
+abbr --add ncat 'docker run --rm -i --network=host local/net-tools ncat'
+abbr --add nping 'docker run --rm -i --network=host local/net-tools nping'
+#abbr --add rsync 'docker run --rm -i --volume="$HOME"/.ssh:/root/.ssh:ro local/net-tools rsync'
+#abbr --add ssh 'docker run --rm -ti --volume="$HOME"/.ssh:/root/.ssh:ro --volume="$PWD":/data local/net-tools ssh'
+#abbr --add sftp 'docker run --rm -i --volume="$HOME"/.ssh:/root/.ssh:ro local/net-tools sftp'
+#abbr --add scp 'docker run --rm -i --volume="$HOME"/.ssh:/root/.ssh:ro local/net-tools scp'
+#abbr --add tcpdump 'docker run --rm -i --network=host local/net-tools tcpdump'
+abbr --add whois 'docker run --rm local/net-tools whois'
 
 # Docker
 abbr --add d 'docker'
