@@ -176,7 +176,7 @@ abbr --add pkgcache 'docker run --rm -ti --network=host --volume=/var/lib/pacman
 
 # Net tools
 abbr --add nt 'docker run --rm -ti --network=host --volume="$PWD":/data local/net-tools'
-abbr --add get 'docker run --rm -ti --volume="$HOME"/Downloads:/data local/net-tools aria2c --dir /data'
+abbr --add get 'docker run --rm -ti --volume="$HOME"/Downloads:/data --user=(id -u):(id -g) local/net-tools aria2c --dir /data'
 abbr --add curl 'docker run --rm -i --network=host --volume="$HOME"/.curlrc:/root/.curlrc local/net-tools curl'
 #abbr --add darkhttpd 'docker run --rm --network=host --volume="$PWD":/data local/net-tools darkhttpd'
 #abbr --add darkstat 'docker run --rm --network=host local/net-tools darkstat'
