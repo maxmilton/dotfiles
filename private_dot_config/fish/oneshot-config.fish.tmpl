@@ -123,8 +123,9 @@ abbr --add cat bat
 abbr --add catt 'bat --plain'
 abbr --add ls exa
 abbr --add find fd
-abbr --add grep 'rg --context 3 --max-columns 80 --max-columns-preview'
-abbr --add rgi 'rg --context 3 --max-columns 80 --max-columns-preview --no-ignore'
+abbr --add grep rg
+abbr --add rgi 'rg --no-ignore'
+abbr --add rgg 'rg --context 3 --max-columns 80 --max-columns-preview'
 abbr --add fdi 'fd --no-ignore --hidden'
 
 # System
@@ -166,7 +167,7 @@ abbr --add rmnm 'fd --type directory --hidden --no-ignore-vcs --exec rm -rf {} \
 # remove yarn-error.log files recursively
 abbr --add rmye 'fd --type file --hidden --exec rm -rf {} \; yarn-error.log .'
 # list open ports
-abbr --add lsport 'sudo echo -n; and sudo ss -plant | fzy --lines=max'
+abbr --add lsport 'sudo echo -n; and sudo ss -plantu | fzy --lines=max'
 # list open ports on BSD/macOS
 abbr --add lsnet 'sudo lsof -iTCP -sTCP:LISTEN -n -P'
 # debug bash script
