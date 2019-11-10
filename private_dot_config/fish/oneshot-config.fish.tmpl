@@ -161,11 +161,11 @@ abbr --add kk 'kill_process'
 abbr --add kkk 'kill_process --tcp'
 #abbr --add t 'terraform'
 # remove broken symlinks in dir
-abbr --add rmln 'find -L . -name . -o -type d -prune -o -type l -exec rm -rf {} \;'
+abbr --add rmln 'find -L . -name . -o -type d -prune -o -type l -exec /bin/rm -rf {} \;'
 # remove node_modules dirs recursively
-abbr --add rmnm 'fd --type directory --hidden --no-ignore-vcs --exec rm -rf {} \; node_modules .'
+abbr --add rmnm 'fd --type directory --hidden --no-ignore-vcs --exec /bin/rm -rf {} \; node_modules .'
 # remove yarn-error.log files recursively
-abbr --add rmye 'fd --type file --hidden --exec rm -rf {} \; yarn-error.log .'
+abbr --add rmye 'fd --type file --hidden --exec /bin/rm -rf {} \; yarn-error.log .'
 # list open ports
 abbr --add lsport 'sudo echo -n; and sudo ss -plantu | fzy --lines=max'
 # list open ports on BSD/macOS
@@ -251,8 +251,8 @@ abbr --add ys 'yarn run serve'
 abbr --add yi 'yarn info'
 abbr --add yii 'yit typescript; yit preact; yit preact-cli; yit preact-router; yit postcss-advanced-variables; yit polka; yit sirv'
 #abbr --add tl 'travis lint ./.travis.yml'
-abbr --add rrr 'fd --type directory --hidden --no-ignore-vcs --exec rm -rf {} \; node_modules . ; rm yarn.lock; yarn'
-abbr --add rrrr 'fd --type directory --exec rm -rf {} \; dist . ; fd --type directory --hidden --no-ignore-vcs --exec rm -rf {} \; node_modules . ; rm yarn.lock; yarn'
+abbr --add rrr 'fd --type directory --hidden --no-ignore-vcs --exec /bin/rm -rf {} \; node_modules . ; /bin/rm yarn.lock; yarn'
+abbr --add rrrr 'fd --type directory --exec /bin/rm -rf {} \; dist . ; fd --type directory --hidden --no-ignore-vcs --exec /bin/rm -rf {} \; node_modules . ; /bin/rm yarn.lock; yarn'
 
 # Git
 abbr --add g 'git'
@@ -291,7 +291,7 @@ abbr --add gb 'git branch --all'
 abbr --add gm 'git merge'
 abbr --add gt 'git tag'
 # remove missing files
-abbr --add grm 'git ls-files --deleted -z | xargs -0 git rm'
+abbr --add grm 'git ls-files --deleted -z | xargs -0 git /bin/rm'
 
 # Google Cloud SDK (via "gcloud" fish function)
 # First run auth: docker run -ti --name gcloud-config local/gcloud gcloud auth login
