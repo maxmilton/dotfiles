@@ -21,7 +21,7 @@
   "explorer.confirmDelete": false,
   "editor.tokenColorCustomizations": {
     "textMateRules": [
-      // darker comments when using `One Dark Pro` theme
+      // Darker comments with `One Dark Pro` theme
       {
         "scope": "comment, punctuation.definition.comment",
         "settings": {
@@ -30,8 +30,6 @@
       }
     ]
   },
-  // "editor.smoothScrolling": true, // Fix choppy scroll
-  // "editor.cursorSmoothCaretAnimation": true,
   "editor.snippetSuggestions": "top",
   "editor.renderLineHighlight": "all",
   "editor.folding": false,
@@ -102,9 +100,12 @@
     "editor.quickSuggestions": false,
     "files.trimTrailingWhitespace": false
   },
+  "task.autoDetect": "off",
+  "vsintellicode.java.completionsEnabled": false,
+  "vsintellicode.python.completionsEnabled": false,
   "atomKeymap.promptV3Features": true,
   "eslint.packageManager": "yarn",
-  "eslint.autoFixOnSave": false, // In case a project doesn't have ESLint
+  "eslint.autoFixOnSave": false, // Prefer project level config
   "eslint.validate": [
     "html",
     "javascript",
@@ -118,9 +119,8 @@
   "spellright.notificationClassByParser": {
     "code": "hint"
   },
-  "spellright.language": ["en_GB"],
+  "spellright.language": ["en_AU"],
   "spellright.documentTypes": [
-    "azure-pipelines",
     "css",
     "html",
     "javascript",
@@ -131,7 +131,6 @@
     "plaintext",
     "properties",
     "scss",
-    "todo",
     "typescript",
     "typescriptreact",
     "yaml"
@@ -156,9 +155,5 @@
   "gitlens.views.fileHistory.location": "explorer",
   "gitlens.views.lineHistory.location": "explorer",
   "gitlens.views.compare.location": "scm",
-  "gitlens.views.search.location": "scm",
-  "vsintellicode.java.completionsEnabled": false,
-  "vsintellicode.python.completionsEnabled": false,
-  "aws.telemetry": false,
-  "platformio-ide.activateOnlyOnPlatformIOProject": true
+  "gitlens.views.search.location": "scm"
 }

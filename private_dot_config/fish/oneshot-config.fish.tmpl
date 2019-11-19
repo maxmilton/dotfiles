@@ -153,7 +153,6 @@ abbr --add 644e 'find -O3 . -type d -name .git -prune -o -type f ! -name "*.sh" 
 
 # Sysadmin
 abbr --add ccurl "curl -vv -H 'Cache-Control: no-cache'"
-#abbr --add gce 'while not gce-ssh; echo "retrying..."; sleep 3; end'
 abbr --add scs 'sc status' # systemctl
 abbr --add scr 'sc restart'
 abbr --add getip 'curl icanhazip.com'
@@ -261,6 +260,7 @@ abbr --add ge 'vim -p (git diff --name-only)'
 abbr --add gs 'git status --short --branch --show-stash'
 abbr --add gp 'git pull --prune'
 # 1. Configure upstream remote - ref: https://help.github.com/articles/configuring-a-remote-for-a-fork/
+#  ↳ git remote add upstream <repo>
 # 2. Sync fork with upstream: run gpp - ref: https://help.github.com/articles/syncing-a-fork/
 abbr --add gpp 'git fetch upstream; and git merge upstream/master master; and git push origin master'
 abbr --add gl "git log --graph --pretty=format:'%C(yellow)%h%Creset%C(blue)%d%Creset %C(white bold)%s%Creset %C(white dim)(by %an %ar)%Creset'"
