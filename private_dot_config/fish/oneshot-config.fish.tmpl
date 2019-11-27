@@ -248,7 +248,16 @@ abbr --add yt 'yarn run lint; and yarn jest --coverage'
 abbr --add yyt 'clr; yarn run lint; and yarn jest --coverage'
 abbr --add ys 'yarn run serve'
 abbr --add yi 'yarn info'
-abbr --add yii 'yit typescript; yit preact; yit preact-cli; yit preact-router; yit postcss-advanced-variables; yit polka; yit sirv'
+abbr --add yii 'yit typescript \
+  && yit preact \
+  && yit preact-cli \
+  && yit preact-router \
+  && yit postcss-advanced-variables \
+  && yit polka \
+  && yit sirv \
+  && yit sirv-cli \
+  && yit svelte \
+  && yit sapper'
 #abbr --add tl 'travis lint ./.travis.yml'
 abbr --add rrr 'fd --type directory --hidden --no-ignore-vcs --exec /bin/rm -rf {} \; node_modules . ; /bin/rm yarn.lock; yarn'
 abbr --add rrrr 'fd --type directory --exec /bin/rm -rf {} \; dist . ; fd --type directory --hidden --no-ignore-vcs --exec /bin/rm -rf {} \; node_modules . ; /bin/rm yarn.lock; yarn'
