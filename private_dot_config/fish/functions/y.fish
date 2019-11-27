@@ -1,5 +1,5 @@
 function y --description 'Run yarn dev script (default) or another script'
-  # disable proxy (squid via net-cache in docker)
+  # Disable any proxy (e.g., squid via net-cache in docker)
   set --local HTTP_PROXY ''
   set --local HTTPS_PROXY ''
   set --local http_proxy ''
