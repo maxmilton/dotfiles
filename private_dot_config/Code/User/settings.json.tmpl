@@ -35,7 +35,8 @@
   "editor.folding": false,
   "editor.accessibilitySupport": "off",
   "editor.fontSize": 16,
-  "editor.fontFamily": "Hack, 'Roboto Mono', monospace, 'Noto Color Emoji'",
+  // "editor.fontFamily": "Hack, 'Roboto Mono', monospace, 'Noto Color Emoji'",
+  "editor.fontFamily": "'JetBrains Mono', monospace, 'Noto Color Emoji'",
   "editor.rulers": [80, 100],
   "editor.wordWrap": "on",
   "editor.tabSize": 2,
@@ -43,6 +44,9 @@
   "editor.renderControlCharacters": true,
   "editor.suggestSelection": "first",
   "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": false // Prefer project level config
+  },
   "vsintellicode.modify.editor.suggestSelection": "choseToUpdateConfiguration",
   "breadcrumbs.enabled": true,
   "files.insertFinalNewline": true,
@@ -105,7 +109,6 @@
   "vsintellicode.python.completionsEnabled": false,
   "atomKeymap.promptV3Features": true,
   "eslint.packageManager": "yarn",
-  "eslint.autoFixOnSave": false, // Prefer project level config
   "eslint.validate": [
     "html",
     "javascript",
@@ -155,5 +158,6 @@
   "gitlens.views.fileHistory.location": "explorer",
   "gitlens.views.lineHistory.location": "explorer",
   "gitlens.views.compare.location": "scm",
-  "gitlens.views.search.location": "scm"
+  "gitlens.views.search.location": "scm",
+  "terminal.integrated.rendererType": "experimentalWebgl" // TODO: Remove?
 }
