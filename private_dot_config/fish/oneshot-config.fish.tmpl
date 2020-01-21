@@ -261,8 +261,10 @@ abbr --add yii 'yit typescript \
   && yit svelte \
   && yit sapper'
 #abbr --add tl 'travis lint ./.travis.yml'
-abbr --add rrr 'fd --type directory --hidden --no-ignore-vcs --exec /bin/rm -rf {} \; node_modules . ; /bin/rm yarn.lock; yarn'
-abbr --add rrrr 'fd --type directory --exec /bin/rm -rf {} \; dist . ; fd --type directory --hidden --no-ignore-vcs --exec /bin/rm -rf {} \; node_modules . ; /bin/rm yarn.lock; yarn'
+#abbr --add rrr 'fd --type directory --hidden --no-ignore-vcs --exec /bin/rm -rf {} \; node_modules . ; /bin/rm yarn.lock; yarn'
+#abbr --add rrrr 'fd --type directory --exec /bin/rm -rf {} \; dist . ; fd --type directory --hidden --no-ignore-vcs --exec /bin/rm -rf {} \; node_modules . ; /bin/rm yarn.lock; yarn'
+abbr --add rrr '/bin/rm -rf ./node_modules/; /bin/rm -rf ./**/node_modules/; /bin/rm yarn.lock; yarn'
+abbr --add rrrr '/bin/rm -rf ./{dist,node_modules}/; /bin/rm -rf ./**/{dist,node_modules}/; /bin/rm yarn.lock; yarn'
 
 # Git
 abbr --add g 'git'
