@@ -1,11 +1,11 @@
 {
   "dependencies": {
     "clinic": "^5.0.0",
-    "eslint": "^6.6.0",
+    "eslint": "^6.8.0",
     "ndb": "^1.1.5",
-    "npm": "^6.13.1",
+    "npm": "^6.14.1",
     "prettier": "^1.19.1",
-    "sirv-cli": "^1.0.0-next.2",
+    "sirv-cli": "^1.0.0-next.3",
     "vim-node-rpc": "^0.1.34"
   }
 }
