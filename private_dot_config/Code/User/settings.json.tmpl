@@ -117,6 +117,10 @@
     "typescript",
     "typescriptreact"
   ],
+  {{- if eq .chezmoi.hostname "max-clients" }}
+  "shellcheck.disableVersionCheck": true,
+  {{- end }}
+  "shellcheck.enableQuickFix": true,
   "spellright.configurationScope": "user",
   "spellright.notificationClass": "information",
   "spellright.notificationClassByParser": {
