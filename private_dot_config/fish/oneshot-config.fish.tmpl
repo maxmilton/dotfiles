@@ -61,10 +61,13 @@ set -U fish_user_paths (brew --prefix coreutils)/libexec/gnubin $fish_user_paths
 {{- end }}
 
 # Chezmoi
+{{/* Ubuntu for client work (chezmoi is installed as deb) */}}
+{{- if eq .chezmoi.hostname "max-clients" }}
 set chezmoi_bin_path "$HOME"/.local/share/chezmoi/bin
 if test -d $chezmoi_bin_path
-  set -U fish_user_paths $chezmoi_bin_path $fish_user_paths
+set -U fish_user_paths $chezmoi_bin_path $fish_user_paths
 end
+{{- end }}
 
 # Google Cloud SDK
 set gcloud_bin_path "$HOME"/.google-cloud-sdk/bin
