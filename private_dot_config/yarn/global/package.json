@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "clinic": "^5.0.1",
+    "clinic": "^6.0.0",
     "eslint": "^7.0.0",
     "ndb": "^1.1.5",
     "npm": "^6.14.4",
