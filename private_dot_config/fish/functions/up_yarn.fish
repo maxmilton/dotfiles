@@ -9,7 +9,7 @@ function up_yarn --description 'Update global yarn packages'
       popd
 
       # do the actual upgrades
-      yarn global upgrade --save
+      yarn global upgrade
     else
       echo "Yarn global directory not found;" "$yarn_global_dir"
     end
