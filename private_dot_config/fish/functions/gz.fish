@@ -41,13 +41,22 @@ function gz --description 'Compare gzip\'d sizes of a file'
   set -l sizek4 (math -s2 "$size4 / 1024")
   set -l percent4 (math -s2 "($size4 / $orig) * 100")
 
+  # brotli -Z (best; same as -11)
+  set -l start5 (date '+%s%3N')
+  set -l size5 (echo "$input" | brotli -cf -Z | wc -c)
+  set -l stop5 (date '+%s%3N')
+  set -l duration5 (math "$stop5 - $start5")
+  set -l sizek5 (math -s2 "$size5 / 1024")
+  set -l percent5 (math -s2 "($size5 / $orig) * 100")
+
   echo ""
   echo -e $yellow "source    $divY B     $divY KB    $divY %   $divY time"
   echo -e $grey "──────────┼───────┼───────┼─────┼──────"
-  echo -e $red "original " $divN $orig $divN $sizek1 $divN 100
+  echo -e $red "original  $divN $orig $divN $sizek1 $divN 100"
   echo -e $red "gzip -6   $divN $size2  $divN $sizek2  $divN $percent2 $divN $duration2 ms"
   echo -e $red "gzip -9   $divN $size3  $divN $sizek3  $divN $percent3 $divN $duration3 ms"
   echo -e $red "brotli -9 $divN $size4  $divN $sizek4  $divN $percent4 $divN $duration4 ms"
+  echo -e $red "brotli -Z $divN $size5  $divN $sizek5  $divN $percent5 $divN $duration5 ms"
 
   # reset colour
   echo -en $normal
