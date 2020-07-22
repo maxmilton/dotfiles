@@ -50,6 +50,7 @@ if [ "$distro" = 'Arch Linux' ]; then
   # install packages if missing
   sudo pacman -S --needed \
     bat \
+    bc \
     docker \
     exa \
     fd \
