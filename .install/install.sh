@@ -1,6 +1,9 @@
 #!/bin/sh
 set -euf
 
+# directory of this script
+DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+
 # colours
 RESET='\x1B[0m'
 GREEN='\x1B[0;92m'
@@ -62,6 +65,13 @@ elif [ "$distro" = 'Ubuntu' ]; then
   sudo apt update
   sudo apt install -y fish vim git ripgrep fd fzf docker
 fi
+
+############
+# Terminal #
+############
+
+# install gnome terminal theme to profile named "Default" (needs to be manually named first!)
+$DIR/gnome-terminal-theme.sh Default
 
 ########
 # Fish #
