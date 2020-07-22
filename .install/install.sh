@@ -2,14 +2,14 @@
 set -euf
 
 # colours
-reset='\x1B[0m'
-green='\x1B[0;92m'
-red='\x1B[1;91m'
-yellow='\x1B[1;93m'
+RESET='\x1B[0m'
+GREEN='\x1B[0;92m'
+RED='\x1B[1;91m'
+YELLOW='\x1B[1;93m'
 
 # feedback utils
-echo_err() { printf "%b" "\\n${red}ERROR:${reset} ${*}${reset}" 1>&2; }
-echo_warn() { printf "%b" "\\n${yellow}WARNING:${reset} ${*}${reset}" 1>&2; }
+echo_err() { printf "%b" "\\n${RED}ERROR:${RESET} ${*}${RESET}" 1>&2; }
+echo_warn() { printf "%b" "\\n${YELLOW}WARNING:${RESET} ${*}${RESET}" 1>&2; }
 
 # notify error on non-zero exit codes
 handle_err () { [ $? -eq 0 ] && exit; echo_err 'Install error!'; }
@@ -85,9 +85,9 @@ else
   echo_err 'Fish shell is required to install user fish config. Skipping.'
 fi
 
-#######
-# VIM #
-#######
+##########
+# Neovim #
+##########
 
 mkdir -vp "$target_dir"/.vim/backup
 mkdir -vp "$target_dir"/.vim/swap
@@ -164,7 +164,7 @@ else
   fi
 fi
 
-printf "%b" "${green}Finished successfully${reset}"
+printf "%b" "${GREEN}Finished successfully${RESET}"
 
 ########
 # Yarn #

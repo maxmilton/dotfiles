@@ -22,10 +22,10 @@ Run post install script
 
 ```sh
 # bash
-sh $(chezmoi source-path)/post-install.sh
+sh $(chezmoi source-path)/.install/install.sh
 
 # fish
-sh (chezmoi source-path)/post-install.sh
+sh (chezmoi source-path)/.install/install.sh
 ```
 
 ### Update
