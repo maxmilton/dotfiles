@@ -72,7 +72,7 @@ fi
 ############
 
 # install gnome terminal theme to profile named "Default" (needs to be manually named first!)
-$DIR/gnome-terminal-theme.sh Default
+sh $DIR/gnome-terminal-theme.sh Default
 
 ########
 # Fish #
