@@ -54,12 +54,12 @@ if [ "$distro" = 'Arch Linux' ]; then
     exa \
     fd \
     fish \
+    fzf \
     fzy \
     git \
     ripgrep \
     neovim \
     # flatpak \
-    # fzf \
     #tmux \
 elif [ "$distro" = 'Ubuntu' ]; then
   sudo apt update
