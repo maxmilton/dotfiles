@@ -7,6 +7,9 @@
   {{- if eq .chezmoi.hostname "max-clients" }}
   signingkey = D6A0226FCD5F7243
   {{- end }}
+  {{- if eq .chezmoi.hostname "max-l" }}
+  signingkey = 371CB4A079503C39
+  {{- end }}
 [alias]
   # Remove the old tag with this name and tag the latest commit with it.
   retag = "!r() { git tag -d $1 && git push origin :refs/tags/$1 && git tag $1; }; r"
