@@ -1,3 +1,3 @@
 function up_fish --description 'Update fish shell'
-  fisher
+  fisher update
 end
