@@ -55,7 +55,7 @@ set -Ux GIT_EDITOR 'nvim +startinsert'
 set -Ux PUPPETEER_SKIP_CHROMIUM_DOWNLOAD 1
 set -Ux PUPPETEER_EXECUTABLE_PATH (type -p google-chrome-unstable)
 
-set -Ux PLAYWRIGHT_BROWSERS_PATH "$HOME"/pw-browsers
+set -Ux PLAYWRIGHT_BROWSERS_PATH "$HOME"/.pw-browsers
 
 {{- if eq .chezmoi.os "darwin" }}
 # macOS
