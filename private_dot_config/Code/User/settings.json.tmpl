@@ -6,11 +6,13 @@
   "update.mode": "none", // Use package manager on Linux
   "window.titleBarStyle": "native",
   {{- end }}
-  "window.restoreWindows": "all",
+  "window.restoreWindows": "preserve",
   "window.menuBarVisibility": "toggle",
-  "window.zoomLevel": 0,
   "workbench.startupEditor": "newUntitledFile",
   "workbench.colorTheme": "One Dark Pro",
+  "workbench.editor.decorations.colors": true,
+  "workbench.editor.decorations.badges": true,
+  "workbench.editor.wrapTabs": true,
   "workbench.list.keyboardNavigation": "filter",
   "workbench.enableExperiments": false,
   {{- if eq .chezmoi.os "darwin" }}
@@ -48,8 +50,9 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": false // Prefer project level config
   },
+  "editor.wordBasedSuggestionsMode": "allDocuments",
   "diffEditor.ignoreTrimWhitespace": false,
-  "diffEditor.renderSideBySide": false,
+  // "diffEditor.renderSideBySide": false,
   "terminal.integrated.rendererType": "experimentalWebgl",
   "vsintellicode.modify.editor.suggestSelection": "choseToUpdateConfiguration",
   "breadcrumbs.enabled": true,
@@ -97,8 +100,7 @@
   "scm.alwaysShowRepositories": true,
   "npm.exclude": ["**/.git", "**/node_modules"],
   "npm.packageManager": "yarn",
-  "extensions.showRecommendationsOnlyOnDemand": true,
-  "javascript.implicitProjectConfig.checkJs": true,
+  "js/ts.implicitProjectConfig.checkJs": true,
   "typescript.referencesCodeLens.enabled": true,
   "typescript.implementationsCodeLens.enabled": true,
   "[markdown]": {
@@ -158,14 +160,11 @@
     "**/tsconfig.json",
     "**/yarn.lock"
   ],
-  "gitlens.advanced.messages": {
-    "suppressUpdateNotice": true,
-    "suppressWelcomeNotice": true
-  },
-  "gitlens.keymap": "none",
-  "gitlens.views.repositories.location": "scm",
-  "gitlens.views.fileHistory.location": "explorer",
-  "gitlens.views.lineHistory.location": "explorer",
-  "gitlens.views.compare.location": "scm",
-  "gitlens.views.search.location": "scm"
+  "gitlens.keymap": "none"
+  // FIXME: Paths have changed
+  // "gitlens.views.repositories.location": "scm",
+  // "gitlens.views.fileHistory.location": "explorer",
+  // "gitlens.views.lineHistory.location": "explorer",
+  // "gitlens.views.compare.location": "scm",
+  // "gitlens.views.search.location": "scm"
 }
