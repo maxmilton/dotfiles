@@ -2,7 +2,7 @@
   "dependencies": {
     "eslint": "^7.18.0",
     "firebase-tools": "^9.2.2",
-    "npm": "^6.14.11",
+    "npm": "^7.5.4",
     "prettier": "^2.2.1",
     "sirv-cli": "^1.0.10",
     "vim-node-rpc": "^0.1.34"
