@@ -6,7 +6,7 @@
 #
 
 # update completions
-fish_update_completions
+#fish_update_completions
 
 # remove universal variables to start afresh -- NOTE: This is destructive!
 mv "$HOME"/.config/fish/fish_variables "$HOME"/.config/fish/fish_variables-(date --iso-8601=minutes).bak
@@ -17,32 +17,37 @@ set -U fish_user_paths
 set -U fish_greeting
 
 # theme
-set -U fish_color_autosuggestion 555 brblack
-set -U fish_color_cancel -r
-set -U fish_color_command --bold
-set -U fish_color_comment red
-set -U fish_color_cwd green
-set -U fish_color_cwd_root red
-set -U fish_color_end brmagenta
+# FIXME: Tweak/use these or remove
+## set -U fish_color_autosuggestion 555 brblack
+## set -U fish_color_cancel -r
+## set -U fish_color_command --bold
+## set -U fish_color_comment red
+## set -U fish_color_cwd green
+## set -U fish_color_cwd_root red
+## set -U fish_color_end brmagenta
+## set -U fish_color_error brred
+## set -U fish_color_escape bryellow --bold
+## set -U fish_color_history_current --bold
+## set -U fish_color_host normal
+## set -U fish_color_match --background=brblue
+## set -U fish_color_normal normal
+## set -U fish_color_operator bryellow
+## set -U fish_color_param cyan
+## set -U fish_color_quote yellow
+## set -U fish_color_redirection brblue
+## set -U fish_color_search_match bryellow --background=brblack
+## set -U fish_color_selection white --bold --background=brblack
+## set -U fish_color_status red
+## set -U fish_color_user brgreen
+## set -U fish_color_valid_path --underline
+## set -U fish_pager_color_completion \x1d
+## set -U fish_pager_color_description B3A06D yellow
+## set -U fish_pager_color_prefix white --bold --underline
+## set -U fish_pager_color_progress brwhite --background=cyan
+
+set -U fish_color_autosuggestion yellow
 set -U fish_color_error brred
-set -U fish_color_escape bryellow --bold
-set -U fish_color_history_current --bold
-set -U fish_color_host normal
-set -U fish_color_match --background=brblue
-set -U fish_color_normal normal
-set -U fish_color_operator bryellow
-set -U fish_color_param cyan
-set -U fish_color_quote yellow
-set -U fish_color_redirection brblue
-set -U fish_color_search_match bryellow --background=brblack
-set -U fish_color_selection white --bold --background=brblack
-set -U fish_color_status red
-set -U fish_color_user brgreen
-set -U fish_color_valid_path --underline
-set -U fish_pager_color_completion \x1d
-set -U fish_pager_color_description B3A06D yellow
-set -U fish_pager_color_prefix white --bold --underline
-set -U fish_pager_color_progress brwhite --background=cyan
+set -U hydro_color_prompt magenta
 
 print_fish_colors
 
@@ -52,8 +57,8 @@ set -Ux VISUAL nvim
 set -Ux GIT_EDITOR 'nvim +startinsert'
 
 # Use local chrome instead of downloading every time
-set -Ux PUPPETEER_SKIP_CHROMIUM_DOWNLOAD 1
-set -Ux PUPPETEER_EXECUTABLE_PATH (type -p google-chrome-unstable)
+#set -Ux PUPPETEER_SKIP_CHROMIUM_DOWNLOAD 1
+#set -Ux PUPPETEER_EXECUTABLE_PATH (type -p google-chrome-unstable)
 
 set -Ux PLAYWRIGHT_BROWSERS_PATH "$HOME"/.pw-browsers
 
@@ -65,17 +70,17 @@ set -U fish_user_paths (brew --prefix coreutils)/libexec/gnubin $fish_user_paths
 # Chezmoi
 {{/* Ubuntu for client work (chezmoi is installed as deb) */}}
 {{- if ne .chezmoi.hostname "max-clients" }}
-set chezmoi_bin_path "$HOME"/.local/share/chezmoi/bin
-if test -d $chezmoi_bin_path
-set -U fish_user_paths $chezmoi_bin_path $fish_user_paths
-end
+#set chezmoi_bin_path "$HOME"/.local/share/chezmoi/bin
+#if test -d $chezmoi_bin_path
+#set -U fish_user_paths $chezmoi_bin_path $fish_user_paths
+#end
 {{- end }}
 
 # Google Cloud SDK
-set gcloud_bin_path "$HOME"/.google-cloud-sdk/bin
-if test -d $gcloud_bin_path
-  set -U fish_user_paths $gcloud_bin_path $fish_user_paths
-end
+#set gcloud_bin_path "$HOME"/.google-cloud-sdk/bin
+#if test -d $gcloud_bin_path
+#  set -U fish_user_paths $gcloud_bin_path $fish_user_paths
+#end
 
 # Node.js
 set node_bin_path "$HOME"/.config/yarn/global/node_modules/.bin
@@ -85,28 +90,28 @@ if test -d $node_bin_path
 end
 
 # Deno
-set deno_bin_path "$HOME"/.deno/bin
-if test -d $deno_bin_path
-  set -U fish_user_paths $deno_bin_path $fish_user_paths
-end
+#set deno_bin_path "$HOME"/.deno/bin
+#if test -d $deno_bin_path
+#  set -U fish_user_paths $deno_bin_path $fish_user_paths
+#end
 
 # Golang
-set -Ux GOPATH "$HOME"/Projects/go
-set go_bin_path "$GOPATH"/bin
-if test -d $go_bin_path
-  set -U fish_user_paths $go_bin_path $fish_user_paths
-end
+#set -Ux GOPATH "$HOME"/Projects/go
+#set go_bin_path "$GOPATH"/bin
+#if test -d $go_bin_path
+#  set -U fish_user_paths $go_bin_path $fish_user_paths
+#end
 
 # Rust
-set rust_bin_path "$HOME"/.cargo/bin
-if test -d $rust_bin_path
-  set -U fish_user_paths $rust_bin_path $fish_user_paths
-end
+#set rust_bin_path "$HOME"/.cargo/bin
+#if test -d $rust_bin_path
+#  set -U fish_user_paths $rust_bin_path $fish_user_paths
+#end
 
 # fisher plugins
-set -U FZF_COMPLETE 2
-set -U FZF_FIND_FILE_COMMAND "fd --type f . \$dir"
-set -U FZF_LEGACY_KEYBINDINGS 0
+# set -U FZF_COMPLETE 2
+# set -U FZF_FIND_FILE_COMMAND "fd --type f . \$dir"
+# set -U FZF_LEGACY_KEYBINDINGS 0
 
 # Misc
 abbr --add C 'math' # CLI calculator
@@ -157,30 +162,27 @@ abbr --add 644 'fd --type file --hidden --exclude \'*.sh\' --exec chmod 644 {}'
 abbr --add 644e 'find -O3 . -type d -name .git -prune -o -type f ! -name "*.sh" ! -executable -exec chmod 644 {} \;'
 
 # Sysadmin
-abbr --add ccurl "curl -vv -H 'Cache-Control: no-cache'"
+abbr --add curl "curl -vv -H 'Cache-Control: no-cache'"
 abbr --add scs 'sc status' # systemctl
 abbr --add scr 'sc restart'
-abbr --add getip 'curl icanhazip.com'
+#abbr --add getip 'curl icanhazip.com'
 abbr --add kk 'kill_process'
-abbr --add kkk 'kill_process --tcp'
-#abbr --add t 'terraform'
+#abbr --add kkk 'kill_process --tcp'
 # remove broken symlinks in dir
-abbr --add rmln 'find -L . -name . -o -type d -prune -o -type l -exec /bin/rm -rf {} \;'
+#abbr --add rmln 'find -L . -name . -o -type d -prune -o -type l -exec /bin/rm -rf {} \;'
 # remove node_modules dirs recursively
-abbr --add rmnm 'fd --type directory --hidden --no-ignore-vcs --exec /bin/rm -rf {} \; node_modules .'
+#abbr --add rmnm 'fd --type directory --hidden --no-ignore-vcs --exec /bin/rm -rf {} \; node_modules .'
 # remove yarn-error.log files recursively
-abbr --add rmye 'fd --type file --hidden --exec /bin/rm -rf {} \; yarn-error.log .'
+#abbr --add rmye 'fd --type file --hidden --exec /bin/rm -rf {} \; yarn-error.log .'
 # list open ports
-abbr --add lsport 'sudo echo -n; and sudo ss -plantu | fzy --lines=max'
+#abbr --add lsport 'sudo echo -n; and sudo ss -plantu | fzy --lines=max'
 # list open ports on BSD/macOS
-abbr --add lsnet 'sudo lsof -iTCP -sTCP:LISTEN -n -P'
+#abbr --add lsnet 'sudo lsof -iTCP -sTCP:LISTEN -n -P'
 # debug bash script
 abbr --add bashx 'env PS4="\$(if [[ \$? == 0 ]]; then echo \"\033[0;33mEXIT: \$? ✔\"; else echo \"\033[1;91mEXIT: \$? ❌\033[0;33m\"; fi)\n\nSTACK:\n\${BASH_SOURCE[0]}:\${LINENO}\n\${BASH_SOURCE[*]:1}\n\033[0m" bash -x'
-# https://wiki.archlinux.org/index.php/Pacman/Tips_and_tricks#Network_shared_pacman_cache
-abbr --add pkgcache 'docker run --rm -ti --network=host --volume=/var/lib/pacman/sync:/var/lib/pacman/sync --volume=/var/cache/pacman/pkg:/var/cache/pacman/pkg local/net-tools darkhttpd /var/cache/pacman/pkg --no-server-id --port 8080'
 
 # Net tools
-abbr --add nt 'docker run --rm -ti --network=host --volume="$PWD":/data local/net-tools'
+#abbr --add nt 'docker run --rm -ti --network=host --volume="$PWD":/data local/net-tools'
 abbr --add get 'docker run --rm -ti --volume="$HOME"/Downloads:/data --user=(id -u):(id -g) local/net-tools aria2c --dir /data'
 abbr --add curl 'docker run --rm -ti --network=host --volume="$HOME"/.curlrc:/root/.curlrc local/net-tools curl'
 #abbr --add darkhttpd 'docker run -d --network=host --volume="$PWD":/data local/net-tools darkhttpd'
@@ -211,7 +213,7 @@ abbr --add drma 'docker system prune'
 # show containers
 abbr --add dps 'docker ps -a'
 # monitor all containers
-abbr --add ds 'docker stats (docker ps -q)'
+#abbr --add ds 'docker stats (docker ps -q)'
 abbr --add dr 'docker run --rm -ti'
 abbr --add drr 'docker run --rm -ti local/alpine:edge sh'
 abbr --add dp 'docker pull'
@@ -224,29 +226,6 @@ abbr --add dip "docker inspect --format '{{"{{"}} .NetworkSettings.IPAddress {{"
 # get shell in host via docker
 #abbr --add dnse 'docker run -it --rm --privileged --pid=host justincormack/nsenter1'
 
-# K8s
-#abbr --add k 'kubectl'
-#abbr --add ka 'kubectl apply --dry-run -f'
-#abbr --add kx 'kubectl delete --dry-run -f'
-#abbr --add kg 'kubectl get'
-#abbr --add kgp 'kubectl get pods -o wide'
-#abbr --add kgs 'kubectl get services -o wide'
-#abbr --add kgd 'kubectl get deployments -o wide'
-#abbr --add kd 'kubectl describe'
-#abbr --add kdn 'kubectl describe nodes'
-#abbr --add kr 'kubectl rollout status deployments/'
-#abbr --add krs 'kubectl rollout status deployments/'
-#abbr --add krus 'kubectl rollout undo deployments/'
-#abbr --add ke 'kubectl exec'
-#abbr --add kp 'kubectl proxy'
-#abbr --add kpass 'kubectl -n kube-system describe secret (kubectl -n kube-system get secret | grep admin-user | awk \'{print $1}\')'
-#abbr --add h 'helm'
-#abbr --add hl 'helm ls --tls'
-#abbr --add hf 'helm fetch'
-#abbr --add hi 'helm install'
-#abbr --add i 'istioctl'
-#abbr --add ii 'istioctl kube-inject -f'
-
 # Development
 abbr --add uu 'yarn upgrade-interactive --latest'
 abbr --add yy 'clr; y'
@@ -256,17 +235,6 @@ abbr --add yt 'yarn run lint; and yarn jest --coverage'
 abbr --add yyt 'clr; yarn run lint; and yarn jest --coverage'
 abbr --add ys 'yarn run serve'
 abbr --add yi 'yarn info'
-abbr --add yii 'yit typescript \
-  && yit preact \
-  && yit preact-cli \
-  && yit preact-router \
-  && yit history \
-  && yit polka \
-  && yit sirv \
-  && yit sirv-cli'
-#abbr --add tl 'travis lint ./.travis.yml'
-#abbr --add rrr 'fd --type directory --hidden --no-ignore-vcs --exec /bin/rm -rf {} \; node_modules . ; /bin/rm yarn.lock; yarn'
-#abbr --add rrrr 'fd --type directory --exec /bin/rm -rf {} \; dist . ; fd --type directory --hidden --no-ignore-vcs --exec /bin/rm -rf {} \; node_modules . ; /bin/rm yarn.lock; yarn'
 abbr --add rrr '/bin/rm -rf ./node_modules/; /bin/rm -rf ./**/node_modules/; /bin/rm yarn.lock; yarn'
 abbr --add rrrr '/bin/rm -rf ./{dist,node_modules}/; /bin/rm -rf ./**/{dist,node_modules}/; /bin/rm yarn.lock; yarn'
 
