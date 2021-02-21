@@ -175,7 +175,7 @@ abbr --add kk 'kill_process'
 # remove yarn-error.log files recursively
 #abbr --add rmye 'fd --type file --hidden --exec /bin/rm -rf {} \; yarn-error.log .'
 # list open ports
-#abbr --add lsport 'sudo echo -n; and sudo ss -plantu | fzy --lines=max'
+abbr --add lsport 'sudo echo -n; and sudo ss -plantu | fzy --lines=max'
 # list open ports on BSD/macOS
 #abbr --add lsnet 'sudo lsof -iTCP -sTCP:LISTEN -n -P'
 # debug bash script
