@@ -6,27 +6,26 @@ Intended for use on a Linux OS. Limited support for macOS, BSD, or UNIX-like OSe
 
 ### Install
 
-Download the latest version of `chezmoi` from <https://github.com/twpayne/chezmoi/releases> or install from source (recommended when you have a go compiler toolchain):
+1. Install `chezmoi` using your package manager or manually download the [latest release](https://github.com/twpayne/chezmoi/releases).
 
-```sh
-go get -u github.com/twpayne/chezmoi
-```
+1. Initialise local state:
+    ```sh
+    chezmoi init git@github.com:MaxMilton/dotfiles.git -v
+    ```
 
-Initialise the `chezmoi` local state:
+1. Optionally, run post install script:
+    ```sh
+    # bash
+    sh $(chezmoi source-path)/.install/install.sh
 
-```sh
-chezmoi init git@github.com:MaxMilton/dotfiles.git -v
-```
+    # fish
+    sh (chezmoi source-path)/.install/install.sh
+    ```
 
-Run post install script
+#### "One shot" install on ephemeral systems
 
-```sh
-# bash
-sh $(chezmoi source-path)/.install/install.sh
-
-# fish
-sh (chezmoi source-path)/.install/install.sh
-```
+1. Download [latest standalone (.tar.gz) release](https://github.com/twpayne/chezmoi/releases). Must be version >= 2
+1. `chezmoi init --one-shot MaxMilton`
 
 ### Update
 
@@ -36,8 +35,8 @@ chezmoi update -v
 
 ## Licence
 
-The contents of this repo are MIT licensed open source. See [LICENCE](https://github.com/MaxMilton/dotfiles/blob/master/LICENCE).
+MIT. See [LICENCE](https://github.com/MaxMilton/dotfiles/blob/master/LICENCE).
 
 -----
 
-© 2019 [Max Milton](https://maxmilton.com)
+© 2021 [Max Milton](https://maxmilton.com)

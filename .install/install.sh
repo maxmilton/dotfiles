@@ -1,6 +1,10 @@
 #!/bin/sh
 set -euf
 
+# TODO: Convert this file into a chezmoi/golang template so we can do different
+# things for different machines using chezmoi variables and then make it auto
+# run on chezmoi init -- https://github.com/twpayne/chezmoi/blob/master/docs/HOWTO.md#use-scripts-to-perform-actions
+
 # directory of this script
 DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 
