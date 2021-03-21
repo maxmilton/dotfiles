@@ -1,5 +1,5 @@
 function up_yarn --description 'Update global yarn packages'
-  if type --quiet yarn
+  if type --query yarn
     set --local yarn_global_dir "$HOME"/.config/yarn/global
 
     if test -d $yarn_global_dir

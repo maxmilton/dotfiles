@@ -1,5 +1,5 @@
 function up_hosts --description 'Update dnsmasq blacklist hosts file'
-  if type --quiet dnsmasq
+  if type --query dnsmasq
     if systemctl is-enabled dnsmasq.service 2>/dev/null
       set --local URL https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/fakenews-gambling-porn-social/hosts
       set --local TEMP_FILE /tmp/hosts
