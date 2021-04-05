@@ -56,7 +56,7 @@ set -Ux GIT_EDITOR 'nvim +startinsert'
 
 {{- if eq .chezmoi.os "darwin" }}
 # macOS
-set -U fish_user_paths (brew --prefix coreutils)/libexec/gnubin $fish_user_paths
+set -U fish_user_paths "$HOME"/.nix-profile/bin $fish_user_paths
 {{- end }}
 
 # Node.js
