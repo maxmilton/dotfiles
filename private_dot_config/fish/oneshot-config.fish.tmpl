@@ -11,6 +11,10 @@ mv "$HOME"/.config/fish/fish_variables "$HOME"/.config/fish/fish_variables-(date
 # set arbitrary var to initialise `fish_variables` file
 set -U fish_user_paths
 
+# FIXME: Destroying the universal vars breaks fisher and fisher plugins
+#   ↳ Requires manually removing all plugin files and reinstalling fisher and plugins :(
+#   ↳ https://github.com/jorgebucaran/fisher/issues/611
+
 # disable welcome message
 set -U fish_greeting
 
