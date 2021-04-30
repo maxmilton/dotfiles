@@ -54,6 +54,7 @@
   "diffEditor.ignoreTrimWhitespace": false,
   // "diffEditor.renderSideBySide": false,
   "terminal.integrated.rendererType": "experimentalWebgl",
+  "terminal.integrated.shell.linux": "bash",
   "vsintellicode.modify.editor.suggestSelection": "choseToUpdateConfiguration",
   "breadcrumbs.enabled": true,
   "files.insertFinalNewline": true,
@@ -62,6 +63,7 @@
     "**/.*cache": true,
     "**/.git": true,
     "**/.tsbuildinfo": true,
+    "**/coverage": true,
     "**/node_modules": true,
     "**/package-lock.json": true,
     "**/tmp": true,
@@ -78,12 +80,14 @@
     "**/*.map": true,
     "**/*.min.*": true,
     "**/build/**": true,
+    "**/coverage/**": true,
     "**/dist/**": true,
     "**/export/**": true,
     "**/node_modules/**": true,
     "**/package-lock.json": true,
     "**/public/**": true,
     "**/test/**": true,
+    "**/tests/**": true,
     "**/tmp/**": true,
     "**/yarn.lock": true
   },
@@ -151,6 +155,11 @@
     "typescriptreact",
     "yaml"
   ],
+  "spellright.parserByClass": {
+    "properties": {
+      "parser": "plain"
+    }
+  },
   "spellright.spellContext": "body code comments strings",
   "spellright.suggestionsInHints": false,
   "spellright.ignoreFiles": [
