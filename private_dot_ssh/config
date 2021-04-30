@@ -2,7 +2,7 @@
 
 # New key generation example
 # Compatible with OpenSSH 6.5+ and fixed-size (256 bytes).
-#ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519_wearegenki_$(date +%Y-%m-%d) -C "We Are Genki key for xyz"
+#ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519_maxmilton_$(date +%Y-%m-%d) -C "Max Milton key for xyz"
 
 # Ensure KnownHosts are unreadable if leaked - it is otherwise easier to know which hosts your keys have access to.
 HashKnownHosts yes
