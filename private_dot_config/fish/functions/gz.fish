@@ -14,14 +14,14 @@ function gz --description 'Compare gzip\'d sizes of a file'
 
   # original file
   set -l orig (echo "$input" | wc -c)
-  set -l sizek1 (math -s2 "$orig / 1024")
+  set -l sizek1 (math -s2 "$orig / 1000")
 
   # gzip -6
   set -l start2 (date '+%s%3N')
   set -l size2 (echo "$input" | gzip -cf -6 | wc -c)
   set -l stop2 (date '+%s%3N')
   set -l duration2 (math "$stop2 - $start2")
-  set -l sizek2 (math -s2 "$size2 / 1024")
+  set -l sizek2 (math -s2 "$size2 / 1000")
   # set -l percent2 (math -s2 "($size2 / $orig) * 100")
   set -l percent2 (math -s2 "($size2 / $orig) * 100")
 
@@ -30,7 +30,7 @@ function gz --description 'Compare gzip\'d sizes of a file'
   set -l size3 (echo "$input" | gzip -cf -9 | wc -c)
   set -l stop3 (date '+%s%3N')
   set -l duration3 (math "$stop3 - $start3")
-  set -l sizek3 (math -s2 "$size3 / 1024")
+  set -l sizek3 (math -s2 "$size3 / 1000")
   set -l percent3 (math -s2 "($size3 / $orig) * 100")
 
   # brotli -9
@@ -38,7 +38,7 @@ function gz --description 'Compare gzip\'d sizes of a file'
   set -l size4 (echo "$input" | brotli -cf -9 | wc -c)
   set -l stop4 (date '+%s%3N')
   set -l duration4 (math "$stop4 - $start4")
-  set -l sizek4 (math -s2 "$size4 / 1024")
+  set -l sizek4 (math -s2 "$size4 / 1000")
   set -l percent4 (math -s2 "($size4 / $orig) * 100")
 
   # brotli -Z (best; same as -11)
@@ -46,7 +46,7 @@ function gz --description 'Compare gzip\'d sizes of a file'
   set -l size5 (echo "$input" | brotli -cf -Z | wc -c)
   set -l stop5 (date '+%s%3N')
   set -l duration5 (math "$stop5 - $start5")
-  set -l sizek5 (math -s2 "$size5 / 1024")
+  set -l sizek5 (math -s2 "$size5 / 1000")
   set -l percent5 (math -s2 "($size5 / $orig) * 100")
 
   echo ""
