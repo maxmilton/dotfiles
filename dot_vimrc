@@ -147,18 +147,18 @@ cabbr <expr> %% expand('%:p:h')
 nnoremap <Leader>o i<CR><Esc>O
 
 " rounding utility
-function! RoundTo(n_digits)
-  exec ':s/\d\+\.\d\{'.a:n_digits.',}/\=printf("%.'.a:n_digits.'f",str2float(submatch(0)))/g'
-endfunc
+"function! RoundTo(n_digits)
+"  exec ':s/\d\+\.\d\{'.a:n_digits.',}/\=printf("%.'.a:n_digits.'f",str2float(submatch(0)))/g'
+"endfunc
 
 " show highlight groups, from https://jordanelver.co.uk/blog/2015/05/27/working-with-vim-colorschemes/
-nmap <leader>sp :call <SID>SynStack()<CR>
-function! <SID>SynStack()
-  if !exists("*synstack")
-    return
-  endif
-  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-endfunc
+"nmap <leader>sp :call <SID>SynStack()<CR>
+"function! <SID>SynStack()
+"  if !exists("*synstack")
+"    return
+"  endif
+"  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+"endfunc
 
 """"""""""""""
 " True color "
