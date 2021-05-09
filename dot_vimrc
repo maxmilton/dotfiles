@@ -88,9 +88,6 @@ let g:lightline = {
   \ 'subseparator': { 'left': '', 'right': '' }
   \ }
 
-" EasyMotion
-map <Leader> <Plug>(easymotion-w)
-
 " TypeScript
 let g:tsuquyomi_disable_quickfix = 1
 let g:syntastic_typescript_checkers = ['tsuquyomi']
