@@ -58,6 +58,8 @@ set -Ux EDITOR nvim
 set -Ux VISUAL nvim
 set -Ux GIT_EDITOR 'nvim +startinsert'
 
+set -Ux RIPGREP_CONFIG_PATH "$HOME"/.ripgreprc
+
 {{- if eq .chezmoi.os "darwin" }}
 # macOS
 set -U fish_user_paths "$HOME"/.nix-profile/bin /nix/var/nix/profiles/default/bin $fish_user_paths
