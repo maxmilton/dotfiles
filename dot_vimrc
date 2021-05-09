@@ -9,34 +9,34 @@ call plug#begin('~/.vim/plugged')
 " File/session management
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
 Plug 'jremmen/vim-ripgrep', { 'on': 'Rg' }
-Plug 'xolox/vim-misc'
-Plug 'xolox/vim-session'
-Plug 'wesQ3/vim-windowswap'
+"Plug 'xolox/vim-misc'
+"Plug 'xolox/vim-session'
+"Plug 'wesQ3/vim-windowswap'
 
 " Syntax and linting
 Plug 'sheerun/vim-polyglot'
 Plug 'scrooloose/syntastic'
-Plug 'editorconfig/editorconfig-vim'
-Plug 'chrisbra/Colorizer', { 'on': 'ColorHighlight' }
-Plug 'mattn/emmet-vim'
+"Plug 'editorconfig/editorconfig-vim'
+"Plug 'chrisbra/Colorizer', { 'on': 'ColorHighlight' }
+"Plug 'mattn/emmet-vim'
 Plug 'prettier/vim-prettier', { 'do': 'npm install', 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql'] }
 
 " Git
-Plug 'tpope/vim-fugitive'
-Plug 'gregsexton/gitv', { 'on': 'Gitv' }
+"Plug 'tpope/vim-fugitive'
+"Plug 'gregsexton/gitv', { 'on': 'Gitv' }
 Plug 'airblade/vim-gitgutter'
 
 " Session
-Plug 'christoomey/vim-tmux-navigator'
+"Plug 'christoomey/vim-tmux-navigator'
 
 " Status line
 Plug 'itchyny/lightline.vim'
 
 " REST
-Plug 'diepm/vim-rest-console', { 'for': 'rest' }
+"Plug 'diepm/vim-rest-console', { 'for': 'rest' }
 
 " Misc
-Plug 'andrewradev/linediff.vim'
+"Plug 'andrewradev/linediff.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 
@@ -75,8 +75,8 @@ if executable('fzy') && executable('rg')
 endif
 
 " Vim-session
-let g:session_autoload = 'no'
-let g:session_autosave = 'no'
+"let g:session_autoload = 'no'
+"let g:session_autosave = 'no'
 
 " Lightline
 let g:lightline = {
