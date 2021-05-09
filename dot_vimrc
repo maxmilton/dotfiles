@@ -178,4 +178,4 @@ endif
 """"""""""""""
 
 au BufRead,BufNewFile *.svelte setfiletype html
-au BufRead,BufNewFile *.pcss setfiletype scss
+au BufRead,BufNewFile *.xcss setfiletype scss
