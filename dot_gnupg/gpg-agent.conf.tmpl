@@ -1,0 +1,4 @@
+use-standard-socket
+{{- if eq .chezmoi.os "linux" }}
+pinentry-program /usr/bin/pinentry-gnome3
+{{- end }}
