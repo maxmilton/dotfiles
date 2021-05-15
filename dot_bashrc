@@ -2,40 +2,28 @@
 [[ $- != *i* ]] && return
 
 # Use global definitions
-if [ -f /etc/bashrc ]; then
-  source /etc/bashrc
-fi
+test -f /etc/bashrc && source /etc/bashrc
 
 PS1="\$(if [[ \$? == 0 ]]; then echo \"\[\033[01;32m\]:)\"; else echo \"\[\033[01;31m\]:(\"; fi) $(if [[ ${EUID} == 0 ]]; then echo '\[\033[01;31m\]\h\[\033[01;34m\] \w \$'; else echo '\[\033[01;32m\]\u@\h\[\033[01;34m\] \w \#'; fi) \[\033[00m\] "
 
 # Better auto completion
-if [ -f /etc/bash_completion ]; then
-  source /etc/bash_completion
-fi
+test -f /etc/bash_completion && source /etc/bash_completion
 bind 'set completion-ignore-case on'
 bind 'set show-all-if-ambiguous on'
 bind 'set show-all-if-unmodified on'
 bind 'TAB:menu-complete'
 
+test -f /etc/bash_completion
+
 # Default editor
-export EDITOR='vim'
-export VISUAL='vim'
-export GIT_EDITOR='vim +startinsert'
+command -v nvim >/dev/null 2>&1 && alias vi='nvim'
+export EDITOR='vi'
+export VISUAL='vi'
+export GIT_EDITOR='vi +startinsert'
 
 # Better ls performance
 export LS_COLORS='ex=00:su=00:sg=00:ca=00:'
 alias ls='ls --color=auto'
-
-# Update system packages
-up_system() {
-  case $(awk -F "=" '/^NAME/ {print $2}' /etc/os-release | tr -d '"') in
-    'Arch Linux' ) yaourt -Syu --aur ;;
-    Fedora ) dnf update --refresh -y ;;
-    'Debian GNU/Linux' | Ubuntu ) apt update && apt upgrade --no-install-recommends -y ;;
-    'Alpine Linux' ) apk upgrade --update-cache ;;
-    'CentOS Linux' | 'Red Hat Enterprise Linux Server' ) yum update -y ;;
-  esac
-}
 
 # Aliases: System
 alias ..='cd ..'
@@ -46,13 +34,14 @@ alias ......='cd ../../../../..'
 alias .......='cd ../../../../../..'
 alias -- -='cd -'
 alias s='sudo -i'
+alias man='man -a'
 alias clr='printf "\x1Bc"'
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
 alias l='ls -aCFhlX --group-directories-first'
 alias ll='ls -lh'
-alias dux='du -hs | sort -h'
+alias dux='du -bh | sort -h'
 alias dus='du --block-size=MiB --max-depth=1 | sort -n'
 alias 755='find -O3 . -type d -name .git -prune -o -type d -exec chmod 755 {} \;'
 alias 644='find -O3 . -type d -name .git -prune -o -type f ! -name "*.sh" ! -executable -exec chmod 644 {} \;'
@@ -60,16 +49,12 @@ alias sc='systemctl'
 alias scs='systemctl status'
 alias scr='systemctl restart'
 alias jc='journalctl'
-alias jcd='journalctl --disk-usage && journalctl --verify'
-alias jcdd='journalctl --vacuum-size=1G'
 
 # Aliases: Sysadmin
-alias ppp='up_system'
-alias getip='curl icanhazip.com'
+alias netinfo='curl https://ifconfig.me/all'
 alias ta='tmux attach'
 
 # Aliases: Containers
-alias k='kubectl'
 alias d='docker'
 alias di='docker images'
 alias dps='docker ps -a'
@@ -90,6 +75,20 @@ alias gp='git pull --prune'
 alias gd='git diff'
 alias ga='git add'
 alias gc='git commit --verbose'
+alias gca='git commit --verbose --all'
+alias gco='git checkout'
+alias gb='git branch --all'
+alias gt='git tag'
 
-# Check for active tmux sessions (if tmux is installed)
-command -v tmux >/dev/null 2>&1 && (echo "🔹 tmux ls" && tmux ls) || true
+# Aliases: Development
+alias y='yarn run start || yarn run dev'
+alias uu='yarn upgrade-interactive --latest'
+alias yb='yarn run build'
+alias yt='yarn run lint; and yarn run test'
+alias ys='yarn run serve'
+alias yi='yarn info'
+alias rr='npx yarn-deduplicate && /bin/rm -rf ./node_modules/.yarn-integrity; yarn'
+alias rrr='/bin/rm -rf ./{dist,node_modules}/; /bin/rm -rf ./**/{dist,node_modules}/; /bin/rm yarn.lock; yarn'
+
+# Check for active tmux sessions
+command -v tmux >/dev/null 2>&1 && (echo '🔹 tmux ls' && tmux ls) || true
