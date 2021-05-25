@@ -69,7 +69,8 @@ set -U fish_user_paths "$HOME"/.nix-profile/bin /nix/var/nix/profiles/default/bi
 set node_bin_path "$HOME"/.config/yarn/global/node_modules/.bin
 if test -d $node_bin_path
   set -U fish_user_paths $node_bin_path $fish_user_paths
-  set -Ux NODE_PRESERVE_SYMLINKS 1
+  # Only useful for yarn monorepos with link: protocol symlinks. Breaks pnpm monorepos!!
+  #set -Ux NODE_PRESERVE_SYMLINKS 1
 end
 
 # Misc
@@ -202,6 +203,14 @@ abbr --add ydd 'npx yarn-deduplicate'
 abbr --add rr 'npx yarn-deduplicate && /bin/rm -rf ./node_modules/.yarn-integrity; yarn'
 abbr --add rrr '/bin/rm -rf ./node_modules/; /bin/rm -rf ./**/node_modules/; /bin/rm yarn.lock; yarn'
 abbr --add rrrr '/bin/rm -rf ./{dist,node_modules}/; /bin/rm -rf ./**/{dist,node_modules}/; /bin/rm yarn.lock; yarn'
+abbr --add j 'pnpm'
+abbr --add jj 'clr; pnpm'
+abbr --add jb 'pnpm run build'
+abbr --add jjb 'clr; pnpm run build'
+abbr --add jr '/bin/rm pnpm-lock.yam; and pnpm install'
+abbr --add jt 'pnpm run lint; and pnpm run test'
+abbr --add js 'pnpm run serve'
+abbr --add ju 'pnpm upgrade --interactive --latest -r'
 
 # Git
 abbr --add g 'git'
