@@ -208,9 +208,12 @@ abbr --add jj 'clr; pnpm'
 abbr --add jb 'pnpm run build'
 abbr --add jjb 'clr; pnpm run build'
 abbr --add jr '/bin/rm pnpm-lock.yaml; and pnpm install'
+abbr --add jrr '/bin/rm -rf ./pnpm-lock.yaml ./node_modules/ ./**/node_modules/; pnpm install'
+abbr --add jrrr '/bin/rm -rf ./pnpm-lock.yaml ./{dist,node_modules}/ ./**/{dist,node_modules}/; pnpm install'
 abbr --add jt 'pnpm run lint; and pnpm run test'
 abbr --add jjt 'clr; pnpm run lint; and pnpm run test'
 abbr --add js 'pnpm run serve'
+abbr --add ji 'pnpm info'
 abbr --add ju 'pnpm upgrade --interactive --latest -r'
 
 # Git
