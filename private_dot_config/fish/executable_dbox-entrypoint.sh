@@ -85,6 +85,7 @@ if [ ! -f /first-run ]; then
   echo '1' > /first-run
   set +x
   echo -e "\\n${yellow_bold}First-time setup finished. Welcome to dbox!${reset}\\n"
+  printf '\a'
 else
   # # FIXME: After this compile the fish config again
   # # update dot files (in the background)
