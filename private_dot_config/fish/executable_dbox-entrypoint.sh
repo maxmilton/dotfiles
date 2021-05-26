@@ -23,6 +23,7 @@ yellow_bold='\e[1;93m'
 
 if [ ! -f /first-run ]; then
   echo -e "${yellow_bold}New dbox, running first-time setup...${reset}\\n"
+  set -x
 
   # set dbox user
   addgroup -g 6805 -S dbox
@@ -44,75 +45,65 @@ if [ ! -f /first-run ]; then
   # install base deps + tools
   apk add --update \
     curl \
-    docs \
     docker \
+    docs \
     fish \
     git \
     less \
-    man \
     man-pages \
-    mdocml-apropos \
+    mandoc-apropos \
     sudo
-    # XXX: If busybox built-ins are not enough, install:
-    # util-linux pciutils usbutils coreutils binutils findutils grep
+
+    # # replacements for busybox built-ins
+    # binutils \
+    # coreutils \
+    # findutils \
+    # grep \
+    # pciutils \
+    # usbutils \
+    # util-linux
 
   # install glibc
   # apk add ca-certificates wget
   # wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub
-  # wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.28-r0/glibc-2.28-r0.apk
+  # wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.33-r0/glibc-2.33-r0.apk
   # apk add glibc-*.apk
 
   # no password sudo access
   echo -e "%wheel\\tALL=(ALL) NOPASSWD: ALL" > /etc/sudoers
 
-  mkdir -p ~/.config/fish
+  # install fisher
+  sudo -u dbox -i fish -c 'curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher'
+  # install fisher plugins
+  sudo -u dbox -i fish -c 'fisher install jorgebucaran/autopair.fish'
+  sudo -u dbox -i fish -c 'fisher install jorgebucaran/hydro'
 
-  # write fish shell config file for root user
-  cat > ~/.config/fish/config.fish <<'EOF'
-set -U fisher_path /home/dbox/.config/fish
-set -U fisher_config /home/dbox/.config/fisherman
-set -U fisher_cache /home/dbox/.cache/fisherman
+  # install dotfiles
+  sudo -u dbox sh -c 'BINDIR=/home/dbox/bin sh -c "$(curl -fsLS git.io/chezmoi)" -- init maxmilton --depth 0 --apply'
 
-for file in $fisher_path/conf.d/*.fish
-  builtin source $file 2> /dev/null
-end
-
-set fish_function_path $fisher_path/functions $fish_function_path
-set fish_complete_path $fisher_path/completions $fish_complete_path
-EOF
-
-  # install fisherman
-  curl -Lo /home/dbox/.config/fish/functions/fisher.fish --create-dirs https://git.io/fisher
-
-  # set up fish functions
-  git clone --depth 1 https://github.com/MaxMilton/dotfiles.git /home/dbox/.dotfiles
-  ln -s /home/dbox/.dotfiles/fish/.config/fish/functions/* /home/dbox/.config/fish/functions/
+  # compile fish config
+  sudo -u dbox -i fish /home/dbox/.config/fish/oneshot-config.fish
 
   # set correct permissions
   chown -R dbox:dbox /home/dbox
 
-  # install fisherman plugins
-  sudo -u dbox fish -c 'fisher add MaxMilton/pure'
-
-  # compile fish config (for root and dbox users)
-  fish /home/dbox/.dotfiles/fish/.config/fish/oneshot-config.fish
-  sudo -u dbox fish /home/dbox/.dotfiles/fish/.config/fish/oneshot-config.fish
-
-  # change root shell
-  sed -i -- 's/root:\/bin\/ash/root:\/usr\/bin\/fish/' /etc/passwd
-
-  # write fish shell config file for dbox user
-  cat > /home/dbox/.config/fish/config.fish <<'EOF'
-alias docker 'sudo docker'
-set -xU PAGER 'less'
-EOF
-
   echo '1' > /first-run
+  set +x
+  echo -e "\\n${yellow_bold}First-time setup finished. Welcome to dbox!${reset}\\n"
 else
-  # FIXME: After this compile the fish config again
-  # update dot files (in the background)
-  nohup git -C /home/dbox/.dotfiles pull --update-shallow &>/dev/null &
+  # # FIXME: After this compile the fish config again
+  # # update dot files (in the background)
+  # nohup git -C /home/dbox/.dotfiles pull --update-shallow &>/dev/null &
+  echo -e "${yellow_bold}All your base are belong to us.${reset}\\n"
 fi
+
+# overwrite fish config file
+cat > /home/dbox/.config/fish/config.fish <<'EOF'
+set -x GPG_TTY (tty)
+set -U hydro_color_prompt
+set -U PAGER 'less'
+alias docker 'sudo docker'
+EOF
 
 # allow docker '--user' argument or run as root if commands are passed in
 if [ "$(id -u)" != 0 ] || [ -n "$*" ]; then
