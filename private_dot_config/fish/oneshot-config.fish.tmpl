@@ -62,13 +62,13 @@ set -Ux RIPGREP_CONFIG_PATH "$HOME"/.ripgreprc
 
 {{- if eq .chezmoi.os "darwin" }}
 # macOS
-set -U fish_user_paths "$HOME"/.nix-profile/bin /nix/var/nix/profiles/default/bin $fish_user_paths
+fish_add_path "$HOME"/.nix-profile/bin /nix/var/nix/profiles/default/bin
 {{- end }}
 
 # Node.js
 set node_bin_path "$HOME"/.config/yarn/global/node_modules/.bin
 if test -d $node_bin_path
-  set -U fish_user_paths $node_bin_path $fish_user_paths
+  fish_add_path $node_bin_path
   # Only useful for yarn monorepos with link: protocol symlinks. Breaks pnpm monorepos!!
   #set -Ux NODE_PRESERVE_SYMLINKS 1
 end
@@ -207,7 +207,7 @@ abbr --add jj 'clr; pnpm'
 abbr --add jb 'pnpm run build'
 abbr --add jjb 'clr; pnpm run build'
 abbr --add jr '/bin/rm pnpm-lock.yaml; and pnpm install'
-abbr --add jrr '/bin/rm -rf pnpm-lock.yaml **/node_modules/; pnpm install'
+abbr --add jrr '/bin/rm -rf pnpm-lock.yaml **/node_modules; pnpm install'
 abbr --add jrrr '/bin/rm -rf pnpm-lock.yaml **/{dist,node_modules}; pnpm install'
 abbr --add jt 'pnpm run lint; and pnpm run test'
 abbr --add jjt 'clr; pnpm run lint; and pnpm run test'
@@ -246,9 +246,8 @@ abbr --add gouta 'git log --stat --branches --not --remotes'
 abbr --add gin 'git log --stat .."@{u}"'
 abbr --add gc 'git commit --verbose'
 abbr --add gca 'git commit --verbose --all'
-abbr --add gg 'gchkout'
-abbr --add gco 'git checkout' # better to use gg/gchkout function most of the time
-abbr --add ggo 'git checkout (git branch --all --format "%(refname:lstrip=2)" | fzy --lines max)'
+abbr --add gco 'git checkout' # XXX: Better to use gg function
+abbr --add ggg 'git checkout (git branch --all --format "%(refname:lstrip=2)" | fzy --lines max)'
 abbr --add gb 'git branch --all'
 abbr --add gm 'git merge'
 abbr --add gt 'git tag'
