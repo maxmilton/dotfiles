@@ -47,6 +47,8 @@ if [ ! -f /first-run ]; then
     curl \
     docker \
     docs \
+    exa \
+    fd \
     fish \
     git \
     less \
@@ -55,6 +57,7 @@ if [ ! -f /first-run ]; then
     sudo
     # replacements for busybox built-ins
     #binutils coreutils findutils grep pciutils usbutils util-linux
+    #bat
 
   # install glibc
   # apk add ca-certificates wget
