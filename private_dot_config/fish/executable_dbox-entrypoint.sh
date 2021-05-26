@@ -53,15 +53,8 @@ if [ ! -f /first-run ]; then
     man-pages \
     mandoc-apropos \
     sudo
-
-    # # replacements for busybox built-ins
-    # binutils \
-    # coreutils \
-    # findutils \
-    # grep \
-    # pciutils \
-    # usbutils \
-    # util-linux
+    # replacements for busybox built-ins
+    #binutils coreutils findutils grep pciutils usbutils util-linux
 
   # install glibc
   # apk add ca-certificates wget
@@ -72,14 +65,13 @@ if [ ! -f /first-run ]; then
   # no password sudo access
   echo -e "%wheel\\tALL=(ALL) NOPASSWD: ALL" > /etc/sudoers
 
-  # install fisher
+  # install fisher and plugins
   sudo -u dbox -i fish -c 'curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher'
-  # install fisher plugins
   sudo -u dbox -i fish -c 'fisher install jorgebucaran/autopair.fish'
   sudo -u dbox -i fish -c 'fisher install jorgebucaran/hydro'
 
   # install dotfiles
-  sudo -u dbox sh -c 'BINDIR=/home/dbox/bin sh -c "$(curl -fsLS git.io/chezmoi)" -- init maxmilton --depth 0 --apply'
+  sudo -u dbox BINDIR=/home/dbox/bin sh -c "$(curl -fsLS git.io/chezmoi)" -- init maxmilton --depth 0 --apply
 
   # compile fish config
   sudo -u dbox -i fish /home/dbox/.config/fish/oneshot-config.fish
