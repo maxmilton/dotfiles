@@ -97,8 +97,8 @@ fi
 # overwrite fish config file
 cat > /home/dbox/.config/fish/config.fish <<'EOF'
 set -x GPG_TTY (tty)
+set -x PAGER 'less'
 set -U hydro_color_prompt
-set -U PAGER 'less'
 alias docker 'sudo docker'
 EOF
 

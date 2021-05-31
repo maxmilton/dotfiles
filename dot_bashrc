@@ -13,8 +13,6 @@ bind 'set show-all-if-ambiguous on'
 bind 'set show-all-if-unmodified on'
 bind 'TAB:menu-complete'
 
-test -f /etc/bash_completion
-
 # Default editor
 command -v nvim >/dev/null 2>&1 && alias vi='nvim'
 export EDITOR='vi'
@@ -49,9 +47,12 @@ alias sc='systemctl'
 alias scs='systemctl status'
 alias scr='systemctl restart'
 alias jc='journalctl'
+alias jcf='journalctl -f -o cat'
 
 # Aliases: Sysadmin
+alias pp="apt-get update && apt-get upgrade -y --no-install-recommends && apt-get dist-upgrade --no-install-recommends"
 alias netinfo='curl https://ifconfig.me/all'
+alias t='tmux'
 alias ta='tmux attach'
 
 # Aliases: Containers
@@ -81,14 +82,21 @@ alias gb='git branch --all'
 alias gt='git tag'
 
 # Aliases: Development
-alias y='yarn run start || yarn run dev'
-alias uu='yarn upgrade-interactive --latest'
+alias y='yarn'
+alias yu='yarn upgrade-interactive --latest'
 alias yb='yarn run build'
 alias yt='yarn run lint && yarn run test'
 alias ys='yarn run serve'
-alias yi='yarn info'
-alias rr='npx yarn-deduplicate && /bin/rm -rf ./node_modules/.yarn-integrity; yarn'
-alias rrr='/bin/rm -rf ./{dist,node_modules}/; /bin/rm -rf ./**/{dist,node_modules}/; /bin/rm yarn.lock; yarn'
+alias yr='npx yarn-deduplicate && /bin/rm -rf ./node_modules/.yarn-integrity; yarn'
+alias j='pnpm'
+alias ju='pnpm upgrade --interactive --latest --recursive'
+alias ji='pnpm install --prefer-frozen-lockfile=false'
+alias jr='/bin/rm pnpm-lock.yaml; and pnpm install'
+alias jrr='/bin/rm -rf pnpm-lock.yaml **/node_modules; pnpm install'
+alias jb='pnpm run build'
+alias jt='pnpm run lint; and pnpm run test'
+alias jtt='pnpm run test-e2e'
+alias js='pnpm run serve'
 
 # Check for active tmux sessions
 command -v tmux >/dev/null 2>&1 && (echo '🔹 tmux ls' && tmux ls) || true
