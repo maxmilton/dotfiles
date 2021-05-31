@@ -44,9 +44,11 @@ if [ ! -f /first-run ]; then
 
   # install base deps + tools
   apk add --update \
+    bat \
     curl \
     docker \
     docs \
+    entr \
     exa \
     fd \
     fish \
@@ -57,7 +59,6 @@ if [ ! -f /first-run ]; then
     sudo
     # replacements for busybox built-ins
     #binutils coreutils findutils grep pciutils usbutils util-linux
-    #bat
 
   # install glibc
   # apk add ca-certificates wget
