@@ -35,5 +35,11 @@
   {
     "key": "ctrl+r",
     "command": "workbench.action.openRecent"
+  },
+  // removed as default from VS Code v1.57.0
+  {
+    "key": "ctrl+w",
+    "command": "workbench.action.closeWindow",
+    "when": "!editorIsOpen && !multipleEditorGroups"
   }
 ]
