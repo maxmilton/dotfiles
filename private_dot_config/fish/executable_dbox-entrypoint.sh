@@ -99,6 +99,7 @@ cat > /home/dbox/.config/fish/config.fish <<'EOF'
 set -x GPG_TTY (tty)
 set -x PAGER 'less'
 set -U hydro_color_prompt
+set -U hydro_symbol_prompt 'dbox ❱'
 alias docker 'sudo docker'
 EOF
 
