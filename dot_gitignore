@@ -10,8 +10,9 @@
 \#*
 
 # Development
-*.code-workspace
 .*cache
+.clinic/
 .vscode/spellright.dict
+*.code-workspace
 node_modules
 yarn-error.log
