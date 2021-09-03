@@ -19,7 +19,7 @@ Plug 'scrooloose/syntastic'
 "Plug 'editorconfig/editorconfig-vim'
 "Plug 'chrisbra/Colorizer', { 'on': 'ColorHighlight' }
 "Plug 'mattn/emmet-vim'
-Plug 'prettier/vim-prettier', { 'do': 'yarn install', 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql'] }
+Plug 'prettier/vim-prettier', { 'do': 'pnpm install', 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql'] }
 
 " Git
 "Plug 'tpope/vim-fugitive'
