@@ -20,18 +20,15 @@
   {{- end }}
   "workbench.productIconTheme": "fluent-icons",
   "workbench.tips.enabled": false,
+  "workbench.colorCustomizations": {
+    "editorInlayHint.foreground": "#5C6370",
+    "editorInlayHint.background": "#262930"
+  },
   "explorer.confirmDragAndDrop": false,
   "explorer.confirmDelete": false,
   "editor.tokenColorCustomizations": {
-    "textMateRules": [
-      // Darker comments with `One Dark Pro` theme
-      {
-        "scope": "comment, punctuation.definition.comment",
-        "settings": {
-          "foreground": "#5C6370"
-        }
-      }
-    ]
+    // Darker comments with `One Dark Pro` theme
+    "comments": "#5C6370"
   },
   "editor.snippetSuggestions": "top",
   "editor.renderLineHighlight": "all",
@@ -53,8 +50,10 @@
     "source.fixAll.eslint": false // Prefer project level config
   },
   "editor.wordBasedSuggestionsMode": "allDocuments",
+  // "editor.bracketPairColorization.enabled": true,
   "diffEditor.ignoreTrimWhitespace": false,
   // "diffEditor.renderSideBySide": false,
+  "debug.confirmOnExit": "always",
   "terminal.integrated.defaultProfile.linux": "bash",
   "vsintellicode.modify.editor.suggestSelection": "choseToUpdateConfiguration",
   "breadcrumbs.enabled": true,
@@ -112,6 +111,18 @@
   "js/ts.implicitProjectConfig.checkJs": true,
   "typescript.referencesCodeLens.enabled": true,
   "typescript.implementationsCodeLens.enabled": true,
+  // "typescript.inlayHints.parameterNames.enabled": "all",
+  "typescript.inlayHints.parameterNames.enabled": "literals",
+  "typescript.inlayHints.variableTypes.enabled": true,
+  "typescript.inlayHints.propertyDeclarationTypes.enabled": true,
+  "typescript.inlayHints.parameterTypes.enabled": true,
+  "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
+  // "javascript.inlayHints.parameterNames.enabled": "all",
+  "javascript.inlayHints.parameterNames.enabled": "literals",
+  "javascript.inlayHints.variableTypes.enabled": true,
+  "javascript.inlayHints.propertyDeclarationTypes.enabled": true,
+  "javascript.inlayHints.parameterTypes.enabled": true,
+  "javascript.inlayHints.functionLikeReturnTypes.enabled": true,
   "[markdown]": {
     "editor.lineNumbers": "interval",
     "editor.rulers": [],
