@@ -22,7 +22,7 @@
   "workbench.tips.enabled": false,
   "workbench.colorCustomizations": {
     "editorInlayHint.foreground": "#5C6370",
-    "editorInlayHint.background": "#262930"
+    "editorInlayHint.background": "#1f2227"
   },
   "explorer.confirmDragAndDrop": false,
   "explorer.confirmDelete": false,
@@ -63,6 +63,9 @@
     "**/.*cache": true,
     "**/.git": true,
     "**/.tsbuildinfo": true,
+    "**/*.db-shm": true,
+    "**/*.db-wal": true,
+    "**/*.db": true,
     "**/coverage": true,
     "**/node_modules": true,
     "**/package-lock.json": true,
@@ -88,6 +91,7 @@
     "**/export/**": true,
     "**/node_modules/**": true,
     "**/package-lock.json": true,
+    "**/pnpm-lock.yaml": true,
     "**/public/**": true,
     "**/test/**": true,
     "**/tests/**": true,
@@ -118,11 +122,11 @@
   "typescript.inlayHints.parameterTypes.enabled": true,
   "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
   // "javascript.inlayHints.parameterNames.enabled": "all",
-  "javascript.inlayHints.parameterNames.enabled": "literals",
-  "javascript.inlayHints.variableTypes.enabled": true,
-  "javascript.inlayHints.propertyDeclarationTypes.enabled": true,
-  "javascript.inlayHints.parameterTypes.enabled": true,
-  "javascript.inlayHints.functionLikeReturnTypes.enabled": true,
+  // "javascript.inlayHints.parameterNames.enabled": "literals",
+  // "javascript.inlayHints.variableTypes.enabled": true,
+  // "javascript.inlayHints.propertyDeclarationTypes.enabled": true,
+  // "javascript.inlayHints.parameterTypes.enabled": true,
+  // "javascript.inlayHints.functionLikeReturnTypes.enabled": true,
   "[markdown]": {
     "editor.lineNumbers": "interval",
     "editor.rulers": [],
@@ -134,7 +138,6 @@
   "task.autoDetect": "off",
   "vsintellicode.java.completionsEnabled": false,
   "vsintellicode.python.completionsEnabled": false,
-  "atomKeymap.promptV3Features": true,
   "eslint.packageManager": "yarn",
   "eslint.validate": [
     // "html",
