@@ -1,0 +1,5 @@
+.mode column
+.headers on
+.bail on
+.timer on
+.eqp on
