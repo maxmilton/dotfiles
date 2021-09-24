@@ -56,11 +56,10 @@
     "key": "ctrl+,",
     "command": "workbench.action.openSettingsJson"
   },
-  // removed as default from VS Code v1.57.0
   {
     "key": "ctrl+w",
-    "command": "workbench.action.closeWindow",
-    "when": "!editorIsOpen && !multipleEditorGroups"
+    "when": "!editorIsOpen && !multipleEditorGroups",
+    "command": "workbench.action.closeWindow"
   },
 
   // Just the good bits from atom-keybindings
