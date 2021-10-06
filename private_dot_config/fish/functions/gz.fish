@@ -16,9 +16,9 @@ function gz --description 'Compare gzip\'d sizes of a file'
   set -l orig (echo "$input" | wc -c)
   set -l sizek1 (math -s2 "$orig / 1000")
 
-  # gzip -6
+  # gzip -5
   set -l start2 (date '+%s%3N')
-  set -l size2 (echo "$input" | gzip -cf -6 | wc -c)
+  set -l size2 (echo "$input" | gzip -cf -5 | wc -c)
   set -l stop2 (date '+%s%3N')
   set -l duration2 (math "$stop2 - $start2")
   set -l sizek2 (math -s2 "$size2 / 1000")
@@ -33,9 +33,9 @@ function gz --description 'Compare gzip\'d sizes of a file'
   set -l sizek3 (math -s2 "$size3 / 1000")
   set -l percent3 (math -s2 "($size3 / $orig) * 100")
 
-  # brotli -9
+  # brotli -5
   set -l start4 (date '+%s%3N')
-  set -l size4 (echo "$input" | brotli -cf -9 | wc -c)
+  set -l size4 (echo "$input" | brotli -cf -5 | wc -c)
   set -l stop4 (date '+%s%3N')
   set -l duration4 (math "$stop4 - $start4")
   set -l sizek4 (math -s2 "$size4 / 1000")
