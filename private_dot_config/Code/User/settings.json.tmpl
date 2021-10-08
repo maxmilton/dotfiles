@@ -1,7 +1,8 @@
 /* spellcheck-off */
 {
-  "telemetry.enableCrashReporter": false,
-  "telemetry.enableTelemetry": false,
+  "telemetry.enableCrashReporter": false, // TODO: Deprecated, remove
+  "telemetry.enableTelemetry": false, // TODO: Deprecated, remove
+  "telemetry.telemetryLevel": "off",
   {{- if eq .chezmoi.os "linux" }}
   "update.mode": "none", // Use package manager on Linux
   "window.titleBarStyle": "native",
@@ -51,6 +52,7 @@
   },
   "editor.wordBasedSuggestionsMode": "allDocuments",
   // "editor.bracketPairColorization.enabled": true,
+  // "editor.guides.bracketPairs": true,
   "diffEditor.ignoreTrimWhitespace": false,
   // "diffEditor.renderSideBySide": false,
   "debug.confirmOnExit": "always",
@@ -116,11 +118,11 @@
   "typescript.referencesCodeLens.enabled": true,
   "typescript.implementationsCodeLens.enabled": true,
   // "typescript.inlayHints.parameterNames.enabled": "all",
-  "typescript.inlayHints.parameterNames.enabled": "literals",
-  // "typescript.inlayHints.variableTypes.enabled": true,
-  // "typescript.inlayHints.propertyDeclarationTypes.enabled": true,
-  // "typescript.inlayHints.parameterTypes.enabled": true,
-  // "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
+  // "typescript.inlayHints.parameterNames.enabled": "literals",
+  "typescript.inlayHints.variableTypes.enabled": true,
+  "typescript.inlayHints.propertyDeclarationTypes.enabled": true,
+  "typescript.inlayHints.parameterTypes.enabled": true,
+  "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
   // "javascript.inlayHints.parameterNames.enabled": "all",
   // "javascript.inlayHints.parameterNames.enabled": "literals",
   // "javascript.inlayHints.variableTypes.enabled": true,
