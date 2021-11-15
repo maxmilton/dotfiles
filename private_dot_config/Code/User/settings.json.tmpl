@@ -1,7 +1,7 @@
 /* spellcheck-off */
 {
   "telemetry.enableCrashReporter": false, // TODO: Deprecated, remove
-  "telemetry.enableTelemetry": false, // TODO: Deprecated, remove
+  "telemetry.enableTelemetry": false, // TODO: Deprecated, remove (extensions still use it though!)
   "telemetry.telemetryLevel": "off",
   {{- if eq .chezmoi.os "linux" }}
   "update.mode": "none", // Use package manager on Linux
@@ -9,8 +9,10 @@
   {{- end }}
   "window.restoreWindows": "preserve",
   "window.menuBarVisibility": "toggle",
-  "workbench.startupEditor": "newUntitledFile",
-  "workbench.colorTheme": "One Dark Pro",
+  // "workbench.startupEditor": "newUntitledFile",
+  "workbench.startupEditor": "none",
+  "workbench.colorTheme": "GitHub Dark Default",
+  // "workbench.colorTheme": "One Dark Pro",
   "workbench.editor.decorations.colors": true,
   "workbench.editor.decorations.badges": true,
   "workbench.editor.wrapTabs": true,
@@ -22,37 +24,47 @@
   "workbench.productIconTheme": "fluent-icons",
   "workbench.tips.enabled": false,
   "workbench.colorCustomizations": {
-    "editorInlayHint.foreground": "#5C6370",
-    "editorInlayHint.background": "#1f2227"
+    "editorInlayHint.foreground": "#5c6370",
+    // "editorInlayHint.foreground": "#6d7481",
+    "editorInlayHint.background": "#1f2227",
+    // "editorBracketPairGuide.activeBackground1": "#7e8899",
+    "editorBracketPairGuide.activeBackground1": "#838b99",
+    "editorBracketPairGuide.activeBackground2": "#838b99",
+    "editorBracketPairGuide.activeBackground3": "#838b99",
+    "editorBracketPairGuide.activeBackground4": "#838b99",
+    "editorBracketPairGuide.activeBackground5": "#838b99",
+    "editorBracketPairGuide.activeBackground6": "#838b99"
   },
   "explorer.confirmDragAndDrop": false,
   "explorer.confirmDelete": false,
-  "editor.tokenColorCustomizations": {
-    // Darker comments with `One Dark Pro` theme
-    "comments": "#5C6370"
-  },
+  // "editor.tokenColorCustomizations": {
+  //   // Darker comments with `One Dark Pro` theme
+  //   "comments": "#5c6370"
+  // },
   "editor.snippetSuggestions": "top",
   "editor.renderLineHighlight": "all",
   "editor.folding": false,
   "editor.accessibilitySupport": "off",
   "editor.fontSize": 16,
   // "editor.fontFamily": "Hack, 'Roboto Mono', monospace, 'Noto Color Emoji'",
+  // "editor.fontFamily": "'IBM Plex Mono', monospace, 'Noto Color Emoji'",
   "editor.fontFamily": "'JetBrains Mono', monospace, 'Noto Color Emoji'",
   "editor.rulers": [80, 100],
   "editor.wordWrap": "on",
   "editor.tabSize": 2,
   "editor.renderWhitespace": "all",
   "editor.renderControlCharacters": true,
+  "editor.inlineSuggest.enabled": true,
   "editor.suggestSelection": "first",
   "editor.suggest.preview": true,
   "editor.suggest.showStatusBar": true,
+  "editor.guides.bracketPairs": "active",
+  // "editor.bracketPairColorization.enabled": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": false // Prefer project level config
   },
   "editor.wordBasedSuggestionsMode": "allDocuments",
-  // "editor.bracketPairColorization.enabled": true,
-  // "editor.guides.bracketPairs": true,
   "diffEditor.ignoreTrimWhitespace": false,
   // "diffEditor.renderSideBySide": false,
   "debug.confirmOnExit": "always",
@@ -62,6 +74,7 @@
   "breadcrumbs.enabled": true,
   "files.insertFinalNewline": true,
   "files.trimTrailingWhitespace": true,
+  "files.legacyWatcher": "off",
   "files.exclude": {
     "**/.*cache": true,
     "**/.DS_Store": true,
@@ -129,6 +142,7 @@
   // "javascript.inlayHints.propertyDeclarationTypes.enabled": true,
   // "javascript.inlayHints.parameterTypes.enabled": true,
   // "javascript.inlayHints.functionLikeReturnTypes.enabled": true,
+  "html.completion.attributeDefaultValue": "empty",
   "[markdown]": {
     "editor.lineNumbers": "interval",
     "editor.rulers": [],
@@ -180,6 +194,8 @@
       "parser": "plain"
     }
   },
+  "eslint.packageManager": "pnpm",
+  "eslint.useESLintClass": true,
   "spellright.spellContext": "body code comments strings",
   "spellright.suggestionsInHints": false,
   "spellright.ignoreFiles": [

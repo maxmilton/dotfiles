@@ -62,6 +62,18 @@
     "command": "workbench.action.closeWindow"
   },
 
+  // extensions
+  {
+    "key": "shift+enter",
+    "command": "github.copilot.generate",
+    "when": "editorTextFocus && github.copilot.activated"
+  },
+  {
+    "key": "ctrl+enter",
+    "command": "-github.copilot.generate",
+    "when": "editorTextFocus && github.copilot.activated"
+  },
+
   // Just the good bits from atom-keybindings
   // https://github.com/microsoft/vscode-atom-keybindings/blob/main/package.json#L29
   // {
