@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "eslint": "^7.32.0",
+    "eslint": "^8.0.0",
     "firebase-tools": "^9.22.0",
     "pnpm": "^6.22.1",
     "prettier": "^2.4.1",
