@@ -1,10 +1,10 @@
 {
   "dependencies": {
-    "eslint": "^7.32.0",
-    "firebase-tools": "^9.23.0",
-    "pnpm": "^6.23.6",
-    "prettier": "^2.5.1",
-    "sirv-cli": "^1.0.14",
-    "vim-node-rpc": "^0.1.34"
+    "eslint": "7.32.0",
+    "firebase-tools": "9.23.0",
+    "pnpm": "6.23.6",
+    "prettier": "2.5.1",
+    "sirv-cli": "1.0.14",
+    "vim-node-rpc": "0.1.34"
   }
 }
