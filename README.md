@@ -33,9 +33,9 @@ Intended for use on a Linux OS. Limited support for macOS, BSD, or UNIX-like OSe
 chezmoi update -v
 ```
 
-## Licence
+## License
 
-MIT. See [LICENCE](https://github.com/MaxMilton/dotfiles/blob/master/LICENCE).
+MIT. See [LICENSE](https://github.com/MaxMilton/dotfiles/blob/master/LICENSE).
 
 -----
 
