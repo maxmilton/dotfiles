@@ -10,8 +10,8 @@
 "--upgrade-interactive.mutex" "file:/tmp/.yarn-mutex"
 "--upgrade.mutex" "file:/tmp/.yarn-mutex"
 disable-self-update-check true
-email max@wearegenki.com
-init-license Apache-2.0
+email max@happycode.ltd
+init-license MIT
 init-version "0.0.0"
 lastUpdateCheck 1549219618197
 username maxmilton
