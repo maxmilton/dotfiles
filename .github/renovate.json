@@ -1,3 +1,3 @@
 {
-  "extends": [":preserveSemverRanges", "github>maxmilton/renovate-config"]
+  "extends": ["github>maxmilton/renovate-config", ":pinOnlyDevDependencies"]
 }
