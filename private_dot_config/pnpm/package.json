@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "eslint": "^7.32.0",
-    "firebase-tools": "^9.23.0",
+    "firebase-tools": "^9.23.1",
     "pnpm": "^6.23.6",
     "prettier": "^2.5.1",
     "sirv-cli": "^1.0.14",
