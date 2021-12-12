@@ -181,13 +181,15 @@ abbr --add whois 'docker run --rm local/net-tools whois'
 
 # Docker
 abbr --add d 'docker'
+abbr --add dcc 'docker-compose'
 abbr --add di 'docker images'
 abbr --add drm 'docker image prune'
 abbr --add drma 'docker system prune'
 # show containers
-abbr --add dps 'docker ps -a'
+abbr --add dps "docker ps -a --format {{"'table {{.Names}}\t{{.Image}}\t{{.Status}}'"}}"
+abbr --add dpss "docker ps -q | xargs docker inspect --format {{"'{{.Config.Hostname}} - {{.Name}} - {{.NetworkSettings.IPAddress}}'"}}"
 # monitor all containers
-#abbr --add ds 'docker stats (docker ps -q)'
+abbr --add ds 'docker stats (docker ps -q)'
 abbr --add dr 'docker run --rm -ti'
 abbr --add drr 'docker run --rm -ti local/alpine:edge sh'
 abbr --add dp 'docker pull'
