@@ -2,5 +2,5 @@
 --glob=!**/node_modules/**
 --max-columns-preview
 --max-columns=150
---context=3
+--context=2
 --smart-case
