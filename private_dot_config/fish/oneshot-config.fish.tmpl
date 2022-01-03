@@ -202,7 +202,8 @@ abbr --add dip "docker inspect --format '{{"{{"}} .NetworkSettings.IPAddress {{"
 #abbr --add dnse 'docker run -it --rm --privileged --pid=host justincormack/nsenter1'
 
 # Development
-abbr --add yy 'clr; y'
+abbr --add y 'yarn'
+abbr --add yy 'clr; yarn'
 abbr --add yu 'yarn upgrade-interactive --latest'
 abbr --add yr 'npx yarn-deduplicate && /bin/rm ./node_modules/.yarn-integrity && yarn'
 abbr --add yrr '/bin/rm -rf yarn.lock **/node_modules; yarn'
