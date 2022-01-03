@@ -35,7 +35,7 @@ chezmoi update -v
 
 ## License
 
-MIT. See [LICENSE](https://github.com/MaxMilton/dotfiles/blob/master/LICENSE).
+MIT. See [LICENSE](https://github.com/maxmilton/dotfiles/blob/master/LICENSE).
 
 -----
 
