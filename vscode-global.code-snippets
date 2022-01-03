@@ -1,7 +1,7 @@
 {
   "blast": {
     "prefix": "blast",
-    "scope": "css,html,jsonc,javascript,markdown,scss,typescript,typescriptreact",
+    "scope": "css,html,javascript,markdown,plaintext,scss,typescript,typescriptreact",
     "body": ["＼＼\\ ٩( 'ω' )و //／／"],
     "description": "Blast off!"
   }
