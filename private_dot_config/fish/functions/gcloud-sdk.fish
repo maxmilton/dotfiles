@@ -14,7 +14,7 @@ function gcloud-sdk --description 'Google Cloud SDK'
     --mount src=gcloud-config,dst=/home/gcloud \
     --mount type=bind,src="$PWD",dst=/data \
     --env LANGUAGE=en \
-    --env LANG=C \
+    --env LANG=C.UTF-8 \
     --env LC_MESSAGES=C \
     ghcr.io/maxmilton/gcloud $argv
 end
