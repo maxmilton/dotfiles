@@ -12,7 +12,7 @@ function gcloud-sdk --description 'Google Cloud SDK'
 
   docker run --rm -ti \
     --mount src=gcloud-config,dst=/home/gcloud \
-    --mount src=gcloud-sdk,dst=/google-cloud-sdk \
+    --mount type=bind,src="$PWD",dst=/data \
     --env LANGUAGE=en \
     --env LANG=C \
     --env LC_MESSAGES=C \
