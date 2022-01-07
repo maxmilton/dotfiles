@@ -191,7 +191,7 @@ abbr --add dpss "docker ps -q | xargs docker inspect --format {{"'{{.Config.Host
 # monitor all containers
 abbr --add ds 'docker stats (docker ps -q)'
 abbr --add dr 'docker run --rm -ti'
-abbr --add drr 'docker run --rm -ti ghcr.io/maxmilton/alpine:edge sh'
+abbr --add drr 'docker run --rm -ti --volume="$PWD":/data alpine:edge sh'
 abbr --add dp 'docker pull'
 # get latest container ID
 abbr --add dl 'docker ps -l -q'
