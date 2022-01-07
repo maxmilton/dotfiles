@@ -56,7 +56,6 @@ if [ ! -f /first-run ]; then
     git \
     tzdata
     # bat \
-    # docker-fish-completion \
     # docs \
     # entr \
     # fish-tools \

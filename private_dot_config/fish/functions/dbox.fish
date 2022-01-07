@@ -20,6 +20,7 @@ function dbox --description 'Dockerized dev box with persistence'
     docker run -ti \
       --name dbox \
       --env GID=(id -g) \
+      --volume="$PWD":/data
       --volume "$HOME":'/home/'"$USER" \
       --volume "$HOME"'/.config/fish/dbox-entrypoint.sh':/usr/bin/entrypoint.sh:ro \
       --volume /var/run/docker.sock:/var/run/docker.sock \
