@@ -117,4 +117,10 @@ if [ "$(id -u)" != 0 ] || [ -n "$*" ]; then
   exec fish -c "$*"
 fi
 
-cd /home/dbox && exec doas -u dbox /usr/bin/fish -l
+if test -d "$WORKDIR"; then
+  cd "$WORKDIR"
+else
+  cd /home/dbox
+fi
+
+exec doas -u dbox /usr/bin/fish -l

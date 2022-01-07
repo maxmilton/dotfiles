@@ -7,10 +7,10 @@ function dbox --description 'Dockerized dev box with persistence'
 
     if test -n "$argv"
       # run command as root
-      docker exec -ti dbox entrypoint.sh "$argv"
+      docker exec -ti -e WORKDIR="$PWD" dbox entrypoint.sh "$argv"
     else
       # enter as dbox user
-      docker exec -ti dbox entrypoint.sh
+      docker exec -ti -e WORKDIR="$PWD" dbox entrypoint.sh
     end
   else
     # pull latest base image
@@ -20,7 +20,7 @@ function dbox --description 'Dockerized dev box with persistence'
     docker run -ti \
       --name dbox \
       --env GID=(id -g) \
-      --volume="$PWD":/data
+      -e WORKDIR="$PWD" \
       --volume "$HOME":'/home/'"$USER" \
       --volume "$HOME"'/.config/fish/dbox-entrypoint.sh':/usr/bin/entrypoint.sh:ro \
       --volume /var/run/docker.sock:/var/run/docker.sock \
