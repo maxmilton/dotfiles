@@ -44,18 +44,21 @@ if [ ! -f /first-run ]; then
   cat <> /tmp/logpipe 1>&2 &
 
   # install base deps + tools
-  apk add --update \
+  apk upgrade --no-cache
+  apk add --no-cache \
     chezmoi \
     curl \
     doas \
     docker-cli \
+    docker-fish-completion \
     exa \
     fd \
     fish \
-    git
+    fish-tools \
+    git \
+    tzdata
     # bat \
     # doas-sudo-shim \
-    # docker-fish-completion \
     # docs \
     # entr \
     # less \
@@ -64,6 +67,10 @@ if [ ! -f /first-run ]; then
     # sudo \
     # replacements for busybox built-ins
     #binutils coreutils findutils grep pciutils usbutils util-linux
+
+  cp /usr/share/zoneinfo/UTC /etc/localtime
+  echo "UTC" > /etc/timezone
+  apk del tzdata
 
   # install glibc
   # apk add ca-certificates wget
