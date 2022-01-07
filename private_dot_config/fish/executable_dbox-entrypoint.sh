@@ -1,4 +1,5 @@
 #!/bin/sh
+#shellcheck shell=dash disable=SC3036
 set -euo pipefail
 
 # Bootstrap Dev Box Environment
@@ -44,19 +45,23 @@ if [ ! -f /first-run ]; then
 
   # install base deps + tools
   apk add --update \
-    bat \
+    chezmoi \
     curl \
-    docker \
-    docs \
-    entr \
+    doas \
+    docker-cli \
     exa \
     fd \
     fish \
-    git \
-    less \
-    man-pages \
-    mandoc-apropos \
-    sudo
+    git
+    # bat \
+    # doas-sudo-shim \
+    # docker-fish-completion \
+    # docs \
+    # entr \
+    # less \
+    # man-pages \
+    # mandoc-apropos \
+    # sudo \
     # replacements for busybox built-ins
     #binutils coreutils findutils grep pciutils usbutils util-linux
 
@@ -66,19 +71,20 @@ if [ ! -f /first-run ]; then
   # wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.33-r0/glibc-2.33-r0.apk
   # apk add glibc-*.apk
 
-  # no password sudo access
-  echo -e "%wheel\\tALL=(ALL) NOPASSWD: ALL" > /etc/sudoers
+  # no password doas access
+  echo 'permit nopass :wheel' > /etc/doas.conf
 
   # install fisher and plugins
-  sudo -u dbox -i fish -c 'curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher'
-  sudo -u dbox -i fish -c 'fisher install jorgebucaran/autopair.fish'
-  sudo -u dbox -i fish -c 'fisher install jorgebucaran/hydro'
+  doas -n -u dbox /usr/bin/fish -c 'curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher'
+  doas -n -u dbox /usr/bin/fish -c 'fisher install jorgebucaran/hydro'
+  doas -n -u dbox /usr/bin/fish -c 'fisher install jorgebucaran/autopair.fish'
 
   # install dotfiles
-  sudo -u dbox BINDIR=/home/dbox/bin sh -c "$(curl -fsLS git.io/chezmoi)" -- init maxmilton --depth 0 --apply
+  doas -n -u dbox chezmoi init maxmilton -v --depth 0
+  doas -n -u dbox chezmoi apply -v --include=dirs,files,symlinks # without functions
 
   # compile fish config
-  sudo -u dbox -i fish /home/dbox/.config/fish/oneshot-config.fish
+  doas -n -u dbox /usr/bin/fish /home/dbox/.config/fish/oneshot-config.fish
 
   # set correct permissions
   chown -R dbox:dbox /home/dbox
@@ -100,7 +106,7 @@ set -x GPG_TTY (tty)
 set -x PAGER 'less'
 set -g hydro_color_prompt
 set -g hydro_symbol_prompt 'dbox ❱'
-alias docker 'sudo docker'
+alias docker 'doas docker'
 EOF
 
 # allow docker '--user' argument or run as root if commands are passed in
@@ -108,4 +114,4 @@ if [ "$(id -u)" != 0 ] || [ -n "$*" ]; then
   exec fish -c "$*"
 fi
 
-exec sudo -u dbox -i
+cd /home/dbox && exec doas -u dbox /usr/bin/fish -l
