@@ -2,7 +2,8 @@
   email = max@happycode.ltd
   name = Max Milton
   {{- if eq .chezmoi.hostname "max-genki" "max-archd" }}
-  signingkey = 04D9C9AB0399B439
+  # signingkey = 04D9C9AB0399B439 # max@wearegenki.com
+  signingkey = F6600FAD37BBF1E1 # max@happycode.ltd sign only
   {{- end }}
   {{- if eq .chezmoi.hostname "max-clients" }}
   signingkey = D6A0226FCD5F7243
