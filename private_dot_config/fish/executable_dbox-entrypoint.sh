@@ -50,21 +50,18 @@ if [ ! -f /first-run ]; then
     curl \
     doas \
     docker-cli \
-    docker-fish-completion \
     exa \
     fd \
     fish \
-    fish-tools \
     git \
     tzdata
     # bat \
-    # doas-sudo-shim \
+    # docker-fish-completion \
     # docs \
     # entr \
-    # less \
+    # fish-tools \
     # man-pages \
     # mandoc-apropos \
-    # sudo \
     # replacements for busybox built-ins
     #binutils coreutils findutils grep pciutils usbutils util-linux
 

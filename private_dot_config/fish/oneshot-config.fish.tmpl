@@ -4,10 +4,10 @@
 # initially and after any change to this file.
 
 # update completions
-fish_update_completions
+fish_update_completions || true
 
 # remove universal variables to start afresh -- NOTE: This is destructive!
-mv "$HOME"/.config/fish/fish_variables "$HOME"/.config/fish/fish_variables-(date -I=minutes).bak
+mv "$HOME"/.config/fish/fish_variables "$HOME"/.config/fish/fish_variables-(date -Iseconds).bak
 # set arbitrary var to initialise `fish_variables` file
 set -U fish_user_paths
 
