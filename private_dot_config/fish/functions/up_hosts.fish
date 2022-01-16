@@ -3,7 +3,7 @@ function up_hosts --description 'Update dnsmasq blacklist hosts file'
     if systemctl is-enabled dnsmasq.service 2>/dev/null
       set --local url https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/fakenews-gambling-porn-social/hosts
       set --local temp_file /tmp/hosts
-      set --local hosts_file /etc/dnsmasq.d/hosts
+      set --local hosts_file /etc/dnsmasq.d/hosts.conf
 
       # clean up files from last run
       rm -f "$temp_file" "$temp_file"-sorted
@@ -32,6 +32,8 @@ function up_hosts --description 'Update dnsmasq blacklist hosts file'
         # remove broken domains (otherwise dnsmasq won't start)
         -e '/^0.0.0.0 -/d' \
         -e '/--/d' \
+        # replace hosts file syntax with dnsmasq syntax
+        -e 's/^0\.0\.0\.0 \(.*\)$/address=\/\1\//g' \
         "$temp_file"
 
       # add sorted list
