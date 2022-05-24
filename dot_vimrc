@@ -7,7 +7,7 @@
 call plug#begin('~/.vim/plugged')
 
 " File/session management
-Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
+Plug 'preservim/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
 Plug 'jremmen/vim-ripgrep', { 'on': 'Rg' }
 "Plug 'xolox/vim-misc'
 "Plug 'xolox/vim-session'
@@ -15,12 +15,12 @@ Plug 'jremmen/vim-ripgrep', { 'on': 'Rg' }
 
 " Syntax and linting
 Plug 'sheerun/vim-polyglot'
-Plug 'scrooloose/syntastic'
+Plug 'vim-syntastic/syntastic'
 "Plug 'editorconfig/editorconfig-vim'
 "Plug 'chrisbra/Colorizer', { 'on': 'ColorHighlight' }
 "Plug 'mattn/emmet-vim'
 Plug 'prettier/vim-prettier', {
-  \ 'do': 'pnpm install',
+  \ 'do': 'pnpm install --frozen-lockfile --prod',
   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html']
   \ }
 
@@ -41,7 +41,7 @@ Plug 'itchyny/lightline.vim'
 " Misc
 "Plug 'andrewradev/linediff.vim'
 Plug 'easymotion/vim-easymotion'
-Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
+Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 
 call plug#end()
 
