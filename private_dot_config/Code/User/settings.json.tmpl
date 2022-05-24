@@ -16,6 +16,7 @@
   "workbench.editor.decorations.colors": true,
   "workbench.editor.decorations.badges": true,
   "workbench.editor.wrapTabs": true,
+  "workbench.editor.historyBasedLanguageDetection": true,
   "workbench.list.keyboardNavigation": "filter",
   "workbench.enableExperiments": false,
   {{- if eq .chezmoi.os "darwin" }}
@@ -44,10 +45,9 @@
   "editor.renderLineHighlight": "all",
   "editor.folding": false,
   "editor.accessibilitySupport": "off",
-  "editor.fontSize": 16,
-  // "editor.fontFamily": "Hack, 'Roboto Mono', monospace, 'Noto Color Emoji'",
-  // "editor.fontFamily": "'IBM Plex Mono', monospace, 'Noto Color Emoji'",
-  "editor.fontFamily": "'JetBrains Mono', monospace, 'Noto Color Emoji'",
+  //"editor.fontSize": 16,
+  // "editor.fontFamily": "'Berkeley Mono Trial', 'IBM Plex Mono', Hack, 'Roboto Mono', monospace, 'Noto Emoji', 'Noto Color Emoji'",
+  "editor.fontFamily": "'JetBrains Mono', monospace, 'Noto Emoji', 'Noto Color Emoji'",
   "editor.rulers": [80, 100],
   "editor.wordWrap": "on",
   "editor.tabSize": 2,
@@ -58,7 +58,7 @@
   "editor.suggest.preview": true,
   "editor.suggest.showStatusBar": true,
   "editor.guides.bracketPairs": "active",
-  // "editor.bracketPairColorization.enabled": true,
+  "editor.bracketPairColorization.enabled": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": false // Prefer project level config
@@ -114,6 +114,7 @@
     "**/yarn.lock": true
   },
   "files.associations": {
+    ".env": "properties",
     "*.fish": "shellscript",
     "*.svelte": "html",
     "*.tmpl": "go"
@@ -149,6 +150,11 @@
     "editor.wrappingIndent": "indent",
     "editor.quickSuggestions": false,
     "files.trimTrailingWhitespace": false
+  },
+  "[rust]": {
+    "editor.defaultFormatter": "matklad.rust-analyzer",
+    "editor.formatOnSave": true,
+    "editor.bracketPairColorization.enabled": true // rust has hektic nesting
   },
   "task.autoDetect": "off",
   "vsintellicode.java.completionsEnabled": false,
@@ -196,6 +202,12 @@
   },
   "eslint.packageManager": "pnpm",
   "eslint.useESLintClass": true,
+  "rust-analyzer.checkOnSave.enable": true,
+  "rust-analyzer.checkOnSave.command": "clippy",
+  "rust-analyzer.updates.askBeforeDownload": true,
+  // "rust-analyzer.inlayHints.enable": false,
+  // "rust-analyzer.inlayHints.chainingHints": false,
+  // "rust-analyzer.inlayHints.parameterHints": false
   "spellright.spellContext": "body code comments strings",
   "spellright.suggestionsInHints": false,
   "spellright.ignoreFiles": [
@@ -207,6 +219,12 @@
     "**/tsconfig.json",
     "**/yarn.lock"
   ],
+  "github.copilot.enable": {
+    "*": true,
+    "yaml": false,
+    "plaintext": false,
+    "markdown": false
+  },
   "liveshare.presence": true,
   "gitlens.keymap": "none"
   // FIXME: Paths have changed
