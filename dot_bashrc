@@ -100,3 +100,7 @@ alias js='pnpm run serve'
 
 # Check for active tmux sessions
 command -v tmux >/dev/null 2>&1 && (echo '🔹 tmux ls' && tmux ls) || true
+
+# PNPM
+export PNPM_HOME="/root/.local/share/pnpm"
+export PATH="$PNPM_HOME:$PATH"
