@@ -68,12 +68,17 @@ fish_add_path "$HOME"/.nix-profile/bin /nix/var/nix/profiles/default/bin
 {{- end }}
 
 # Node.js
-set node_bin_path "$HOME"/.config/yarn/global/node_modules/.bin
-if test -d $node_bin_path
-  fish_add_path $node_bin_path
-  # Only useful for yarn monorepos with link: protocol symlinks. Breaks pnpm monorepos!!
-  #set -Ux NODE_PRESERVE_SYMLINKS 1
+set pnpm_bin_path "$HOME"/.local/share/pnpm
+if test -d $pnpm_bin_path
+  fish_add_path $pnpm_bin_path
+  set -Ux PNPM_HOME $pnpm_bin_path
 end
+#set yarn_bin_path "$HOME"/.config/yarn/global/node_modules/.bin
+#if test -d $yarn_bin_path
+#  fish_add_path $yarn_bin_path
+#  # Only useful for yarn monorepos with link: protocol symlinks. Breaks pnpm monorepos!
+#  #set -Ux NODE_PRESERVE_SYMLINKS 1
+#end
 
 # Rust
 set rust_bin_path "$HOME"/.cargo/bin
