@@ -27,7 +27,7 @@
   "workbench.colorCustomizations": {
     "editorInlayHint.foreground": "#6d7481",
     // "editorInlayHint.background": "#1f2227",
-    "editorInlayHint.background": "#000c",
+    "editorInlayHint.background": "#000c", // FIXME: Not working!!
     "editorBracketPairGuide.activeBackground1": "#9199a7",
     "editorBracketPairGuide.activeBackground2": "#9199a7",
     "editorBracketPairGuide.activeBackground3": "#9199a7",
@@ -69,6 +69,7 @@
   "debug.confirmOnExit": "always",
   "search.smartCase": true,
   "terminal.integrated.defaultProfile.linux": "bash",
+  "terminal.integrated.shellIntegration.enabled": true,
   "vsintellicode.modify.editor.suggestSelection": "choseToUpdateConfiguration",
   "breadcrumbs.enabled": true,
   "files.insertFinalNewline": true,
@@ -124,6 +125,7 @@
   "git.confirmSync": false,
   "git.detectSubmodules": false,
   "git.enableCommitSigning": true,
+  "git.mergeEditor": true,
   "scm.alwaysShowRepositories": true,
   "npm.exclude": ["**/.git", "**/node_modules"],
   "npm.packageManager": "pnpm",
@@ -148,7 +150,11 @@
     "editor.rulers": [],
     "editor.wordWrap": "bounded",
     "editor.wrappingIndent": "indent",
-    "editor.quickSuggestions": false,
+    "editor.quickSuggestions": {
+      "comments": "off",
+      "strings": "off",
+      "other": "off"
+    },
     "files.trimTrailingWhitespace": false
   },
   "[rust]": {
@@ -169,6 +175,12 @@
     "typescript",
     "typescriptreact"
   ],
+  "rust-analyzer.checkOnSave.enable": true,
+  "rust-analyzer.checkOnSave.command": "clippy",
+  "rust-analyzer.updates.askBeforeDownload": true,
+  // "rust-analyzer.inlayHints.enable": false,
+  // "rust-analyzer.inlayHints.chainingHints": false,
+  // "rust-analyzer.inlayHints.parameterHints": false,
   {{- if eq .chezmoi.hostname "max-clients" }}
   "shellcheck.disableVersionCheck": true,
   {{- end }}
@@ -200,14 +212,6 @@
       "parser": "plain"
     }
   },
-  "eslint.packageManager": "pnpm",
-  "eslint.useESLintClass": true,
-  "rust-analyzer.checkOnSave.enable": true,
-  "rust-analyzer.checkOnSave.command": "clippy",
-  "rust-analyzer.updates.askBeforeDownload": true,
-  // "rust-analyzer.inlayHints.enable": false,
-  // "rust-analyzer.inlayHints.chainingHints": false,
-  // "rust-analyzer.inlayHints.parameterHints": false
   "spellright.spellContext": "body code comments strings",
   "spellright.suggestionsInHints": false,
   "spellright.ignoreFiles": [
@@ -225,7 +229,10 @@
     "plaintext": false,
     "markdown": false
   },
+  "githubPullRequests.pullBranch": "never",
   "liveshare.presence": true,
+  // "zls.path": "/home/max/.config/Code/User/globalStorage/augusterame.zls-vscode/zls_install/zls",
+  "zls.path": "/usr/bin/zls",
   "gitlens.keymap": "none"
   // FIXME: Paths have changed
   // "gitlens.views.repositories.location": "scm",
