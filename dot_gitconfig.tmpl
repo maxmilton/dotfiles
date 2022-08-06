@@ -52,8 +52,11 @@
 [gpg]
   program = gpg2
 [merge]
-  tool = vimdiff
+  #tool = vimdiff
+  tool = code
   log = true # Include commits summary in merge commit messages
+[mergetool "code"]
+  cmd = code --wait --merge $REMOTE $LOCAL $BASE $MERGED
 [pull]
   rebase = true
 [push]
