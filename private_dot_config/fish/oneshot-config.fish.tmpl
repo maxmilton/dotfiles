@@ -67,7 +67,7 @@ set -Ux MANPAGER "sh -c 'col -bx | bat -l man -p'"
 fish_add_path "$HOME"/.nix-profile/bin /nix/var/nix/profiles/default/bin
 {{- end }}
 
-# Node.js
+# JavaScript
 set pnpm_bin_path "$HOME"/.local/share/pnpm
 if test -d $pnpm_bin_path
   fish_add_path $pnpm_bin_path
@@ -79,6 +79,11 @@ end
 #  # Only useful for yarn monorepos with link: protocol symlinks. Breaks pnpm monorepos!
 #  #set -Ux NODE_PRESERVE_SYMLINKS 1
 #end
+set bun_bin_path "$HOME"/.bun/bin
+if test -d $bun_bin_path
+  fish_add_path $bun_bin_path
+  set -Ux BUN_INSTALL "$HOME"/.bun
+end
 
 # Rust
 set rust_bin_path "$HOME"/.cargo/bin
@@ -231,6 +236,8 @@ abbr --add jrr '/bin/rm -rf pnpm-lock.yaml **/node_modules; pnpm install'
 abbr --add jrrr '/bin/rm -rf pnpm-lock.yaml **/{dist,node_modules}; pnpm install'
 abbr --add jb 'pnpm run build'
 abbr --add jjb 'clr; pnpm run build'
+abbr --add jd 'pnpm run dev'
+abbr --add jjd 'clr; pnpm run dev'
 abbr --add jt 'pnpm run lint; and TZ=UTC pnpm run test'
 abbr --add jjt 'clr; pnpm run lint; and TZ=UTC pnpm run test'
 abbr --add jtt 'TZ=UTC pnpm run test-e2e'
