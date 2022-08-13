@@ -91,6 +91,13 @@ if test -d $rust_bin_path
   fish_add_path $rust_bin_path
 end
 
+# Go
+set go_bin_path "$HOME"/Projects/go/bin
+if test -d $go_bin_path
+  fish_add_path $go_bin_path
+  set -Ux GOPATH "$HOME"/Projects/go
+end
+
 # Misc
 abbr --add C 'math' # CLI calculator
 #abbr --add get 'aria2c --optimize-concurrent-downloads --dir ~/Downloads' # download via CLI
