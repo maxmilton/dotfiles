@@ -140,6 +140,18 @@ set langnoremap
 set listchars=tab:>-,trail:-,nbsp:+
 set wildmenu
 
+" https://github.com/neoclide/coc.nvim
+set updatetime=300
+inoremap <silent><expr> <TAB> coc#pum#visible() ? coc#pum#next(1): CheckBackspace() ? "\<Tab>" : coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
 " turn off background color erase
 set t_ut=
 
