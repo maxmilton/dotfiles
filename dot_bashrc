@@ -101,6 +101,10 @@ alias js='pnpm run serve'
 # Check for active tmux sessions
 command -v tmux >/dev/null 2>&1 && (echo '🔹 tmux ls' && tmux ls) || true
 
+# go
+export GOPATH="$HOME"/Projects/go
+export PATH="$GOPATH:$PATH"
+
 # pnpm
 export PNPM_HOME="$HOME"/.local/share/pnpm
 export PATH="$PNPM_HOME:$PATH"
