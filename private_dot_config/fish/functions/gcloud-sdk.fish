@@ -8,6 +8,22 @@ function gcloud-sdk --description 'Google Cloud SDK'
     docker run --rm -ti \
       --mount src=gcloud-config,dst=/home/gcloud \
       ghcr.io/maxmilton/gcloud gcloud auth login
+
+    # docker run --rm -ti \
+    #   --mount src=gcloud-config,dst=/home/gcloud \
+    #   ghcr.io/maxmilton/gcloud /bin/bash -c 'gcloud auth login && gcloud config set core/disable_usage_reporting true && gcloud config set component_manager/disable_update_check true && gcloud config set survey/disable_prompts true'
+
+    # docker run --rm -ti \
+    #   --mount src=gcloud-config,dst=/home/gcloud \
+    #   gcloud config set core/disable_usage_reporting true
+
+    # docker run --rm -ti \
+    #   --mount src=gcloud-config,dst=/home/gcloud \
+    #   gcloud config set component_manager/disable_update_check true
+
+    # docker run --rm -ti \
+    #   --mount src=gcloud-config,dst=/home/gcloud \
+    #   gcloud config set survey/disable_prompts true
   end
 
   docker run --rm -ti \
