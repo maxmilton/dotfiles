@@ -1,7 +1,7 @@
 /* spellcheck-off */
 {
-  "telemetry.enableCrashReporter": false, // TODO: Deprecated, remove
-  "telemetry.enableTelemetry": false, // TODO: Deprecated, remove (extensions still use it though!)
+  "telemetry.enableCrashReporter": false, // TODO: Deprecated, remove once extensions no longer use it
+  "telemetry.enableTelemetry": false, // TODO: Deprecated, remove once extensions no longer use it
   "telemetry.telemetryLevel": "off",
   {{- if eq .chezmoi.os "linux" }}
   "update.mode": "none", // Use package manager on Linux
@@ -17,7 +17,7 @@
   "workbench.editor.decorations.badges": true,
   "workbench.editor.wrapTabs": true,
   "workbench.editor.historyBasedLanguageDetection": true,
-  "workbench.list.keyboardNavigation": "filter",
+  "workbench.list.defaultFindMode": "highlight",
   "workbench.enableExperiments": false,
   {{- if eq .chezmoi.os "darwin" }}
   "workbench.fontAliasing": "auto", // macOS only
@@ -54,6 +54,7 @@
   "editor.renderWhitespace": "all",
   "editor.renderControlCharacters": true,
   "editor.inlineSuggest.enabled": true,
+  "editor.suggest.matchOnWordStartOnly": false,
   "editor.suggestSelection": "first",
   "editor.suggest.preview": true,
   "editor.suggest.showStatusBar": true,
@@ -66,6 +67,7 @@
   "editor.wordBasedSuggestionsMode": "allDocuments",
   "diffEditor.ignoreTrimWhitespace": false,
   // "diffEditor.renderSideBySide": false,
+  "mergeEditor.diffAlgorithm": "experimental",
   "debug.confirmOnExit": "always",
   "search.smartCase": true,
   "terminal.integrated.defaultProfile.linux": "bash",
