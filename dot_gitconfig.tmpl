@@ -1,6 +1,7 @@
 [user]
-  email = max@happycode.ltd
+  email = max@happyhackers.xyz
   name = Max Milton
+  {{/* https://dev.to/benjaminblack/signing-git-commits-with-modern-encryption-1koh */}}
   {{- if eq .chezmoi.hostname "max-genki" "max-archd" }}
   signingkey = 04D9C9AB0399B439
   {{- end }}
@@ -9,7 +10,8 @@
   {{- end }}
   {{- if eq .chezmoi.hostname "max-l" }}
   # signingkey = 371CB4A079503C39 # max@wearegenki.com
-  signingkey = F6600FAD37BBF1E1 # max@happycode.ltd sign only
+  # signingkey = F6600FAD37BBF1E1 # max@happycode.ltd sign only
+  signingkey = 315FFC22A0419AE1 # max@happyhackers.xyz sign only
   {{- end }}
 [alias]
   # Remove the old tag with this name and tag the latest commit with it.
