@@ -1,8 +1,8 @@
 {
   "dependencies": {
-    "eslint": "^8.23.0",
-    "firebase-tools": "^11.8.0",
-    "pnpm": "^7.9.5",
+    "eslint": "^8.23.1",
+    "firebase-tools": "^11.9.0",
+    "pnpm": "^7.11.0",
     "prettier": "^2.7.1",
     "vim-node-rpc": "^0.1.34"
   }
