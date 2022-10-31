@@ -1,9 +1,13 @@
 {
   "dependencies": {
-    "eslint": "^8.23.1",
-    "firebase-tools": "^11.9.0",
-    "pnpm": "^7.11.0",
+    "bash-language-server": "^3.1.0",
+    "eslint": "^8.26.0",
+    "firebase-tools": "^11.15.0",
+    "pnpm": "^7.14.1",
     "prettier": "^2.7.1",
-    "vim-node-rpc": "^0.1.34"
+    "typescript": "^4.8.4",
+    "typescript-language-server": "^2.1.0",
+    "vim-node-rpc": "^0.1.34",
+    "vscode-langservers-extracted": "^4.5.0"
   }
 }
