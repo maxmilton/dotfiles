@@ -1,0 +1,9 @@
+# https://docs.helix-editor.com/configuration.html
+
+theme = "tokyonight"
+
+#[editor.whitespace]
+#render = "all"
+
+#[editor.indent-guides]
+#render = true
