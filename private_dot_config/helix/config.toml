@@ -2,8 +2,18 @@
 
 theme = "tokyonight"
 
+[editor]
+mouse = false
+#rulers = [80]
+
 #[editor.whitespace]
 #render = "all"
 
 #[editor.indent-guides]
 #render = true
+
+[editor.file-picker]
+hidden = false
+
+[editor.lsp]
+display-messages = true
