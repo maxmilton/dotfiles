@@ -51,6 +51,13 @@
   textconv = hexdump -v -C # Use `hexdump` to diff binary files
 [difftool]
   prompt = false
+{{- if eq .chezmoi.os "darwin" }}
+[filter "lfs"]
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
+{{- end }}
 [gpg]
   program = gpg2
 [merge]
