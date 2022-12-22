@@ -40,7 +40,8 @@ Plug 'itchyny/lightline.vim'
 
 " Misc
 "Plug 'andrewradev/linediff.vim'
-Plug 'easymotion/vim-easymotion'
+"Plug 'easymotion/vim-easymotion'
+"Plug 'ggandor/leap.nvim' " easymotion alternative
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 
 call plug#end()
