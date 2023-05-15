@@ -1,9 +1,0 @@
-{
-  "Disabler comments": {
-    "prefix": "dis",
-    "body": [
-      "/* spellcheck-off */ /* eslint-disable */ // @ts-nocheck",
-    ],
-    "description": "Disable JS linting, TS intellisense, and spell check"
-  }
-}

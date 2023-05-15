@@ -1,9 +1,0 @@
-# shellcheck shell=bash
-
-# load .profile and .bashrc
-if [ -r ~/.profile ]; then . ~/.profile; fi
-case "$-" in *i*) if [ -r ~/.bashrc ]; then . ~/.bashrc; fi;; esac
-
-{{- if eq .chezmoi.os "darwin" }}
-if [ -e /Users/maxmilton/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/maxmilton/.nix-profile/etc/profile.d/nix.sh; fi
-{{- end }}

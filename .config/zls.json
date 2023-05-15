@@ -1,0 +1,5 @@
+{
+  "zig_exe_path": "/home/max/.local/bin/zig-latest/zig",
+  "zig_lib_path": "/home/max/.local/bin/zig-latest/lib",
+  "warn_style": true
+}
