@@ -43,6 +43,7 @@ if test -e /run/systemd/container
   abbr jt 'pnpm run lint; and TZ=UTC pnpm run test'
   abbr jtt 'TZ=UTC pnpm run test:e2e'
   abbr bi 'bun install'
+  abbr br '/bin/rm -rf bun.lockb **/node_modules; bun install'
   abbr bu 'bun x taze --interactive -r'
   abbr bb 'bun run build'
   abbr bd 'bun run dev'
