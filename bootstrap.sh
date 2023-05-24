@@ -3,6 +3,7 @@ script_dir=$(CDPATH='' cd -- "$(dirname -- "$0")" && pwd -P)
 
 mkdir -vp ~/.config/fish/functions
 mkdir -vp ~/.config/helix
+mkdir -vp ~/.config/mpv
 mkdir -vp ~/.gnupg
 mkdir -vp ~/.local/bin
 mkdir -vp ~/.ssh
@@ -22,6 +23,9 @@ ln -vbs "${script_dir}/.config/fish/functions/multicd.fish" ~/.config/fish/funct
 ln -vbs "${script_dir}/.config/fish/functions/ssh.fish" ~/.config/fish/functions/ssh.fish
 ln -vbs "${script_dir}/.config/helix/config.toml" ~/.config/helix/config.toml
 ln -vbs "${script_dir}/.config/helix/languages.toml" ~/.config/helix/languages.toml
+ln -vbs "${script_dir}/.config/mpv/input.conf" ~/.config/mpv/input.conf
+ln -vbs "${script_dir}/.config/mpv/mpv.conf" ~/.config/mpv/mpv.conf
+ln -vbs "${script_dir}/.config/mpv/shaders" ~/.config/mpv/shaders
 ln -vbs "${script_dir}/.config/zls.json" ~/.config/zls.json
 ln -vbs "${script_dir}/.gnupg/gpg-agent.conf" ~/.gnupg/gpg-agent.conf
 ln -vbs "${script_dir}/.gnupg/gpg.conf" ~/.gnupg/gpg.conf
