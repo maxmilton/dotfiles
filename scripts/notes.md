@@ -17,23 +17,23 @@ rg --context 3 --max-columns 80 --max-columns-preview
 
 ```sh
 # recursively set directory permissions to 700
-fd --type d --hidden --no-ignore --exec chmod 700 {}'
+fd --type d --hidden --no-ignore --exec chmod -c 700 {}
 ```
 
 ```sh
 # DO NOT USE; fd can't filter out executable files
 # recursively set ALL file permissions to 600
-#fd --type f --hidden --no-ignore --exec chmod 600 {}
+#fd --type f --hidden --no-ignore --exec chmod -c 600 {}
 ```
 
 ```sh
 # recursively set file permissions to 600 (excluding executables)
-find -O3 . -type f ! -executable -exec chmod 600 {} \;
+find -O3 . -type f ! -executable -exec chmod -c 600 {} \;
 ```
 
 ```sh
 # recursively set file permissions to 700 (executables only)
-fd --type x --hidden --no-ignore --exec chmod 700 {}
+fd --type x --hidden --no-ignore --exec chmod -c 700 {}
 ```
 
 ```sh
@@ -43,7 +43,7 @@ find -L . -name . -o -type d -prune -o -type l -exec /bin/rm -rf {} \;
 
 ```sh
 # remove node_modules dirs recursively
-fd --type directory --hidden --no-ignore-vcs --exec /bin/rm -rf {} \;node_modules .'
+fd --type directory --hidden --no-ignore-vcs --exec /bin/rm -rf {} \; node_modules .
 ```
 
 ```sh
@@ -56,8 +56,13 @@ curl https://ifconfig.me/all
 ```
 
 ```sh
-# ip info with colour highlighting
-ip -c addr
+# debug bash script
+env PS4="\$(if [[ \$? == 0 ]]; then echo \"\033[0;33mEXIT: \$? ✔\"; else echo \"\033[1;91mEXIT: \$? ❌\033[0;33m\"; fi)\n\nSTACK:\n\${BASH_SOURCE[0]}:\${LINENO}\n\${BASH_SOURCE[*]:1}\n\033[0m" bash -x
+```
+
+```sh
+# remove missing files from git working tree
+git ls-files --deleted -z | xargs -0 git rm
 ```
 
 ```sh

@@ -16,11 +16,10 @@ abbr grep rg
 abbr rr 'RIPGREP_CONFIG_PATH=~/.ripgreprc rg --no-ignore --hidden'
 abbr s 'doas su'
 abbr dux 'du -bh --max-depth=1 | sort -h'
-abbr kk kill_process
-# abbr kkk 'kill_process --tcp'
-abbr p yay
+abbr p paru
 abbr hh 'history --merge'
 abbr h helix
+abbr ip 'ip -c'
 abbr curl "curl -vv -H 'Cache-Control: no-cache'"
 
 if test -e /run/systemd/container
@@ -44,7 +43,7 @@ if test -e /run/systemd/container
   abbr jtt 'TZ=UTC pnpm run test:e2e'
   abbr bi 'bun install'
   abbr br '/bin/rm -rf bun.lockb **/node_modules; bun install'
-  abbr bu 'bun x taze --interactive -r'
+  abbr bu 'bunx taze --interactive -r'
   abbr bb 'bun run build'
   abbr bd 'bun run dev'
   abbr bt 'bun run lint; and TZ=UTC bun run test'

@@ -1,4 +1,4 @@
-function kill_process
+function kk
   set -l proc_pid ''
 
   if contains -- '--tcp' $argv
@@ -14,6 +14,6 @@ function kill_process
       echo $proc_pid | xargs kill -9
     end
 
-    kill_process
+    kk
   end
 end

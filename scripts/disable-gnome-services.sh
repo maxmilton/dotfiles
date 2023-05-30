@@ -1,4 +1,5 @@
 #!/bin/sh -eu
+
 systemctl --user mask org.gnome.SettingsDaemon.A11ySettings.service
 systemctl --user mask org.gnome.SettingsDaemon.PrintNotifications.service
 systemctl --user mask org.gnome.SettingsDaemon.ScreensaverProxy.service
