@@ -49,3 +49,5 @@ tee -a "$FOLDER"/etc/systemd/system/console-getty.service.d/autologin.conf <<EOF
 ExecStart=
 ExecStart=-/sbin/agetty -o '-p -f -- \\u' --noclear --keep-baud --autologin max - 115200,38400,9600 \$TERM
 EOF
+
+# sudo machinectl shell $CONTAINER /usr/bin/pacman-key --populate archlinux

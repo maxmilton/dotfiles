@@ -8,6 +8,11 @@ journalctl -b -f -n 1000 --priority 0..5
 ```
 
 ```sh
+# clone repo but only fetch required content nodes
+git clone --filter=blob:none <url>
+```
+
+```sh
 rg --no-ignore --hidden
 ```
 
