@@ -24,6 +24,6 @@ set -U PNPM_HOME "$HOME"/.local/share/pnpm
 
 fish_add_path "$HOME"/.bun/bin
 set -U BUN_INSTALL "$HOME"/.bun
-set -Ux DISABLE_BUN_ANALYTICS 1
+set -Ux DO_NOT_TRACK 1
 
 fish_add_path "$HOME"/.local/bin
