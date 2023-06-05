@@ -1,4 +1,4 @@
 #!/bin/sh -eu
-# Btrfs only; create a snapshot of the root filesystem and boot into an ephemeral instance of it
-test sudo btrfs subvolume show / &>/dev/null || { echo 'dir / is not a btrfs subvolume'; exit 1 }
+# Btrfs only; create snapshot of root filesystem and boot an ephemeral instance
+sudo btrfs subvolume show / >/dev/null || exit 1
 sudo systemd-nspawn -D / -xb
