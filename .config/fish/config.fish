@@ -46,7 +46,7 @@ if test -e /run/systemd/container
   abbr bu 'bunx taze --interactive -r'
   abbr bb 'bun run build'
   abbr bd 'bun run dev'
-  abbr bt 'bun run lint; and TZ=UTC bun run test'
+  abbr bt 'bun run lint; and bun run test'
   abbr btt 'TZ=UTC bun run test:e2e'
 
   abbr gs 'git status --short --branch --show-stash'
