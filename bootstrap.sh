@@ -35,6 +35,7 @@ ln -vbs "${script_dir}/.local/bin/arch.sh" ~/.local/bin/arch.sh
 ln -vbs "${script_dir}/.local/bin/brave.sh" ~/.local/bin/brave.sh
 ln -vbs "${script_dir}/.local/bin/librewolf.sh" ~/.local/bin/librewolf.sh
 # ln -vbs "${script_dir}/.local/bin/sudo" ~/.local/bin/sudo
+ln -vbs "${script_dir}/.local/bin/sysboot.sh" ~/.local/bin/sysboot.sh
 ln -vbs "${script_dir}/.local/bin/zigup" ~/.local/bin/zigup
 ln -vbs "${script_dir}/.ssh/config" ~/.ssh/config
 ln -vbs "${script_dir}/.curlrc" ~/.curlrc
