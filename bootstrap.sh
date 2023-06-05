@@ -1,6 +1,8 @@
 #!/bin/sh -eu
 script_dir=$(CDPATH='' cd -- "$(dirname -- "$0")" && pwd -P)
 
+umask 077
+
 mkdir -vp ~/.config/fish/functions
 mkdir -vp ~/.config/helix
 mkdir -vp ~/.config/mpv

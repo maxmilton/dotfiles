@@ -21,3 +21,4 @@ ln -vsf "$busybox_path" /usr/local/bin/whois
 ln -vsf "$busybox_path" /usr/local/bin/xxd
 
 # ln -vsf "$busybox_path" /usr/local/bin/ping
+# ln -vsf "$busybox_path" /usr/local/bin/unzip
