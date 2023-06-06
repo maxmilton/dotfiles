@@ -42,6 +42,7 @@ ln -vbs "${script_dir}/.ssh/config" ~/.ssh/config
 ln -vbs "${script_dir}/.curlrc" ~/.curlrc
 ln -vbs "${script_dir}/.gitconfig" ~/.gitconfig
 ln -vbs "${script_dir}/.gitignore" ~/.gitignore
+# ln -vbs "${script_dir}/.profile" ~/.profile
 ln -vbs "${script_dir}/.ripgreprc" ~/.ripgreprc
 ln -vbs "${script_dir}/.sqliterc" ~/.sqliterc
 
@@ -52,5 +53,4 @@ ln -vbs "${script_dir}/.sqliterc" ~/.sqliterc
 # # fisher install jorgebucaran/nvm.fish
 
 # fish ./.config/fish/config-oneshot.fish
-# # fish ./.config/fish/__config-oneshot-dev.fish
-# # fish ./.config/fish/config-oneshot-dev.fish
+# fish ./.config/fish/config-oneshot-dev.fish
