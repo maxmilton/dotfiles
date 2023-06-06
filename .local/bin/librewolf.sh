@@ -6,6 +6,5 @@ sudo systemd-nspawn \
   --bind=/dev/dri/renderD128 \
   --bind=/tmp/.X11-unix/X0 \
   --bind=/home/max/Downloads \
-  --bind=/home/max/Projects \
   --directory=/home/max/machines/librewolf \
   --boot --ephemeral

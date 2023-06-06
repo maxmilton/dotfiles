@@ -16,7 +16,10 @@ else
     --bind=/dev/dri/renderD128 \
     --bind=/tmp/.X11-unix/X0 \
     --bind=/home/max/Downloads \
-    --bind=/home/max/Projects \
+    --overlay=/home/max/Projects::/home/max/Projects \
     --directory=/var/lib/machines/arch \
     --boot $ephemeral
+
+    # TODO: Use when it's possible to specify bind/overlay owner uid or there's a workaround
+    # --private-users=pick \
 fi
