@@ -31,7 +31,6 @@ ln -vbs "${script_dir}/.config/mpv/shaders" ~/.config/mpv/shaders
 ln -vbs "${script_dir}/.config/zls.json" ~/.config/zls.json
 ln -vbs "${script_dir}/.gnupg/gpg-agent.conf" ~/.gnupg/gpg-agent.conf
 ln -vbs "${script_dir}/.gnupg/gpg.conf" ~/.gnupg/gpg.conf
-ln -vbs "${script_dir}/.local/bin/alpine-ephemeral.sh" ~/.local/bin/alpine-ephemeral.sh
 ln -vbs "${script_dir}/.local/bin/alpine.sh" ~/.local/bin/alpine.sh
 ln -vbs "${script_dir}/.local/bin/arch.sh" ~/.local/bin/arch.sh
 ln -vbs "${script_dir}/.local/bin/brave.sh" ~/.local/bin/brave.sh
