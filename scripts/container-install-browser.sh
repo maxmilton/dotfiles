@@ -1,6 +1,6 @@
 #!/bin/sh -eu
-paru -Syu
-paru -S midori
-# paru -S epiphany
-# paru -S brave-bin
-# paru -S librewolf-bin
+paru -Syu --noconfirm
+paru -S --noconfirm midori
+# paru -S --noconfirm epiphany
+# paru -S --noconfirm brave-bin
+# paru -S --noconfirm librewolf-bin

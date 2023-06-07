@@ -9,5 +9,5 @@ if test -L /usr/bin/sudo; then
   sudo rm /usr/bin/sudo
 fi
 
-paru -Syu
+paru -Syu --noconfirm
 paru -S --noconfirm base-devel nodejs
