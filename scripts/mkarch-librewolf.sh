@@ -31,8 +31,8 @@ Environment=PULSE_SERVER=unix:/run/user/host/pulse/native
 Environment=DISPLAY=:0
 Environment=WAYLAND_DISPLAY=/run/user/host/wayland-0
 Environment=XDG_SESSION_TYPE=wayland
-Environment=MOZ_ENABLE_WAYLAND=1
 Environment=QT_QPA_PLATFORM=wayland
+Environment=MOZ_ENABLE_WAYLAND=1
 Environment=GTK_THEME=Adwaita:dark
 ExecStart=/usr/bin/librewolf
 
