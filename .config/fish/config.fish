@@ -56,6 +56,7 @@ if test -e /run/systemd/container
   abbr gma 'git merge --autostash'
   abbr ga 'git add'
   abbr gd 'git diff'
+  abbr gdd 'git diff --staged'
   abbr gc 'git commit --verbose'
   abbr gca 'git commit --verbose --all'
   abbr gco 'git checkout'
