@@ -33,7 +33,7 @@ BindReadOnly=/tmp/.X11-unix/X0
 Bind=/dev/dri/card0
 Bind=/dev/dri/renderD128
 Bind=/home/max/Downloads
-Bind=/home/max/Projects
+# Bind=/home/max/Projects
 
 [Network]
 VirtualEthernet=no
