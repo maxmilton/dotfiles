@@ -15,6 +15,7 @@ else
     --bind=/dev/dri/card0 \
     --bind=/dev/dri/renderD128 \
     --bind=/tmp/.X11-unix/X0 \
+    --bind="$XAUTHORITY":/home/max/.Xauthority \
     --bind=/home/max/Downloads \
     --overlay=/home/max/Projects::/home/max/Projects \
     --directory=/var/lib/machines/arch \
