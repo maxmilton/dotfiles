@@ -1,4 +1,8 @@
 #!/bin/sh -eu
+
+# fix ubisoft connectivity
+sudo sysctl -w net.ipv4.tcp_mtu_probing=1
+
 sudo systemd-nspawn \
   --bind-ro=/run/user/1000/pulse/native:/run/user/host/pulse/native \
   --bind-ro=/run/user/1000/wayland-0:/run/user/host/wayland-0 \
