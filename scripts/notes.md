@@ -70,5 +70,84 @@ env PS4="\$(if [[ \$? == 0 ]]; then echo \"\033[0;33mEXIT: \$? ✔\"; else echo 
 git ls-files --deleted -z | xargs -0 git rm
 ```
 
+## Steam
+
 ```sh
+# setup steam container
+sudo ./mkarch.sh steam
+# enable updates with fish pp function
+sudo echo "permit root" >> /var/lib/machines/steam/etc/doas.conf
+
+# enter container then inside uncomment multilib repo and ParallelDownloads=5
+steam.sh
+doas busybox vi /etc/pacman.conf
+
+# add links to required bins
+doas ln -s /bin/busybox /usr/local/bin/gzip
+doas ln -s /bin/busybox /usr/local/bin/less
+doas ln -s /bin/busybox /usr/local/bin/lspci
+doas ln -s /bin/busybox /usr/local/bin/pgrep
+
+# install general deps
+doas pacman -Sy lib32-systemd ttf-liberation noto-fonts noto-fonts-cjk noto-fonts-emoji xdg-user-dirs
+# install AMD GPU deps
+doas pacman -Sy xf86-video-amdgpu vulkan-radeon lib32-vulkan-radeon lib32-mesa gstreamer lib32-gstreamer libva-mesa-driver lib32-libva-mesa-driver
+# install steam
+doas pacman -Sy steam
+
+# optionally install paru
+git clone https://aur.archlinux.org/paru-bin.git
+cd paru-bin
+makepkg -si
+
+# optionally install protontricks (AUR)
+paru -S protontricks
+
+# create a launcher script
+touch steam.sh && chmod 700 steam.sh && busybox vi steam.sh
+```
+```sh
+#!/bin/sh -eu
+export PULSE_SERVER=unix:/run/user/host/pulse/native
+export DISPLAY=:0
+export WAYLAND_DISPLAY=/run/user/host/wayland-0
+export XDG_SESSION_TYPE=wayland
+export QT_QPA_PLATFORM=wayland
+export MOZ_ENABLE_WAYLAND=1
+export GTK_THEME=Adwaita:dark
+/usr/bin/steam $@
+```
+
+## Lutris
+
+```sh
+# setup lutris container
+sudo ./mkarch.sh lutris
+
+# enter container then inside uncomment multilib repo and ParallelDownloads=5
+lutris.sh
+doas busybox vi /etc/pacman.conf
+
+# add links to required bins
+cd /usr/local/bin
+doas ln -s /bin/busybox /usr/local/bin/lspci
+
+# install general deps
+doas pacman -Sy lib32-systemd ttf-liberation xdg-desktop-portal-gtk wine lutris
+# install AMD GPU deps
+doas pacman -Sy xf86-video-amdgpu vulkan-radeon lib32-vulkan-radeon lib32-mesa gstreamer lib32-gstreamer libva-mesa-driver lib32-libva-mesa-driver vulkan-tools
+
+# create a launcher script
+touch lutris.sh && chmod 700 lutris.sh && busybox vi lutris.sh
+```
+```sh
+#!/bin/sh -eu
+export PULSE_SERVER=unix:/run/user/host/pulse/native
+export DISPLAY=:0
+export WAYLAND_DISPLAY=/run/user/host/wayland-0
+export XDG_SESSION_TYPE=wayland
+export QT_QPA_PLATFORM=wayland
+export MOZ_ENABLE_WAYLAND=1
+export GTK_THEME=Adwaita:dark
+/usr/bin/lutris $@
 ```

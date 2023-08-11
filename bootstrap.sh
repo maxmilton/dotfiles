@@ -11,8 +11,8 @@ mkdir -vp ~/.local/bin
 mkdir -vp ~/.ssh
 
 ln -vbs "${script_dir}/.config/electron-flags.conf" ~/.config/electron-flags.conf
-ln -vbs "${script_dir}/.config/fish/config.fish" ~/.config/fish/config.fish
-# ln -vbs "${script_dir}/.config/fish/config-alt-aio.fish" ~/.config/fish/config.fish
+# ln -vbs "${script_dir}/.config/fish/config.fish" ~/.config/fish/config.fish
+ln -vbs "${script_dir}/.config/fish/config-alt-aio.fish" ~/.config/fish/config.fish
 ln -vbs "${script_dir}/.config/fish/functions/bashx.fish" ~/.config/fish/functions/bashx.fish
 ln -vbs "${script_dir}/.config/fish/functions/clr.fish" ~/.config/fish/functions/clr.fish
 ln -vbs "${script_dir}/.config/fish/functions/gg.fish" ~/.config/fish/functions/gg.fish
@@ -36,8 +36,9 @@ ln -vbs "${script_dir}/.local/bin/arch.sh" ~/.local/bin/arch.sh
 ln -vbs "${script_dir}/.local/bin/brave.sh" ~/.local/bin/brave.sh
 ln -vbs "${script_dir}/.local/bin/librewolf.sh" ~/.local/bin/librewolf.sh
 ln -vbs "${script_dir}/.local/bin/lutris.sh" ~/.local/bin/lutris.sh
+ln -vbs "${script_dir}/.local/bin/steam.sh" ~/.local/bin/steam.sh
 # ln -vbs "${script_dir}/.local/bin/sudo" ~/.local/bin/sudo
-ln -vbs "${script_dir}/.local/bin/sysboot.sh" ~/.local/bin/sysboot.sh
+# ln -vbs "${script_dir}/.local/bin/sysboot.sh" ~/.local/bin/sysboot.sh
 ln -vbs "${script_dir}/.local/bin/zigup" ~/.local/bin/zigup
 ln -vbs "${script_dir}/.ssh/config" ~/.ssh/config
 ln -vbs "${script_dir}/.curlrc" ~/.curlrc
