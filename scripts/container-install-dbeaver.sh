@@ -1,3 +1,3 @@
 #!/bin/sh -eu
-paru -Syu --noconfirm
-paru -S --noconfirm dbeaver
+pacman -Syu --noconfirm
+pacman -S --noconfirm dbeaver

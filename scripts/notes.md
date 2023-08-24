@@ -89,7 +89,7 @@ doas ln -s /bin/busybox /usr/local/bin/lspci
 doas ln -s /bin/busybox /usr/local/bin/pgrep
 
 # install general deps
-doas pacman -Sy lib32-systemd ttf-liberation noto-fonts noto-fonts-cjk noto-fonts-emoji xdg-user-dirs
+doas pacman -Sy lib32-systemd ttf-liberation noto-fonts noto-fonts-cjk noto-fonts-emoji xdg-user-dirs tar
 # install AMD GPU deps
 doas pacman -Sy xf86-video-amdgpu vulkan-radeon lib32-vulkan-radeon lib32-mesa gstreamer lib32-gstreamer libva-mesa-driver lib32-libva-mesa-driver
 # install steam
@@ -129,8 +129,8 @@ lutris.sh
 doas busybox vi /etc/pacman.conf
 
 # add links to required bins
-cd /usr/local/bin
 doas ln -s /bin/busybox /usr/local/bin/lspci
+doas ln -s /bin/busybox /usr/local/bin/sed
 
 # install general deps
 doas pacman -Sy lib32-systemd ttf-liberation xdg-desktop-portal-gtk wine lutris
@@ -150,4 +150,56 @@ export QT_QPA_PLATFORM=wayland
 export MOZ_ENABLE_WAYLAND=1
 export GTK_THEME=Adwaita:dark
 /usr/bin/lutris $@
+```
+
+## Jellyfin
+
+```sh
+# setup lutris container
+sudo ./mkarch.sh jellyfin
+
+# add links to required bins
+doas ln -s /bin/busybox /usr/local/bin/lspci
+doas ln -s /bin/busybox /usr/local/bin/gzip
+doas ln -s ~/Projects/dotfiles/.local/bin/sudo /usr/local/bin/sudo
+
+# install paru deps
+doas pacman -S binutils fakeroot git
+
+# install paru
+git clone https://aur.archlinux.org/paru-bin.git
+cd paru-bin
+makepkg -si
+
+# install jellyfin deps and Intel GPU deps
+paru -S jellyfin-bin jellyfin-ffmpeg6-bin yt-dlp tar intel-compute-runtime intel-media-driver intel-media-sdk onevpl-intel-gpu vulkan-intel
+
+doas systemctl enable jellyfin.service
+doas systemctl start jellyfin.service
+
+# Open in browser:
+# http://192.168.1.222:8096/
+
+# create a launcher script (on the server, not in the container)
+touch jellyfin.sh && chmod 700 jellyfin.sh && busybox vi jellyfin.sh
+```
+```sh
+#!/bin/sh -eu
+
+if test ! -z "$(machinectl show --property=State=running jellyfin 2>&-)"; then
+  sudo systemd-run \
+    --machine=jellyfin \
+    --uid=max \
+    --gid=max \
+    --shell
+else
+  sudo systemd-nspawn \
+    --bind=/dev/dri/card0 \
+    --bind=/dev/dri/renderD128 \
+    --bind=/home/max/Downloads \
+    --bind=/mnt/e5fee00f-45f8-4c23-88fb-c8a1f67aa9e1/Store:/media \
+    --overlay=/home/max/Projects::/home/max/Projects \
+    --directory=/var/lib/machines/jellyfin \
+    --boot
+fi
 ```

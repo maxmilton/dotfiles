@@ -42,6 +42,7 @@ ln -vbs "${script_dir}/.local/bin/steam.sh" ~/.local/bin/steam.sh
 ln -vbs "${script_dir}/.local/bin/zigup" ~/.local/bin/zigup
 ln -vbs "${script_dir}/.ssh/config" ~/.ssh/config
 ln -vbs "${script_dir}/.curlrc" ~/.curlrc
+ln -vbs "${script_dir}/.gitattributes" ~/.gitattributes
 ln -vbs "${script_dir}/.gitconfig" ~/.gitconfig
 ln -vbs "${script_dir}/.gitignore" ~/.gitignore
 # ln -vbs "${script_dir}/.profile" ~/.profile
