@@ -1,8 +1,8 @@
 function pp
   paru -Syu
-  paru -Syur "$HOME"/machines/brave
-  paru -Syur "$HOME"/machines/librewolf
-  # paru -Sr "$HOME"/machines/librewolf librewolf-bin --nodeps
+  paru -Syur /home/max/.machines/brave
+  paru -Syur /home/max/.machines/librewolf
+  # paru -Sr /home/max/.machines/librewolf librewolf-bin --nodeps
   sudo pacman -Syur /var/lib/machines/arch
   sudo systemd-nspawn -D /var/lib/machines/lutris sh -c "pacman -Syu"
   sudo systemd-nspawn -D /var/lib/machines/steam sh -c "paru -Syu"

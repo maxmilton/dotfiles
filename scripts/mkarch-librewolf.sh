@@ -3,7 +3,7 @@
 test "$(id -u)" -ne "0" && echo "You need to be root" >&2 && exit 1
 
 export CONTAINER=librewolf
-export FOLDER="/home/max/machines/$CONTAINER"
+export FOLDER="/home/max/.machines/$CONTAINER"
 
 umask 022
 

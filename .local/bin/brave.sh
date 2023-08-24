@@ -6,5 +6,5 @@ sudo systemd-nspawn \
   --bind=/dev/dri/renderD128 \
   --bind=/tmp/.X11-unix/X0 \
   --bind=/home/max/Downloads \
-  --directory=/home/max/machines/brave \
+  --directory=/home/max/.machines/brave \
   --boot --ephemeral
