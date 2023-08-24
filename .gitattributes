@@ -1,0 +1,2 @@
+*.lockb binary diff=lockb
+*.zig text eol=lf

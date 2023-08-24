@@ -41,6 +41,9 @@
   renames = copies # Detect copies as well as renames
 [diff "bin"]
   textconv = hexdump -v -C # Use `hexdump` to diff binary files
+[diff "lockb"]
+  textconv = bun
+  binary = true
 [difftool]
   prompt = false
 [gpg]
