@@ -61,6 +61,8 @@ if test -e /run/systemd/container
   abbr gca 'git commit --verbose --all'
   abbr gco 'git checkout'
 
+  abbr za 'zellij attach'
+
   abbr -e rm
   abbr get 'aria2c --optimize-concurrent-downloads --dir ~/Downloads'
 end

@@ -15,10 +15,10 @@ abbr ff 'fd --no-ignore --hidden'
 abbr grep rg
 abbr rr 'RIPGREP_CONFIG_PATH=~/.ripgreprc rg --no-ignore --hidden'
 abbr dux 'du -bh --max-depth=1 | sort -h'
-abbr p paru
+abbr ip 'ip -c'
 abbr hh 'history --merge'
 abbr h helix
-abbr ip 'ip -c'
+abbr p paru
 abbr curl "curl -vv -H 'Cache-Control: no-cache'"
 abbr get 'aria2c --optimize-concurrent-downloads --dir ~/Downloads'
 
