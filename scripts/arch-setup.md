@@ -12,7 +12,7 @@ archinstall
 ```sh
 # extra packages
 busybox
-exa
+eza
 fd
 fish
 git
@@ -62,7 +62,7 @@ code
 code-features (AUR)
 code-marketplace (AUR)
 cpupower (for desktop) OR power-profiles-daemon (for laptop)
-exa
+eza
 fd
 fish
 fwupd

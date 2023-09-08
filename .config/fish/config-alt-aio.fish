@@ -6,10 +6,10 @@ abbr .. -r '^\.\.+$' -f multicd
 abbr rm 'gio trash'
 abbr cp 'cp -i'
 abbr mv 'mv -i'
-abbr ls exa
-abbr l 'exa -lFa --group-directories-first'
-abbr ll 'exa -lFa --bytes --group-directories-first'
-abbr ld 'exa --tree --only-dirs'
+abbr ls eza
+abbr l 'eza -lFa --group-directories-first'
+abbr ll 'eza -lFa --bytes --group-directories-first'
+abbr ld 'eza --tree --only-dirs'
 abbr find fd
 abbr ff 'fd --no-ignore --hidden'
 abbr grep rg
