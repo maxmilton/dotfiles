@@ -7,4 +7,4 @@ sudo systemd-nspawn \
   --bind=/tmp/.X11-unix/X0 \
   --bind=/home/max/Downloads \
   --directory=/home/max/.machines/librewolf \
-  --boot --ephemeral
+  --boot --ephemeral $@

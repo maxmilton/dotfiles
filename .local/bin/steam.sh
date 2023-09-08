@@ -11,6 +11,7 @@ sudo systemd-nspawn \
   --bind=/tmp/.X11-unix/X0 \
   --bind="$XAUTHORITY":/home/max/.Xauthority \
   --bind=/home/max/Downloads \
+  --bind=/run/media/max/Store/Steam:/mnt/Store \
   --bind-ro=/home/max/Projects \
   --directory=/var/lib/machines/steam \
   --boot
