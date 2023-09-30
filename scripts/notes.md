@@ -118,6 +118,25 @@ export GTK_THEME=Adwaita:dark
 /usr/bin/steam $@
 ```
 
+## Steam patch
+
+```sh
+# Get steam app ID (e.g., 828070 in the below script)
+protontricks -l
+```
+
+```sh
+#!/bin/sh -eu
+export PULSE_SERVER=unix:/run/user/host/pulse/native
+export DISPLAY=:0
+export WAYLAND_DISPLAY=/run/user/host/wayland-0
+export XDG_SESSION_TYPE=wayland
+export QT_QPA_PLATFORM=wayland
+export MOZ_ENABLE_WAYLAND=1
+export GTK_THEME=Adwaita:dark
+protontricks --command "wine '/home/max/Downloads/xxxx.exe'" 828070
+```
+
 ## Lutris
 
 ```sh
@@ -202,4 +221,52 @@ else
     --directory=/var/lib/machines/jellyfin \
     --boot
 fi
+```
+
+## Erigon
+
+```sh
+#!/bin/sh -eu
+
+# monitor and respawn until exit 0
+until /usr/local/bin/erigon \
+  --chain=mainnet \
+  --datadir=/home/eth/erigon-data \
+  --ethash.dagdir=/home/eth/erigon-data/dag \
+  --internalcl \
+  --torrent.upload.rate=1kb \
+  --txpool.disable \
+  --private.api.addr=0.0.0.0:9090 \
+  --http.addr=0.0.0.0 \
+  --http.vhosts=any \
+  --http.corsdomain='*' \
+  --http.compression=false \
+  --ws \
+  --ws.compression=false; do
+    echo "erigon crashed with exit code $?. Respawning..." >&2
+    sleep 1
+done
+
+  # --http.api=eth,erigon,web3,net,debug,trace,txpool \
+  # --authrpc.addr=0.0.0.0 \
+  # --authrpc.vhosts=any \
+
+# TODO: Don't disable TX pool?
+
+# https://github.com/ledgerwatch/erigon/discussions/6369
+# https://github.com/ledgerwatch/erigon#multiple-instances--one-machine
+# https://github.com/ledgerwatch/erigon/blob/devel/docker-compose.yml
+```
+
+RPC only:
+```sh
+#!/bin/sh -eu
+/usr/local/bin/erigon \
+  --chain=mainnet \
+  --datadir=/home/eth/erigon-data \
+  --ethash.dagdir=/home/eth/erigon-data/dag \
+  --torrent.upload.rate=1kb \
+  --txpool.disable \
+  --sync.loop.throttle=24h \
+  --private.api.addr=0.0.0.0:9090
 ```

@@ -113,3 +113,43 @@ visidata
 xdg-user-dirs
 xorg-server-xvfb
 ```
+
+- Set up iwd
+- Set up systemd-resolved
+  - Use DNS over TLS
+- Set up systemd-networkd
+  - Improve TCP slow start window
+- Create machines; `mkarch.sh arch`
+
+`/etc/systemd/network/25-wlan.network`:
+```
+# https://man.archlinux.org/man/systemd.network.5
+# https://www.freedesktop.org/software/systemd/man/systemd.network.html
+
+[Match]
+Name=wlan*
+
+[Network]
+DHCP=true
+IgnoreCarrierLoss=3s
+DNS=::1 127.0.0.1
+
+[DHCPv4]
+UseDNS=no
+
+[DHCPv6]
+UseDNS=no
+
+[IPv6AcceptRA]
+UseDNS=no
+
+[Route]
+Gateway=_dhcp4
+InitialCongestionWindow=30
+InitialAdvertisedReceiveWindow=30
+
+[Route]
+Gateway=_ipv6ra
+InitialCongestionWindow=30
+InitialAdvertisedReceiveWindow=30
+```
