@@ -15,7 +15,7 @@ abbr ff 'fd --no-ignore --hidden'
 abbr grep rg
 abbr rr 'RIPGREP_CONFIG_PATH=~/.ripgreprc rg --no-ignore --hidden'
 abbr s 'doas su'
-abbr dux 'du -bh --max-depth=1 | sort -h'
+abbr dux 'du -bhx --max-depth=1 | sort -h'
 abbr p paru
 abbr hh 'history --merge'
 abbr h helix
