@@ -10,7 +10,11 @@ sudo systemd-nspawn \
   --bind=/dev/dri/renderD128 \
   --bind=/tmp/.X11-unix/X0 \
   --bind="$XAUTHORITY":/home/max/.Xauthority \
-  --bind=/home/max/Downloads \
   --bind-ro=/home/max/Projects \
+  --bind=/home/max/Downloads \
+  --bind=/run/media/max/Store/Lutris:/mnt/Store \
+  --bind=/dev/input \
+  --property=DeviceAllow="char-usb_device rwm" \
+  --property=DeviceAllow="char-input rwm" \
   --directory=/var/lib/machines/lutris \
   --boot
