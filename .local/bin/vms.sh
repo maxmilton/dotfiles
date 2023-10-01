@@ -5,7 +5,11 @@ sudo systemd-nspawn \
   --bind=/dev/dri/card1 \
   --bind=/dev/dri/renderD128 \
   --bind=/tmp/.X11-unix/X0 \
+  --bind="$XAUTHORITY":/home/max/.Xauthority \
+  --bind=/dev/kvm \
+  --bind=/dev/vfio \
   --bind=/home/max/Downloads \
-  --directory=/home/max/.machines/brave \
-  --boot --ephemeral $@
-  # --bind-ro=/home/max/Projects \
+  --bind-ro=/home/max/Projects \
+  --directory=/home/max/.machines/vms \
+  --boot
+  # --capability=all \

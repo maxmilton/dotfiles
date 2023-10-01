@@ -40,6 +40,7 @@ ln -vbs "${script_dir}/.local/bin/lutris.sh" ~/.local/bin/lutris.sh
 ln -vbs "${script_dir}/.local/bin/steam.sh" ~/.local/bin/steam.sh
 # ln -vbs "${script_dir}/.local/bin/sudo" ~/.local/bin/sudo
 # ln -vbs "${script_dir}/.local/bin/sysboot.sh" ~/.local/bin/sysboot.sh
+ln -vbs "${script_dir}/.local/bin/vms.sh" ~/.local/bin/vms.sh
 ln -vbs "${script_dir}/.local/bin/zigup" ~/.local/bin/zigup
 ln -vbs "${script_dir}/.ssh/config" ~/.ssh/config
 ln -vbs "${script_dir}/.curlrc" ~/.curlrc
