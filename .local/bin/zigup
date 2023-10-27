@@ -52,10 +52,12 @@ else
   ln -s "${version}" "${ROOT_DIR}/zig-latest" || die "Failed to set new symlink!"
   ln -s zig-latest/zig "${ROOT_DIR}/zig_" || die "Failed to set new symlink!"
 
+  # FIXME: this cleanup was deleting the latest version (zig-linux-x86_64-0.12.0-dev.1114+e8f3c4c4b)
+
   # Clean up old versions; keep the last 5 downloads
-  find "${ROOT_DIR}"/zig-linux-x86_64-* -prune | head -n -5 | while IFS='' read -r path; do
-    rm -r "$path"
-  done
+  # find "${ROOT_DIR}"/zig-linux-x86_64-* -prune | head -n -5 | while IFS='' read -r path; do
+  #   rm -r "$path"
+  # done
 fi
 
 msg "Current version: $("${ROOT_DIR}/zig-latest/zig" version)"

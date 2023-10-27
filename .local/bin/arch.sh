@@ -18,10 +18,9 @@ else
     --bind="$XAUTHORITY":/home/max/.Xauthority \
     --bind=/home/max/Downloads \
     --overlay=/home/max/Projects::/home/max/Projects \
+    --overlay=/run/media/max/Store::/mnt/Store \
     --directory=/var/lib/machines/arch \
     --boot $ephemeral
-    # --bind=/dev/dri/card0 \
-    # --overlay=/mnt/da4371d6-e6cd-4950-b3cc-d10dd425e002/Store::/home/max/Store \
 
     # TODO: Use when it's possible to specify bind/overlay owner uid or there's a workaround
     # --private-users=pick \
