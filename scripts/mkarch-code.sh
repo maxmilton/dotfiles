@@ -47,7 +47,6 @@ echo -e "\033[1;31mManually run:\033[0m"
 echo "paru -Syr \"$MACHINE_DIR\" base-devel git code code-features code-marketplace nodejs"
 
 # echo -e "\033[1;31mThen run:\033[0m"
-# echo "/home/max/Projects/dotfiles/scripts/mkarch-code.sh"
 
 # script_dir="$(cd "$(dirname "$0")" && pwd)"
 # doas "$script_dir"/link-busybox.sh

@@ -1,4 +1,4 @@
-# cd /var/lib/helix/runtime/queries
+# cd /usr/lib/helix/runtime/queries
 # ln -s scss xcss
 
 [[language]]
@@ -7,6 +7,6 @@ scope = "source.scss"
 injection-regex = "xcss"
 file-types = ["xcss"]
 roots = []
-language-server = { command = "vscode-css-language-server", args = ["--stdio"] }
+language-servers = ["vscode-css-language-server"]
 indent = { tab-width = 2, unit = "  " }
 grammar = "scss"
