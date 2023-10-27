@@ -11,6 +11,7 @@ mkdir -vp ~/.local/bin
 mkdir -vp ~/.ssh
 
 ln -vbs "${script_dir}/.config/electron-flags.conf" ~/.config/electron-flags.conf
+# ln -vbs "${script_dir}/.config/fish/conf.d/gnome.fish" ~/.config/fish/conf.d/gnome.fish
 ln -vbs "${script_dir}/.config/fish/config.fish" ~/.config/fish/config.fish
 # ln -vbs "${script_dir}/.config/fish/config-alt-aio.fish" ~/.config/fish/config.fish
 # ln -vbs "${script_dir}/.config/fish/functions/bashx.fish" ~/.config/fish/functions/bashx.fish
