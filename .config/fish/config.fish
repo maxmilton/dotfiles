@@ -16,21 +16,22 @@ abbr grep rg
 abbr rr 'RIPGREP_CONFIG_PATH=~/.ripgreprc rg --no-ignore --hidden'
 abbr s 'doas su'
 abbr dux 'du -bhx --max-depth=1 | sort -h'
-abbr p paru
+abbr ip 'ip -c'
 abbr hh 'history --merge'
 abbr h helix
-abbr ip 'ip -c'
+abbr p paru
 abbr curl "curl -vv -H 'Cache-Control: no-cache'"
+abbr get 'aria2c --optimize-concurrent-downloads --dir ~/Downloads'
 
 if test -e /run/systemd/container
-  set -gx COLORTERM truecolor
-  set -gx TERM xterm-256color
-  set -g hydro_color_prompt magenta
+  # set -gx COLORTERM truecolor
+  # set -gx TERM xterm-256color
+  # set -g hydro_color_prompt magenta
 
-  set -gx GNOME_KEYRING_CONTROL "$XDG_RUNTIME_DIR"/keyring
-  set -gx SSH_AUTH_SOCK "$XDG_RUNTIME_DIR"/keyring/ssh
-  set -gx GPG_TTY (tty)
-  ~/gnome-keyring-daemon --start --components=gpg,pkcs11,secrets,ssh &>/dev/null
+  # set -gx GNOME_KEYRING_CONTROL "$XDG_RUNTIME_DIR"/keyring
+  # set -gx SSH_AUTH_SOCK "$XDG_RUNTIME_DIR"/keyring/ssh
+  # set -gx GPG_TTY (tty)
+  # ~/gnome-keyring-daemon --start --components=gpg,pkcs11,secrets,ssh &>/dev/null
 
   abbr j pnpm
   abbr ju 'pnpm upgrade --interactive --latest -r'
@@ -57,12 +58,10 @@ if test -e /run/systemd/container
   abbr ga 'git add'
   abbr gd 'git diff'
   abbr gdd 'git diff --staged'
-  abbr gc 'git commit --verbose'
-  abbr gca 'git commit --verbose --all'
+  abbr gc 'git commit -v'
+  abbr gca 'git commit -v --all'
   abbr gco 'git checkout'
 
   abbr za 'zellij attach'
-
   abbr -e rm
-  abbr get 'aria2c --optimize-concurrent-downloads --dir ~/Downloads'
 end
