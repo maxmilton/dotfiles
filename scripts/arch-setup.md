@@ -35,6 +35,11 @@ wireplumber
 ```
 
 ```sh
+# turn off uncessecary gnome stuff
+scripts/disable-gnome-services.sh
+```
+
+```sh
 # edit pacman config; enable parallel downloads + colour
 vi /etc/pacman.conf
 ```
@@ -93,7 +98,8 @@ firejail
 hardened_malloc
 nftables
 opendoas
-sbupdate (AUR, for updating Secure Boot keys)
+~~sbupdate (AUR, for updating Secure Boot keys)~~
+sbctl (modern replacement for sbupdate)
 ```
 
 ```sh

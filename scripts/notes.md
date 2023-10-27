@@ -70,6 +70,11 @@ env PS4="\$(if [[ \$? == 0 ]]; then echo \"\033[0;33mEXIT: \$? ✔\"; else echo 
 git ls-files --deleted -z | xargs -0 git rm
 ```
 
+```sh
+# local http server
+busybox httpd -fvp 5000 -h .
+```
+
 ## Steam
 
 ```sh
@@ -234,7 +239,7 @@ until /usr/local/bin/erigon \
   --datadir=/home/eth/erigon-data \
   --ethash.dagdir=/home/eth/erigon-data/dag \
   --internalcl \
-  --torrent.upload.rate=1kb \
+  --torrent.upload.rate=1mb \
   --txpool.disable \
   --private.api.addr=0.0.0.0:9090 \
   --http.addr=0.0.0.0 \
@@ -247,6 +252,7 @@ until /usr/local/bin/erigon \
     sleep 1
 done
 
+  # --torrent.upload.rate=1kb \
   # --http.api=eth,erigon,web3,net,debug,trace,txpool \
   # --authrpc.addr=0.0.0.0 \
   # --authrpc.vhosts=any \
@@ -258,7 +264,7 @@ done
 # https://github.com/ledgerwatch/erigon/blob/devel/docker-compose.yml
 ```
 
-RPC only:
+RPC only via main bin:
 ```sh
 #!/bin/sh -eu
 /usr/local/bin/erigon \
@@ -269,4 +275,19 @@ RPC only:
   --txpool.disable \
   --sync.loop.throttle=24h \
   --private.api.addr=0.0.0.0:9090
+```
+
+RPC only:
+```sh
+#!/bin/sh -eu
+
+# monitor and respawn until exit 0
+until /usr/local/bin/rpcdaemon \
+  --chain=mainnet \
+  --datadir=/home/eth/erigon-data \
+  --ethash.dagdir=/home/eth/erigon-data/dag \
+  --private.api.addr=0.0.0.0:9090; do
+    echo "erigon rpcdaemon crashed with exit code $?. Respawning..." >&2
+    sleep 1
+done
 ```
