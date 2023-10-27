@@ -16,9 +16,9 @@ ln -vbs "${script_dir}/.config/fish/config.fish" ~/.config/fish/config.fish
 # ln -vbs "${script_dir}/.config/fish/config-alt-aio.fish" ~/.config/fish/config.fish
 # ln -vbs "${script_dir}/.config/fish/functions/bashx.fish" ~/.config/fish/functions/bashx.fish
 ln -vbs "${script_dir}/.config/fish/functions/clr.fish" ~/.config/fish/functions/clr.fish
-ln -vbs "${script_dir}/.config/fish/functions/gg.fish" ~/.config/fish/functions/gg.fish
-ln -vbs "${script_dir}/.config/fish/functions/gl.fish" ~/.config/fish/functions/gl.fish
-ln -vbs "${script_dir}/.config/fish/functions/gz.fish" ~/.config/fish/functions/gz.fish
+# ln -vbs "${script_dir}/.config/fish/functions/gg.fish" ~/.config/fish/functions/gg.fish
+# ln -vbs "${script_dir}/.config/fish/functions/gl.fish" ~/.config/fish/functions/gl.fish
+# ln -vbs "${script_dir}/.config/fish/functions/gz.fish" ~/.config/fish/functions/gz.fish
 ln -vbs "${script_dir}/.config/fish/functions/kk.fish" ~/.config/fish/functions/kk.fish
 ln -vbs "${script_dir}/.config/fish/functions/lsport.fish" ~/.config/fish/functions/lsport.fish
 ln -vbs "${script_dir}/.config/fish/functions/multicd.fish" ~/.config/fish/functions/multicd.fish
@@ -36,7 +36,7 @@ ln -vbs "${script_dir}/.gnupg/gpg.conf" ~/.gnupg/gpg.conf
 # ln -vbs "${script_dir}/.local/bin/arch.sh" ~/.local/bin/arch.sh
 # ln -vbs "${script_dir}/.local/bin/brave.sh" ~/.local/bin/brave.sh
 # ln -vbs "${script_dir}/.local/bin/code.sh" ~/.local/bin/code.sh
-# ln -vbs "${script_dir}/.local/bin/gnome.sh" ~/.local/bin/gnome.sh
+# ln -vbs "${script_dir}/.local/bin/gn" ~/.local/bin/gn # gnome session launcher
 # ln -vbs "${script_dir}/.local/bin/librewolf.sh" ~/.local/bin/librewolf.sh
 # ln -vbs "${script_dir}/.local/bin/lutris.sh" ~/.local/bin/lutris.sh
 # ln -vbs "${script_dir}/.local/bin/steam.sh" ~/.local/bin/steam.sh
@@ -44,6 +44,7 @@ ln -vbs "${script_dir}/.gnupg/gpg.conf" ~/.gnupg/gpg.conf
 # ln -vbs "${script_dir}/.local/bin/sysboot.sh" ~/.local/bin/sysboot.sh
 # ln -vbs "${script_dir}/.local/bin/vms.sh" ~/.local/bin/vms.sh
 # ln -vbs "${script_dir}/.local/bin/zigup" ~/.local/bin/zigup
+# ln -vbs "${script_dir}/.local/bin/zls" ~/Projects/_github-clones/zls/zig-out/bin/zls
 ln -vbs "${script_dir}/.ssh/config" ~/.ssh/config
 ln -vbs "${script_dir}/.curlrc" ~/.curlrc
 ln -vbs "${script_dir}/.gitattributes" ~/.gitattributes
