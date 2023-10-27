@@ -51,4 +51,6 @@ BindReadOnly=/home/max/Projects
 VirtualEthernet=no
 EOF
 
+# paru -Sr "$MACHINE_DIR" paru-bin
+
 echo "DONE"

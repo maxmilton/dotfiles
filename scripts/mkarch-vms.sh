@@ -44,4 +44,51 @@ systemd-nspawn -D "$FOLDER" sh -c "chown -R max:max /home/max/.config"
 systemd-nspawn -D "$FOLDER" --user max sh -c "systemctl --user enable $CONTAINER.service"
 
 echo -e "\033[1;31mManually run:\033[0m"
-echo "paru -Syr \"$FOLDER\" gnome-boxes libpulse"
+echo "paru -Syr \"$FOLDER\" gnome-boxes libpulse pipewire-jack wireplumber"
+
+# https://www.geekdashboard.com/install-windows-11-on-gnome-boxes/
+echo -e "\033[1;31mFor Windows 11, also run:\033[0m"
+echo "paru -Syr \"$FOLDER\" edk2-ovmf swtpm"
+echo -e "\033[1;31mThen, in the container, run:\033[0m"
+echo "swtpm_setup --create-config-files skip-if-exist"
+
+# Edit VM preferences:
+
+# Add to end of <devices>:
+# <tpm model="tpm-crb">
+#   <backend type="emulator" version="2.0"/>
+# </tpm>
+
+# Add to end of <os>:
+# <loader readonly="yes" type="pflash">/usr/share/edk2/x64/OVMF_CODE.secboot.fd</loader>
+
+
+# TODO: The rest seems to be unnecessary as long as you save the VM config
+
+# awk grep
+# # systemd-nspawn -D "$FOLDER" sh -c "ln -s /usr/bin/busybox /usr/local/bin/vi"
+# systemd-nspawn -D "$FOLDER" sh -c "ln -s /usr/bin/busybox /usr/local/bin/awk"
+# systemd-nspawn -D "$FOLDER" sh -c "ln -s /usr/bin/busybox /usr/local/bin/grep"
+# systemd-nspawn -D "$FOLDER" sh -c "ln -s /usr/bin/busybox /usr/local/bin/sed"
+
+
+# Create desktop file:
+# mkdir -p ~/.local/share/applications/
+# busybox vi ~/.local/share/applications/vi.desktop
+
+# [Desktop Entry]
+# Name=BusyBox Vi
+# Comment=Text Editor (Vi)
+# Exec=busybox vi %F
+# Terminal=true
+# Type=Application
+# Icon=utilities-text-editor
+# MimeType=text/plain;
+
+# Associate:
+# xdg-mime default vi.desktop x-scheme-handler/text
+# xdg-settings set default-url-scheme-handler text vi.desktop
+
+# Verify:
+# xdg-mime query default x-scheme-handler/text
+# xdg-mime query default text/plain

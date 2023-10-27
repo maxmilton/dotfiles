@@ -2,7 +2,7 @@
 
 test "$(id -u)" -ne "0" && echo "You need to be root" >&2 && exit 1
 
-export MACHINE_NAME=brave
+export MACHINE_NAME=code
 export MACHINE_DIR="/home/max/.machines/$MACHINE_NAME"
 
 umask 022
@@ -23,7 +23,7 @@ EOF
 mkdir -p "$MACHINE_DIR"/home/max/.config/systemd/user
 tee -a "$MACHINE_DIR"/home/max/.config/systemd/user/$MACHINE_NAME.service <<EOF
 [Unit]
-Description=Brave Browser
+Description=VS Code
 After=network.target
 
 [Service]
@@ -34,7 +34,7 @@ Environment=XDG_SESSION_TYPE=wayland
 Environment=QT_QPA_PLATFORM=wayland
 Environment=MOZ_ENABLE_WAYLAND=1
 Environment=GTK_THEME=Adwaita:dark
-ExecStart=/usr/bin/brave --enable-features=UseOzonePlatform --ozone-platform=wayland
+ExecStart=/usr/bin/code --enable-features=UseOzonePlatform --ozone-platform=wayland
 
 [Install]
 WantedBy=default.target
@@ -44,4 +44,14 @@ systemd-nspawn -D "$MACHINE_DIR" sh -c "chown -R max:max /home/max/.config"
 systemd-nspawn -D "$MACHINE_DIR" --user max sh -c "systemctl --user enable $MACHINE_NAME.service"
 
 echo -e "\033[1;31mManually run:\033[0m"
-echo "paru -Syr \"$MACHINE_DIR\" brave-bin libpulse ttf-liberation"
+echo "paru -Syr \"$MACHINE_DIR\" base-devel git code code-features code-marketplace nodejs"
+
+# echo -e "\033[1;31mThen run:\033[0m"
+# echo "/home/max/Projects/dotfiles/scripts/mkarch-code.sh"
+
+# script_dir="$(cd "$(dirname "$0")" && pwd)"
+# doas "$script_dir"/link-busybox.sh
+# doas ln -vs --no-dereference /usr/bin/busybox /usr/local/bin/unzip
+# curl -fsSL https://bun.sh/install | bash
+# ~/.bun/bin/bun add -g pnpm npm yarn
+# ~/.bun/bin/yarn set version stable

@@ -10,7 +10,6 @@ fi
 ln -vsf "$busybox_path" /usr/local/bin/bc
 ln -vsf "$busybox_path" /usr/local/bin/dos2unix
 ln -vsf "$busybox_path" /usr/local/bin/hexedit
-ln -vsf "$busybox_path" /usr/local/bin/httpd
 ln -vsf "$busybox_path" /usr/local/bin/iostat
 ln -vsf "$busybox_path" /usr/local/bin/lsof
 ln -vsf "$busybox_path" /usr/local/bin/nc
@@ -21,6 +20,7 @@ ln -vsf "$busybox_path" /usr/local/bin/whois
 ln -vsf "$busybox_path" /usr/local/bin/xxd
 
 # ln -vsf "$busybox_path" /usr/local/bin/gzip
+# ln -vsf "$busybox_path" /usr/local/bin/httpd
 # ln -vsf "$busybox_path" /usr/local/bin/less
 # ln -vsf "$busybox_path" /usr/local/bin/ping
 # ln -vsf "$busybox_path" /usr/local/bin/unzip
