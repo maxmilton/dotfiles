@@ -15,3 +15,6 @@
 *.log
 coverage/
 node_modules/
+
+# Local machine specific configuration
+/bootstrap.sh
