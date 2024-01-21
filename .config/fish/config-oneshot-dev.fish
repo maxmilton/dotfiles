@@ -17,7 +17,10 @@ if test (uname -s) = "Darwin"
 end
 
 # Set user paths in reverse order of priority
-fish_add_path "$HOME"/.foundry/bin
+
+# fish_add_path "$HOME"/.fly/bin
+
+# fish_add_path "$HOME"/.foundry/bin
 
 fish_add_path "$HOME"/.local/share/pnpm
 set -U PNPM_HOME "$HOME"/.local/share/pnpm

@@ -1,7 +1,12 @@
 #!/bin/sh -eu
 
+# TODO: Populate persistent data rather than populate on every run
+doas pacman -S --noconfirm --needed archlinux-keyring
+doas pacman-key --init
+doas pacman-key --populate archlinux
+
 if test -L /usr/bin/sudo; then
-  doas sudo rm /usr/bin/sudo
+  doas rm /usr/bin/sudo
 fi
 
 doas pacman -S --noconfirm --needed base-devel nodejs
@@ -14,3 +19,5 @@ curl -fsSL https://bun.sh/install | bash
 
 ~/.bun/bin/bun add -g pnpm npm yarn
 ~/.bun/bin/yarn set version stable
+
+echo "export PATH=$PATH:~/.bun/bin/"

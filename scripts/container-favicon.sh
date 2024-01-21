@@ -1,6 +1,11 @@
 #!/bin/sh -eu
 
-doas pacman -S --noconfirm --needed inkscape imagemagick ttf-dejavu
+# TODO: Populate persistent data rather than populate on every run
+doas pacman -S --noconfirm --needed archlinux-keyring
+doas pacman-key --init
+doas pacman-key --populate archlinux
+
+doas pacman -S --noconfirm --needed inkscape imagemagick ttf-dejavu libwpg
 
 convert logo.svg -resize 16x16 -background none -alpha remove -alpha off -colors 16 favicon.ico
 # convert logo.svg -resize 16x16 -background none -alpha remove -alpha off favicon2.ico

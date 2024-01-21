@@ -250,7 +250,7 @@ until /usr/local/bin/erigon \
   --http.compression=false \
   --ws \
   --ws.compression=false; do
-    echo "erigon crashed with exit code $?. Respawning..." >&2
+    echo -e "\e[1;31merigon crashed with exit code $?. Respawning...\e[0m" >&2
     sleep 1
 done
 
@@ -289,7 +289,7 @@ until /usr/local/bin/rpcdaemon \
   --datadir=/home/eth/erigon-data \
   --ethash.dagdir=/home/eth/erigon-data/dag \
   --private.api.addr=0.0.0.0:9090; do
-    echo "erigon rpcdaemon crashed with exit code $?. Respawning..." >&2
+    echo -e "\e[1;31merigon rpcdaemon crashed with exit code $?. Respawning...\e[0m" >&2
     sleep 1
 done
 ```
@@ -366,4 +366,62 @@ set -g -x GPG_TTY (tty)
 # while ! test -S "$XDG_RUNTIME_DIR"bus; sleep 1; end
 systemctl --user start gpg-agent.service
 dbus-update-activation-environment --systemd --all
+```
+
+## bettercap
+
+```sh
+doas pacman -S --noconfirm bettercap && touch bettercap-web.sh && chmod +x bettercap-web.sh && busybox vi bettercap-web.sh
+```
+
+`bettercap-cli.sh`:
+
+```sh
+#!/bin/sh -eu
+export PULSE_SERVER=unix:/run/user/host/pulse/native
+export DISPLAY=:0
+export WAYLAND_DISPLAY=/run/user/host/wayland-0
+export XDG_SESSION_TYPE=wayland
+export QT_QPA_PLATFORM=wayland
+export MOZ_ENABLE_WAYLAND=1
+export GTK_THEME=Adwaita:dark
+doas /usr/bin/bettercap $@
+```
+
+`bettercap-web.sh`:
+
+```sh
+#!/bin/sh -eu
+export PULSE_SERVER=unix:/run/user/host/pulse/native
+export DISPLAY=:0
+export WAYLAND_DISPLAY=/run/user/host/wayland-0
+export XDG_SESSION_TYPE=wayland
+export QT_QPA_PLATFORM=wayland
+export MOZ_ENABLE_WAYLAND=1
+export GTK_THEME=Adwaita:dark
+test ! -d /usr/share/bettercap \
+  && doas /usr/bin/bettercap -eval "caplets.update; ui.update; q"
+doas /usr/bin/bettercap -caplet http-ui
+```
+
+## Bun build environment
+
+<https://bun.sh/docs/project/contributing>
+
+`setup-bun-dev-env.sh`:
+
+```sh
+#!/bin/sh -eu
+doas pacman -S --noconfirm --needed archlinux-keyring
+doas pacman-key --init
+doas pacman-key --populate archlinux
+doas pacman -S --noconfirm --needed base-devel ccache cmake git go libiconv libtool make ninja pkg-config python rust sed unzip ruby
+doas pacman -S --noconfirm --needed llvm clang lld
+curl -fsSL https://bun.sh/install | bash
+source ~/.bashrc
+bun setup
+build/bun-debug --version
+
+# bun run build
+# bun run build:release
 ```

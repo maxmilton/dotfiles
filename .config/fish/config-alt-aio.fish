@@ -38,6 +38,7 @@ abbr bb 'bun run build'
 abbr bd 'bun run dev'
 abbr bt 'bun run lint; and bun run test'
 abbr btt 'bun run test:e2e'
+abbr yi 'bunx yarn info'
 
 abbr gs 'git status --short --branch --show-stash'
 abbr gp 'git pull --prune'
