@@ -25,10 +25,10 @@ function pp
   # sudo systemd-nspawn -D /var/lib/machines/alpine sh -c "apk upgrade"
 
   # echo -e "$yellow""Updating lutris container""$normal"
-  # sudo systemd-nspawn -D /var/lib/machines/lutris sh -c "pacman -Syu"
+  # sudo systemd-nspawn --capability=CAP_IPC_LOCK -D /var/lib/machines/lutris sh -c "pacman -Syu"
 
   echo -e "$yellow""Updating steam container""$normal"
-  sudo systemd-nspawn -D /var/lib/machines/steam sh -c "paru -Syu"
+  sudo systemd-nspawn --capability=CAP_IPC_LOCK -D /var/lib/machines/steam sh -c "paru -Syu"
 
   echo -e "$yellow""Updating system firmware...""$normal"
   fwupdmgr refresh && sudo fwupdmgr update

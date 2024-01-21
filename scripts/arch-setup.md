@@ -127,6 +127,24 @@ xorg-server-xvfb
   - Improve TCP slow start window
 - Create machines; `mkarch.sh arch`
 
+- <https://wiki.archlinux.org/title/security>
+- <https://theprivacyguide1.github.io/linux_hardening_guide>
+- <https://kyau.net/wiki/ArchLinux:Security>
+
+`/etc/systemd/resolved.conf`:
+```
+[Resolve]
+DNS=2606:4700:4700::1112#security.cloudflare-dns.com 2606:4700:4700::1002#security.cloudflare-dns.com 1.1.1.2#security.cloudflare-dns.com 1.0.0.2#security.cloudflare-dns.com
+#FallbackDNS=1.1.1.1#cloudflare-dns.com 9.9.9.9#dns.quad9.net 8.8.8.8#dns.google 2606:4700:4700::1111#cloudflare-dns.com 2620:fe::9#dns.quad9.net 2001:4860:4860::8888#dns.google
+FallbackDNS=
+Domains=~.
+DNSSEC=yes
+DNSOverTLS=yes
+MulticastDNS=no
+LLMNR=no
+ReadEtcHosts=no
+```
+
 `/etc/systemd/network/25-wlan.network`:
 ```
 # https://man.archlinux.org/man/systemd.network.5
@@ -158,4 +176,86 @@ InitialAdvertisedReceiveWindow=30
 Gateway=_ipv6ra
 InitialCongestionWindow=30
 InitialAdvertisedReceiveWindow=30
+```
+
+`/etc/nftables.conf`:
+```
+#!/usr/bin/nft -f
+
+flush ruleset
+
+table inet filter {
+  set wireguard_ips {
+    type ipv4_addr
+    flags interval
+    elements = {
+      # ProtonVPN AU
+      180.149.229.130,
+      # ProtonVPN JP
+      37.19.205.155,
+      # ProtonVPN KR
+      79.110.55.2,
+      # ProtonVPN US
+      156.146.54.97, 31.13.189.226
+    }
+  }
+
+  set openvpn_ips {
+    type ipv4_addr
+    flags interval
+    elements = {
+      # ProtonVPN AU
+      103.108.231.18, 103.214.20.98, 103.214.20.210, 103.216.220.98, 138.199.33.225, 138.199.33.236, 180.149.229.130,
+      # ProtonVPN JP
+      103.125.235.19, 37.19.205.155, 37.19.205.223, 45.14.71.6,
+      # ProtonVPN KR
+      79.110.55.2,
+      # ProtonVPN US
+      146.70.174.210, 146.70.183.130, 146.70.183.18, 146.70.195.82, 146.70.202.18, 149.102.226.193, 185.230.126.18, 19
+    }
+  }
+
+  set openvpn_ports {
+    type inet_service
+    elements = { 80, 1194, 4569, 5060, 51820 }
+  }
+
+  chain input {
+    type filter hook input priority 0
+    policy drop
+
+    ct state { established, related } accept
+    ct state invalid drop
+    iifname { "lo", "tun0", "wg0", "wg1", "wg2", "wg3", "wg4" } accept
+    pkttype host limit rate 5/second counter reject with icmpx type admin-prohibited
+    counter
+  }
+
+  chain forward {
+    type filter hook forward priority 0
+    policy drop
+  }
+
+  chain output {
+    type filter hook output priority 0
+    policy drop
+
+    ct state { established, related } accept
+    oifname { "lo", "tun0", "wg0", "wg1", "wg2", "wg3", "wg4" } accept
+
+    meta nfproto ipv4 ip daddr @wireguard_ips udp dport 51820 accept
+    meta nfproto ipv4 ip daddr @openvpn_ips th dport @openvpn_ports accept
+
+    # Allow local traffic
+    ip saddr 192.168.0.0/16 oifname != { "tun0", "wg0" } accept
+    ip6 saddr fe80::/10 oifname != { "tun0", "wg0" } accept
+  }
+}
+
+table ip nat {
+  chain postrouting {
+    type nat hook postrouting priority 100
+    oifname { "tun0", "wg0", "wg1", "wg2", "wg3", "wg4" } masquerade
+  }
+}
 ```

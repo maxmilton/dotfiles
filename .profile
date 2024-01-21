@@ -1,5 +1,6 @@
 PS1='$([ $? != 0 ] && echo "\033[01;31m$? ")$(if [ $(id -u) -eq 0 ];then echo "\033[01;31m\h\033[01;34m \w \$";else echo "\033[01;32m\u@\h\033[01;34m \w #";fi)\033[00m '
 export LS_COLORS='ex=00:su=00:sg=00:ca=00:'
+export EDITOR='busybox vi'
 alias ls='ls --color=auto'
 alias ..='cd ..'
 alias ...='cd ../..'

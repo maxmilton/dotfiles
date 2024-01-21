@@ -9,6 +9,7 @@ mkdir -vp ~/.config/helix
 mkdir -vp ~/.gnupg
 mkdir -vp ~/.local/bin
 mkdir -vp ~/.ssh
+# mkdir -vp ~/Projects/_github-clones/zls/zig-out/bin/
 
 ln -vbs "${script_dir}/.config/electron-flags.conf" ~/.config/electron-flags.conf
 # ln -vbs "${script_dir}/.config/fish/conf.d/gnome.fish" ~/.config/fish/conf.d/gnome.fish

@@ -97,6 +97,8 @@ doas ln -s /bin/busybox /usr/local/bin/pgrep
 doas pacman -Sy lib32-systemd ttf-liberation noto-fonts noto-fonts-cjk noto-fonts-emoji xdg-user-dirs tar
 # install AMD GPU deps
 doas pacman -Sy xf86-video-amdgpu vulkan-radeon lib32-vulkan-radeon lib32-mesa gstreamer lib32-gstreamer libva-mesa-driver lib32-libva-mesa-driver
+# OR install Intel GPU deps
+doas pacman -Sy xf86-video-intel intel-compute-runtime intel-media-driver intel-media-sdk onevpl-intel-gpu vulkan-intel lib32-vulkan-intel lib32-mesa gstreamer lib32-gstreamer libva-mesa-driver lib32-libva-mesa-driver
 # install steam
 doas pacman -Sy steam
 
@@ -290,4 +292,78 @@ until /usr/local/bin/rpcdaemon \
     echo "erigon rpcdaemon crashed with exit code $?. Respawning..." >&2
     sleep 1
 done
+```
+
+## Dev (container)
+
+`~/vscode.sh`:
+
+```sh
+#!/bin/sh -eu
+export PULSE_SERVER=unix:/run/user/host/pulse/native
+export DISPLAY=:0
+export WAYLAND_DISPLAY=/run/user/host/wayland-0
+export XAUTHORITY=/home/max/.Xauthority
+export XDG_SESSION_TYPE=wayland
+export QT_QPA_PLATFORM=wayland
+export MOZ_ENABLE_WAYLAND=1
+export GTK_THEME=Adwaita:dark
+
+unset SSH_AGENT_PID
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+export GPG_TTY=$(tty)
+eval $(gnome-keyring-daemon --start --components=gpg,pkcs11,secrets,ssh)
+
+while ! test -S "$XDG_RUNTIME_DIR/bus"; do
+  sleep 1
+done
+
+systemctl --user start gpg-agent.service
+dbus-update-activation-environment --systemd --all
+
+# /usr/bin/code --password-store="gnome" --enable-features=UseOzonePlatform --ozone-platform=wayland --verbose --vmodule="*/components/os_crypt/*=1"
+/usr/bin/code --password-store="gnome" --enable-features=UseOzonePlatform --ozone-platform=wayland
+```
+
+`~/seahorse.sh`:
+
+```sh
+#!/bin/sh -eu
+export PULSE_SERVER=unix:/run/user/host/pulse/native
+export DISPLAY=:0
+export WAYLAND_DISPLAY=/run/user/host/wayland-0
+export XAUTHORITY=/home/max/.Xauthority
+export XDG_SESSION_TYPE=wayland
+export QT_QPA_PLATFORM=wayland
+export MOZ_ENABLE_WAYLAND=1
+export GTK_THEME=Adwaita:dark
+
+# export GNOME_KEYRING_CONTROL="$XDG_RUNTIME_DIR"/keyring
+# export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR"/keyring/ssh
+
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+export GPG_TTY=$(tty)
+eval $(gnome-keyring-daemon --start --components=gpg,pkcs11,secrets,ssh)
+while ! test -S "$XDG_RUNTIME_DIR/bus"; do sleep 1; done
+
+systemctl --user start gpg-agent.service
+dbus-update-activation-environment --systemd --all
+
+/usr/bin/seahorse
+```
+
+`~/.config/fish/conf.d/init.fish`:
+
+```sh
+status is-interactive || exit
+
+set -gx COLORTERM truecolor
+set -gx TERM xterm-256color
+set -g hydro_color_prompt magenta
+# set -e SSH_AGENT_PID
+set -g -x SSH_AUTH_SOCK (gpgconf --list-dirs agent-ssh-socket)
+set -g -x GPG_TTY (tty)
+# while ! test -S "$XDG_RUNTIME_DIR"bus; sleep 1; end
+systemctl --user start gpg-agent.service
+dbus-update-activation-environment --systemd --all
 ```
