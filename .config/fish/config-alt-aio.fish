@@ -7,8 +7,8 @@ abbr rm 'gio trash'
 abbr cp 'cp -i'
 abbr mv 'mv -i'
 abbr ls eza
-abbr l 'eza -lFa --group-directories-first'
-abbr ll 'eza -lFa --bytes --group-directories-first'
+abbr l 'eza -laF --group-directories-first'
+abbr ll 'eza -laF --bytes --group-directories-first'
 abbr ld 'eza --tree --only-dirs'
 abbr find fd
 abbr ff 'fd --no-ignore --hidden'

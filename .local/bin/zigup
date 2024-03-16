@@ -28,6 +28,8 @@ type shasum >/dev/null 2>&1 || die "shasum is required but not available!"
 
 msg "Getting version info..."
 
+msg "Current install: $([[ -x "${ROOT_DIR}/zig-latest/zig" ]] && "${ROOT_DIR}/zig-latest/zig" version || echo none)"
+
 repo=$(curl -s "${REPO_URL}" | jq ".master[\"${REPO_ARCH}\"]") || die "Failed to aquire version info!"
 tarball=$(echo "${repo}" | jq --raw-output '.tarball')
 shasum=$(echo "${repo}" | jq --raw-output '.shasum')
@@ -39,7 +41,7 @@ test "${tarball:0:27}" == "https://ziglang.org/builds/" || die "Unexpected downl
 test -z "${version}" && die "Failed to extract version info!"
 
 if test "${ROOT_DIR}/zig-latest/zig" -ef "${ROOT_DIR}/${version}/zig"; then
-  msg "${version} is already the current version!"
+  msg "${version} is already the latest version!"
 else
   msg "Updating to ${version}"
 
@@ -52,12 +54,13 @@ else
   ln -s "${version}" "${ROOT_DIR}/zig-latest" || die "Failed to set new symlink!"
   ln -s zig-latest/zig "${ROOT_DIR}/zig_" || die "Failed to set new symlink!"
 
-  # FIXME: this cleanup was deleting the latest version (zig-linux-x86_64-0.12.0-dev.1114+e8f3c4c4b)
+  # Clean up old zig files; sort by version and keep the 5 latest
+  find "${ROOT_DIR}" -maxdepth 1 -type d -name 'zig-linux-x86_64-*' | \
+  sed -E 's/.*(0\.[0-9]+\.0-dev)\.([0-9]+)\+.*/\1 \2 &/' | \
+  sort -t ' ' -k1,1 -k2,2n | \
+  cut -d' ' -f3- | \
+  head -n -5 | \
+  xargs -r rm -rf
 
-  # Clean up old versions; keep the last 5 downloads
-  # find "${ROOT_DIR}"/zig-linux-x86_64-* -prune | head -n -5 | while IFS='' read -r path; do
-  #   rm -r "$path"
-  # done
+  msg "Installed version: $("${ROOT_DIR}/zig-latest/zig" version)"
 fi
-
-msg "Current version: $("${ROOT_DIR}/zig-latest/zig" version)"

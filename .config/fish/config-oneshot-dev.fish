@@ -21,6 +21,7 @@ end
 # fish_add_path "$HOME"/.fly/bin
 
 # fish_add_path "$HOME"/.foundry/bin
+# fish_add_path "$HOME"/.cargo/bin
 
 fish_add_path "$HOME"/.local/share/pnpm
 set -U PNPM_HOME "$HOME"/.local/share/pnpm

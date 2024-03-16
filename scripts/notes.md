@@ -425,3 +425,35 @@ build/bun-debug --version
 # bun run build
 # bun run build:release
 ```
+
+---
+
+# Reth Notes
+
+```sh
+rustup update
+```
+
+## Reth
+
+<https://paradigmxyz.github.io/reth/installation/source.html>
+
+Faster build:
+
+```sh
+cargo build --release
+```
+
+Absolute best performance bin:
+
+```sh
+RUSTFLAGS="-C target-cpu=native" cargo build --profile maxperf --features jemalloc,asm-keccak
+```
+
+## Lighthouse
+
+<https://lighthouse-book.sigmaprime.io/installation-source.html>
+
+```sh
+PROFILE=maxperf FEATURES=jemalloc make
+```

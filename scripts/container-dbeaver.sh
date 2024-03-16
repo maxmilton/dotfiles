@@ -1,5 +1,10 @@
 #!/bin/sh -eu
 
+# TODO: Populate persistent data rather than populate on every run
+doas pacman -S --noconfirm --needed archlinux-keyring
+doas pacman-key --init
+doas pacman-key --populate archlinux
+
 doas pacman -S --noconfirm --needed dbeaver
 
 export PULSE_SERVER=unix:/run/user/host/pulse/native
