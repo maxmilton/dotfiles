@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "bash-language-server": "^5.0.0",
-    "eslint": "^8.30.0",
+    "eslint": "^9.0.0",
     "pnpm": "^8.0.0",
     "prettier": "^3.0.0",
     "typescript": "^5.0.0",
