@@ -195,6 +195,8 @@ table inet filter {
       37.19.205.155,
       # ProtonVPN KR
       79.110.55.2,
+      # ProtonVPN TW
+      188.214.106.178,
       # ProtonVPN US
       156.146.54.97, 31.13.189.226
     }
@@ -226,7 +228,7 @@ table inet filter {
 
     ct state { established, related } accept
     ct state invalid drop
-    iifname { "lo", "tun0", "wg0", "wg1", "wg2", "wg3", "wg4" } accept
+    iifname { "lo", "tun0", "wg0", "wg1", "wg2", "wg3", "wg4", "wg5" } accept
     pkttype host limit rate 5/second counter reject with icmpx type admin-prohibited
     counter
   }
@@ -241,21 +243,30 @@ table inet filter {
     policy drop
 
     ct state { established, related } accept
-    oifname { "lo", "tun0", "wg0", "wg1", "wg2", "wg3", "wg4" } accept
+    oifname { "lo", "tun0", "wg0", "wg1", "wg2", "wg3", "wg4", "wg5" } accept
 
     meta nfproto ipv4 ip daddr @wireguard_ips udp dport 51820 accept
     meta nfproto ipv4 ip daddr @openvpn_ips th dport @openvpn_ports accept
 
     # Allow local traffic
-    ip saddr 192.168.0.0/16 oifname != { "tun0", "wg0" } accept
-    ip6 saddr fe80::/10 oifname != { "tun0", "wg0" } accept
+    #ip daddr 192.168.0.0/16 oifname != { "tun0", "wg0" } accept
+    #ip6 daddr fe80::/10 oifname != { "tun0", "wg0" } accept
   }
 }
 
 table ip nat {
   chain postrouting {
     type nat hook postrouting priority 100
-    oifname { "tun0", "wg0", "wg1", "wg2", "wg3", "wg4" } masquerade
+    oifname { "tun0", "wg0", "wg1", "wg2", "wg3", "wg4", "wg5" } masquerade
   }
 }
+```
+
+`/boot/loader/entries/linux-hardened.conf`:
+```
+title   Arch Linux (linux-hardened)
+linux   /vmlinuz-linux-hardened
+initrd  /intel-ucode.img
+initrd  /initramfs-linux-hardened.img
+options cryptdevice=PARTUUID=43c9fc6d-afe7-46b9-93c5-e08c6a5383cb:root root=/dev/mapper/root zswap.enabled=0 rootflags=subvol=@ rw rootfstype=btrfs lsm=landlock,lockdown,yama,integrity,apparmor,bpf apparmor=1 lockdown=confidentiality slab_nomerge init_on_alloc=1 init_on_free=1 page_alloc.shuffle=1 vsyscall=none debugfs=off oops=panic module.sig_enforce=1 quiet loglevel=0
 ```
