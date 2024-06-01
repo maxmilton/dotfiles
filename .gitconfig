@@ -39,6 +39,7 @@
 [diff]
   tool = vimdiff
   renames = copies # Detect copies as well as renames
+  algorithm = histogram
 [diff "bin"]
   textconv = hexdump -v -C # Use `hexdump` to diff binary files
 [diff "lockb"]
@@ -58,5 +59,7 @@
 [push]
   default = simple
   followTags = true # Also push relevant annotated tags
+[rerere]
+  enabled = true
 [tag]
   gpgsign = true
