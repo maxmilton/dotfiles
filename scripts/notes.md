@@ -230,6 +230,37 @@ else
 fi
 ```
 
+## Gitea
+
+```sh
+sudo ./mkarch.sh gitea
+
+doas pacman -S git gitea openssh
+
+doas systemctl enable gitea.service
+doas systemctl start gitea.service
+```
+
+`~/.local/bin/gitea.sh`:
+
+```sh
+#!/bin/sh -eu
+
+if test ! -z "$(machinectl show --property=State=running gitea 2>&-)"; then
+  sudo systemd-run \
+    --machine=gitea \
+    --uid=max \
+    --gid=max \
+    --shell
+else
+  sudo systemd-nspawn \
+    --bind=/home/max/Downloads \
+    --bind=/home/max/Projects \
+    --directory=/var/lib/machines/gitea \
+    --boot
+fi
+```
+
 ## Erigon
 
 ```sh
