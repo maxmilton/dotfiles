@@ -26,6 +26,10 @@ if test -d "$HOME"/.cargo/bin
     fish_add_path "$HOME"/.cargo/bin
 end
 
+if test -d "$HOME"/.cache/rebar3/bin
+    fish_add_path "$HOME"/.cache/rebar3/bin
+end
+
 if test -d "$HOME"/.mix/escripts
     fish_add_path "$HOME"/.mix/escripts
 end
