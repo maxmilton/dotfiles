@@ -1,5 +1,12 @@
 #!/bin/sh
 # XDG_SESSION_TYPE=wayland exec dbus-run-session gnome-session
+# XDG_SESSION_TYPE=wayland exec dbus-run-session gnome-session --session=wayland
 # XDG_SESSION_TYPE=wayland exec gnome-shell --wayland
 # XDG_SESSION_TYPE=wayland exec gnome-session
 XDG_SESSION_TYPE=wayland exec gnome-session --builtin
+# XDG_SESSION_TYPE=wayland exec dbus-run-session -- gnome-shell --display-server --wayland
+# XDG_SESSION_TYPE=wayland exec gnome-shell --display-server --wayland
+# XDG_SESSION_TYPE=wayland exec gnome-shell --display-server --wayland --sm-client-id=1000
+# XDG_SESSION_TYPE=wayland exec gnome-shell --display-server --wayland --no-x11
+# XDG_SESSION_TYPE=wayland exec gnome-session --systemd-service --session=wayland
+# XDG_SESSION_TYPE=wayland exec gnome-session --session=wayland
