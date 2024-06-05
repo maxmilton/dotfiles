@@ -145,6 +145,40 @@ LLMNR=no
 ReadEtcHosts=no
 ```
 
+`/etc/systemd/network/20-ethernet.network`:
+```
+[Match]
+Name=en*
+Name=eth*
+
+[Network]
+DHCP=yes
+DNS=::1 127.0.0.1
+# MulticastDNS=yes
+# IPv6PrivacyExtensions=yes
+
+[DHCPv4]
+UseDNS=no
+RouteMetric=100
+
+[DHCPv6]
+UseDNS=no
+
+[IPv6AcceptRA]
+UseDNS=no
+RouteMetric=100
+
+[Route]
+Gateway=_dhcp4
+InitialCongestionWindow=30
+InitialAdvertisedReceiveWindow=30
+
+[Route]
+Gateway=_ipv6ra
+InitialCongestionWindow=30
+InitialAdvertisedReceiveWindow=30
+```
+
 `/etc/systemd/network/25-wlan.network`:
 ```
 # https://man.archlinux.org/man/systemd.network.5
@@ -154,18 +188,20 @@ ReadEtcHosts=no
 Name=wlan*
 
 [Network]
-DHCP=true
+DHCP=yes
 IgnoreCarrierLoss=3s
 DNS=::1 127.0.0.1
 
 [DHCPv4]
 UseDNS=no
+RouteMetric=600
 
 [DHCPv6]
 UseDNS=no
 
 [IPv6AcceptRA]
 UseDNS=no
+RouteMetric=600
 
 [Route]
 Gateway=_dhcp4
