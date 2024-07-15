@@ -4,7 +4,15 @@ Intended for use on a Linux OS.
 
 ## Usage
 
-TODO: Write this
+1. Copy init script:
+   ```sh
+   cp bootstrap.sh.template bootstrap.sh
+   ```
+2. Edit `bootstrap.sh`
+3. Run init script:
+   ```sh
+   ./bootstrap.sh
+   ```
 
 ## License
 
