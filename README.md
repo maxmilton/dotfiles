@@ -12,4 +12,4 @@ MIT. See [LICENSE](https://github.com/maxmilton/dotfiles/blob/master/LICENSE).
 
 -----
 
-© 2023 [Max Milton](https://maxmilton.com)
+© 2024 [Max Milton](https://maxmilton.com)
