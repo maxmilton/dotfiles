@@ -1,2 +1,4 @@
 *.lockb binary diff=lockb
 *.zig text eol=lf
+*.zon text eol=lf
+*.txt text eol=lf

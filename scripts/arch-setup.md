@@ -6,7 +6,7 @@ TODO: Write up step-by-step instructions rather than these loose notes.
 # guided install
 archinstall
 
-# choose seperate /home dir so it can be mounted with noexec,nodev etc.
+# choose separate /home dir so it can be mounted with noexec,nodev etc.
 ```
 
 ```sh
