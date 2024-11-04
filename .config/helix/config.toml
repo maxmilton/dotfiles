@@ -21,3 +21,11 @@ hidden = false
 [editor.lsp]
 display-messages = true
 display-inlay-hints = true
+
+# https://docs.helix-editor.com/remapping.html
+[keys.normal]
+C-s = ":w" # Maps Ctrl-s to the typable command :w which is an alias for :write (save file)
+C-o = ":open ~/.config/helix/config.toml" # Maps Ctrl-o to opening of the helix config file
+
+[keys.normal.space]
+W = [":toggle soft-wrap.enable", ":redraw"]
