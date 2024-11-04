@@ -287,6 +287,10 @@ table inet filter {
     # Allow local traffic
     #ip daddr 192.168.0.0/16 oifname != { "tun0", "wg0" } accept
     #ip6 daddr fe80::/10 oifname != { "tun0", "wg0" } accept
+
+    # Allow syncthing ports (for local network sync)
+    #tcp dport 22000 accept
+    #udp dport 22000 accept
   }
 }
 
