@@ -2,14 +2,21 @@
   email = max@happyhackers.xyz
   name = Max Milton
   # https://dev.to/benjaminblack/signing-git-commits-with-modern-encryption-1koh
-  signingkey = 0B964B0AA79BCE95 # max@happyhackers.xyz sign only
+  # signingkey = 0B964B0AA79BCE95 # max@happyhackers.xyz sign only
+  signingkey = 8149206E0CC93908 # max@happyhackers.xyz sign only
 [alias]
-  # Remove the old tag with this name and tag the latest commit with it.
-  retag = "!r() { git tag -d $1 && git push origin :refs/tags/$1 && git tag $1; }; r"
   # Remove branches that have already been merged with master
   dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
   # Remove tags which were deleted in origin
   dt = "!t() { git fetch --prune origin '+refs/tags/*:refs/tags/*'; }"
+  # Remove the old tag with this name and tag the latest commit with it.
+  retag = "!r() { git tag -d $1 && git push origin :refs/tags/$1 && git tag $1; }; r"
+  # See commit state on all branches
+  io = "!git fetch --all; git branch -vv"
+  # See unpulled commits
+  in = "!git fetch; git log --stat ..'@{u}'"
+  # See unpushed commits
+  out = "log --stat '@{u}'.."
 [apply]
   whitespace = fix # Detect whitespace errors when applying a patch
 [core]
