@@ -21,6 +21,9 @@ function pp
   echo -e "$yellow""Updating arch container""$normal"
   sudo pacman -Syur /var/lib/machines/arch
 
+  # echo -e "$yellow""Updating cachyos container""$normal"
+  # sudo systemd-nspawn --capability=CAP_IPC_LOCK -D /var/lib/machines/cachyos sh -c "pacman -Syu"
+
   # echo -e "$yellow""Updating alpine container""$normal"
   # sudo systemd-nspawn -D /var/lib/machines/alpine sh -c "apk upgrade"
 

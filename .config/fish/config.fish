@@ -8,60 +8,32 @@ abbr cp 'cp -i'
 abbr mv 'mv -i'
 abbr ls eza
 abbr l 'eza -laF --group-directories-first'
-abbr ll 'eza -laF --bytes --group-directories-first'
+abbr ll 'eza -laBF --group-directories-first'
 abbr ld 'eza --tree --only-dirs'
 abbr find fd
-abbr ff 'fd --no-ignore --hidden'
+abbr ff 'fd -H --no-ignore'
 abbr grep rg
-abbr rr 'RIPGREP_CONFIG_PATH=~/.ripgreprc rg --no-ignore --hidden'
-abbr s 'doas su'
-abbr dux 'du -bhx --max-depth=1 | sort -h'
+abbr rr 'rg -.S -C1 -M80 --max-columns-preview --no-ignore'
 abbr ip 'ip -c'
-abbr hh 'history --merge'
 abbr h helix
 abbr p paru
 abbr curl "curl -vv -H 'Cache-Control: no-cache'"
-abbr get 'aria2c --optimize-concurrent-downloads --dir ~/Downloads'
+abbr mm 'mpv --no-video'
 
-if test -e /run/systemd/container
-  # set -gx COLORTERM truecolor
-  # set -gx TERM xterm-256color
-  # set -g hydro_color_prompt magenta
+abbr bi 'bun install'
+abbr br 'rm -rf bun.lockb **/node_modules; bun install'
+abbr bu 'bunx --bun taze newest -rflI'
+abbr bb 'bun run build'
+abbr bd 'bun run dev'
+abbr bt 'bun run lint; and bun run test'
+abbr btt 'bun run test:e2e'
+abbr yi 'bunx yarn info'
 
-  # set -gx GNOME_KEYRING_CONTROL "$XDG_RUNTIME_DIR"/keyring
-  # set -gx SSH_AUTH_SOCK "$XDG_RUNTIME_DIR"/keyring/ssh
-  # set -gx GPG_TTY (tty)
-  # ~/gnome-keyring-daemon --start --components=gpg,pkcs11,secrets,ssh &>/dev/null
-
-  abbr j pnpm
-  abbr ju 'pnpm upgrade --interactive --latest -r'
-  abbr ji 'pnpm install --prefer-frozen-lockfile=false'
-  abbr jr '/bin/rm pnpm-lock.yaml; and pnpm install'
-  abbr jrr '/bin/rm -rf pnpm-lock.yaml **/{dist,node_modules}; pnpm install'
-  abbr jb 'pnpm run build'
-  abbr jd 'pnpm run dev'
-  abbr jt 'pnpm run lint; and TZ=UTC pnpm run test'
-  abbr jtt 'TZ=UTC pnpm run test:e2e'
-  abbr bi 'bun install'
-  abbr br '/bin/rm -rf bun.lockb **/node_modules; bun install'
-  abbr bu 'bunx --bun taze --interactive -r'
-  abbr bb 'bun run build'
-  abbr bd 'bun run dev'
-  abbr bt 'bun run lint; and bun run test'
-  abbr btt 'TZ=UTC bun run test:e2e'
-
-  abbr gs 'git status --short --branch --show-stash'
-  abbr gp 'git pull --prune'
-  abbr gps 'git pull --prune --autostash'
-  abbr gm 'git merge'
-  abbr gma 'git merge --autostash'
-  abbr ga 'git add'
-  abbr gd 'git diff'
-  abbr gdd 'git diff --staged'
-  abbr gc 'git commit -v'
-  abbr gca 'git commit -v --all'
-  abbr gco 'git checkout'
-
-  abbr za 'zellij attach'
-  abbr -e rm
-end
+abbr gs 'git status --short --branch --show-stash'
+abbr gd 'git diff'
+abbr gdd 'git diff --staged'
+abbr gp 'git pull --prune --autostash'
+abbr gm 'git merge --autostash'
+abbr gc 'git commit -v'
+abbr gca 'git commit -v --all'
+abbr gco 'git checkout'

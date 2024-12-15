@@ -26,22 +26,22 @@ if test -d "$HOME"/.cargo/bin
     fish_add_path "$HOME"/.cargo/bin
 end
 
-if test -d "$HOME"/.cache/rebar3/bin
-    fish_add_path "$HOME"/.cache/rebar3/bin
-end
+# if test -d "$HOME"/.cache/rebar3/bin
+#     fish_add_path "$HOME"/.cache/rebar3/bin
+# end
 
-if test -d "$HOME"/.mix/escripts
-    fish_add_path "$HOME"/.mix/escripts
-end
+# if test -d "$HOME"/.mix/escripts
+#     fish_add_path "$HOME"/.mix/escripts
+# end
 
 if test -d "$HOME"/.foundry/bin
     fish_add_path "$HOME"/.foundry/bin
 end
 
-if test -d "$HOME/.local/share/pnpm"
-    fish_add_path "$HOME"/.local/share/pnpm
-    set -U PNPM_HOME "$HOME"/.local/share/pnpm
-end
+# if test -d "$HOME/.local/share/pnpm"
+#     fish_add_path "$HOME"/.local/share/pnpm
+#     set -U PNPM_HOME "$HOME"/.local/share/pnpm
+# end
 
 if test -d "$HOME"/.bun/bin
     fish_add_path "$HOME"/.bun/bin
