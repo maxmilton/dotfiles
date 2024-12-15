@@ -9,17 +9,17 @@ mkdir -vp ~/.config/helix
 mkdir -vp ~/.gnupg
 mkdir -vp ~/.local/bin
 mkdir -vp ~/.ssh
-# mkdir -vp ~/Projects/_github-clones/zls/zig-out/bin/
 
 ln -vbs "${script_dir}/.config/electron-flags.conf" ~/.config/electron-flags.conf
-# ln -vbs "${script_dir}/.config/fish/conf.d/gnome.fish" ~/.config/fish/conf.d/gnome.fish
 ln -vbs "${script_dir}/.config/fish/config.fish" ~/.config/fish/config.fish
-# ln -vbs "${script_dir}/.config/fish/config-alt-aio.fish" ~/.config/fish/config.fish
-# ln -vbs "${script_dir}/.config/fish/functions/bashx.fish" ~/.config/fish/functions/bashx.fish
+ln -vbs "${script_dir}/.config/fish/functions/bashx.fish" ~/.config/fish/functions/bashx.fish
 ln -vbs "${script_dir}/.config/fish/functions/clr.fish" ~/.config/fish/functions/clr.fish
-# ln -vbs "${script_dir}/.config/fish/functions/gg.fish" ~/.config/fish/functions/gg.fish
-# ln -vbs "${script_dir}/.config/fish/functions/gl.fish" ~/.config/fish/functions/gl.fish
-# ln -vbs "${script_dir}/.config/fish/functions/gz.fish" ~/.config/fish/functions/gz.fish
+ln -vbs "${script_dir}/.config/fish/functions/dux.fish" ~/.config/fish/functions/dux.fish
+ln -vbs "${script_dir}/.config/fish/functions/get.fish" ~/.config/fish/functions/get.fish
+ln -vbs "${script_dir}/.config/fish/functions/gg.fish" ~/.config/fish/functions/gg.fish
+ln -vbs "${script_dir}/.config/fish/functions/gl.fish" ~/.config/fish/functions/gl.fish
+ln -vbs "${script_dir}/.config/fish/functions/gz.fish" ~/.config/fish/functions/gz.fish
+ln -vbs "${script_dir}/.config/fish/functions/hh.fish" ~/.config/fish/functions/hh.fish
 ln -vbs "${script_dir}/.config/fish/functions/kk.fish" ~/.config/fish/functions/kk.fish
 ln -vbs "${script_dir}/.config/fish/functions/lsport.fish" ~/.config/fish/functions/lsport.fish
 ln -vbs "${script_dir}/.config/fish/functions/multicd.fish" ~/.config/fish/functions/multicd.fish
@@ -45,20 +45,20 @@ ln -vbs "${script_dir}/.gnupg/gpg.conf" ~/.gnupg/gpg.conf
 # ln -vbs "${script_dir}/.local/bin/sysboot.sh" ~/.local/bin/sysboot.sh
 # ln -vbs "${script_dir}/.local/bin/vms.sh" ~/.local/bin/vms.sh
 # ln -vbs "${script_dir}/.local/bin/zigup" ~/.local/bin/zigup
-# ln -vbs "${script_dir}/.local/bin/zls" ~/Projects/_github-clones/zls/zig-out/bin/zls
+# ln -vbs ~Projects/_github-clones/zls/zig-out/bin/zls ~/.local/bin/zls
 ln -vbs "${script_dir}/.ssh/config" ~/.ssh/config
 ln -vbs "${script_dir}/.curlrc" ~/.curlrc
 ln -vbs "${script_dir}/.gitattributes" ~/.gitattributes
 ln -vbs "${script_dir}/.gitconfig" ~/.gitconfig
-ln -vbs "${script_dir}/.gitignore" ~/.gitignore
+ln -vbs "${script_dir}/_.gitignore" ~/.gitignore
 # ln -vbs "${script_dir}/.profile" ~/.profile
-ln -vbs "${script_dir}/.ripgreprc" ~/.ripgreprc
 ln -vbs "${script_dir}/.sqliterc" ~/.sqliterc
 
 # https://github.com/jorgebucaran/fisher#installation
 # fisher install jorgebucaran/fisher
 # fisher install jorgebucaran/hydro
-# # fisher install jorgebucaran/replay.fish
+# fisher install jorgebucaran/replay.fish
+# fisher install jorgebucaran/autopair.fish
 # # fisher install jorgebucaran/nvm.fish
 
 # fish ./.config/fish/config-oneshot.fish
