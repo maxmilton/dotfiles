@@ -1,0 +1,19 @@
+# System
+.DS_Store
+.fuse_hidden*
+.nfs*
+.Trash-*
+*.bak
+*~
+\#*
+
+# Development
+.*cache
+.clinic/
+.stignore
+.vscode/spellright.dict
+*.code-workspace
+*.log
+coverage/
+node_modules/
+test-results/

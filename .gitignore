@@ -1,20 +1,2 @@
-# System
-.DS_Store
-.fuse_hidden*
-.nfs*
-.Trash-*
-*.bak
-*~
-\#*
-
-# Development
-.*cache
-.clinic/
-.vscode/spellright.dict
-*.code-workspace
-*.log
-coverage/
-node_modules/
-
 # Local machine specific configuration
 /bootstrap.sh
