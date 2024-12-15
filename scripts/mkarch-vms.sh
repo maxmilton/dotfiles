@@ -66,6 +66,7 @@ echo "swtpm_setup --create-config-files skip-if-exist"
 # TODO: The rest seems to be unnecessary as long as you save the VM config
 
 # awk grep
+# # FOLDER="/home/max/.machines/vms"
 # # systemd-nspawn -D "$FOLDER" sh -c "ln -s /usr/bin/busybox /usr/local/bin/vi"
 # systemd-nspawn -D "$FOLDER" sh -c "ln -s /usr/bin/busybox /usr/local/bin/awk"
 # systemd-nspawn -D "$FOLDER" sh -c "ln -s /usr/bin/busybox /usr/local/bin/grep"

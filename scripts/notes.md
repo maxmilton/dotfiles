@@ -75,6 +75,15 @@ git ls-files --deleted -z | xargs -0 git rm
 busybox httpd -fvp 5000 -h .
 ```
 
+```sh
+# Clearing PageCache
+sudo sync; echo 1 > /proc/sys/vm/drop_caches
+# Clearing Dentries and Inodes
+sudo sync; echo 2 > /proc/sys/vm/drop_caches
+# Clearing PageCache, Dentries, and Inodes
+sudo sync; echo 3 > /proc/sys/vm/drop_caches
+```
+
 ## Steam
 
 ```sh
@@ -261,6 +270,7 @@ else
 fi
 ```
 
+<!--
 ## Erigon
 
 ```sh
@@ -324,6 +334,7 @@ until /usr/local/bin/rpcdaemon \
     sleep 1
 done
 ```
+-->
 
 ## Dev (container)
 
