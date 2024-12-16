@@ -22,7 +22,7 @@ abbr mm 'mpv --no-video'
 
 abbr bi 'bun install'
 abbr br 'rm -rf bun.lockb **/node_modules; bun install'
-abbr bu "bunx --bun taze newest -rflI --ignore-paths='**/*.bak/**'"
+abbr bu "bunx --bun taze latest -rflI --ignore-paths='**/*.bak/**'"
 abbr bb 'bun run build'
 abbr bd 'bun run dev'
 abbr bt 'bun run lint; and bun run test'
