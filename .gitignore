@@ -1,2 +1,4 @@
+*.bak
+
 # Local machine specific configuration
 /bootstrap.sh
