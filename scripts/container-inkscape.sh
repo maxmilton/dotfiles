@@ -1,11 +1,13 @@
 #!/bin/sh -eu
 
-# TODO: Populate persistent data rather than populate on every run
-doas pacman -S --noconfirm --needed archlinux-keyring
-doas pacman-key --init
-doas pacman-key --populate archlinux
+if ! type /usr/bin/inkscape >/dev/null 2>&1; then
+  # TODO: Populate persistent data rather than populate on every run
+  doas pacman -S --noconfirm --needed archlinux-keyring
+  doas pacman-key --init
+  doas pacman-key --populate archlinux
 
-doas pacman -S --noconfirm --needed inkscape
+  doas pacman -S --noconfirm --needed inkscape
+fi
 
 export PULSE_SERVER=unix:/run/user/host/pulse/native
 export DISPLAY=:0
