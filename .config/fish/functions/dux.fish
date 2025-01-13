@@ -1,3 +1,3 @@
 function dux
-  du -bhx --max-depth=1 | sort -h
+    du -bhx --max-depth=1 | sort -h
 end

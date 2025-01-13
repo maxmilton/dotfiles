@@ -1,3 +1,3 @@
 function hh
-  history --merge
+    history --merge
 end
