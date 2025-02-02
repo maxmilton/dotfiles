@@ -21,8 +21,8 @@ abbr curl "curl -vv -H 'Cache-Control: no-cache'"
 abbr mm 'mpv --no-video'
 
 abbr bi 'bun install'
-abbr br 'rm -rf bun.lockb **/node_modules; bun install'
-abbr bu "bunx --bun taze latest -rflI --ignore-paths='**/*.bak/**'"
+abbr br 'rm -rf bun.lock* **/node_modules; bun install -f'
+abbr bu "bunx --bun taze -rflIw --ignore-paths='**/*.bak/**' latest"
 abbr bb 'bun run build'
 abbr bd 'bun run dev'
 abbr bt 'bun run lint; and bun run test'
