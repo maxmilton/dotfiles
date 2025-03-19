@@ -1,0 +1,12 @@
+[Desktop Entry]
+Name=Cursor
+# Exec=/usr/bin/cursor --no-sandbox %U
+Exec=/usr/bin/cursor --ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-wayland-ime --wayland-text-input-version=3 %U
+Terminal=false
+Type=Application
+Icon=cursor
+# Change the class below to "Cursor" when on X11
+StartupWMClass=cursor
+X-AppImage-Version=0.47.8
+MimeType=x-scheme-handler/cursor;
+Categories=Utility;TextEditor;Development;IDE

@@ -1,0 +1,38 @@
+[Desktop Entry]
+Version=1.0
+Name=Brave
+# KDE 4 uses GenericName.
+GenericName=Web Browser
+GenericName[en_GB]=Web Browser
+GenericName[ja]=ウェブブラウザ
+GenericName[ko]=웹 브라우저
+# Gnome and KDE 3 uses Comment.
+Comment=Access the Internet
+Comment[en_GB]=Access the Internet
+Comment[ja]=インターネットにアクセス
+Comment[ko]=인터넷 연결
+StartupNotify=true
+StartupWMClass=brave-browser
+TryExec=brave
+Exec=brave --ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-wayland-ime --wayland-text-input-version=3  %U
+Terminal=false
+Icon=brave-desktop
+Type=Application
+Categories=Network;WebBrowser;
+MimeType=application/pdf;application/rdf+xml;application/rss+xml;application/xhtml+xml;application/xhtml_xml;application/xml;image/gif;image/jpeg;image/png;image/webp;text/html;text/xml;x-scheme-handler/http;x-scheme-handler/https;x-scheme-handler/ipfs;x-scheme-handler/ipns;
+Actions=new-window;new-private-window;
+
+[Desktop Action new-window]
+Name=New Window
+Name[en_GB]=New Window
+Name[ja]=新規ウインドウ
+Name[ko]=새 창
+Exec=brave --ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-wayland-ime --wayland-text-input-version=3 
+
+[Desktop Action new-private-window]
+Name=New Incognito Window
+Name[en_GB]=New Incognito window
+Name[ja]=新しいシークレット ウィンドウ
+Name[ko]=새 시크릿 창
+Exec=brave --ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --incognito --enable-wayland-ime --wayland-text-input-version=3 
+MimeType=x-scheme-handler/unknown;x-scheme-handler/about;text/html;text/xml;application/xhtml_xml;image/webp;x-scheme-handler/http;x-scheme-handler/https;
