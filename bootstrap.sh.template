@@ -1,34 +1,39 @@
-#!/bin/sh -eu
+#!/bin/sh
+set -eu
+set -o pipefail
+
 script_dir=$(CDPATH='' cd -- "$(dirname -- "$0")" && pwd -P)
 
 umask 077
 
+# mkdir -vp ~/.config/Code/User
 mkdir -vp ~/.config/fish/functions
 mkdir -vp ~/.config/helix
-#mkdir -vp ~/.config/kime
 # mkdir -vp ~/.config/mpv
-mkdir -vp ~/.gnupg
+mkdir -vp ~/.gnupg/private-keys-v1.d
 mkdir -vp ~/.local/bin
+mkdir -vp ~/.local/share/applications
 mkdir -vp ~/.ssh
 
+# ln -vbs "${script_dir}/.config/Code/User/keybindings.json" ~/.config/Code/User/keybindings.json
+# ln -vbs "${script_dir}/.config/Code/User/settings.json" ~/.config/Code/User/settings.json
 ln -vbs "${script_dir}/.config/electron-flags.conf" ~/.config/electron-flags.conf
 ln -vbs "${script_dir}/.config/fish/config.fish" ~/.config/fish/config.fish
-ln -vbs "${script_dir}/.config/fish/functions/bashx.fish" ~/.config/fish/functions/bashx.fish
+# ln -vbs "${script_dir}/.config/fish/functions/bashx.fish" ~/.config/fish/functions/bashx.fish
 ln -vbs "${script_dir}/.config/fish/functions/clr.fish" ~/.config/fish/functions/clr.fish
 ln -vbs "${script_dir}/.config/fish/functions/dux.fish" ~/.config/fish/functions/dux.fish
 ln -vbs "${script_dir}/.config/fish/functions/get.fish" ~/.config/fish/functions/get.fish
 ln -vbs "${script_dir}/.config/fish/functions/gg.fish" ~/.config/fish/functions/gg.fish
 ln -vbs "${script_dir}/.config/fish/functions/gl.fish" ~/.config/fish/functions/gl.fish
-ln -vbs "${script_dir}/.config/fish/functions/gz.fish" ~/.config/fish/functions/gz.fish
+# ln -vbs "${script_dir}/.config/fish/functions/gz.fish" ~/.config/fish/functions/gz.fish
 ln -vbs "${script_dir}/.config/fish/functions/hh.fish" ~/.config/fish/functions/hh.fish
 ln -vbs "${script_dir}/.config/fish/functions/kk.fish" ~/.config/fish/functions/kk.fish
 ln -vbs "${script_dir}/.config/fish/functions/lsport.fish" ~/.config/fish/functions/lsport.fish
 ln -vbs "${script_dir}/.config/fish/functions/multicd.fish" ~/.config/fish/functions/multicd.fish
-ln -vbs "${script_dir}/.config/fish/functions/pp.fish" ~/.config/fish/functions/pp.fish
+# ln -vbs "${script_dir}/.config/fish/functions/pp.fish" ~/.config/fish/functions/pp.fish
 ln -vbs "${script_dir}/.config/fish/functions/ssh.fish" ~/.config/fish/functions/ssh.fish
 ln -vbs "${script_dir}/.config/helix/config.toml" ~/.config/helix/config.toml
 ln -vbs "${script_dir}/.config/helix/languages.toml" ~/.config/helix/languages.toml
-#ln -vbs "${script_dir}/.config/kime/config.yaml" ~/.config/kime/config.yaml
 # ln -vbs "${script_dir}/.config/mpv/input.conf" ~/.config/mpv/input.conf
 # ln -vbs "${script_dir}/.config/mpv/mpv.conf" ~/.config/mpv/mpv.conf
 # ln -vbs "${script_dir}/.config/mpv/shaders" ~/.config/mpv/shaders
@@ -38,6 +43,7 @@ ln -vbs "${script_dir}/.gnupg/gpg.conf" ~/.gnupg/gpg.conf
 # ln -vbs "${script_dir}/.local/bin/alpine.sh" ~/.local/bin/alpine.sh
 # ln -vbs "${script_dir}/.local/bin/arch.sh" ~/.local/bin/arch.sh
 # ln -vbs "${script_dir}/.local/bin/brave.sh" ~/.local/bin/brave.sh
+# ln -vbs "${script_dir}/.local/bin/cachyos.sh" ~/.local/bin/cachyos.sh
 # ln -vbs "${script_dir}/.local/bin/code.sh" ~/.local/bin/code.sh
 # ln -vbs "${script_dir}/.local/bin/gn" ~/.local/bin/gn # gnome session launcher
 # ln -vbs "${script_dir}/.local/bin/librewolf.sh" ~/.local/bin/librewolf.sh
@@ -46,8 +52,12 @@ ln -vbs "${script_dir}/.gnupg/gpg.conf" ~/.gnupg/gpg.conf
 # ln -vbs "${script_dir}/.local/bin/sudo" ~/.local/bin/sudo
 # ln -vbs "${script_dir}/.local/bin/sysboot.sh" ~/.local/bin/sysboot.sh
 # ln -vbs "${script_dir}/.local/bin/vms.sh" ~/.local/bin/vms.sh
+# ln -vbs "${script_dir}/.local/bin/zbrave.sh" ~/.local/bin/zbrave.sh
 # ln -vbs "${script_dir}/.local/bin/zigup" ~/.local/bin/zigup
-# ln -vbs ~Projects/_github-clones/zls/zig-out/bin/zls ~/.local/bin/zls
+# ln -vbs "${script_dir}/.local/share/applications/brave-browser.desktop" ~/.local/share/applications/brave-browser.desktop
+ln -vbs "${script_dir}/.local/share/applications/code-oss.desktop" ~/.local/share/applications/code-oss.desktop
+ln -vbs "${script_dir}/.local/share/applications/cursor-cursor.desktop" ~/.local/share/applications/cursor-cursor.desktop
+# ln -vbs ~/Projects/_github-clones/zls/zig-out/bin/zls ~/.local/bin/zls
 ln -vbs "${script_dir}/.ssh/config" ~/.ssh/config
 ln -vbs "${script_dir}/.curlrc" ~/.curlrc
 ln -vbs "${script_dir}/.gitattributes" ~/.gitattributes
