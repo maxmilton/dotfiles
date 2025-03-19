@@ -1,10 +1,11 @@
 # https://docs.helix-editor.com/configuration.html
 
-theme = "tokyonight"
+# theme = "tokyonight"
+theme = "github_dark"
 
 [editor]
 mouse = false
-# rulers = [80]
+rulers = [80]
 
 # [editor.whitespace]
 # render = "all"
@@ -25,7 +26,7 @@ display-inlay-hints = true
 # https://docs.helix-editor.com/remapping.html
 [keys.normal]
 C-s = ":w" # Maps Ctrl-s to the typable command :w which is an alias for :write (save file)
-C-o = ":open ~/.config/helix/config.toml" # Maps Ctrl-o to opening of the helix config file
+# C-o = ":open ~/.config/helix/config.toml" # Maps Ctrl-o to opening of the helix config file
 
 [keys.normal.space]
 W = [":toggle soft-wrap.enable", ":redraw"]

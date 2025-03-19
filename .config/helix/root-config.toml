@@ -1,0 +1,13 @@
+theme = "github_dark"
+
+[editor]
+mouse = false
+
+[editor.soft-wrap]
+enable = true
+
+[editor.file-picker]
+hidden = false
+
+[keys.normal.space]
+W = [":toggle soft-wrap.enable", ":redraw"]
