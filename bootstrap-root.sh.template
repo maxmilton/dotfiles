@@ -1,0 +1,15 @@
+#!/bin/sh
+set -eu
+set -o pipefail
+
+test "$(id -u)" -ne "0" && echo "You need to be root" >&2 && exit 1
+
+script_dir=$(CDPATH='' cd -- "$(dirname -- "$0")" && pwd -P)
+
+umask 077
+
+mkdir -vp /root/.config/helix
+
+ln -vbs "${script_dir}/.config/helix/root-config.toml" /root/.config/helix/config.toml
+ln -vbs "${script_dir}/.config/helix/languages.toml" /root/.config/helix/languages.toml
+ln -vbs "${script_dir}"/.profile /root/.profile
