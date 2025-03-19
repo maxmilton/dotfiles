@@ -2,7 +2,7 @@
 
 test "$(id -u)" -ne "0" && echo "You need to be root" >&2 && exit 1
 
-export MACHINE_NAME=zbrave
+export MACHINE_NAME=office
 export MACHINE_DIR="/home/max/.machines/$MACHINE_NAME"
 
 umask 022
@@ -23,7 +23,7 @@ EOF
 mkdir -p "$MACHINE_DIR"/home/max/.config/systemd/user
 tee -a "$MACHINE_DIR"/home/max/.config/systemd/user/$MACHINE_NAME.service <<EOF
 [Unit]
-Description=Brave Browser
+Description=Libre Office
 After=network.target
 
 [Service]
@@ -34,7 +34,7 @@ Environment=XDG_SESSION_TYPE=wayland
 Environment=QT_QPA_PLATFORM=wayland
 Environment=MOZ_ENABLE_WAYLAND=1
 Environment=GTK_THEME=Adwaita:dark
-ExecStart=/usr/bin/brave --ozone-platform-hint=wayland --ozone-platform=wayland --enable-features=UseOzonePlatform,WaylandWindowDecorations --enable-wayland-ime --wayland-text-input-version=3
+ExecStart=/usr/bin/libreoffice --nologo
 
 [Install]
 WantedBy=default.target
@@ -44,4 +44,4 @@ systemd-nspawn -D "$MACHINE_DIR" sh -c "chown -R max:max /home/max/.config"
 systemd-nspawn -D "$MACHINE_DIR" --user max sh -c "systemctl --user enable $MACHINE_NAME.service"
 
 echo -e "\033[1;31mManually run:\033[0m"
-echo "paru -Syr \"$MACHINE_DIR\" brave-bin libpulse ttf-liberation"
+echo "paru -Syr \"$MACHINE_DIR\" libreoffice-fresh libpulse hunspell hunspell-en_au hyphen hyphen-en libmythes mythes-en gtk3 gtk4 ttf-liberation noto-fonts noto-fonts-cjk noto-fonts-emoji"
