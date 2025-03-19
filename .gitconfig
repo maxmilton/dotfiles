@@ -2,7 +2,6 @@
   email = max@happyhackers.xyz
   name = Max Milton
   # https://dev.to/benjaminblack/signing-git-commits-with-modern-encryption-1koh
-  # signingkey = 0B964B0AA79BCE95 # max@happyhackers.xyz sign only
   signingkey = 8149206E0CC93908 # max@happyhackers.xyz sign only
 [alias]
   # Remove branches that have already been merged with master
