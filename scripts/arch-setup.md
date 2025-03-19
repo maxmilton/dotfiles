@@ -2,6 +2,18 @@
 
 TODO: Write up step-by-step instructions rather than these loose notes.
 
+## Alternative
+
+For best desktop performance install cachyos instead:
+
+- <https://wiki.cachyos.org/cachyos_basic/download/>
+- <https://wiki.cachyos.org/installation/installation_on_root/>
+- Choose XFS for filesystem (or F2FS in some cases)
+- <https://wiki.cachyos.org/configuration/secure_boot_setup/>
+- <https://wiki.cachyos.org/configuration/general_system_tweaks/>
+
+---
+
 ```sh
 # guided install
 archinstall
@@ -25,9 +37,10 @@ scripts/link-busybox.sh
 
 ```sh
 # desktop packages
+ghostty
 gnome-keyring
 gnome-shell
-gnome-terminal
+#gnome-terminal
 iwd
 nautilus
 pipewire
@@ -40,16 +53,14 @@ scripts/disable-gnome-services.sh
 ```
 
 ```sh
+# set ghostty as default terminal
+gsettings set org.gnome.desktop.default-applications.terminal exec 'ghostty'
+```
+
+```sh
 # edit pacman config; enable parallel downloads + colour
 vi /etc/pacman.conf
 ```
-
-<!--
-```sh
-#setup yay-bin
-https://github.com/Jguer/yay#binary
-```
--->
 
 ```sh
 #setup paru-bin
@@ -83,8 +94,10 @@ jq
 man-db
 man-pages
 mpv
+mpv-mpris (to controll via media keys)
 noto-fonts-cjk
 noto-fonts-emoji
+nvtop (like htop but for GPU)
 ripgrep
 wl-clipboard
 xdg-utils

@@ -14,7 +14,7 @@ pkexec systemd-nspawn \
   --setenv=WAYLAND_DISPLAY=/run/user/host/wayland-0 \
   --setenv=XDG_SESSION_TYPE=wayland \
   --as-pid2 \
-    /usr/bin/brave --enable-features=UseOzonePlatform --ozone-platform=wayland $@
+    /usr/bin/brave --ozone-platform-hint=wayland --ozone-platform=wayland --enable-features=UseOzonePlatform,WaylandWindowDecorations --enable-wayland-ime --wayland-text-input-version=3 $@
   # --bind=/dev/hidraw0 \
   # --bind=/dev/hidraw1 \
   # --bind=/dev/hidraw2 \
