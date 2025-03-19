@@ -94,7 +94,7 @@ jq
 man-db
 man-pages
 mpv
-mpv-mpris (to controll via media keys)
+mpv-mpris (to control via media keys)
 noto-fonts-cjk
 noto-fonts-emoji
 nvtop (like htop but for GPU)
