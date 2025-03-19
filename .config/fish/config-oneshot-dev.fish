@@ -12,7 +12,7 @@ source "$DIR"/config-oneshot.fish
 set -U hydro_color_prompt magenta
 
 # macOS
-if test (uname -s) = "Darwin" and test -d "$HOME"/.nix-profile/bin
+if test (uname -s) = Darwin and test -d "$HOME"/.nix-profile/bin
     fish_add_path "$HOME"/.nix-profile/bin /nix/var/nix/profiles/default/bin
 end
 
@@ -53,3 +53,4 @@ end
 fish_add_path "$HOME"/.local/bin
 
 set -Ux DO_NOT_TRACK 1
+set -Ux ELECTRON_OZONE_PLATFORM_HINT auto
