@@ -1,4 +1,6 @@
-#!/bin/sh -eu
+#!/bin/sh
+set -eu
+set -o pipefail
 
 test "$(id -u)" -ne "0" && echo "You need to be root" >&2 && exit 1
 
@@ -9,7 +11,10 @@ umask 022
 
 mkdir -p "$MACHINE_DIR"
 chown -R root:max "$MACHINE_DIR"
-pacstrap -icMG "$MACHINE_DIR" systemd busybox
+
+pacstrap -icMG "$MACHINE_DIR" systemd
+paru --root "$MACHINE_DIR" --cachedir /var/cache/pacman/pkg -S brave-bin libpulse ttf-liberation \
+  --assume-installed adwaita-cursors adwaita-icon-theme-legacy adobe-source-code-pro-fonts adwaita-icon-theme cantarell-fonts default-cursors desktop-file-utils duktape gsettings-desktop-schemas gsettings-system-schemas hicolor-icon-theme libcloudproviders gtk-update-icon-cache
 
 systemd-nspawn -D "$MACHINE_DIR" sh -c "useradd -m max && passwd -d max"
 
@@ -43,5 +48,4 @@ EOF
 systemd-nspawn -D "$MACHINE_DIR" sh -c "chown -R max:max /home/max/.config"
 systemd-nspawn -D "$MACHINE_DIR" --user max sh -c "systemctl --user enable $MACHINE_NAME.service"
 
-echo -e "\033[1;31mManually run:\033[0m"
-echo "paru -Syr \"$MACHINE_DIR\" brave-bin libpulse ttf-liberation"
+echo "DONE"

@@ -1,4 +1,5 @@
-#!/bin/sh -eu
+#!/bin/sh
+set -eu
 pkexec systemd-nspawn \
   --directory=/home/max/.machines/zbrave \
   --user=$USER --chdir=$HOME \
@@ -15,7 +16,3 @@ pkexec systemd-nspawn \
   --setenv=XDG_SESSION_TYPE=wayland \
   --as-pid2 \
     /usr/bin/brave --ozone-platform-hint=wayland --ozone-platform=wayland --enable-features=UseOzonePlatform,WaylandWindowDecorations --enable-wayland-ime --wayland-text-input-version=3 $@
-  # --bind=/dev/hidraw0 \
-  # --bind=/dev/hidraw1 \
-  # --bind=/dev/hidraw2 \
-  # --bind=/dev/hidraw3 \
