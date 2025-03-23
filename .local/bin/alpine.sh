@@ -1,13 +1,14 @@
-#!/bin/sh -eu
+#!/bin/sh
+set -eu
 if test "$*" = "-x"; then
   export SYSTEMD_SECCOMP=0
   sudo systemd-nspawn \
-    --capability=all \
     --directory=/var/lib/machines/alpine \
+    --capability=all \
     --boot
 else
   sudo systemd-nspawn \
-    --no-new-privileges=yes \
     --directory=/var/lib/machines/alpine \
+    --no-new-privileges=yes \
     --boot --ephemeral
 fi

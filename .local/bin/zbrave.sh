@@ -1,17 +1,17 @@
 #!/bin/sh
 set -eu
 pkexec systemd-nspawn \
-  --directory=/home/max/.machines/zbrave \
-  --user=$USER --chdir=$HOME \
-  --bind-ro=/run/user/1000/pulse/native:/run/user/host/pulse/native \
-  --bind-ro=/run/user/1000/wayland-0:/run/user/host/wayland-0 \
+  --directory="$HOME"/.machines/zbrave \
+  --user="$USER" --chdir="$HOME" \
+  --bind-ro="$XDG_RUNTIME_DIR"/pulse/native:/run/user/host/pulse/native \
+  --bind-ro="$XDG_RUNTIME_DIR"/wayland-0:/run/user/host/wayland-0 \
   --bind=/dev/dri/card0 \
   --bind=/dev/dri/renderD128 \
   --bind=/tmp/.X11-unix/X0 \
   --bind-ro=/usr/share/fonts \
-  --bind=/home/max/Downloads \
+  --bind="$HOME"/Downloads \
   --setenv=PULSE_SERVER=unix:/run/user/host/pulse/native \
-  --setenv=DISPLAY=$DISPLAY \
+  --setenv=DISPLAY="$DISPLAY" \
   --setenv=WAYLAND_DISPLAY=/run/user/host/wayland-0 \
   --setenv=XDG_SESSION_TYPE=wayland \
   --as-pid2 \
