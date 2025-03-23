@@ -5,11 +5,11 @@ set -o pipefail
 test "$(id -u)" -ne "0" && echo "You need to be root" >&2 && exit 1
 
 export MACHINE_NAME=zbrave
-export MACHINE_DIR="$HOME/.machines/$MACHINE_NAME"
+export MACHINE_DIR="/home/max/.machines/$MACHINE_NAME"
+USER=max
+GROUP=max
 
 umask 022
-
-GROUP="$(id -gn)"
 
 mkdir -p "$MACHINE_DIR"
 chown -R root:"$GROUP" "$MACHINE_DIR"
