@@ -89,6 +89,14 @@ sudo sync; echo 2 > /proc/sys/vm/drop_caches
 sudo sync; echo 3 > /proc/sys/vm/drop_caches
 ```
 
+```sh
+# XFS optimisation and maintenance
+sudo xfs_scrub -v /
+sudo xfs_fsr -v /
+sudo fstrim --verbose /
+sudo fstrim --verbose /run/media/max/Store
+```
+
 ## Steam
 
 ```sh
