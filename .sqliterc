@@ -1,7 +1,7 @@
 .mode column
 .headers on
-.timer on
 .eqp on
 .nullvalue "NULL"
+.timer on
 -- .bail on
 -- .changes on

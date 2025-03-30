@@ -42,6 +42,11 @@ fd --type x --hidden --no-ignore --exec chmod -c 700 {}
 ```
 
 ```sh
+# verify and repair git repo integrity (do after changing file permissions!)
+git fsck
+```
+
+```sh
 # remove broken symlinks in dir
 find -L . -name . -o -type d -prune -o -type l -exec /bin/rm -rf {} \;
 ```

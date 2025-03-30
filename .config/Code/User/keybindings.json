@@ -435,6 +435,10 @@
     // "mac": "cmd+j",
     "key": "ctrl+j",
     "command": "editor.action.joinLines"
+  },
+  {
+    "key": "ctrl+i",
+    "command": "composerMode.agent"
   }
   // {
   //   "mac": "cmd+p",
