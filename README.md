@@ -4,14 +4,20 @@ Intended for use on a Linux OS.
 
 ## Usage
 
-1. Copy init script:
+1. Copy init script/s:
    ```sh
    cp bootstrap.sh.template bootstrap.sh
    ```
-2. Edit `bootstrap.sh`
-3. Run init script:
+   ```sh
+   cp bootstrap-root.sh.template bootstrap-root.sh
+   ```
+2. Edit: `bootstrap.sh` `bootstrap-root.sh`
+3. Run:
    ```sh
    ./bootstrap.sh
+   ```
+   ```sh
+   sudo ./bootstrap-root.sh
    ```
 
 ## License
