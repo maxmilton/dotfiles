@@ -2,6 +2,8 @@
 set -eu
 set -o pipefail
 
+test "$(id -u)" -eq "0" && echo "Do not run as root" >&2 && exit 1
+
 script_dir=$(CDPATH='' cd -- "$(dirname -- "$0")" && pwd -P)
 
 umask 077
@@ -52,18 +54,20 @@ ln -vbs "${script_dir}/.gnupg/gpg.conf" ~/.gnupg/gpg.conf
 # ln -vbs "${script_dir}/.local/bin/sudo" ~/.local/bin/sudo
 # ln -vbs "${script_dir}/.local/bin/sysboot.sh" ~/.local/bin/sysboot.sh
 # ln -vbs "${script_dir}/.local/bin/vms.sh" ~/.local/bin/vms.sh
+# ln -vbs "${script_dir}/.local/bin/ytdl.sh" ~/.local/bin/ytdl.sh
 # ln -vbs "${script_dir}/.local/bin/zbrave.sh" ~/.local/bin/zbrave.sh
 # ln -vbs "${script_dir}/.local/bin/zigup" ~/.local/bin/zigup
 # ln -vbs "${script_dir}/.local/share/applications/brave-browser.desktop" ~/.local/share/applications/brave-browser.desktop
 ln -vbs "${script_dir}/.local/share/applications/code-oss.desktop" ~/.local/share/applications/code-oss.desktop
 ln -vbs "${script_dir}/.local/share/applications/cursor-cursor.desktop" ~/.local/share/applications/cursor-cursor.desktop
 # ln -vbs ~/Projects/_github-clones/zls/zig-out/bin/zls ~/.local/bin/zls
-ln -vbs "${script_dir}/.ssh/config" ~/.ssh/config
 ln -vbs "${script_dir}/.curlrc" ~/.curlrc
+# ln -vbs "${script_dir}/.duckdbrc" ~/.duckdbrc
 ln -vbs "${script_dir}/.gitattributes" ~/.gitattributes
 ln -vbs "${script_dir}/.gitconfig" ~/.gitconfig
 ln -vbs "${script_dir}/_.gitignore" ~/.gitignore
 # ln -vbs "${script_dir}/.profile" ~/.profile
+ln -vbs "${script_dir}/.ssh/config" ~/.ssh/config
 ln -vbs "${script_dir}/.sqliterc" ~/.sqliterc
 
 # https://github.com/jorgebucaran/fisher#installation
