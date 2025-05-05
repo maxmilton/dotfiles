@@ -15,6 +15,7 @@ exec bwrap \
   --dir /tmp \
   --dir /var \
   --symlink ../tmp var/tmp \
+  --symlink /usr/bin/busybox /bin/sh \
   --proc /proc \
   --dev /dev \
   --ro-bind /etc/ca-certificates /etc/ca-certificates \
