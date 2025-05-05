@@ -2,33 +2,39 @@
 set -eu
 set -o pipefail
 
-test "$(id -u)" -ne "0" && echo "You need to be root" >&2 && exit 1
+msg() { echo >&2 -e "${1-}"; }
+die() { msg "$@"; exit 1; }
 
-export MACHINE_NAME=zbrave
-export MACHINE_DIR="/home/max/.machines/$MACHINE_NAME"
-USER=max
-GROUP=max
+test "$(id -u)" -eq "0" && die "Do not run as root"
+
+export MACHINE_NAME="${MACHINE_NAME:-zbrave}"
+export MACHINE_DIR="${HOME}/.machines/${MACHINE_NAME}"
 
 umask 022
 
-mkdir -p "$MACHINE_DIR"
-chown -R root:"$GROUP" "$MACHINE_DIR"
+sudo mkdir -pv "${MACHINE_DIR}/var/lib/pacman"
+sudo chown root:"$(id -gn)" "$MACHINE_DIR"
 
-pacstrap -icMG "$MACHINE_DIR" systemd
-paru --root "$MACHINE_DIR" --cachedir /var/cache/pacman/pkg -S brave-bin libpulse ttf-liberation \
-  --assume-installed adwaita-cursors adwaita-icon-theme-legacy adobe-source-code-pro-fonts adwaita-icon-theme cantarell-fonts default-cursors desktop-file-utils duktape gsettings-desktop-schemas gsettings-system-schemas hicolor-icon-theme libcloudproviders gtk-update-icon-cache
+sudo ln -svf /var/lib/pacman/sync "${MACHINE_DIR}/var/lib/pacman/"
 
-systemd-nspawn -D "$MACHINE_DIR" sh -c "useradd -m $USER && passwd -d $USER"
+sudo pacstrap -icMG "$MACHINE_DIR" systemd
+sudo paru --root "$MACHINE_DIR" --cachedir /var/cache/pacman/pkg -S brave-bin \
+  at-spi2-core libcups libpulse libxcomposite libxdamage libxkbcommon libxrandr mesa pango \
+  --assume-installed adwaita-fonts \
+  --assume-installed gtk3 \
+  --assume-installed ttf-font
 
-mkdir -p "$MACHINE_DIR"/etc/systemd/system/console-getty.service.d
-tee -a "$MACHINE_DIR"/etc/systemd/system/console-getty.service.d/autologin.conf <<EOF
+sudo systemd-nspawn -D "$MACHINE_DIR" sh -c "useradd -m xxxx && passwd -d xxxx"
+
+sudo mkdir -pv "${MACHINE_DIR}/etc/systemd/system/console-getty.service.d"
+sudo tee -a "${MACHINE_DIR}/etc/systemd/system/console-getty.service.d/autologin.conf" <<EOF
 [Service]
 ExecStart=
-ExecStart=-/sbin/agetty -o '-p -f -- \\u' --noclear --keep-baud --autologin $USER - 115200,38400,9600 \$TERM
+ExecStart=-/sbin/agetty -o '-p -f -- \\u' --noclear --keep-baud --autologin xxxx - 115200,38400,9600 \$TERM
 EOF
 
-mkdir -p "$MACHINE_DIR"/home/"$USER"/.config/systemd/user
-tee -a "$MACHINE_DIR"/home/"$USER"/.config/systemd/user/$MACHINE_NAME.service <<EOF
+sudo mkdir -pv "${MACHINE_DIR}/home/xxxx/.config/systemd/user"
+sudo tee -a "${MACHINE_DIR}/home/xxxx/.config/systemd/user/${MACHINE_NAME}.service" <<EOF
 [Unit]
 Description=Brave Browser
 After=network.target
@@ -38,16 +44,13 @@ Environment=PULSE_SERVER=unix:/run/user/host/pulse/native
 Environment=DISPLAY=:0
 Environment=WAYLAND_DISPLAY=/run/user/host/wayland-0
 Environment=XDG_SESSION_TYPE=wayland
-Environment=QT_QPA_PLATFORM=wayland
-Environment=MOZ_ENABLE_WAYLAND=1
-Environment=GTK_THEME=Adwaita:dark
 ExecStart=/usr/bin/brave --ozone-platform-hint=wayland --ozone-platform=wayland --enable-features=UseOzonePlatform,WaylandWindowDecorations --enable-wayland-ime --wayland-text-input-version=3
 
 [Install]
 WantedBy=default.target
 EOF
 
-systemd-nspawn -D "$MACHINE_DIR" sh -c "chown -R $USER:$GROUP /home/$USER/.config"
-systemd-nspawn -D "$MACHINE_DIR" --user "$USER" sh -c "systemctl --user enable $MACHINE_NAME.service"
+sudo systemd-nspawn -D "$MACHINE_DIR" sh -c "chown -R xxxx:xxxx /home/xxxx/.config"
+sudo systemd-nspawn -D "$MACHINE_DIR" --user xxxx sh -c "systemctl --user enable ${MACHINE_NAME}.service"
 
-echo "DONE"
+msg "DONE"

@@ -14,7 +14,9 @@ for gitdir in (fd --type d --absolute-path --hidden --exclude '*.bak' '^\.git$')
     echo "## $(pwd)"
     set_color normal
 
-    if test "$prune" = "y"
+    git fsck
+
+    if test "$prune" = y
         git gc --aggressive
     else
         git gc --aggressive --no-prune
