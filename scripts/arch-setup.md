@@ -78,8 +78,8 @@ code
 code-features (AUR)
 code-marketplace (AUR)
 cpupower (for desktop) OR power-profiles-daemon (for laptop)
-eza
-fd
+eza (modern alt to ls)
+fd (modern alt to find)
 fish
 fwupd
 fzy
@@ -91,6 +91,7 @@ gnome-tweaks
 helix
 htop OR btop
 jq
+lurk (modern alt to stract)
 man-db
 man-pages
 mpv
@@ -98,7 +99,7 @@ mpv-mpris (to control via media keys)
 noto-fonts-cjk
 noto-fonts-emoji
 nvtop (like htop but for GPU)
-ripgrep
+ripgrep (modern alt to grep)
 wl-clipboard
 xdg-utils
 paru-bin (AUR, needs manual initial setup)

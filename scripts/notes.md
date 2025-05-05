@@ -42,8 +42,20 @@ fd --type x --hidden --no-ignore --exec chmod -c 700 {}
 ```
 
 ```sh
-# verify and repair git repo integrity (do after changing file permissions!)
+# verify git repo integrity (do after changing file permissions!)
 git fsck
+# fix git dangling commits (somewhat dangerous)
+git reflog expire --expire=now --all
+git gc --prune=now
+# git gc --aggressive
+
+# fix git packfile errors (very dangerous)
+rm -f .git/objects/pack/*.pack
+git repack -a -d
+git fsck
+
+# fetch and clean up all the things
+git fetch -vv --all --tags --prune --auto-maintenance
 ```
 
 ```sh
@@ -93,8 +105,18 @@ sudo sync; echo 3 > /proc/sys/vm/drop_caches
 # XFS optimisation and maintenance
 sudo xfs_scrub -v /
 sudo xfs_fsr -v /
-sudo fstrim --verbose /
-sudo fstrim --verbose /run/media/max/Store
+sudo fstrim -v /
+sudo fstrim -v /run/media/max/Store
+```
+
+```sh
+# Inspect what files fish reads when loading an interactive shell
+lurk -fv --expr trace=%file fish -i -c exit 2>&1
+```
+
+```sh
+# Find which package a file belongs to
+paru -Qo /usr/bin/busybox
 ```
 
 ## Steam
