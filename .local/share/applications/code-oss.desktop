@@ -15,14 +15,5 @@ X-Desktop-File-Install-Version=0.28
 
 [Desktop Action new-empty-window]
 Name=New Empty Window
-Name[de]=Neues leeres Fenster
-Name[es]=Nueva ventana vacía
-Name[fr]=Nouvelle fenêtre vide
-Name[it]=Nuova finestra vuota
-Name[ja]=新しい空のウィンドウ
-Name[ko]=새 빈 창
-Name[ru]=Новое пустое окно
-Name[zh_CN]=新建空窗口
-Name[zh_TW]=開新空視窗
 Exec=code-oss --ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --new-window --enable-wayland-ime --wayland-text-input-version=3  %F
 Icon=com.visualstudio.code.oss
