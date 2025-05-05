@@ -1,5 +1,7 @@
 {
+  "$schema": "https://raw.githubusercontent.com/zigtools/zls/refs/heads/master/schema.json",
   "zig_exe_path": "/home/max/.local/bin/zig-latest/zig",
   "zig_lib_path": "/home/max/.local/bin/zig-latest/lib",
-  "warn_style": true
+  "warn_style": true,
+  "inlay_hints_hide_redundant_param_names_last_token": true
 }
