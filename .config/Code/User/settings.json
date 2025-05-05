@@ -1,4 +1,5 @@
 {
+  "crashReporting.enabled": "off",
   "telemetry.enableCrashReporter": false, // Deprecated but still used by extensions
   "telemetry.enableTelemetry": false, // Deprecated but still used by extensions
   "telemetry.telemetryLevel": "off",
@@ -45,6 +46,7 @@
   "editor.tabSize": 2,
   "editor.renderWhitespace": "all",
   "editor.renderControlCharacters": true,
+  "editor.inlayHints.enabled": "onUnlessPressed",
   "editor.inlineSuggest.enabled": true,
   "editor.semanticTokenColorCustomizations": {
     "rules": {
@@ -68,23 +70,12 @@
   "diffEditor.ignoreTrimWhitespace": false,
   "extensions.ignoreRecommendations": true,
   "files.associations": {
-    "*.env": "properties",
-    "*.fish": "shellscript",
-    "*.tmpl": "go",
-    "*.ts.sh": "typescript", // file must use hashbang: #!/usr/bin/env bun
-    "package.json": "jsonc"
+    ".env.*": "properties",
+    "*.zzz": "shellscript"
   },
   "files.exclude": {
-    // "**/.*cache": true,
-    "**/.DS_Store": true,
-    "**/.git": true,
-    "**/*.db-lock": true,
-    "**/*.db-shm": true,
-    "**/*.db-wal": true,
-    "**/*.db": true,
-    "**/coverage": true,
-    "**/node_modules": true,
-    "**/Thumbs.db": true
+    "**/.*cache": true,
+    "**/.git": true
   },
   "files.insertFinalNewline": true,
   "files.trimTrailingWhitespace": true,
@@ -92,42 +83,19 @@
     "**/.*cache": true,
     "**/.git/objects/**": true,
     "**/.git/subtree-cache/**": true,
-    "**/.tsbuildinfo": true,
-    "**/.vscode": true,
     "**/*-lock.*": true,
     "**/*.bak": true,
     "**/*.bak/**": true,
-    "**/*.db-lock": true,
-    "**/*.db-shm": true,
-    "**/*.db-wal": true,
-    "**/*.db": true,
-    "**/*.gz": true,
     "**/*.lock": true,
-    "**/*.log": true,
-    "**/*.map": true,
-    "**/*.min.*": true,
-    "**/*.sqlite-shm": true,
-    "**/*.sqlite-wal": true,
-    "**/*.sqlite": true,
-    "**/*.tar.*": true,
-    "**/*.zip": true,
     "**/build/**": true,
-    "**/bun.lock": true,
-    "**/bun.lockb": true,
     "**/coverage/**": true,
     "**/dist/**": true,
-    "**/export/**": true,
     "**/node_modules/**": true,
-    "**/package-lock.json": true,
     "**/playwright-report/**": true,
-    "**/pnpm-lock.yaml": true,
     "**/public/**": true,
     "**/test-results/**": true,
-    "**/test/**": true,
-    "**/tests/**": true,
     "**/tmp/**": true,
-    "**/yarn.lock": true,
-    "**/zig-cache/**": true,
+    "**/var/**": true,
     "**/zig-out/**": true
   },
   "search.seedWithNearestWord": true,
@@ -140,9 +108,20 @@
   "git.mergeEditor": false,
   "git.suggestSmartCommit": false,
   "scm.alwaysShowRepositories": true,
-  "terminal.integrated.defaultProfile.linux": "bash",
-  "terminal.integrated.shellIntegration.enabled": true,
-
+  "debug.allowBreakpointsEverywhere": false,
+  "terminal.integrated.defaultProfile.linux": "sandbox",
+  "terminal.integrated.profiles.linux": {
+    "sandbox": {
+      "path": "/home/max/.local/bin/sandbox.sh",
+      "args": []
+    }
+  },
+  "terminal.integrated.shellIntegration.enabled": false,
+  "task.allowAutomaticTasks": "off",
+  "task.autoDetect": "off",
+  "npm.autoDetect": "off",
+  "npm.packageManager": "bun",
+  "npm.scriptRunner": "bun",
   "html.completion.attributeDefaultValue": "empty",
   "javascript.inlayHints.functionLikeReturnTypes.enabled": true,
   "javascript.inlayHints.parameterNames.enabled": "all",
@@ -151,10 +130,6 @@
   "javascript.inlayHints.propertyDeclarationTypes.enabled": true,
   "javascript.inlayHints.variableTypes.enabled": true,
   "js/ts.implicitProjectConfig.checkJs": true,
-  "npm.autoDetect": "off",
-  "npm.packageManager": "bun",
-  "npm.scriptRunner": "bun",
-  "task.autoDetect": "off",
   "typescript.implementationsCodeLens.enabled": true,
   "typescript.inlayHints.enumMemberValues.enabled": true,
   "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
@@ -168,10 +143,10 @@
   "typescript.surveys.enabled": false,
   "typescript.tsc.autoDetect": "off",
 
-  "[css][html][json][jsonc][markdown][scss][xml]": {
+  "[css][html][json][jsonc][markdown][scss][xml][yaml]": {
     "editor.codeActionsOnSave": {
-      "source.fixAll": "explicit",
-      "quickfix.biome": "explicit"
+      "source.organizeImports": "explicit",
+      "source.fixAll": "explicit"
     },
     "editor.defaultFormatter": "biomejs.biome"
   },
@@ -180,9 +155,7 @@
       "source.sortImports": "never",
       "source.organizeImports": "never",
       "source.organizeImports.biome": "explicit",
-      "source.fixAll": "never",
-      "source.fixAll.eslint": "never",
-      "quickfix.biome": "explicit"
+      "source.fixAll": "never"
     },
     "editor.defaultFormatter": "biomejs.biome"
   },
@@ -199,47 +172,55 @@
     "editor.renderWhitespace": "boundary",
     "files.trimTrailingWhitespace": false
   },
-  "[zig]": {
-    "editor.defaultFormatter": "ziglang.vscode-zig",
-    "editor.formatOnSave": true,
-    "editor.tabSize": 4,
-    "files.eol": "\n",
+  // "[zig]": {
+  //     "editor.codeActionsOnSave": {
+  //       "source.organizeImports": "never",
+  //       "source.fixAll": "explicit"
+  //     },
+  //     "editor.defaultFormatter": "ziglang.vscode-zig",
+  //     // "editor.formatOnSave": true,
+  //     "editor.tabSize": 4,
+  //     // "editor.inlayHints.enabled": "onUnlessPressed", // TODO: Too opinionated for a project level setting?
+  //     "editor.suggest.insertMode": "replace",
+  //     "editor.stickyScroll.defaultModel": "foldingProviderModel"
+  // },
 
-    // Suggestions from https://zigtools.org/zls/editors/vscode/
-    "editor.suggest.insertMode": "replace",
-    "editor.stickyScroll.defaultModel": "foldingProviderModel"
-  },
-
+  "biome.enabled": false,
+  // "biome.requireConfigFile": true,
   "biome.searchInPath": false,
+  "zig.path": "zig",
+  // "zig.zls.enabled": "on",
+  "zig.zls.path": "zls",
+  "zig.zls.warnStyle": true,
+
+  "chat.agent.enabled": true,
   "github.copilot.enable": {
     "*": true,
     "plaintext": false,
     "markdown": false,
     "scminput": false
   },
-  "github.copilot.editor.enableAutoCompletions": true,
-  "github.copilot.editor.enableCodeActions": true,
+  "github.copilot.chat.agent.thinkingTool": true,
   "github.copilot.chat.codesearch.enabled": true,
+  "github.copilot.chat.completionContext.typescript.mode": "sidecar",
   "github.copilot.chat.editor.temporalContext.enabled": true,
   "github.copilot.chat.edits.temporalContext.enabled": true,
-  "github.copilot.chat.followUps": "always",
   "github.copilot.chat.generateTests.codeLens": true,
+  "github.copilot.chat.languageContext.fix.typescript.enabled": true,
+  "github.copilot.chat.languageContext.inline.typescript.enabled": true,
+  "github.copilot.chat.languageContext.typescript.enabled": true,
   "github.copilot.chat.localeOverride": "en",
   "github.copilot.chat.newWorkspaceCreation.enabled": true,
   "github.copilot.chat.search.semanticTextResults": true,
+  "github.copilot.editor.enableCodeActions": true,
   "github.copilot.nextEditSuggestions.enabled": true,
   "githubPullRequests.pullBranch": "never",
   "vsintellicode.java.completionsEnabled": false,
   "vsintellicode.modify.editor.suggestSelection": "choseToUpdateConfiguration",
   "vsintellicode.python.completionsEnabled": false,
 
-  "zig.path": "zig",
-  "zig.zls.enabled": "on",
-  "zig.zls.path": "zls",
-  "zig.zls.warnStyle": true,
-
   "gitlens.keymap": "none",
   "hardhat.telemetry": false,
   "liveshare.presence": true,
-  "solidity.telemetry": false
+  "solidity.telemetry": false,
 }
