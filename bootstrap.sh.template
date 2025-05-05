@@ -11,6 +11,7 @@ umask 077
 # mkdir -vp ~/.config/Code/User
 mkdir -vp ~/.config/fish/functions
 mkdir -vp ~/.config/helix
+# mkdir -vp ~/.config/ion
 # mkdir -vp ~/.config/mpv
 mkdir -vp ~/.gnupg/private-keys-v1.d
 mkdir -vp ~/.local/bin
@@ -36,6 +37,7 @@ ln -vbs "${script_dir}/.config/fish/functions/multicd.fish" ~/.config/fish/funct
 ln -vbs "${script_dir}/.config/fish/functions/ssh.fish" ~/.config/fish/functions/ssh.fish
 ln -vbs "${script_dir}/.config/helix/config.toml" ~/.config/helix/config.toml
 ln -vbs "${script_dir}/.config/helix/languages.toml" ~/.config/helix/languages.toml
+# ln -vbs "${script_dir}/.config/ion/initrc" ~/.config/ion/initrc
 # ln -vbs "${script_dir}/.config/mpv/input.conf" ~/.config/mpv/input.conf
 # ln -vbs "${script_dir}/.config/mpv/mpv.conf" ~/.config/mpv/mpv.conf
 # ln -vbs "${script_dir}/.config/mpv/shaders" ~/.config/mpv/shaders
@@ -50,6 +52,7 @@ ln -vbs "${script_dir}/.gnupg/gpg.conf" ~/.gnupg/gpg.conf
 # ln -vbs "${script_dir}/.local/bin/gn" ~/.local/bin/gn # gnome session launcher
 # ln -vbs "${script_dir}/.local/bin/librewolf.sh" ~/.local/bin/librewolf.sh
 # ln -vbs "${script_dir}/.local/bin/lutris.sh" ~/.local/bin/lutris.sh
+# ln -vbs "${script_dir}/.local/bin/sandbox.sh" ~/.local/bin/sandbox.sh
 # ln -vbs "${script_dir}/.local/bin/steam.sh" ~/.local/bin/steam.sh
 # ln -vbs "${script_dir}/.local/bin/sudo" ~/.local/bin/sudo
 # ln -vbs "${script_dir}/.local/bin/sysboot.sh" ~/.local/bin/sysboot.sh
@@ -60,7 +63,6 @@ ln -vbs "${script_dir}/.gnupg/gpg.conf" ~/.gnupg/gpg.conf
 # ln -vbs "${script_dir}/.local/share/applications/brave-browser.desktop" ~/.local/share/applications/brave-browser.desktop
 ln -vbs "${script_dir}/.local/share/applications/code-oss.desktop" ~/.local/share/applications/code-oss.desktop
 ln -vbs "${script_dir}/.local/share/applications/cursor-cursor.desktop" ~/.local/share/applications/cursor-cursor.desktop
-# ln -vbs ~/Projects/_github-clones/zls/zig-out/bin/zls ~/.local/bin/zls
 ln -vbs "${script_dir}/.curlrc" ~/.curlrc
 # ln -vbs "${script_dir}/.duckdbrc" ~/.duckdbrc
 ln -vbs "${script_dir}/.gitattributes" ~/.gitattributes
@@ -69,6 +71,7 @@ ln -vbs "${script_dir}/_.gitignore" ~/.gitignore
 # ln -vbs "${script_dir}/.profile" ~/.profile
 ln -vbs "${script_dir}/.ssh/config" ~/.ssh/config
 ln -vbs "${script_dir}/.sqliterc" ~/.sqliterc
+# ln -vbs ~/Projects/_clones/zls/zig-out/bin/zls ~/.local/bin/zls
 
 # https://github.com/jorgebucaran/fisher#installation
 # fisher install jorgebucaran/fisher
