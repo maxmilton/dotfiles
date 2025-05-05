@@ -1,0 +1,73 @@
+fn PROMPT
+  let prev = $?
+  echo -n "${c::blue}$SWD"
+  if git rev-parse --is-inside-work-tree &> /dev/null
+    echo -n "${c::dim} [$(git symbolic-ref -q --short HEAD ^> /dev/null || git rev-parse --short HEAD ^> /dev/null)]"
+    if not git diff-index --quiet HEAD --
+      echo -n "*"
+    end
+  end
+  echo
+  if not eq $prev 0
+    echo -n ${c::red}
+  else
+    echo -n ${c::magenta}
+  end
+  echo -n "❯${c::reset} "
+end
+
+fn CD_CHANGE
+  echo -ne "\e]2;$SWD\a"
+  echo -ne "\e]7;kitty-shell-cwd://$PWD\a"
+end
+CD_CHANGE
+
+alias rm = 'gio trash'
+alias cp = 'cp -i'
+alias mv = 'mv -i'
+alias ls = eza
+alias l = 'eza -laF --group-directories-first'
+alias ll = 'eza -laBF --group-directories-first'
+alias ld = 'eza --tree --only-dirs'
+alias find = fd
+alias ff = 'fd -H --no-ignore'
+alias grep = rg
+alias rr = 'rg -.S -C1 -M80 --max-columns-preview --no-ignore'
+alias dux = 'du -bhx --max-depth=1 | sort -h'
+alias ip = 'ip -c'
+alias h = helix
+alias p = paru
+alias curl = 'curl -vv -H "Cache-Control: no-cache"'
+alias mm = 'mpv --no-video'
+alias duckdb = 'duckdb -safe -readonly'
+alias get = 'aria2c --dir ~/Downloads --file-allocation=falloc --max-connection-per-server=16 --continue'
+alias lsport = 'ss -plantu | fzy --lines=max'
+
+alias bup = 'bun upgrade --canary && bun update -g --latest'
+alias bi = 'bun install --verbose'
+alias br = '/bin/rm -f bun.lock*; /bin/rm -rf **/node_modules; bun install -f --verbose'
+alias bu = "bunx --bun taze -rflIw --ignore-paths='**/*.bak/**' latest"
+alias bb = 'bun run build'
+alias bd = 'bun run dev'
+alias bt = 'bun run lint; and bun run test'
+alias btt = 'bun run test:e2e'
+alias yi = 'bunx yarn info'
+
+alias gs = 'git status --short --branch --show-stash'
+alias gd = 'git diff'
+alias gdd = 'git diff --staged'
+alias gb = 'git branch -vv --all'
+alias gp = 'git pull --prune --autostash'
+alias gm = 'git merge --autostash'
+alias gc = 'git commit -v'
+alias gca = 'git commit -v --all'
+alias gco = 'git checkout'
+alias gl = 'git log --graph --pretty=format:"%C(yellow)%h%Creset%C(blue)%d%Creset %C(white bold)%s%Creset %C(white dim)(by %an %ar)%Creset"'
+alias gx = 'git blame -wCCC --color-by-age --minimal'
+
+fn kk
+  let pid = $(ps -ef | sed 1d | fzy -l max | awk '{print $2}')
+  if exists $pid
+    kill -9 $pid
+  end
+end
