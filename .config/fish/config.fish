@@ -21,8 +21,8 @@ abbr curl "curl -vv -H 'Cache-Control: no-cache'"
 abbr mm 'mpv --no-video'
 abbr duckdb 'duckdb -safe -readonly'
 
-abbr bi 'bun install'
-abbr br 'rm -f bun.lock*; rm -rf **/node_modules; bun install -f'
+abbr bi 'bun install --verbose'
+abbr br 'rm -f bun.lock*; rm -rf **/node_modules; bun install -f --verbose'
 abbr bu "bunx --bun taze -rflIw --ignore-paths='**/*.bak/**' latest"
 abbr bb 'bun run build'
 abbr bd 'bun run dev'

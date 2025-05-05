@@ -1,55 +1,56 @@
+function msg
+    set_color --bold bryellow
+    echo "$argv"
+    set_color normal
+end
+
 function pp
-    set -l normal (set_color normal)
-    set -l yellow (set_color --bold bryellow)
+    if ! isatty stdout
+        echo "Must be run in an interactive shell, exiting"
+        return 1
+    end
 
-    echo -e "$yellow""Updating system...""$normal"
-    paru -Syu
+    and msg 'Updating system...'
+    and paru -Syu
 
-    # echo -e "$yellow""Updating brave container""$normal"
-    # paru -Syur /home/max/.machines/brave
-
-    echo -e "$yellow""Updating zbrave container""$normal"
-    paru -Syu \
+    and msg 'Updating zbrave container'
+    and paru -Su \
         --root /home/max/.machines/zbrave \
-        --dbpath /var/lib/pacman \
         --cachedir /var/cache/pacman/pkg
 
-    # echo -e "$yellow""Updating code container""$normal"
-    # paru -Syur /home/max/.machines/code
+    # and msg 'Updating zlibrewolf container'
+    # and paru -Su \
+    #     --root /home/max/.machines/zlibrewolf \
+    #     --cachedir /var/cache/pacman/pkg
+    # and paru -S \
+    #     --root /home/max/.machines/zlibrewolf \
+    #     --cachedir /var/cache/pacman/pkg \
+    #     --needed --nodeps librewolf-bin
 
-    # echo -e "$yellow""Updating librewolf container""$normal"
-    # paru -Syur /home/max/.machines/librewolf
-    # # paru -Sr /home/max/.machines/librewolf librewolf-bin --nodeps
-
-    # echo -e "$yellow""Updating vms container""$normal"
-    # sudo pacman -Syu \
-    #     --root /home/max/.machines/vms \
-    #     --dbpath /var/lib/pacman \
+    # and msg 'Updating dev container'
+    # and paru -Su \
+    #     --root /home/max/.machines/dev \
     #     --cachedir /var/cache/pacman/pkg
 
-    # echo -e "$yellow""Updating arch container""$normal"
-    # sudo pacman -Syur /var/lib/machines/arch
-
-    echo -e "$yellow""Updating cachyos container""$normal"
-    # sudo systemd-nspawn --capability=CAP_IPC_LOCK -D /var/lib/machines/cachyos sh -c "pacman -Syu"
-    # sudo systemd-nspawn --capability=CAP_IPC_LOCK -D /var/lib/machines/cachyos sh -c "paru -Syu"
-    # sudo paru -Syu \
-    #     --root /var/lib/machines/cachyos \
+    # and msg 'Updating vms container'
+    # and sudo paru -Su \
+    #     --sysroot /home/max/.machines/vms \
     #     --cachedir /var/cache/pacman/pkg
-    sudo paru -Syu \
+
+    # and msg 'Updating game container (lutris, steam)'
+    # and sudo paru -Su \
+    #     --sysroot /var/lib/machines/game \
+    #     --cachedir /var/cache/pacman/pkg
+
+    and msg 'Updating cachyos container'
+    and sudo paru -Syu \
         --sysroot /var/lib/machines/cachyos \
         --cachedir /var/cache/pacman/pkg
 
-    # echo -e "$yellow""Updating alpine container""$normal"
-    # sudo systemd-nspawn -D /var/lib/machines/alpine sh -c "apk upgrade"
+    # and msg 'Updating alpine container'
+    # and sudo systemd-nspawn --capability=CAP_IPC_LOCK -D /var/lib/machines/alpine sh -c "apk upgrade"
 
-    # echo -e "$yellow""Updating lutris container""$normal"
-    # sudo systemd-nspawn --capability=CAP_IPC_LOCK -D /var/lib/machines/lutris sh -c "pacman -Syu"
-
-    # echo -e "$yellow""Updating steam container""$normal"
-    # sudo systemd-nspawn --capability=CAP_IPC_LOCK -D /var/lib/machines/steam sh -c "paru -Syu"
-
-    echo -e "$yellow""Updating system firmware...""$normal"
-    fwupdmgr refresh
-    sudo fwupdmgr update
+    and msg 'Updating system firmware...'
+    and fwupdmgr refresh
+    and sudo fwupdmgr update
 end

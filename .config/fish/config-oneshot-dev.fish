@@ -54,3 +54,7 @@ fish_add_path "$HOME"/.local/bin
 
 set -Ux DO_NOT_TRACK 1
 set -Ux ELECTRON_OZONE_PLATFORM_HINT auto
+
+if test -f "$XDG_RUNTIME_DIR"/ssh-agent.socket
+    set -Ux SSH_AUTH_SOCK "$XDG_RUNTIME_DIR"/ssh-agent.socket
+end
