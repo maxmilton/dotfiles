@@ -1,0 +1,69 @@
+#!/bin/sh
+set -eu
+set -o pipefail
+
+msg() { echo >&2 -e "${1-}"; }
+die() { msg "$@"; exit 1; }
+
+test "$(id -u)" -eq "0" && die "Do not run as root"
+
+export MACHINE_NAME="${MACHINE_NAME:-zlibrewolf}"
+export MACHINE_DIR="${HOME}/.machines/${MACHINE_NAME}"
+
+umask 022
+
+sudo mkdir -pv "${MACHINE_DIR}/var/lib/pacman"
+sudo chown root:"$(id -gn)" "$MACHINE_DIR"
+
+sudo ln -svf /var/lib/pacman/sync "${MACHINE_DIR}/var/lib/pacman/"
+
+sudo pacstrap -icMG "$MACHINE_DIR" systemd
+sudo paru --root "$MACHINE_DIR" --cachedir /var/cache/pacman/pkg -S librewolf-bin \
+  at-spi2-core libcups libpulse libxcomposite libxdamage libxkbcommon libxrandr mesa pango \
+  --assume-installed adwaita-fonts \
+  --assume-installed gtk3 \
+  --assume-installed ttf-font
+
+sudo systemd-nspawn -D "$MACHINE_DIR" sh -c "useradd -m xxxx && passwd -d xxxx"
+
+sudo mkdir -pv "${MACHINE_DIR}/etc/systemd/system/console-getty.service.d"
+sudo tee -a "${MACHINE_DIR}/etc/systemd/system/console-getty.service.d/autologin.conf" <<EOF
+[Service]
+ExecStart=
+ExecStart=-/sbin/agetty -o '-p -f -- \\u' --noclear --keep-baud --autologin xxxx - 115200,38400,9600 \$TERM
+EOF
+
+sudo mkdir -pv "${MACHINE_DIR}/home/xxxx/.config/systemd/user"
+sudo tee -a "${MACHINE_DIR}/home/xxxx/.config/systemd/user/${MACHINE_NAME}.service" <<EOF
+[Unit]
+Description=LibreWolf Browser
+After=network.target
+
+[Service]
+Environment=PULSE_SERVER=unix:/run/user/host/pulse/native
+Environment=DISPLAY=:0
+Environment=WAYLAND_DISPLAY=/run/user/host/wayland-0
+Environment=XDG_SESSION_TYPE=wayland
+Environment=MOZ_ENABLE_WAYLAND=1
+ExecStart=/usr/bin/librewolf
+
+[Install]
+WantedBy=default.target
+EOF
+
+sudo systemd-nspawn -D "$MACHINE_DIR" sh -c "chown -R xxxx:xxxx /home/xxxx/.config"
+sudo systemd-nspawn -D "$MACHINE_DIR" --user xxxx sh -c "systemctl --user enable ${MACHINE_NAME}.service"
+
+msg "DONE"
+
+# # NOTE: It may be necessary to import the GPG key for LibreWolf Maintainers:
+# # gpg --keyserver hkp://keyserver.ubuntu.com --search-keys 8A74EAAF89C17944
+
+# echo -e "\033[1;31mManually run:\033[0m"
+# echo "paru -Syr \"$MACHINE_DIR\" librewolf-bin pipewire-jack wireplumber ttf-liberation"
+# # Installing librewolf-bin will fail, due to missing dependencies (mime-types
+# # dbus-glib) which for some reason  are checked on the main system rather than
+# # the container. Since we installed all the dependencies in the previous step,
+# # we can now install librewolf-bin omitting the dependencies check.
+# echo -e "\033[1;31mAnd then:\033[0m"
+# echo "paru -Syr \"$MACHINE_DIR\" librewolf-bin --nodeps"
