@@ -18,6 +18,8 @@
   out = "log --stat '@{u}'.."
 [apply]
   whitespace = fix # Detect whitespace errors when applying a patch
+[branch]
+  sort = committerdate
 [core]
   excludesfile = ~/.gitignore
   attributesfile = ~/.gitattributes
@@ -69,3 +71,9 @@
   enabled = true
 [tag]
   gpgsign = true
+[maintenance]
+	repo = /home/max/Projects/_packages/stage1
+	repo = /home/max/Projects/cherrymint
+	repo = /home/max/Projects/dotfiles
+	repo = /home/max/Projects/new-tab
+	repo = /home/max/Projects/trackx
