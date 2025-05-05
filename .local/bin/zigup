@@ -53,6 +53,7 @@ else
   rm -rf "${ROOT_DIR}/zig-latest" "${ROOT_DIR}/zig_" || die "Failed to remove old symlinks!"
   ln -s "${version}" "${ROOT_DIR}/zig-latest" || die "Failed to set new symlink!"
   ln -s zig-latest/zig "${ROOT_DIR}/zig_" || die "Failed to set new symlink!"
+  # ln -s zig-latest/zig "${ROOT_DIR}/zig" || die "Failed to set new symlink!"
 
   # Clean up old zig files; sort by version and keep the 5 latest
   find "${ROOT_DIR}" -maxdepth 1 -type d -name 'zig-linux-x86_64-*' | \
@@ -63,4 +64,6 @@ else
   xargs -r rm -rf
 
   msg "Installed version: $("${ROOT_DIR}/zig-latest/zig" version)"
+
+  msg "TODO: Consider rm ~/.cache/zls/builtin.zig"
 fi

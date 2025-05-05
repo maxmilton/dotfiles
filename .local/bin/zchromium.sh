@@ -1,7 +1,7 @@
 #!/bin/sh
 set -eu
 pkexec systemd-nspawn \
-  --directory="$HOME"/.machines/zbrave \
+  --directory="$HOME"/.machines/zchromium \
   --user=xxxx --chdir=/home/xxxx \
   --bind-ro="${XDG_RUNTIME_DIR}/pulse/native":/run/user/host/pulse/native \
   --bind-ro="${XDG_RUNTIME_DIR}/wayland-0":/run/user/host/wayland-0 \
@@ -15,4 +15,5 @@ pkexec systemd-nspawn \
   --setenv=WAYLAND_DISPLAY=/run/user/host/wayland-0 \
   --setenv=XDG_SESSION_TYPE=wayland \
   --as-pid2 \
-    /usr/bin/brave --ozone-platform-hint=wayland --ozone-platform=wayland --enable-features=UseOzonePlatform,WaylandWindowDecorations --enable-wayland-ime --wayland-text-input-version=3 $@
+  --ephemeral \
+    /usr/bin/chromium --ozone-platform-hint=wayland --ozone-platform=wayland --enable-features=UseOzonePlatform,WaylandWindowDecorations --enable-wayland-ime --wayland-text-input-version=3 $@
