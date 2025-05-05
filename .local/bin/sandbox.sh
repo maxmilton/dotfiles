@@ -12,6 +12,9 @@ EOF
 exec bwrap \
   --ro-bind /usr /usr \
   --symlink usr/lib64 /lib64 \
+  --dir /tmp \
+  --dir /var \
+  --symlink ../tmp var/tmp \
   --proc /proc \
   --dev /dev \
   --ro-bind /etc/ca-certificates /etc/ca-certificates \
@@ -35,3 +38,4 @@ exec bwrap \
   /usr/bin/busybox sh --login
 
 # TODO: To run GUI apps: https://sloonz.github.io/posts/sandboxing-2/
+# REF: https://github.com/containers/bubblewrap/blob/main/demos/bubblewrap-shell.sh
