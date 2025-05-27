@@ -52,6 +52,7 @@ ln -vbs "${script_dir}/.gnupg/gpg.conf" ~/.gnupg/gpg.conf
 # ln -vbs "${script_dir}/.local/bin/gn" ~/.local/bin/gn # gnome session launcher
 # ln -vbs "${script_dir}/.local/bin/librewolf.sh" ~/.local/bin/librewolf.sh
 # ln -vbs "${script_dir}/.local/bin/lutris.sh" ~/.local/bin/lutris.sh
+# ln -vbs "${script_dir}/.local/bin/mpv-wrapped.sh" ~/.local/bin/mpv
 # ln -vbs "${script_dir}/.local/bin/sandbox.sh" ~/.local/bin/sandbox.sh
 # ln -vbs "${script_dir}/.local/bin/steam.sh" ~/.local/bin/steam.sh
 # ln -vbs "${script_dir}/.local/bin/sudo" ~/.local/bin/sudo
