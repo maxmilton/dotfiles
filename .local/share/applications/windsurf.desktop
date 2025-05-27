@@ -1,0 +1,20 @@
+[Desktop Entry]
+Name=Windsurf
+Comment=Tomorrow's Editor, Today.
+GenericName=Text Editor
+Exec=/usr/share/windsurf/windsurf --ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-wayland-ime --wayland-text-input-version=3 %F
+Icon=windsurf
+Type=Application
+StartupNotify=false
+StartupWMClass=Windsurf
+Categories=TextEditor;Development;IDE;
+MimeType=application/x-windsurf-workspace;
+Actions=new-empty-window;
+Keywords=vscode;
+
+[Desktop Action new-empty-window]
+Name=New Empty Window
+Name[ja]=新しい空のウィンドウ
+Name[ko]=새 빈 창
+Exec=/usr/share/windsurf/windsurf --ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-wayland-ime --wayland-text-input-version=3 --new-window %F
+Icon=windsurf

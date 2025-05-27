@@ -32,21 +32,23 @@ alias ld = 'eza --tree --only-dirs'
 alias find = fd
 alias ff = 'fd -H --no-ignore'
 alias grep = rg
-alias rr = 'rg -.S -C1 -M80 --max-columns-preview --no-ignore'
+alias rr = 'rg -uuS -C1 -M80 --max-columns-preview'
+alias rrr = 'rg -S -C1 --iglob=!node_modules'
 alias dux = 'du -bhx --max-depth=1 | sort -h'
+alias lsport = 'ss -plantu | fzy --lines=max'
+alias curl = 'curl -vv -H "Cache-Control: no-cache"'
 alias ip = 'ip -c'
 alias h = helix
 alias p = paru
-alias curl = 'curl -vv -H "Cache-Control: no-cache"'
+alias po = podman
 alias mm = 'mpv --no-video'
-alias duckdb = 'duckdb -safe -readonly'
-alias get = 'aria2c --dir ~/Downloads --file-allocation=falloc --max-connection-per-server=16 --continue'
-alias lsport = 'ss -plantu | fzy --lines=max'
+alias get = 'aria2c --dir=~/Downloads --file-allocation=falloc -cx 16'
 
-alias bup = 'bun upgrade --canary && bun update -g --latest'
+alias bup = 'bun upgrade --canary; bun update -g --latest'
+alias bo = "bun outdated --filter='*'"
+alias bu = "BUN_CONFIG_VERBOSE_FETCH='' bunx --bun taze -rflIw --ignore-paths='**/*.bak/**' latest"
 alias bi = 'bun install --verbose'
 alias br = '/bin/rm -f bun.lock*; /bin/rm -rf **/node_modules; bun install -f --verbose'
-alias bu = "bunx --bun taze -rflIw --ignore-paths='**/*.bak/**' latest"
 alias bb = 'bun run build'
 alias bd = 'bun run dev'
 alias bt = 'bun run lint; and bun run test'

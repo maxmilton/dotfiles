@@ -2,7 +2,7 @@
 Name=Code - OSS
 Comment=Code Editing. Redefined.
 GenericName=Text Editor
-Exec=code-oss --ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-wayland-ime --wayland-text-input-version=3  %F
+Exec=code-oss --ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-wayland-ime --wayland-text-input-version=3 %F
 Icon=com.visualstudio.code.oss
 Type=Application
 StartupNotify=false
@@ -15,5 +15,5 @@ X-Desktop-File-Install-Version=0.28
 
 [Desktop Action new-empty-window]
 Name=New Empty Window
-Exec=code-oss --ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --new-window --enable-wayland-ime --wayland-text-input-version=3  %F
+Exec=code-oss --ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --new-window --enable-wayland-ime --wayland-text-input-version=3 %F
 Icon=com.visualstudio.code.oss

@@ -8,9 +8,8 @@
 \#*
 
 # Development
-.*cache
-.clinic/
 .stignore
+.stfolder/
 .vscode/spellright.dict
 *.code-workspace
 *.log

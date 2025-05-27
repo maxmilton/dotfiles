@@ -1,2 +1,18 @@
-.nullvalue "NULL"
+-- https://duckdb.org/docs/clients/cli/dot_commands
+-- https://duckdb.org/docs/configuration/overview
+
+.mode duckbox
+.prompt '🦆 '
 .timer on
+.changes on
+--.bail on
+
+SET temp_directory TO '/tmp/duckdb';
+-- .safe_mode on
+
+-- INSTALL 'fts'; LOAD 'fts';
+-- INSTALL 'httpfs'; LOAD 'httpfs';
+
+-- .maxrows -1
+-- SELECT * FROM duckdb_settings();
+-- SELECT * FROM duckdb_extensions();
