@@ -1,11 +1,8 @@
 # ghostty +show-config --default --docs
 # https://ghostty.org/docs/config
 
-command = /home/max/.local/bin/ion
-#shell-integration = none
 gtk-single-instance = true
-#working-directory = inherit
-#working-directory = /home/max/Projects/dotfiles
-# theme = tokyonight
 theme = GitHub-Dark-Default
-#font-size = 11
+
+# command = /home/max/.local/bin/ion
+# shell-integration = none
