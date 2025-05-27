@@ -11,7 +11,7 @@ sudo sysctl -w net.ipv4.tcp_mtu_probing=1
 # https://wiki.archlinux.org/title/gaming#Game_compatibility
 sudo sysctl -w vm.max_map_count=2147483642
 
-sudo systemd-nspawn \
+sudo env SYSTEMD_SECCOMP=0 systemd-nspawn \
   --directory=/var/lib/machines/steam \
   --bind-ro="$XDG_RUNTIME_DIR"/pulse/native:/run/user/host/pulse/native \
   --bind-ro="$XDG_RUNTIME_DIR"/wayland-0:/run/user/host/wayland-0 \

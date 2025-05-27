@@ -1,6 +1,6 @@
 #!/bin/sh
 set -eu
-pkexec systemd-nspawn \
+pkexec env SYSTEMD_SECCOMP=0 systemd-nspawn \
   --directory="$HOME"/.machines/vms \
   --bind-ro="$XDG_RUNTIME_DIR"/pulse/native:/run/user/host/pulse/native \
   --bind-ro="$XDG_RUNTIME_DIR"/wayland-0:/run/user/host/wayland-0 \

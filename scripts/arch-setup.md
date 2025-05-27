@@ -278,7 +278,7 @@ table inet filter {
 
     ct state { established, related } accept
     ct state invalid drop
-    iifname { "lo", "tun0", "wg0", "wg1", "wg2", "wg3", "wg4", "wg5" } accept
+    iifname { "lo", "tun0", "wg0", "wg1", "wg2", "wg3" } accept
     pkttype host limit rate 5/second counter reject with icmpx type admin-prohibited
     counter
   }
@@ -293,10 +293,10 @@ table inet filter {
     policy drop
 
     ct state { established, related } accept
-    oifname { "lo", "tun0", "wg0", "wg1", "wg2", "wg3", "wg4", "wg5" } accept
+    oifname { "lo", "tun0", "wg0", "wg1", "wg2", "wg3" } accept
 
     meta nfproto ipv4 ip daddr @wireguard_ips udp dport 51820 accept
-    meta nfproto ipv4 ip daddr @openvpn_ips th dport @openvpn_ports accept
+    #meta nfproto ipv4 ip daddr @openvpn_ips th dport @openvpn_ports accept
 
     # Allow local traffic
     #ip daddr 192.168.0.0/16 oifname != { "tun0", "wg0" } accept
@@ -311,7 +311,7 @@ table inet filter {
 table ip nat {
   chain postrouting {
     type nat hook postrouting priority 100
-    oifname { "tun0", "wg0", "wg1", "wg2", "wg3", "wg4", "wg5" } masquerade
+    oifname { "tun0", "wg0", "wg1", "wg2", "wg3" } masquerade
   }
 }
 ```

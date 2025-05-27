@@ -21,21 +21,21 @@ exec bwrap \
   --ro-bind /etc/ca-certificates /etc/ca-certificates \
   --ro-bind /etc/ssl /etc/ssl \
   --ro-bind /etc/resolv.conf /etc/resolv.conf \
+  --file 11 /etc/passwd \
+  --file 12 /etc/group \
   --ro-bind "$HOME/Projects/dotfiles/.profile" "$HOME/.profile" \
   --bind "$HOME/Downloads" "$HOME/Downloads" \
   --bind "$HOME/Projects" "$HOME/Projects" \
-  --unshare-all \
-  --share-net \
-  --die-with-parent \
-  --new-session \
   --clearenv \
   --setenv HOME "$HOME" \
   --setenv LC_ALL C.UTF-8 \
   --setenv TERM "${TERM:-linux}" \
   --setenv XDG_RUNTIME_DIR "${XDG_RUNTIME_DIR:-/tmp}" \
   --setenv XDG_SESSION_TYPE "${XDG_SESSION_TYPE:-tty}" \
-  --file 11 /etc/passwd \
-  --file 12 /etc/group \
+  --unshare-all \
+  --share-net \
+  --die-with-parent \
+  --new-session \
   /usr/bin/busybox sh --login
 
 # TODO: To run GUI apps: https://sloonz.github.io/posts/sandboxing-2/

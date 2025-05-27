@@ -1,4 +1,6 @@
-#!/bin/sh -eu
+#!/bin/sh
+set -eu
+set -o pipefail
 
 test "$(id -u)" -ne "0" && echo "You need to be root" >&2 && exit 1
 test -z "$1" && echo "Usage: $0 {name}" >&2 && exit 0

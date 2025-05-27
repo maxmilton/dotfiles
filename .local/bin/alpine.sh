@@ -1,7 +1,7 @@
 #!/bin/sh
 set -eu
 if test "$*" = "-x"; then
-  export SYSTEMD_SECCOMP=0
+  # export SYSTEMD_SECCOMP=0
   sudo systemd-nspawn \
     --directory=/var/lib/machines/alpine \
     --capability=all \
