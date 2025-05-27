@@ -45,7 +45,7 @@
 [credential]
   helper = /usr/lib/git-core/git-credential-libsecret
 [diff]
-  tool = vimdiff
+  tool = difftastic
   renames = copies # Detect copies as well as renames
   algorithm = histogram
 [diff "bin"]
@@ -55,6 +55,9 @@
   binary = true
 [difftool]
   prompt = false
+[difftool "difftastic"]
+   # See `man git-difftool` for a description of MERGED, LOCAL and REMOTE.
+  cmd = difft "$MERGED" "$LOCAL" "abcdef1" "100644" "$REMOTE" "abcdef2" "100644"
 [gpg]
   program = gpg2
 [merge]
@@ -62,6 +65,8 @@
   log = true # Include commits summary in merge commit messages
 [mergetool "code"]
   cmd = code --wait --merge $REMOTE $LOCAL $BASE $MERGED
+[pager]
+  difftool = true
 [pull]
   rebase = true
 [push]
