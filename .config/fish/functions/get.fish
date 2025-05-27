@@ -1,6 +1,6 @@
 function get
     /usr/bin/aria2c \
-        --dir ~/Downloads \
+        --dir=~/Downloads \
         --file-allocation=falloc \
         --max-connection-per-server=16 \
         --continue \
