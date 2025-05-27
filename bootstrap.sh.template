@@ -9,6 +9,7 @@ script_dir=$(CDPATH='' cd -- "$(dirname -- "$0")" && pwd -P)
 umask 077
 
 # mkdir -vp ~/.config/Code/User
+# mkdir -vp ~/.config/Windsurf/User
 mkdir -vp ~/.config/fish/functions
 mkdir -vp ~/.config/helix
 # mkdir -vp ~/.config/ion
@@ -20,9 +21,12 @@ mkdir -vp ~/.ssh
 
 # ln -vbs "${script_dir}/.config/Code/User/keybindings.json" ~/.config/Code/User/keybindings.json
 # ln -vbs "${script_dir}/.config/Code/User/settings.json" ~/.config/Code/User/settings.json
+# ln -vbs "${script_dir}/.config/Windsurf/User/keybindings.json" ~/.config/Windsurf/User/keybindings.json
+# ln -vbs "${script_dir}/.config/Windsurf/User/settings.json" ~/.config/Windsurf/User/settings.json
 ln -vbs "${script_dir}/.config/electron-flags.conf" ~/.config/electron-flags.conf
 ln -vbs "${script_dir}/.config/fish/config.fish" ~/.config/fish/config.fish
 # ln -vbs "${script_dir}/.config/fish/functions/bashx.fish" ~/.config/fish/functions/bashx.fish
+ln -vbs "${script_dir}/.config/fish/functions/bu.fish" ~/.config/fish/functions/bu.fish
 ln -vbs "${script_dir}/.config/fish/functions/clr.fish" ~/.config/fish/functions/clr.fish
 ln -vbs "${script_dir}/.config/fish/functions/dux.fish" ~/.config/fish/functions/dux.fish
 ln -vbs "${script_dir}/.config/fish/functions/get.fish" ~/.config/fish/functions/get.fish
@@ -62,8 +66,9 @@ ln -vbs "${script_dir}/.gnupg/gpg.conf" ~/.gnupg/gpg.conf
 # ln -vbs "${script_dir}/.local/bin/zbrave.sh" ~/.local/bin/zbrave.sh
 # ln -vbs "${script_dir}/.local/bin/zigup" ~/.local/bin/zigup
 # ln -vbs "${script_dir}/.local/share/applications/brave-browser.desktop" ~/.local/share/applications/brave-browser.desktop
-ln -vbs "${script_dir}/.local/share/applications/code-oss.desktop" ~/.local/share/applications/code-oss.desktop
-ln -vbs "${script_dir}/.local/share/applications/cursor-cursor.desktop" ~/.local/share/applications/cursor-cursor.desktop
+# ln -vbs "${script_dir}/.local/share/applications/code-oss.desktop" ~/.local/share/applications/code-oss.desktop
+# ln -vbs "${script_dir}/.local/share/applications/cursor-cursor.desktop" ~/.local/share/applications/cursor-cursor.desktop
+ln -vbs "${script_dir}/.local/share/applications/windsurf.desktop" ~/.local/share/applications/windsurf.desktop
 ln -vbs "${script_dir}/.curlrc" ~/.curlrc
 # ln -vbs "${script_dir}/.duckdbrc" ~/.duckdbrc
 ln -vbs "${script_dir}/.gitattributes" ~/.gitattributes
