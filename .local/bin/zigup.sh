@@ -30,7 +30,7 @@ msg "Getting version info..."
 
 msg "Current install: $([[ -x "${ROOT_DIR}/zig-latest/zig" ]] && "${ROOT_DIR}/zig-latest/zig" version || echo none)"
 
-repo=$(curl -s "${REPO_URL}" | jq ".master[\"${REPO_ARCH}\"]") || die "Failed to aquire version info!"
+repo=$(curl -s "${REPO_URL}" | jq ".master[\"${REPO_ARCH}\"]") || die "Failed to acquire version info!"
 tarball=$(echo "${repo}" | jq --raw-output '.tarball')
 shasum=$(echo "${repo}" | jq --raw-output '.shasum')
 size=$(echo "${repo}" | jq --raw-output '.size')
@@ -56,14 +56,13 @@ else
   # ln -s zig-latest/zig "${ROOT_DIR}/zig" || die "Failed to set new symlink!"
 
   # Clean up old zig files; sort by version and keep the 5 latest
-  find "${ROOT_DIR}" -maxdepth 1 -type d -name 'zig-linux-x86_64-*' | \
-  sed -E 's/.*(0\.[0-9]+\.0-dev)\.([0-9]+)\+.*/\1 \2 &/' | \
-  sort -t ' ' -k1,1 -k2,2n | \
-  cut -d' ' -f3- | \
-  head -n -5 | \
-  xargs -r rm -rf
+  find "${ROOT_DIR}" -maxdepth 1 -type d -name "zig-${REPO_ARCH}-*" | \
+    sed -E 's/.*(0\.[0-9]+\.0-dev)\.([0-9]+)\+.*/\1 \2 &/' | \
+    sort -t ' ' -k1,1 -k2,2n | \
+    cut -d' ' -f3- | \
+    head -n -5 | \
+    xargs -r rm -rf
 
   msg "Installed version: $("${ROOT_DIR}/zig-latest/zig" version)"
-
-  msg "TODO: Consider rm ~/.cache/zls/builtin.zig"
+  msg "NOTE: Consider running: rm ~/.cache/zls/builtin.zig"
 fi
