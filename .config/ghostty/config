@@ -2,7 +2,7 @@
 # https://ghostty.org/docs/config
 
 gtk-single-instance = true
-theme = GitHub-Dark-Default
+theme = catppuccin-mocha
 
 # command = /home/max/.local/bin/ion
 # shell-integration = none
