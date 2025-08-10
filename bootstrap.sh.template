@@ -8,6 +8,7 @@ script_dir=$(CDPATH='' cd -- "$(dirname -- "$0")" && pwd -P)
 
 umask 077
 
+# mkdir -vp ~/.bun/install/global
 # mkdir -vp ~/.config/Code/User
 # mkdir -vp ~/.config/Windsurf/User
 mkdir -vp ~/.config/fish/functions
@@ -20,6 +21,7 @@ mkdir -vp ~/.local/bin
 mkdir -vp ~/.local/share/applications
 mkdir -vp ~/.ssh
 
+# ln -vbs "${script_dir}/.bun/install/global/package.json" ~/.bun/install/global/package.json
 # ln -vbs "${script_dir}/.config/Code/User/keybindings.json" ~/.config/Code/User/keybindings.json
 # ln -vbs "${script_dir}/.config/Code/User/settings.json" ~/.config/Code/User/settings.json
 # ln -vbs "${script_dir}/.config/Windsurf/User/keybindings.json" ~/.config/Windsurf/User/keybindings.json
