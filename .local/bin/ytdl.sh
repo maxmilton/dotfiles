@@ -5,7 +5,7 @@ set -eu
 
 yt-dlp \
   --concurrent-fragments 3 \
-  --sub-langs "en" \
+  --sub-langs "en.*,kr" \
   --embed-subs \
   --sponsorblock-mark all \
   --sponsorblock-remove default \
