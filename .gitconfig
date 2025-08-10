@@ -78,7 +78,10 @@
   gpgsign = true
 [maintenance]
 	repo = /home/max/Projects/_packages/stage1
+	repo = /home/max/Projects/accessplz
+	repo = /home/max/Projects/bugbox/bugbox-v0
+	repo = /home/max/Projects/bugbox/bugbox-lab
 	repo = /home/max/Projects/cherrymint
 	repo = /home/max/Projects/dotfiles
 	repo = /home/max/Projects/new-tab
-	repo = /home/max/Projects/trackx
+	repo = /home/max/Projects/uapps
