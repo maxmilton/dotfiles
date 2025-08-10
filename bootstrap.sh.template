@@ -26,7 +26,7 @@ mkdir -vp ~/.ssh
 ln -vbs "${script_dir}/.config/electron-flags.conf" ~/.config/electron-flags.conf
 ln -vbs "${script_dir}/.config/fish/config.fish" ~/.config/fish/config.fish
 # ln -vbs "${script_dir}/.config/fish/functions/bashx.fish" ~/.config/fish/functions/bashx.fish
-ln -vbs "${script_dir}/.config/fish/functions/bu.fish" ~/.config/fish/functions/bu.fish
+ln -vbs "${script_dir}/.config/fish/functions/buu.fish" ~/.config/fish/functions/buu.fish
 ln -vbs "${script_dir}/.config/fish/functions/clr.fish" ~/.config/fish/functions/clr.fish
 ln -vbs "${script_dir}/.config/fish/functions/dux.fish" ~/.config/fish/functions/dux.fish
 ln -vbs "${script_dir}/.config/fish/functions/get.fish" ~/.config/fish/functions/get.fish

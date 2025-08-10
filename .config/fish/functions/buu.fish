@@ -1,4 +1,4 @@
-function bu --description "Update bun dependencies interactively"
+function buu --description "Update bun dependencies interactively"
     env BUN_CONFIG_VERBOSE_FETCH='' bunx --bun taze \
         --recursive \
         --include-locked \
@@ -7,6 +7,4 @@ function bu --description "Update bun dependencies interactively"
         --no-install \
         --ignore-paths='**/*.bak/**' \
         latest $argv
-        # --force \
-        # --loglevel debug \
 end
