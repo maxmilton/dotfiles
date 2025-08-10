@@ -32,6 +32,7 @@
   "breadcrumbs.enabled": true,
   "explorer.confirmDragAndDrop": false,
   "explorer.confirmDelete": false,
+  "editor.inlineSuggest.suppressSuggestions": true,
   "editor.snippetSuggestions": "top",
   "editor.renderLineHighlight": "all",
   "editor.folding": false,

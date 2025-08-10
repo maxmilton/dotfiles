@@ -1,0 +1,155 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false
+  },
+
+  "base_keymap": "Atom",
+  "icon_theme": "Catppuccin Mocha",
+  // "theme": "GitHub Dark Default",
+  // "theme": "MM Theme",
+  "theme": "Catppuccin Mocha",
+  // "experimental.theme_overrides": {
+  //   "border": "#070707",
+  //   "border.variant": "#070707",
+  //   "border.focused": "#47679eff",
+  //   "border.selected": "#293b5bff",
+  //   "border.transparent": "#00000000",
+  //   "border.disabled": "#414754ff",
+  //   "status_bar.background": "#060606",
+  //   "title_bar.background": "#060606",
+  //   "toolbar.background": "#060606",
+  //   "tab_bar.background": "#060606",
+  //   "tab.inactive_background": "#060606",
+  //   "tab.active_background": "#060606",
+  //   // "search.match_background": null,
+  //   "panel.background": "#060606",
+  //   "editor.background": "#060606",
+  //   "editor.gutter.background": "#060606",
+  //   "syntax": {
+  //     "comment": {
+  //       "color": "#777",
+  //       "font_style": "normal"
+  //     },
+  //     "comment.doc": {
+  //       "color": "#777",
+  //       "font_style": "italic"
+  //     }
+  //   }
+  // },
+  "buffer_font_family": "CommitMono",
+  // "buffer_font_family": "Hack",
+  "buffer_font_size": 14,
+  "buffer_font_weight": 300,
+  // "buffer_font_features": {
+  //   "calt": false
+  // },
+  "show_whitespaces": "boundary",
+  "inlay_hints": {
+    "enabled": true,
+    "show_value_hints": true,
+    "toggle_on_modifiers_press": {
+      "alt": true,
+      "control": true
+    }
+  },
+  "minimap": {
+    "show": "auto"
+  },
+  "bottom_dock_layout": "full",
+  "wrap_guides": [80, 100, 120],
+  "soft_wrap": "editor_width",
+
+  "agent": {
+    "always_allow_tool_actions": true,
+    "play_sound_when_agent_done": true,
+    "model_parameters": [],
+    "default_model": {
+      "provider": "google",
+      "model": "gemini-2.5-flash-preview-04-17"
+    }
+  },
+  "context_servers": {
+    "mcp-server-brave-search": {
+      "source": "extension",
+      "settings": {
+        "brave_api_key": "BSALUsr84ONen3_spFOUps07X384Dps"
+      }
+    }
+  },
+
+  // "lsp": {
+  //   "biome": {
+  //     "settings": {
+  //       // "require_config_file": true
+  //     }
+  //   }
+  // },
+
+  "languages": {
+    "CSS": {
+      "prettier": {
+        "allowed": false
+      },
+      "formatter": {
+        "language_server": {
+          "name": "biome"
+        }
+      },
+      "code_actions_on_format": {
+        "source.fixAll.biome": true,
+        "source.organizeImports.biome": true
+      }
+    },
+    "SCSS": {
+      "prettier": {
+        "allowed": false
+      },
+      "formatter": {
+        "language_server": {
+          "name": "biome"
+        }
+      },
+      "code_actions_on_format": {
+        "source.fixAll.biome": true,
+        "source.organizeImports.biome": true
+      }
+    },
+    "JavaScript": {
+      "prettier": {
+        "allowed": false
+      },
+      "formatter": {
+        "language_server": {
+          "name": "biome"
+        }
+      },
+      "code_actions_on_format": {
+        "source.fixAll.biome": true,
+        "source.organizeImports.biome": true
+      }
+    },
+    "TypeScript": {
+      "prettier": {
+        "allowed": false
+      },
+      "formatter": {
+        "language_server": {
+          "name": "biome"
+        }
+      },
+      "code_actions_on_format": {
+        "source.fixAll.biome": true,
+        "source.organizeImports.biome": true
+      }
+    }
+  }
+}

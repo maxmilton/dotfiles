@@ -2,6 +2,7 @@
     "crashReporting.enabled": "off",
     "telemetry.enableCrashReporter": false,
     "telemetry.enableTelemetry": false,
+    "telemetry.feedback.enabled": false,
     "telemetry.telemetryLevel": "off",
     "update.mode": "none",
     "window.autoDetectHighContrast": false,
@@ -19,12 +20,13 @@
         "editorInlayHint.typeForeground": "#40434C",
         "editorRuler.foreground": "#333333"
     },
-    "workbench.colorTheme": "GitHub Dark Default",
+    "workbench.colorTheme": "Catppuccin Mocha",
     "workbench.editor.decorations.colors": true,
     "workbench.editor.decorations.badges": true,
     "workbench.editor.wrapTabs": true,
     "workbench.editor.historyBasedLanguageDetection": true,
     "workbench.enableExperiments": false,
+    "workbench.iconTheme": "catppuccin-mocha",
     "workbench.list.defaultFindMode": "highlight",
     "workbench.settings.enableNaturalLanguageSearch": false,
     "workbench.startupEditor": "none",
@@ -75,8 +77,11 @@
     "files.trimTrailingWhitespace": true,
     "files.watcherExclude": {
         "**/.*cache": true,
+        "**/.*cache/**": true,
         "**/.git/objects/**": true,
         "**/.git/subtree-cache/**": true,
+        "**/.turbo/**": true,
+        "**/.wrangler/**": true,
         "**/*-lock.*": true,
         "**/*.bak": true,
         "**/*.bak/**": true,
@@ -103,16 +108,19 @@
     "git.suggestSmartCommit": false,
     "scm.alwaysShowRepositories": true,
     "debug.allowBreakpointsEverywhere": false,
-    // "terminal.integrated.defaultProfile.linux": "sandbox",
-    // "terminal.integrated.profiles.linux": {
-    //     "sandbox": {
-    //         "path": "/home/max/.local/bin/sandbox.sh",
-    //         "args": []
-    //     }
-    // },
-    // "terminal.integrated.shellIntegration.enabled": false,
+    "terminal.integrated.defaultProfile.linux": "sandbox",
+    "terminal.integrated.profiles.linux": {
+        "sandbox": {
+            "path": "/home/max/.local/bin/sandbox.sh",
+            "args": []
+        }
+    },
+    "terminal.integrated.shellIntegration.enabled": false,
     "task.allowAutomaticTasks": "off",
     "task.autoDetect": "off",
+    "grunt.autoDetect": "off",
+    "gulp.autoDetect": "off",
+    "jake.autoDetect": "off",
     "npm.autoDetect": "off",
     "npm.packageManager": "bun",
     "npm.scriptRunner": "bun",
@@ -136,29 +144,6 @@
     "typescript.referencesCodeLens.enabled": true,
     "typescript.surveys.enabled": false,
     "typescript.tsc.autoDetect": "off",
-    // "[css][html][json][jsonc][markdown][scss][xml][yaml]": {
-    //     "editor.codeActionsOnSave": {
-    //         // "source.fixAll": "explicit",
-    //         // "quickfix.biome": "explicit"
-    //         "source.organizeImports": "explicit",
-    //         "source.fixAll": "explicit"
-    //     },
-    //     "editor.defaultFormatter": "biomejs.biome"
-    // },
-    // "[javascript][javascriptreact][typescript][typescriptreact]": {
-    //     "editor.codeActionsOnSave": {
-    //         // "source.sortImports": "never",
-    //         // "source.organizeImports": "never",
-    //         // "source.organizeImports.biome": "explicit",
-    //         // "source.fixAll": "never",
-    //         // "source.fixAll.eslint": "never",
-    //         // "quickfix.biome": "explicit"
-    //         "source.organizeImports": "never",
-    //         "source.organizeImports.biome": "explicit",
-    //         "source.fixAll": "never"
-    //     },
-    //     "editor.defaultFormatter": "biomejs.biome"
-    // },
     "[markdown]": {
         "editor.lineNumbers": "interval",
         "editor.rulers": [80],
@@ -172,32 +157,15 @@
         "editor.renderWhitespace": "boundary",
         "files.trimTrailingWhitespace": false
     },
-    "[yaml]": {
-        "editor.defaultFormatter": "redhat.vscode-yaml",
-        // "editor.formatOnSave": true,
-        "editor.autoIndent": "advanced"
-    },
-    // "[zig]": {
-    //     "editor.codeActionsOnSave": {
-    //       "source.organizeImports": "never",
-    //       "source.fixAll": "explicit"
-    //     },
-    //     "editor.defaultFormatter": "ziglang.vscode-zig",
-    //     // "editor.formatOnSave": true,
-    //     "editor.tabSize": 4,
-    //     // "editor.inlayHints.enabled": "onUnlessPressed", // TODO: Too opinionated for a project level setting?
-    //     "editor.suggest.insertMode": "replace",
-    //     "editor.stickyScroll.defaultModel": "foldingProviderModel"
-    // },
     "biome.enabled": false,
-    "biome.requireConfigFile": true,
+    "biome.requireConfiguration": true,
     "harper.isolateEnglish": true,
-    // "harper.codeActions.ForceStable": true,
+    "harper.codeActions.ForceStable": true,
     "redhat.telemetry.enabled": false,
     "zig.path": "zig",
-    // "zig.zls.enabled": "on",
     "zig.zls.path": "zls",
     "zig.zls.warnStyle": true,
+    "biome.suggestInstallingGlobally": false,
     // "windsurf.marketplaceExtensionGalleryServiceURL": "https://marketplace.visualstudio.com/_apis/public/gallery",
     // "windsurf.marketplaceGalleryItemURL": "https://marketplace.visualstudio.com/items"
 }

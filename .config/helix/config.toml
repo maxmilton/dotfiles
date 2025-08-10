@@ -1,17 +1,10 @@
 # https://docs.helix-editor.com/configuration.html
 
-# theme = "tokyonight"
-theme = "github_dark"
+theme = "catppuccin_mocha"
 
 [editor]
 mouse = false
-rulers = [80]
-
-# [editor.whitespace]
-# render = "all"
-
-# [editor.indent-guides]
-# render = true
+rulers = [80, 100]
 
 [editor.soft-wrap]
 enable = true
@@ -27,6 +20,7 @@ display-inlay-hints = true
 [keys.normal]
 C-s = ":w" # Maps Ctrl-s to the typable command :w which is an alias for :write (save file)
 # C-o = ":open ~/.config/helix/config.toml" # Maps Ctrl-o to opening of the helix config file
+h = ":toggle lsp.display-inlay-hints"
 
 [keys.normal.space]
 W = [":toggle soft-wrap.enable", ":redraw"]
