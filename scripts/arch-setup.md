@@ -91,6 +91,7 @@ gnome-tweaks
 helix
 htop OR btop
 jq
+knot-resolver (fast DNS resolver)
 lurk (modern alt to stract)
 man-db
 man-pages
@@ -324,3 +325,79 @@ initrd  /intel-ucode.img
 initrd  /initramfs-linux-hardened.img
 options cryptdevice=PARTUUID=43c9fc6d-afe7-46b9-93c5-e08c6a5383cb:root root=/dev/mapper/root zswap.enabled=0 rootflags=subvol=@ rw rootfstype=btrfs lsm=landlock,lockdown,yama,integrity,apparmor,bpf apparmor=1 lockdown=confidentiality slab_nomerge init_on_alloc=1 init_on_free=1 page_alloc.shuffle=1 vsyscall=none debugfs=off oops=panic module.sig_enforce=1 quiet loglevel=0
 ```
+
+`/boot/loader/entries/linux-mws.conf`:
+```
+title Linux MWS
+options root=UUID=a02dc858-2894-4a72-95c0-6afe83682efa rw zswap.enabled=0 mitigations=off nowatchdog
+linux /vmlinuz-linux-cachyos
+initrd /initramfs-linux-cachyos.img
+
+```
+
+### Network Performance Tweaks
+
+```sh
+# TCP BBR
+echo "tcp_bbr" | tee /etc/modules-load.d/net.conf
+
+tee /etc/sysctl.d/99-network-performance.conf <<EOF
+# BBR
+net.core.default_qdisc = fq
+net.ipv4.tcp_congestion_control = bbr
+
+# TCP
+net.ipv4.tcp_window_scaling = 1
+net.ipv4.tcp_fastopen = 3
+net.ipv4.tcp_fin_timeout = 20
+net.ipv4.tcp_tw_reuse = 1
+net.ipv4.tcp_slow_start_after_idle = 0
+
+# Large socket buffers
+net.core.rmem_default = 262144
+net.core.wmem_default = 262144
+net.core.rmem_max = 16777216
+net.core.wmem_max = 16777216
+net.ipv4.tcp_rmem = 4096 87380 16777216
+net.ipv4.tcp_wmem = 4096 65536 16777216
+
+# Increase ephemeral port range
+net.ipv4.ip_local_port_range = 2000 65535
+
+# Handle burst traffic
+net.core.netdev_budget = 600
+net.core.netdev_max_backlog=25000
+net.ipv4.tcp_max_syn_backlog=8192
+net.core.somaxconn=65535
+
+# Connection tracking for high concurrency
+net.netfilter.nf_conntrack_max = 1048576
+net.netfilter.nf_conntrack_tcp_timeout_established = 7200
+EOF
+
+sysctl --system
+```
+
+`/etc/security/limits.conf`:
+```
+* soft nofile 65536
+* hard nofile 1048576
+```
+
+`/etc/udev/rules.d/10-network-eth.rules`:
+```
+ACTION=="add", SUBSYSTEM=="net", KERNEL=="enp*", RUN+="/usr/bin/ethtool -K %k tx on rx on sg on tso on ufo on gso on gro on lro on rxvlan on txvlan on"
+```
+
+<!--
+```sh
+# Increase ring buffer sizes (adjust interface name)
+ethtool -G enp0s3 rx 4096 tx 4096
+
+# Enable adaptive interrupt coalescing
+ethtool -C enp0s3 adaptive-rx on adaptive-tx on
+
+# Consider enabling receive packet steering on multi-core systems
+echo 'SUBSYSTEM=="net", ACTION=="add", KERNEL=="enp*", RUN+="/bin/bash -c \''echo 7 > /sys/class/net/%k/queues/rx-0/rps_cpus\''"' | sudo tee /etc/udev/rules.d/60-net-rps.rules
+```
+-->
