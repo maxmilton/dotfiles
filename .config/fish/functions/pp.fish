@@ -13,19 +13,24 @@ function pp
     and msg 'Updating system...'
     and paru -Syu
 
-    and msg 'Updating zbrave container'
+    and msg 'Updating brave container'
     and paru -Su \
-        --root /home/max/.machines/zbrave \
+        --root /home/max/.machines/brave \
         --cachedir /var/cache/pacman/pkg
 
-    # and msg 'Updating zlibrewolf container'
+    # and msg 'Updating librewolf container'
     # and paru -Su \
-    #     --root /home/max/.machines/zlibrewolf \
+    #     --root /home/max/.machines/librewolf \
     #     --cachedir /var/cache/pacman/pkg
     # and paru -S \
-    #     --root /home/max/.machines/zlibrewolf \
+    #     --root /home/max/.machines/librewolf \
     #     --cachedir /var/cache/pacman/pkg \
     #     --needed --nodeps librewolf-bin
+
+    and msg 'Updating chrome container'
+    and paru -Su \
+        --root /home/max/.machines/chrome \
+        --cachedir /var/cache/pacman/pkg
 
     # and msg 'Updating dev container'
     # and paru -Su \
