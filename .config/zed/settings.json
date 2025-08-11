@@ -69,22 +69,16 @@
   "soft_wrap": "editor_width",
 
   "agent": {
-    "always_allow_tool_actions": true,
-    "play_sound_when_agent_done": true,
-    "model_parameters": [],
     "default_model": {
-      "provider": "google",
-      "model": "gemini-2.5-flash-preview-04-17"
-    }
+      "provider": "zed.dev",
+      "model": "claude-sonnet-4"
+    },
+    "model_parameters": [],
+    "always_allow_tool_actions": false,
+    "play_sound_when_agent_done": true,
+    "use_modifier_to_send": true
   },
-  "context_servers": {
-    "mcp-server-brave-search": {
-      "source": "extension",
-      "settings": {
-        "brave_api_key": "BSALUsr84ONen3_spFOUps07X384Dps"
-      }
-    }
-  },
+  "context_servers": {},
 
   // "lsp": {
   //   "biome": {
