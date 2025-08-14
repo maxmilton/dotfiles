@@ -21,7 +21,7 @@ jobs:
       - uses: actions/checkout@v5
       - run: shellcheck -ax **/*.sh
         shell: bash
-      - run: fish --no-execute **.fish
+      - run: fish --no-execute **/*.fish
         shell: bash
-      - run: fish_indent --check **.fish
+      - run: fish_indent --check **/*.fish
         shell: bash
