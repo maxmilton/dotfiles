@@ -7,11 +7,6 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
-  "telemetry": {
-    "diagnostics": false,
-    "metrics": false
-  },
-
   "base_keymap": "Atom",
   "icon_theme": "Catppuccin Mocha",
   // "theme": "GitHub Dark Default",
@@ -64,7 +59,7 @@
   "minimap": {
     "show": "auto"
   },
-  "bottom_dock_layout": "full",
+  // "bottom_dock_layout": "full",
   "wrap_guides": [80, 100, 120],
   "soft_wrap": "editor_width",
 
@@ -145,5 +140,10 @@
         "source.organizeImports.biome": true
       }
     }
+  },
+
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false
   }
 }
