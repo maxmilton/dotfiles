@@ -13,7 +13,8 @@ count_inodes() {
 export -f count_inodes
 
 # Find all directories and count inodes
-find "$START_DIR" -xdev -type d -exec bash -c 'echo -n "{}: "; count_inodes "{}"' \; | sort -n -t: -k2
+# find "$START_DIR" -xdev -type d -exec bash -c 'echo -n "{}: "; count_inodes "{}"' \; | sort -n -t: -k2
+find "$START_DIR" -xdev -type d -exec bash -c 'printf "%s: " "$1"; count_inodes "$1"' _ {} \; | sort -n -t: -k2
 
 #find / -xdev -type d -exec sh -c 'echo -n "{}: "; find "{}" -type f | wc -l' \; | sort -n -r -k 2 | head -20
 

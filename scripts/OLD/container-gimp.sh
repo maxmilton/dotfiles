@@ -18,4 +18,4 @@ export XDG_SESSION_TYPE=wayland
 export QT_QPA_PLATFORM=wayland
 export MOZ_ENABLE_WAYLAND=1
 export GTK_THEME=Adwaita:dark
-/usr/bin/gimp $@
+/usr/bin/gimp "$@"

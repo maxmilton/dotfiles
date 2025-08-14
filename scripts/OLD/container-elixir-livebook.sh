@@ -8,6 +8,7 @@ doas pacman -S --noconfirm --needed elixir
 
 mkdir -p ~/livebook
 
+# shellcheck disable=SC1010
 mix do local.rebar --force, local.hex --force
 mix escript.install hex livebook
 

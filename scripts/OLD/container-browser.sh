@@ -12,5 +12,5 @@ export XDG_SESSION_TYPE=wayland
 export QT_QPA_PLATFORM=wayland
 export MOZ_ENABLE_WAYLAND=1
 export GTK_THEME=Adwaita:dark
-/usr/bin/midori $@
-# /usr/bin/epiphany $@
+/usr/bin/midori "$@"
+# /usr/bin/epiphany "$@"
