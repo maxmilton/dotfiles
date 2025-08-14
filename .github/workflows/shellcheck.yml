@@ -2,7 +2,7 @@ name: shellcheck
 on:
   push:
     branches: [master]
-    paths: ["**.sh", "**.fish"]
+    paths: ["**.sh", "**.fish", ".github/workflows/shellcheck.yml"]
   pull_request: {}
   workflow_dispatch: {}
   schedule:
