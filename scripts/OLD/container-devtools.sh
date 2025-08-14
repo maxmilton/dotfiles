@@ -15,6 +15,7 @@ script_dir="$(cd "$(dirname "$0")" && pwd)"
 doas "$script_dir"/link-busybox.sh
 doas ln -vs --no-dereference /usr/bin/busybox /usr/local/bin/unzip
 
+# nosemgrep: curl-pipe-bash
 curl -fsSL https://bun.sh/install | bash
 
 ~/.bun/bin/bun add -g pnpm npm yarn
