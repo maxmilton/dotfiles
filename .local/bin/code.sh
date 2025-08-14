@@ -1,4 +1,5 @@
-#!/bin/sh -eu
+#!/bin/sh
+set -eu
 
 if test ! -z "$(machinectl show --property=State=running code 2>&-)"; then
   # sudo systemd-run \

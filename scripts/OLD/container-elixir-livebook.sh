@@ -1,4 +1,6 @@
-#!/bin/sh -eu
+#!/bin/bash
+set -eu
+set -o pipefail
 
 # https://github.com/livebook-dev/livebook
 

@@ -1,4 +1,5 @@
 #!/bin/bash
+set -eu
 
 # Specify the starting directory
 START_DIR="/home/max/"

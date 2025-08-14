@@ -1,4 +1,5 @@
-#!/bin/sh -eu
+#!/bin/sh
+set -eu
 
 sudo systemd-nspawn \
   --bind-ro=/run/user/1000/pulse/native:/run/user/host/pulse/native \

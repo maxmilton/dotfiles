@@ -1,4 +1,6 @@
-#!/bin/sh -eu
+#!/bin/bash
+set -eu
+set -o pipefail
 
 # TODO: Populate persistent data rather than populate on every run
 doas pacman -S --noconfirm --needed archlinux-keyring

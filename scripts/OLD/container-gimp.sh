@@ -1,4 +1,6 @@
-#!/bin/sh -eu
+#!/bin/bash
+set -eu
+set -o pipefail
 
 if ! type /usr/bin/gimp >/dev/null 2>&1; then
   # TODO: Populate persistent data rather than populate on every run

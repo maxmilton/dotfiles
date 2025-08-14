@@ -1,4 +1,6 @@
-#!/bin/sh -eu
+#!/bin/bash
+set -eu
+set -o pipefail
 
 doas pacman -S --noconfirm --needed midori
 # doas pacman -S --noconfirm --needed epiphany

@@ -1,4 +1,6 @@
-#!/bin/sh -eu
+#!/bin/bash
+set -eu
+set -o pipefail
 
 doas pacman -S --noconfirm --needed wireshark-qt qt5-wayland ttf-dejavu
 
