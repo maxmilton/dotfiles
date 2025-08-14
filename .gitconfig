@@ -1,82 +1,82 @@
 [user]
-  email = max@happyhackers.xyz
-  name = Max Milton
-  # https://dev.to/benjaminblack/signing-git-commits-with-modern-encryption-1koh
-  # nosemgrep
-  signingkey = 8149206E0CC93908 # max@happyhackers.xyz sign only
+	email = max@happyhackers.xyz
+	name = Max Milton
+	# https://dev.to/benjaminblack/signing-git-commits-with-modern-encryption-1koh
+	# max@happyhackers.xyz sign only
+	signingkey = 8149206E0CC93908 # nosemgrep
 [alias]
-  # Remove branches that have already been merged with master
-  dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
-  # Remove tags which were deleted in origin
-  dt = "!t() { git fetch --prune origin '+refs/tags/*:refs/tags/*'; }"
-  # Remove the old tag with this name and tag the latest commit with it.
-  retag = "!r() { git tag -d $1 && git push origin :refs/tags/$1 && git tag $1; }; r"
-  # See commit state on all branches
-  io = "!git fetch --all; git branch -vv"
-  # See unpulled commits
-  in = "!git fetch; git log --stat ..'@{u}'"
-  # See unpushed commits
-  out = "log --stat '@{u}'.."
+	# Remove branches that have already been merged with master
+	dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
+	# Remove tags which were deleted in origin
+	dt = "!t() { git fetch --prune origin '+refs/tags/*:refs/tags/*'; }"
+	# Remove the old tag with this name and tag the latest commit with it.
+	retag = "!r() { git tag -d $1 && git push origin :refs/tags/$1 && git tag $1; }; r"
+	# See commit state on all branches
+	io = "!git fetch --all; git branch -vv"
+	# See unpulled commits
+	in = "!git fetch; git log --stat ..'@{u}'"
+	# See unpushed commits
+	out = "log --stat '@{u}'.."
 [apply]
-  whitespace = fix # Detect whitespace errors when applying a patch
+	whitespace = fix # Detect whitespace errors when applying a patch
 [branch]
-  sort = committerdate
+	sort = committerdate
 [core]
-  excludesfile = ~/.gitignore
-  attributesfile = ~/.gitattributes
-  whitespace = space-before-tab,-indent-with-non-tab,trailing-space # Treat unwanted whitespace as an error
-  untrackedCache = true # Faster `git status`
+	excludesfile = ~/.gitignore
+	attributesfile = ~/.gitattributes
+	whitespace = space-before-tab,-indent-with-non-tab,trailing-space # Treat unwanted whitespace as an error
+	untrackedCache = true # Faster `git status`
 [color]
-  ui = auto
+	ui = auto
 [color "branch"]
-  current = yellow reverse
-  local = yellow
-  remote = green
+	current = yellow reverse
+	local = yellow
+	remote = green
 [color "diff"]
-  meta = yellow bold
-  frag = magenta bold # line info
-  old = red # deletions
-  new = green # additions
+	meta = yellow bold
+	frag = magenta bold # line info
+	old = red # deletions
+	new = green # additions
 [color "status"]
-  added = yellow
-  changed = green
-  untracked = cyan
+	added = yellow
+	changed = green
+	untracked = cyan
 [commit]
-  gpgsign = true
+	gpgsign = true
 [credential]
-  helper = /usr/lib/git-core/git-credential-libsecret
+	helper = /usr/lib/git-core/git-credential-libsecret
 [diff]
-  tool = difftastic
-  renames = copies # Detect copies as well as renames
-  algorithm = histogram
+	tool = difftastic
+	renames = copies # Detect copies as well as renames
+	algorithm = histogram
 [diff "bin"]
-  textconv = hexdump -v -C # Use `hexdump` to diff binary files
+	textconv = hexdump -v -C # Use `hexdump` to diff binary files
 [diff "lockb"]
-  textconv = bun
-  binary = true
+	textconv = bun
+	binary = true
 [difftool]
-  prompt = false
+	prompt = false
 [difftool "difftastic"]
-   # See `man git-difftool` for a description of MERGED, LOCAL and REMOTE.
-  cmd = difft "$MERGED" "$LOCAL" "abcdef1" "100644" "$REMOTE" "abcdef2" "100644"
+	 # See `man git-difftool` for a description of MERGED, LOCAL and REMOTE.
+	cmd = difft "$MERGED" "$LOCAL" "abcdef1" "100644" "$REMOTE" "abcdef2" "100644"
 [gpg]
-  program = gpg2
+	program = gpg2
 [merge]
-  tool = code
-  log = true # Include commits summary in merge commit messages
+	tool = code
+	log = true # Include commits summary in merge commit messages
 [mergetool "code"]
-  cmd = code --wait --merge $REMOTE $LOCAL $BASE $MERGED
+	cmd = code --wait --merge $REMOTE $LOCAL $BASE $MERGED
 [pager]
-  difftool = true
+	difftool = true
 [pull]
-  rebase = true
+	rebase = true
 [push]
-  default = simple
-  followTags = true # Also push relevant annotated tags
+	default = simple
+	followTags = true # Also push relevant annotated tags
 [rerere]
-  enabled = true
+	enabled = true
 [tag]
-  gpgsign = true
+	gpgsign = true
 [maintenance]
 	repo = /home/max/Projects/_packages/stage1
 	repo = /home/max/Projects/accessplz
