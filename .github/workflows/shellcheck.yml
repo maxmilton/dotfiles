@@ -22,6 +22,6 @@ jobs:
       - run: shellcheck -ax **/*.sh
         shell: bash
       - run: fish --no-execute **.fish
-        shell: fish
+        shell: bash
       - run: fish_indent --check **.fish
-        shell: fish
+        shell: bash
