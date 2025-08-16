@@ -1,15 +1,14 @@
 [user]
-	email = max@happyhackers.xyz
+	email = max@2okki.com
 	name = Max Milton
 	# https://dev.to/benjaminblack/signing-git-commits-with-modern-encryption-1koh
-	# max@happyhackers.xyz sign only
-	signingkey = 8149206E0CC93908 # nosemgrep
+	# nosemgrep: generic-api-key
+	signingkey = C174762F23AF46AF # max@2okki.com [S]
 [alias]
-	# Remove branches that have already been merged with master
-	dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
+	br = "branch --sort=refname --format='%(if)%(HEAD)%(then)%(color:yellow)* %(else)  %(end)%(refname:short)%(if)%(upstream)%(then) %(color:blue)[%(upstream:short)] %(upstream:track)%(end)%(color:reset)'"
 	# Remove tags which were deleted in origin
-	dt = "!t() { git fetch --prune origin '+refs/tags/*:refs/tags/*'; }"
-	# Remove the old tag with this name and tag the latest commit with it.
+	dt = "fetch --prune origin '+refs/tags/*:refs/tags/*'"
+	# Remove the old tag with this name and tag the latest commit with it
 	retag = "!r() { git tag -d $1 && git push origin :refs/tags/$1 && git tag $1; }; r"
 	# See commit state on all branches
 	io = "!git fetch --all; git branch -vv"
@@ -18,71 +17,59 @@
 	# See unpushed commits
 	out = "log --stat '@{u}'.."
 [apply]
-	whitespace = fix # Detect whitespace errors when applying a patch
+	whitespace = fix # detect whitespace errors when applying a patch
 [branch]
-	sort = committerdate
+	sort = -committerdate
 [core]
-	excludesfile = ~/.gitignore
 	attributesfile = ~/.gitattributes
-	whitespace = space-before-tab,-indent-with-non-tab,trailing-space # Treat unwanted whitespace as an error
-	untrackedCache = true # Faster `git status`
+	excludesfile = ~/.gitignore
+	untrackedCache = true # faster `git status`
+	whitespace = space-before-tab,-indent-with-non-tab,trailing-space # treat unwanted whitespace as an error
 [color]
 	ui = auto
-[color "branch"]
-	current = yellow reverse
-	local = yellow
-	remote = green
 [color "diff"]
+	frag = blue bold
 	meta = yellow bold
-	frag = magenta bold # line info
-	old = red # deletions
-	new = green # additions
 [color "status"]
-	added = yellow
-	changed = green
-	untracked = cyan
+	changed = yellow
+	untracked = dim
 [commit]
 	gpgsign = true
 [credential]
 	helper = /usr/lib/git-core/git-credential-libsecret
 [diff]
-	tool = difftastic
-	renames = copies # Detect copies as well as renames
 	algorithm = histogram
+	renames = copies # detect copies as well as renames
+	tool = difftastic
 [diff "bin"]
-	textconv = hexdump -v -C # Use `hexdump` to diff binary files
-[diff "lockb"]
-	textconv = bun
-	binary = true
+	textconv = hexdump -v -C
 [difftool]
 	prompt = false
 [difftool "difftastic"]
-	 # See `man git-difftool` for a description of MERGED, LOCAL and REMOTE.
 	cmd = difft "$MERGED" "$LOCAL" "abcdef1" "100644" "$REMOTE" "abcdef2" "100644"
+[fetch]
+	prune = true
 [gpg]
 	program = gpg2
+[maintenance]
+	auto = false # use `jj util gc`
+	strategy = incremental
 [merge]
-	tool = code
-	log = true # Include commits summary in merge commit messages
-[mergetool "code"]
-	cmd = code --wait --merge $REMOTE $LOCAL $BASE $MERGED
+	conflictStyle = "diff3"
+	log = true # include commits summary in merge commit messages
+[merge "mergiraf"]
+	driver = mergiraf merge --git %O %A %B -s %S -x %X -y %Y -p %P -l %L
+	name = mergiraf
 [pager]
 	difftool = true
 [pull]
 	rebase = true
 [push]
 	default = simple
-	followTags = true # Also push relevant annotated tags
+	followTags = true # also push relevant annotated tags
 [rerere]
 	enabled = true
 [tag]
 	gpgsign = true
-[maintenance]
-	repo = /home/max/Projects/_packages/stage1
-	repo = /home/max/Projects/accessplz
-	repo = /home/max/Projects/bugbox/bugbox-v0
-	repo = /home/max/Projects/bugbox/bugbox-lab
-	repo = /home/max/Projects/cherrymint
-	repo = /home/max/Projects/dotfiles
-	repo = /home/max/Projects/new-tab
-	repo = /home/max/Projects/uapps
+[url "git@github.com:"]
+	insteadOf = "https://github.com/"
