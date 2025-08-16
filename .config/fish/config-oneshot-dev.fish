@@ -11,28 +11,38 @@ source "$DIR"/config-oneshot.fish
 
 set -U hydro_color_prompt magenta
 
-# macOS
-if test (uname -s) = Darwin and test -d "$HOME"/.nix-profile/bin
-    fish_add_path "$HOME"/.nix-profile/bin /nix/var/nix/profiles/default/bin
-end
-
 # Set user paths in reverse order of priority
+
+# macOS
+if test (uname -s) = Darwin
+    if test -d "$HOME"/.nix-profile/bin
+        fish_add_path "$HOME"/.nix-profile/bin /nix/var/nix/profiles/default/bin
+    end
+end
 
 if test -d "$HOME"/.fly/bin
     fish_add_path "$HOME"/.fly/bin
+end
+
+if test -d "$HOME"/develop/flutter/bin
+    fish_add_path "$HOME"/develop/flutter/bin
+    set -l brave_bin (command -v brave)
+    if test -n "$brave_bin"
+        set -Ux CHROME_EXECUTABLE "$brave_bin"
+    end
 end
 
 if test -d "$HOME"/.cargo/bin
     fish_add_path "$HOME"/.cargo/bin
 end
 
-# if test -d "$HOME"/.cache/rebar3/bin
-#     fish_add_path "$HOME"/.cache/rebar3/bin
-# end
+if test -d "$HOME"/.cache/rebar3/bin
+    fish_add_path "$HOME"/.cache/rebar3/bin
+end
 
-# if test -d "$HOME"/.mix/escripts
-#     fish_add_path "$HOME"/.mix/escripts
-# end
+if test -d "$HOME"/.mix/escripts
+    fish_add_path "$HOME"/.mix/escripts
+end
 
 if test -d "$HOME"/.foundry/bin
     fish_add_path "$HOME"/.foundry/bin

@@ -27,10 +27,10 @@ function pp
     #     --cachedir /var/cache/pacman/pkg \
     #     --needed --nodeps librewolf-bin
 
-    and msg 'Updating chrome container'
-    and paru -Su \
-        --root /home/max/.machines/chrome \
-        --cachedir /var/cache/pacman/pkg
+    # and msg 'Updating chrome container'
+    # and paru -Su \
+    #     --root /home/max/.machines/chrome \
+    #     --cachedir /var/cache/pacman/pkg
 
     # and msg 'Updating dev container'
     # and paru -Su \
