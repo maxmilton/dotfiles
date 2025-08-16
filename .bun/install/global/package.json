@@ -1,10 +1,9 @@
 {
   "dependencies": {
-    "npm": "^11.5.2",
-    "pnpm": "^10.15.0",
-    "taze": "^19.3.0",
-    "typescript-language-server": "^4.4.0",
-    "wrangler": "^4.32.0",
+    "npm": "^11.6.2",
+    "taze": "^19.7.0",
+    "typescript-language-server": "^5.0.1",
+    "wrangler": "^4.42.2",
     "yarn": "^1.22.22"
   }
 }
