@@ -37,7 +37,7 @@ size=$(echo "${repo}" | jq --raw-output '.size')
 filename=${tarball##*/} # basename
 version=${filename%.tar.xz}
 
-test "${tarball:0:27}" == "https://ziglang.org/builds/" || die "Unexpected download path!"
+test "${tarball:0:29}" == "https://ziglang.org/download/" || die "Unexpected download path!"
 test -z "${version}" && die "Failed to extract version info!"
 
 if test "${ROOT_DIR}/zig-latest/zig" -ef "${ROOT_DIR}/${version}/zig"; then
