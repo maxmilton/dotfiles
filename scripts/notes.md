@@ -119,6 +119,11 @@ lurk -fv --expr trace=%file fish -i -c exit 2>&1
 paru -Qo /usr/bin/busybox
 ```
 
+```sh
+# Count number of tracked files in a git repo
+git ls-files -z | tr -d -c '\0' | wc -c
+```
+
 ## Steam
 
 ```sh
@@ -533,4 +538,36 @@ RUSTFLAGS="-C target-cpu=native" cargo build --profile maxperf --features jemall
 
 ```sh
 PROFILE=maxperf FEATURES=jemalloc make
+```
+
+---
+
+## Machine Perf Governer / Power Bias
+
+### Old/Revert
+
+Freq govern:
+
+```
+echo powersave | tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
+```
+
+Perf/power bias:
+
+```
+echo 7 | tee /sys/devices/system/cpu/cpu*/power/energy_perf_bias
+```
+
+### High perf
+
+Freq govern:
+
+```
+echo performance | tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
+```
+
+Perf/power bias:
+
+```
+echo 4 | tee /sys/devices/system/cpu/cpu*/power/energy_perf_bias
 ```

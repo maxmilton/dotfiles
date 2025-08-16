@@ -1,17 +1,18 @@
 #!/bin/sh
 set -eu
-
-# https://github.com/yt-dlp/yt-dlp#format-selection-examples
-
+# https://github.com/yt-dlp/yt-dlp/blob/master/README.md
 yt-dlp \
-  --concurrent-fragments 3 \
-  --sub-langs "en.*,kr" \
+  --concurrent-fragments 4 \
+  --format-sort 'res:4096,vcodec:vp9.2,lang,quality,fps,hdr:10,channels,acodec,br,asr,source' \
+  --merge-output-format mkv \
+  --remux-video mkv \
+  --sub-langs 'en.*,kr' \
+  --sub-format best \
   --embed-subs \
-  --sponsorblock-mark all \
+  --embed-thumbnail \
+  --embed-metadata \
+  --mtime \
+  --sponsorblock-mark default \
   --sponsorblock-remove default \
-  --format-sort "res:4096" \
   $@
-  # --write-comments \
-  # --write-thumbnail \
-  # --write-subs \
-  # --format 'bv*[height<=4096]+ba/b[height<=4096]' \
+  # --recode-video 'webm>webm/mkv' \

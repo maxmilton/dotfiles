@@ -360,13 +360,15 @@ net.core.rmem_max = 16777216
 net.core.wmem_max = 16777216
 net.ipv4.tcp_rmem = 4096 87380 16777216
 net.ipv4.tcp_wmem = 4096 65536 16777216
+net.ipv4.udp_mem = 256000 512000 1024000
+net.ipv6.udp_mem = 256000 512000 1024000
 
 # Increase ephemeral port range
 net.ipv4.ip_local_port_range = 2000 65535
 
 # Handle burst traffic
 net.core.netdev_budget = 600
-net.core.netdev_max_backlog=25000
+net.core.netdev_max_backlog=40000
 net.ipv4.tcp_max_syn_backlog=8192
 net.core.somaxconn=65535
 

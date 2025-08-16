@@ -37,7 +37,8 @@ size=$(echo "${repo}" | jq --raw-output '.size')
 filename=${tarball##*/} # basename
 version=${filename%.tar.xz}
 
-test "${tarball:0:29}" == "https://ziglang.org/download/" || die "Unexpected download path!"
+# May be nightly build (/builds/) or stable release (/download/)
+test "${tarball:0:27}" == "https://ziglang.org/builds/" || test "${tarball:0:29}" == "https://ziglang.org/download/" || die "Unexpected download path!"
 test -z "${version}" && die "Failed to extract version info!"
 
 if test "${ROOT_DIR}/zig-latest/zig" -ef "${ROOT_DIR}/${version}/zig"; then
@@ -52,8 +53,8 @@ else
   tar --no-ignore-command-error -xJC "${ROOT_DIR}" -f "${TMP_DIR}/${filename}" || die "Failed to extract!"
   rm -rf "${ROOT_DIR}/zig-latest" "${ROOT_DIR}/zig_" || die "Failed to remove old symlinks!"
   ln -s "${version}" "${ROOT_DIR}/zig-latest" || die "Failed to set new symlink!"
+  # Underscore to prevent conflict with system zig binary
   ln -s zig-latest/zig "${ROOT_DIR}/zig_" || die "Failed to set new symlink!"
-  # ln -s zig-latest/zig "${ROOT_DIR}/zig" || die "Failed to set new symlink!"
 
   # Clean up old zig files; sort by version and keep the 5 latest
   find "${ROOT_DIR}" -maxdepth 1 -type d -name "zig-${REPO_ARCH}-*" | \
@@ -64,5 +65,6 @@ else
     xargs -r rm -rf
 
   msg "Installed version: $("${ROOT_DIR}/zig-latest/zig" version)"
-  msg "NOTE: Consider running: rm ~/.cache/zls/builtin.zig"
+
+  # test -f ~/.cache/zls/builtin.zig && msg "NOTE: Consider running: rm ~/.cache/zls/builtin.zig"
 fi
