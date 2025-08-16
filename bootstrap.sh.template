@@ -37,7 +37,7 @@ ln -vbs "${script_dir}/.config/fish/functions/buu.fish" ~/.config/fish/functions
 ln -vbs "${script_dir}/.config/fish/functions/clr.fish" ~/.config/fish/functions/clr.fish
 ln -vbs "${script_dir}/.config/fish/functions/dux.fish" ~/.config/fish/functions/dux.fish
 ln -vbs "${script_dir}/.config/fish/functions/get.fish" ~/.config/fish/functions/get.fish
-ln -vbs "${script_dir}/.config/fish/functions/gg.fish" ~/.config/fish/functions/gg.fish
+ln -vbs "${script_dir}/.config/fish/functions/ggg.fish" ~/.config/fish/functions/ggg.fish
 ln -vbs "${script_dir}/.config/fish/functions/gl.fish" ~/.config/fish/functions/gl.fish
 # ln -vbs "${script_dir}/.config/fish/functions/gz.fish" ~/.config/fish/functions/gz.fish
 ln -vbs "${script_dir}/.config/fish/functions/hh.fish" ~/.config/fish/functions/hh.fish
