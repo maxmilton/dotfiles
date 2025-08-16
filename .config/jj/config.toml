@@ -10,6 +10,7 @@ backend = "gpg"
 key = "C174762F23AF46AF" # max@2okki.com [S]
 
 [aliases]
+b = ["log", "-r", "@ | ancestors(remote_bookmarks().., 2) | trunk()"]
 l = ["log", "-r", "::@", "-T", "builtin_log_comfortable"]
 ll = ["log", "-r", "::@", "-T", 'builtin_log_comfortable ++ diff.stat(72) ++ "\n"']
 clone = ["git", "clone", "--colocate"]
