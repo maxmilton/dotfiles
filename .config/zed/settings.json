@@ -16,7 +16,7 @@
   // "buffer_font_features": {
   //   "calt": false
   // },
-  "show_whitespaces": "boundary",
+  // "show_whitespaces": "boundary",
   "inlay_hints": {
     "enabled": true,
     "show_value_hints": true,
@@ -104,6 +104,15 @@
   //     }
   //   }
   // },
+  "languages": {
+    "Zig": {
+      "language_servers": [
+        "zls",
+        "codebook",
+        "..."
+      ]
+    }
+  },
   "telemetry": {
     "diagnostics": false,
     "metrics": false

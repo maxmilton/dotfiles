@@ -1,9 +1,10 @@
 {
   "crashReporting.enabled": "off",
-  "telemetry.enableCrashReporter": false, // Deprecated but used by extensions
-  "telemetry.enableTelemetry": false, // Deprecated but used by extensions
+  "telemetry.enableCrashReporter": false, // deprecated but used by extensions
+  "telemetry.enableTelemetry": false, // deprecated but used by extensions
+  "telemetry.feedback.enabled": false,
   "telemetry.telemetryLevel": "off",
-  "update.mode": "none", // Use package manager on Linux
+  "update.mode": "none", // use linux package manager
   "window.autoDetectHighContrast": false,
   "window.customTitleBarVisibility": "auto",
   "window.titleBarStyle": "custom",
@@ -19,12 +20,13 @@
     "editorInlayHint.typeForeground": "#40434C",
     "editorRuler.foreground": "#333333"
   },
-  "workbench.colorTheme": "GitHub Dark Default",
+  "workbench.colorTheme": "Catppuccin Mocha",
   "workbench.editor.decorations.colors": true,
   "workbench.editor.decorations.badges": true,
   "workbench.editor.wrapTabs": true,
   "workbench.editor.historyBasedLanguageDetection": true,
   "workbench.enableExperiments": false,
+  "workbench.iconTheme": "catppuccin-mocha",
   "workbench.list.defaultFindMode": "highlight",
   "workbench.settings.enableNaturalLanguageSearch": false,
   "workbench.startupEditor": "none",
@@ -32,25 +34,31 @@
   "breadcrumbs.enabled": true,
   "explorer.confirmDragAndDrop": false,
   "explorer.confirmDelete": false,
-  "editor.inlineSuggest.suppressSuggestions": true,
-  "editor.snippetSuggestions": "top",
-  "editor.renderLineHighlight": "all",
-  "editor.folding": false,
   "editor.accessibilitySupport": "off",
-  "editor.fontSize": 15,
+  "editor.aiStats.enabled": true, // EXPERIMENTAL
+  "editor.bracketPairColorization.enabled": true,
+  // "editor.experimental.asyncTokenization": true,
+  // "editor.experimental.preferTreeSitter.ini": true,
+  // "editor.experimental.preferTreeSitter.typescript": true,
+  "editor.experimental.treeSitterTelemetry": false,
+  "editor.folding": false,
   // "editor.fontFamily": "'JetBrains Mono', monospace, 'Noto Emoji', 'Noto Color Emoji'",
   // "editor.fontFamily": "'Monaspace Neon', monospace, 'Noto Emoji', 'Noto Color Emoji'",
   "editor.fontFamily": "'Monaspace Neon Var', monospace, 'Noto Emoji', 'Noto Color Emoji'",
   // https://github.com/githubnext/monaspace#visual-studio-code
   // "editor.fontLigatures": "'calt', 'liga', 'ss07', 'ss08'",
   "editor.fontLigatures": "'calt', 'liga'",
-  "editor.rulers": [80, 100],
-  "editor.wordWrap": "on",
-  "editor.tabSize": 2,
-  "editor.renderWhitespace": "all",
-  "editor.renderControlCharacters": true,
+  "editor.fontSize": 15,
+  "editor.guides.bracketPairs": "active",
   "editor.inlayHints.enabled": "onUnlessPressed",
   "editor.inlineSuggest.enabled": true,
+  // "editor.inlineSuggest.suppressSuggestions": true,
+  "editor.minimap.enabled": true,
+  "editor.minimap.renderCharacters": false,
+  "editor.renderControlCharacters": true,
+  "editor.renderLineHighlight": "all",
+  "editor.renderWhitespace": "all",
+  "editor.rulers": [80, 100],
   "editor.semanticTokenColorCustomizations": {
     "rules": {
       "*.deprecated": {
@@ -58,34 +66,35 @@
       }
     }
   },
+  "editor.snippetSuggestions": "top",
   "editor.suggest.matchOnWordStartOnly": false,
-  "editor.suggestSelection": "first",
   "editor.suggest.preview": true,
   "editor.suggest.showStatusBar": true,
-  "editor.guides.bracketPairs": "active",
-  "editor.bracketPairColorization.enabled": true,
+  "editor.suggestSelection": "first",
+  "editor.tabSize": 2,
   "editor.wordBasedSuggestions": "allDocuments",
-  // "editor.experimental.asyncTokenization": true,
-  // "editor.experimental.preferTreeSitter.ini": true,
-  // "editor.experimental.preferTreeSitter.typescript": true,
-  "editor.experimental.treeSitterTelemetry": false,
+  "editor.wordWrap": "on",
   "debug.confirmOnExit": "always",
   "diffEditor.ignoreTrimWhitespace": false,
   "extensions.ignoreRecommendations": true,
   "files.associations": {
-    ".env.*": "properties",
-    "*.zzz": "shellscript"
+    ".env.*": "properties"
   },
   "files.exclude": {
     "**/.*cache": true,
-    "**/.git": true
+    "**/.git": true,
+    "**/.jj": true
   },
   "files.insertFinalNewline": true,
   "files.trimTrailingWhitespace": true,
   "files.watcherExclude": {
     "**/.*cache": true,
+    "**/.*cache/**": true,
     "**/.git/objects/**": true,
     "**/.git/subtree-cache/**": true,
+    "**/.jj/**": true,
+    "**/.turbo/**": true,
+    "**/.wrangler/**": true,
     "**/*-lock.*": true,
     "**/*.bak": true,
     "**/*.bak/**": true,
@@ -112,16 +121,20 @@
   "git.suggestSmartCommit": false,
   "scm.alwaysShowRepositories": true,
   "debug.allowBreakpointsEverywhere": false,
-  "terminal.integrated.defaultProfile.linux": "sandbox",
-  "terminal.integrated.profiles.linux": {
-    "sandbox": {
-      "path": "/home/max/.local/bin/sandbox.sh",
-      "args": []
-    }
-  },
-  "terminal.integrated.shellIntegration.enabled": false,
+  "terminal.integrated.defaultProfile.linux": "bash",
+  // "terminal.integrated.defaultProfile.linux": "sandbox",
+  // "terminal.integrated.profiles.linux": {
+  //   "sandbox": {
+  //     "path": "/home/max/.local/bin/sandbox.sh",
+  //     "args": []
+  //   }
+  // },
+  // "terminal.integrated.shellIntegration.enabled": false,
   "task.allowAutomaticTasks": "off",
   "task.autoDetect": "off",
+  "grunt.autoDetect": "off",
+  "gulp.autoDetect": "off",
+  "jake.autoDetect": "off",
   "npm.autoDetect": "off",
   "npm.packageManager": "bun",
   "npm.scriptRunner": "bun",
@@ -146,22 +159,34 @@
   "typescript.surveys.enabled": false,
   "typescript.tsc.autoDetect": "off",
 
-  "[css][html][json][jsonc][markdown][scss][xml][yaml]": {
-    "editor.codeActionsOnSave": {
-      "source.organizeImports": "explicit",
-      "source.fixAll": "explicit"
-    },
-    "editor.defaultFormatter": "biomejs.biome"
-  },
-  "[javascript][javascriptreact][typescript][typescriptreact]": {
-    "editor.codeActionsOnSave": {
-      "source.sortImports": "never",
-      "source.organizeImports": "never",
-      "source.organizeImports.biome": "explicit",
-      "source.fixAll": "never"
-    },
-    "editor.defaultFormatter": "biomejs.biome"
-  },
+  "biome.enabled": false,
+  "biome.requireConfiguration": true,
+  "biome.suggestInstallingGlobally": false,
+  "harper.codeActions.ForceStable": true,
+  "harper.dialect": "British",
+  "harper.isolateEnglish": true,
+  "redhat.telemetry.enabled": false,
+  "zig.path": "zig",
+  "zig.zls.enabled": "on",
+  "zig.zls.path": "zls",
+  "zig.zls.warnStyle": true,
+
+  // "[css][html][json][jsonc][markdown][scss][xml][yaml]": {
+  //   "editor.codeActionsOnSave": {
+  //     "source.organizeImports": "explicit",
+  //     "source.fixAll": "explicit"
+  //   },
+  //   "editor.defaultFormatter": "biomejs.biome"
+  // },
+  // "[javascript][javascriptreact][typescript][typescriptreact]": {
+  //   "editor.codeActionsOnSave": {
+  //     "source.sortImports": "never",
+  //     "source.organizeImports": "never",
+  //     "source.organizeImports.biome": "explicit",
+  //     "source.fixAll": "never"
+  //   },
+  //   "editor.defaultFormatter": "biomejs.biome"
+  // },
   "[markdown]": {
     "editor.lineNumbers": "interval",
     "editor.rulers": [80],
@@ -175,25 +200,17 @@
     "editor.renderWhitespace": "boundary",
     "files.trimTrailingWhitespace": false
   },
-  // "[zig]": {
-  //     "editor.codeActionsOnSave": {
-  //       "source.organizeImports": "never",
-  //       "source.fixAll": "explicit"
-  //     },
-  //     "editor.defaultFormatter": "ziglang.vscode-zig",
-  //     // "editor.formatOnSave": true,
-  //     "editor.tabSize": 4,
-  //     // "editor.inlayHints.enabled": "onUnlessPressed", // TODO: Too opinionated for a project level setting?
-  //     "editor.suggest.insertMode": "replace",
-  //     "editor.stickyScroll.defaultModel": "foldingProviderModel"
-  // },
-
-  "biome.enabled": false,
-  "biome.requireConfigFile": true,
-  "zig.path": "zig",
-  // "zig.zls.enabled": "on",
-  "zig.zls.path": "zls",
-  "zig.zls.warnStyle": true,
+  "[yaml]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml",
+    "editor.autoIndent": "advanced"
+  },
+  "[zig]": {
+    "editor.defaultFormatter": "ziglang.vscode-zig",
+    "editor.formatOnSave": true,
+    "editor.tabSize": 4,
+    "editor.suggest.insertMode": "replace",
+    "editor.stickyScroll.defaultModel": "foldingProviderModel"
+  },
 
   "chat.agent.enabled": true,
   "github.copilot.enable": {
@@ -221,12 +238,12 @@
   "github.copilot.nextEditSuggestions.enabled": true,
   "github.copilot.nextEditSuggestions.fixes": true,
   "githubPullRequests.pullBranch": "never",
-  // "vsintellicode.java.completionsEnabled": false,
-  // "vsintellicode.modify.editor.suggestSelection": "choseToUpdateConfiguration",
-  // "vsintellicode.python.completionsEnabled": false,
+  "vsintellicode.java.completionsEnabled": false,
+  "vsintellicode.modify.editor.suggestSelection": "choseToUpdateConfiguration",
+  "vsintellicode.python.completionsEnabled": false,
 
   "gitlens.keymap": "none",
   "hardhat.telemetry": false,
   "liveshare.presence": true,
-  "solidity.telemetry": false,
+  "solidity.telemetry": false
 }

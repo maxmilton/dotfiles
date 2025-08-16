@@ -177,6 +177,10 @@
     "editor.renderWhitespace": "boundary",
     "files.trimTrailingWhitespace": false,
   },
+  "[yaml]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml",
+    "editor.autoIndent": "advanced"
+  },
   "[zig]": {
     "editor.defaultFormatter": "ziglang.vscode-zig",
     "editor.formatOnSave": true,
@@ -184,7 +188,4 @@
     "editor.suggest.insertMode": "replace",
     "editor.stickyScroll.defaultModel": "foldingProviderModel",
   },
-
-  // EXPERIMENTAL
-  "editor.aiStats.enabled": true,
 }
