@@ -44,3 +44,5 @@ abbr gc 'git commit -v'
 abbr gca 'git commit -v --all'
 abbr gco 'git checkout'
 abbr gx 'git blame -wCCC --color-by-age --minimal'
+
+abbr j 'jj status'

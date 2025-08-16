@@ -14,6 +14,7 @@ umask 077
 mkdir -vp ~/.config/fish/functions
 mkdir -vp ~/.config/helix
 # mkdir -vp ~/.config/ion
+mkdir -vp ~/.config/jj
 # mkdir -vp ~/.config/mpv
 # mkdir -vp ~/.config/zed
 mkdir -vp ~/.gnupg/private-keys-v1.d
@@ -45,6 +46,7 @@ ln -vbs "${script_dir}/.config/fish/functions/ssh.fish" ~/.config/fish/functions
 ln -vbs "${script_dir}/.config/helix/config.toml" ~/.config/helix/config.toml
 ln -vbs "${script_dir}/.config/helix/languages.toml" ~/.config/helix/languages.toml
 # ln -vbs "${script_dir}/.config/ion/initrc" ~/.config/ion/initrc
+ln -vbs "${script_dir}/.config/jj/config.toml" ~/.config/jj/config.toml
 # ln -vbs "${script_dir}/.config/mpv/input.conf" ~/.config/mpv/input.conf
 # ln -vbs "${script_dir}/.config/mpv/mpv.conf" ~/.config/mpv/mpv.conf
 # ln -vbs "${script_dir}/.config/mpv/shaders" ~/.config/mpv/shaders
@@ -85,12 +87,12 @@ ln -vbs "${script_dir}/.ssh/config" ~/.ssh/config
 ln -vbs "${script_dir}/.sqliterc" ~/.sqliterc
 # ln -vbs ~/Projects/_clones/zls/zig-out/bin/zls ~/.local/bin/zls
 
-# https://github.com/jorgebucaran/fisher#installation
+# # https://github.com/jorgebucaran/fisher#installation
 # fisher install jorgebucaran/fisher
 # fisher install jorgebucaran/hydro
-# fisher install jorgebucaran/replay.fish
+# # fisher install jorgebucaran/replay.fish
 # fisher install jorgebucaran/autopair.fish
-# # fisher install jorgebucaran/nvm.fish
+# fisher install catppuccin/fish
 
 # fish ./.config/fish/config-oneshot.fish
 # fish ./.config/fish/config-oneshot-dev.fish
