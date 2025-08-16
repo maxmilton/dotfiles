@@ -34,15 +34,6 @@ abbr btt 'bun run test:e2e'
 abbr ii 'bun info -g'
 abbr yi 'bunx yarn info'
 
-abbr gs 'git status --short --branch --show-stash'
-abbr gd 'git diff'
-abbr gdd 'git diff --staged'
-abbr gb 'git br'
-abbr gp 'git pull --autostash'
-abbr gm 'git merge --autostash'
-abbr gc 'git commit -v'
-abbr gca 'git commit -v --all'
-abbr gco 'git checkout'
-abbr gx 'git blame -wCCC --color-by-age --minimal'
-
-abbr j 'jj status'
+abbr gg git
+abbr g 'git s'
+abbr j 'jj st'

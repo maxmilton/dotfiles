@@ -5,7 +5,17 @@
 	# nosemgrep: generic-api-key
 	signingkey = C174762F23AF46AF # max@2okki.com [S]
 [alias]
-	br = "branch --sort=refname --format='%(if)%(HEAD)%(then)%(color:yellow)* %(else)  %(end)%(refname:short)%(if)%(upstream)%(then) %(color:blue)[%(upstream:short)] %(upstream:track)%(end)%(color:reset)'"
+	b = "branch --sort=refname --format='%(if)%(HEAD)%(then)%(color:yellow)* %(else)  %(end)%(refname:short)%(if)%(upstream)%(then) %(color:blue)[%(upstream:short)] %(upstream:track)%(end)%(color:reset)'"
+	c = "commit -v"
+	ca = "commit -v --all"
+	co = "checkout"
+	d = "diff"
+	dd = "diff --staged"
+	m = "merge --autostash"
+	p = "pull --autostash"
+	s = "status --short --branch --show-stash"
+	x = "blame -wCCC --color-by-age --minimal"
+	
 	# Remove tags which were deleted in origin
 	dt = "fetch --prune origin '+refs/tags/*:refs/tags/*'"
 	# Remove the old tag with this name and tag the latest commit with it
@@ -67,6 +77,8 @@
 [push]
 	default = simple
 	followTags = true # also push relevant annotated tags
+[rebase]
+	updateRefs = true
 [rerere]
 	enabled = true
 [tag]
