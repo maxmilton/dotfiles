@@ -10,6 +10,7 @@ umask 077
 
 # mkdir -vp ~/.bun/install/global
 # mkdir -vp ~/.config/Code/User
+# mkdir -vp ~/.config/Cursor/User
 # mkdir -vp ~/.config/Windsurf/User
 mkdir -vp ~/.config/fish/functions
 mkdir -vp ~/.config/helix
@@ -25,6 +26,8 @@ mkdir -vp ~/.ssh
 # ln -vbs "${script_dir}/.bun/install/global/package.json" ~/.bun/install/global/package.json
 # ln -vbs "${script_dir}/.config/Code/User/keybindings.json" ~/.config/Code/User/keybindings.json
 # ln -vbs "${script_dir}/.config/Code/User/settings.json" ~/.config/Code/User/settings.json
+# ln -vbs "${script_dir}/.config/Cursor/User/keybindings.json" ~/.config/Cursor/User/keybindings.json
+# ln -vbs "${script_dir}/.config/Cursor/User/settings.json" ~/.config/Cursor/User/settings.json
 # ln -vbs "${script_dir}/.config/Windsurf/User/keybindings.json" ~/.config/Windsurf/User/keybindings.json
 # ln -vbs "${script_dir}/.config/Windsurf/User/settings.json" ~/.config/Windsurf/User/settings.json
 ln -vbs "${script_dir}/.config/electron-flags.conf" ~/.config/electron-flags.conf
