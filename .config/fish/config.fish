@@ -23,13 +23,12 @@ abbr po podman
 abbr mm 'mpv --no-video'
 
 abbr bup 'bun upgrade; bun update -g --latest'
-abbr bo "bun outdated -r"
 abbr bu 'bun update -ir --latest'
 abbr bi 'bun install'
-abbr br 'rm -f bun.lock*; rm -rf **/node_modules; bun install -f'
+abbr br 'rm -f bun.lock; rm -rf **/node_modules; bun install -f'
 abbr bb 'bun run build'
 abbr bd 'bun run dev'
-abbr bt 'bun run lint; and bun run test'
+abbr bt 'bun run lint &&  bun run test'
 abbr btt 'bun run test:e2e'
 abbr ii 'bun info -g'
 abbr yi 'bunx yarn info'
