@@ -24,9 +24,6 @@ s = ["show", "@-"]
 # https://oppi.li/posts/configuring_jujutsu/
 tug = ["bookmark", "move", "--from", "heads(::@- & bookmarks())", "--to", "@-"]
 
-[git]
-write-change-id-header = true
-
 [ui]
 default-command = "log" # "log" = "jj", "status" = "j" shell alias
 pager = ":builtin"

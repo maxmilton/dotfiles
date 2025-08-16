@@ -2,45 +2,6 @@
 # default value, so the existing values must be included too.
 # https://github.com/helix-editor/helix/blob/master/languages.toml
 
-# TODO: Remove the ini override once my PR is merged:
-# https://github.com/helix-editor/helix/pull/13139
-
-# Extend ini language with more systemd file types
-# https://github.com/helix-editor/helix/blob/6f463dbeb323dfbebe63a1f73be6773a9c93d540/languages.toml#L2870
-[[language]]
-name = "ini"
-file-types = [
-  "ini",
-  # Systemd unit files
-  "automount",
-  "desktop",
-  "device",
-  "mount",
-  "path",
-  "service",
-  "slice",
-  "scope",
-  "socket",
-  "swap",
-  "nspawn",
-  "target",
-  "timer",
-  { glob = "systemd/**/*.conf" },
-  # Podman quadlets
-  "container",
-  "volume",
-  "kube",
-  "network",
-  { glob = ".editorconfig" },
-  { glob = ".npmrc" },
-  { glob = "hgrc" },
-  { glob = "npmrc" },
-  { glob = "rclone.conf" },
-  "properties",
-  "cfg",
-  "directory"
-]
-
 # Extend scss language to include *.xcss file type
 # https://github.com/helix-editor/helix/blob/6f463dbeb323dfbebe63a1f73be6773a9c93d540/languages.toml#L884
 [[language]]
