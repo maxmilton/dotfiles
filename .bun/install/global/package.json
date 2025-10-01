@@ -3,7 +3,7 @@
     "npm": "^11.5.2",
     "pnpm": "^10.15.0",
     "taze": "^19.3.0",
-    "typescript-language-server": "^4.4.0",
+    "typescript-language-server": "^5.0.0",
     "wrangler": "^4.32.0",
     "yarn": "^1.22.22"
   }
