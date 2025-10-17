@@ -213,37 +213,67 @@
   },
 
   "chat.agent.enabled": true,
-  "github.copilot.enable": {
-    "*": true,
-    "plaintext": false,
-    "markdown": false,
-    "scminput": false
-  },
-  "github.copilot.chat.agent.thinkingTool": true,
-  "github.copilot.chat.codesearch.enabled": true,
-  "github.copilot.chat.completionContext.typescript.mode": "sidecar",
-  "github.copilot.chat.editor.temporalContext.enabled": true,
-  "github.copilot.chat.edits.temporalContext.enabled": true,
-  "github.copilot.chat.followUps": "firstOnly",
-  "github.copilot.chat.generateTests.codeLens": true,
-  "github.copilot.chat.languageContext.fix.typescript.enabled": true,
-  "github.copilot.chat.languageContext.inline.typescript.enabled": true,
-  "github.copilot.chat.languageContext.typescript.enabled": true,
-  "github.copilot.chat.localeOverride": "en",
-  "github.copilot.chat.newWorkspaceCreation.enabled": true,
-  "github.copilot.chat.scopeSelection": true,
-  "github.copilot.chat.search.keywordSuggestions": true,
-  "github.copilot.chat.search.semanticTextResults": true,
-  "github.copilot.editor.enableCodeActions": true,
-  "github.copilot.nextEditSuggestions.enabled": true,
-  "github.copilot.nextEditSuggestions.fixes": true,
-  "githubPullRequests.pullBranch": "never",
-  "vsintellicode.java.completionsEnabled": false,
-  "vsintellicode.modify.editor.suggestSelection": "choseToUpdateConfiguration",
-  "vsintellicode.python.completionsEnabled": false,
+  // "github.copilot.enable": {
+  //   "*": true,
+  //   "plaintext": false,
+  //   "markdown": false,
+  //   "scminput": false
+  // },
+  // "github.copilot.chat.agent.thinkingTool": true,
+  // "github.copilot.chat.codesearch.enabled": true,
+  // "github.copilot.chat.completionContext.typescript.mode": "sidecar",
+  // "github.copilot.chat.editor.temporalContext.enabled": true,
+  // "github.copilot.chat.edits.temporalContext.enabled": true,
+  // "github.copilot.chat.followUps": "firstOnly",
+  // "github.copilot.chat.generateTests.codeLens": true,
+  // "github.copilot.chat.languageContext.fix.typescript.enabled": true,
+  // "github.copilot.chat.languageContext.inline.typescript.enabled": true,
+  // "github.copilot.chat.languageContext.typescript.enabled": true,
+  // "github.copilot.chat.localeOverride": "en",
+  // "github.copilot.chat.newWorkspaceCreation.enabled": true,
+  // "github.copilot.chat.scopeSelection": true,
+  // "github.copilot.chat.search.keywordSuggestions": true,
+  // "github.copilot.chat.search.semanticTextResults": true,
+  // "github.copilot.editor.enableCodeActions": true,
+  // "github.copilot.nextEditSuggestions.enabled": true,
+  // "github.copilot.nextEditSuggestions.fixes": true,
+  // "githubPullRequests.pullBranch": "never",
+  // "vsintellicode.java.completionsEnabled": false,
+  // "vsintellicode.modify.editor.suggestSelection": "choseToUpdateConfiguration",
+  // "vsintellicode.python.completionsEnabled": false,
+
+  // "chat.commandCenter.enabled": false,
+  "chat.disableAIFeatures": true, // disable built-in GitHub Copilot
+  "github.copilot.enable": { "*": false },
+  "github.copilot.editor.enableAutoCompletions": false,
+  "github.copilot.editor.enableCodeActions": false,
+  "github.copilot.nextEditSuggestions.enabled": false,
+  "github.copilot.renameSuggestions.triggerAutomatically": false,
 
   "gitlens.keymap": "none",
   "hardhat.telemetry": false,
   "liveshare.presence": true,
-  "solidity.telemetry": false
+  "solidity.telemetry": false,
+
+  "chat.mcp.gallery.enabled": true,
+  "amp.url": "https://ampcode.com/",
+  "amp.tab.enabled": true,
+  "amp.experimental.librarian": true,
+  "amp.experimental.reviewTool": true,
+  "amp.tab.experimental.review": true,
+  "amp.tab.experimental.showHotStreakProgress": true,
+  "amp.tab.experimental.unobtrusiveDiffs": true,
+  "amp.tab.hoverDiagnosticSuggestions": true,
+  "lldb.suppressUpdateNotifications": true,
+  "amp.mcpServers": {
+    "playwright": {
+      "command": "bunx",
+      "args": [
+        "@playwright/mcp",
+        "--headless",
+        "--isolated"
+      ],
+      "env": {}
+    }
+  }
 }
