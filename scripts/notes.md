@@ -542,7 +542,7 @@ PROFILE=maxperf FEATURES=jemalloc make
 
 ---
 
-## Machine Perf Governer / Power Bias
+## Machine Perf Governor / Power Bias
 
 ### Old/Revert
 
