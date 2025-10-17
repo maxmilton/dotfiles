@@ -13,6 +13,7 @@ umask 077
 # mkdir -vp ~/.config/Cursor/User
 # mkdir -vp ~/.config/Windsurf/User
 mkdir -vp ~/.config/fish/functions
+mkdir -vp ~/.config/ghostty/themes
 mkdir -vp ~/.config/helix
 # mkdir -vp ~/.config/ion
 mkdir -vp ~/.config/jj
@@ -46,6 +47,8 @@ ln -vbs "${script_dir}/.config/fish/functions/lsport.fish" ~/.config/fish/functi
 ln -vbs "${script_dir}/.config/fish/functions/multicd.fish" ~/.config/fish/functions/multicd.fish
 # ln -vbs "${script_dir}/.config/fish/functions/pp.fish" ~/.config/fish/functions/pp.fish
 ln -vbs "${script_dir}/.config/fish/functions/ssh.fish" ~/.config/fish/functions/ssh.fish
+ln -vbs "${script_dir}/.config/ghostty/config" ~/.config/ghostty/config
+ln -vbs "${script_dir}/.config/ghostty/themes/catppuccin-mocha" ~/.config/ghostty/themes/catppuccin-mocha
 ln -vbs "${script_dir}/.config/helix/config.toml" ~/.config/helix/config.toml
 ln -vbs "${script_dir}/.config/helix/languages.toml" ~/.config/helix/languages.toml
 # ln -vbs "${script_dir}/.config/ion/initrc" ~/.config/ion/initrc
@@ -53,7 +56,6 @@ ln -vbs "${script_dir}/.config/jj/config.toml" ~/.config/jj/config.toml
 # ln -vbs "${script_dir}/.config/mpv/input.conf" ~/.config/mpv/input.conf
 # ln -vbs "${script_dir}/.config/mpv/mpv.conf" ~/.config/mpv/mpv.conf
 # ln -vbs "${script_dir}/.config/mpv/shaders" ~/.config/mpv/shaders
-# ln -vbs "${script_dir}/.config/zed/themes" ~/.config/zed/themes
 # ln -vbs "${script_dir}/.config/zed/keymap.json" ~/.config/zed/keymap.json
 # ln -vbs "${script_dir}/.config/zed/settings.json" ~/.config/zed/settings.json
 # ln -vbs "${script_dir}/.config/zls.json" ~/.config/zls.json
@@ -78,6 +80,7 @@ ln -vbs "${script_dir}/.gnupg/gpg.conf" ~/.gnupg/gpg.conf
 # ln -vbs "${script_dir}/.local/bin/zigup.sh" ~/.local/bin/zigup
 # ln -vbs "${script_dir}/.local/share/applications/brave-browser.desktop" ~/.local/share/applications/brave-browser.desktop
 # ln -vbs "${script_dir}/.local/share/applications/code-oss.desktop" ~/.local/share/applications/code-oss.desktop
+# ln -vbs "${script_dir}/.local/share/applications/code.desktop" ~/.local/share/applications/code.desktop
 # ln -vbs "${script_dir}/.local/share/applications/cursor-cursor.desktop" ~/.local/share/applications/cursor-cursor.desktop
 # ln -vbs "${script_dir}/.local/share/applications/windsurf.desktop" ~/.local/share/applications/windsurf.desktop
 ln -vbs "${script_dir}/.curlrc" ~/.curlrc
