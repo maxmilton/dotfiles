@@ -1,7 +1,7 @@
 # ghostty +show-config --default --docs
 # https://ghostty.org/docs/config
 
-gtk-single-instance = true
+# gtk-single-instance = true
 theme = catppuccin-mocha
 
 # command = /home/max/.local/bin/ion
