@@ -1,5 +1,8 @@
 #!/usr/bin/env fish
 
+echo "FIXME: Skip over or handle JJ projects correctly"
+exit 2
+
 # NOTE: Do not use gc --prune=now, it is dangerous. Can result in corruption
 # when another process is accessing the repository. Run manually if needed.
 
