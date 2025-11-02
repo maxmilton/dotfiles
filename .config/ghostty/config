@@ -1,8 +1,20 @@
 # ghostty +show-config --default --docs
 # https://ghostty.org/docs/config
 
-# gtk-single-instance = true
 theme = catppuccin-mocha
+window-theme = ghostty
+window-height = 24
+window-width = 80
+# window-decoration = server
+# window-decoration = none
+# gtk-titlebar = true
+# gtk-titlebar-style = tabs
 
-# command = /home/max/.local/bin/ion
-# shell-integration = none
+# Keep process running for fast launch
+# also see: https://ghostty.org/docs/linux/systemd#starting-ghostty-at-login
+quit-after-last-window-closed = false
+
+linux-cgroup = single-instance
+
+keybind = ctrl+shift+y=toggle_tab_overview
+keybind = ctrl+shift+r=equalize_splits
