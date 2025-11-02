@@ -1,10 +1,9 @@
 {
   "dependencies": {
-    "@playwright/mcp": "^0.0.44",
+    "@playwright/mcp": "^0.0.45",
     "npm": "^11.6.2",
-    "taze": "^19.8.1",
-    "typescript-language-server": "^5.0.1",
-    "wrangler": "^4.45.1",
-    "yarn": "^1.22.22"
+    "taze": "^19.9.0",
+    "typescript-language-server": "^5.1.0",
+    "wrangler": "^4.45.3"
   }
 }
