@@ -7,6 +7,7 @@ email = "max@2okki.com"
 [signing]
 behavior = "own"
 backend = "gpg"
+# nosemgrep: generic-api-key
 key = "C174762F23AF46AF" # max@2okki.com [S]
 
 [aliases]
