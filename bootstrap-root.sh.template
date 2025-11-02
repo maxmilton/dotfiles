@@ -11,5 +11,4 @@ umask 077
 mkdir -vp /root/.config/helix
 
 ln -vbs "${script_dir}/.config/helix/root-config.toml" /root/.config/helix/config.toml
-ln -vbs "${script_dir}/.config/helix/languages.toml" /root/.config/helix/languages.toml
 ln -vbs "${script_dir}"/.profile /root/.profile
