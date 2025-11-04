@@ -11,11 +11,12 @@
 	co = "checkout"
 	d = "diff"
 	dd = "diff --staged"
+	l = "log --graph --pretty=format:'%C(yellow)%h%Creset%C(blue)%d%Creset %C(white bold)%s%Creset %C(white dim)(by %an %ar)%Creset'"
 	m = "merge --autostash"
 	p = "pull --autostash"
 	s = "status --short --branch --show-stash"
 	x = "blame -wCCC --color-by-age --minimal"
-	
+
 	# Remove tags which were deleted in origin
 	dt = "fetch --prune origin '+refs/tags/*:refs/tags/*'"
 	# Remove the old tag with this name and tag the latest commit with it
