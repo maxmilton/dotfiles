@@ -1,0 +1,41 @@
+{
+  "amp.notifications.enabled": true,
+  "amp.notifications.system.enabled": true,
+  "amp.mcpServers": {
+    "filesystem": {
+      "command": "bunx",
+      "args": [
+        "@modelcontextprotocol/server-filesystem",
+        "/home/max/Projects",
+        "/home/max/.local/bin/zig-latest"
+      ]
+    },
+    "playwright": {
+      "command": "bunx",
+      "args": ["@playwright/mcp"]
+    }
+  },
+  "amp.tools.disable": [
+    "browser_navigate",
+    "builtin:edit_file"
+  ],
+  "amp.permissions": [
+    {
+      "tool": "Bash",
+      "action": "ask",
+      "matches": {
+        "cmd": [
+          "git push*",
+          "git commit*"
+        ]
+      }
+    }
+  ],
+  "amp.guardedFiles.allowlist": [],
+  "amp.dangerouslyAllowAll": false,
+  "amp.fuzzy.alwaysIncludePaths": [],
+  "amp.git.commit.coauthor.enabled": true,
+  "amp.git.commit.ampThread.enabled": true,
+  "amp.updates.mode": "auto",
+  "amp.showCosts": true
+}
