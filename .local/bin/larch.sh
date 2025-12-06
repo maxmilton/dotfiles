@@ -22,6 +22,6 @@ else
     --directory=/var/lib/machines/arch \
     --boot $ephemeral
 
-    # TODO: Use when it's possible to specify bind/overlay owner uid or there's a workaround
-    # --private-users=pick \
+  # TODO: Use when it's possible to specify bind/overlay owner uid or there's a workaround
+  # --private-users=pick \
 fi
