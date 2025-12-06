@@ -82,12 +82,14 @@ ln -vbs "${script_dir}/.gnupg/gpg.conf" ~/.gnupg/gpg.conf
 # ln -vbs "${script_dir}/.local/share/applications/code.desktop" ~/.local/share/applications/code.desktop
 # ln -vbs "${script_dir}/.local/share/applications/cursor-cursor.desktop" ~/.local/share/applications/cursor-cursor.desktop
 # ln -vbs "${script_dir}/.local/share/applications/windsurf.desktop" ~/.local/share/applications/windsurf.desktop
+# ln -vbs "${script_dir}/.bash_profile" ~/.bash_profile
+ln -vbs "${script_dir}/.bashrc" ~/.bashrc
 ln -vbs "${script_dir}/.curlrc" ~/.curlrc
 # ln -vbs "${script_dir}/.duckdbrc" ~/.duckdbrc
 ln -vbs "${script_dir}/.gitattributes" ~/.gitattributes
 ln -vbs "${script_dir}/.gitconfig" ~/.gitconfig
 ln -vbs "${script_dir}/_.gitignore" ~/.gitignore
-# ln -vbs "${script_dir}/.profile" ~/.profile
+ln -vbs "${script_dir}/.profile" ~/.profile
 ln -vbs "${script_dir}/.ssh/config" ~/.ssh/config
 ln -vbs "${script_dir}/.sqliterc" ~/.sqliterc
 # ln -vbs ~/Projects/_clones/zls/zig-out/bin/zls ~/.local/bin/zls
