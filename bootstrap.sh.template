@@ -48,6 +48,7 @@ ln -vbs "${script_dir}/.config/fish/functions/lsport.fish" ~/.config/fish/functi
 ln -vbs "${script_dir}/.config/fish/functions/multicd.fish" ~/.config/fish/functions/multicd.fish
 # ln -vbs "${script_dir}/.config/fish/functions/pp.fish" ~/.config/fish/functions/pp.fish
 ln -vbs "${script_dir}/.config/fish/functions/ssh.fish" ~/.config/fish/functions/ssh.fish
+# ln -vbs "${script_dir}/.config/fish/functions/z.fish" ~/.config/fish/functions/z.fish
 ln -vbs "${script_dir}/.config/ghostty/config" ~/.config/ghostty/config
 ln -vbs "${script_dir}/.config/ghostty/themes/catppuccin-mocha" ~/.config/ghostty/themes/catppuccin-mocha
 ln -vbs "${script_dir}/.config/helix/config.toml" ~/.config/helix/config.toml
