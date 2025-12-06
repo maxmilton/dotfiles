@@ -1,0 +1,4 @@
+dictionaries = ["en_us", "en_gb"]
+flag_words = ["todo", "fixme"]
+words = ["duckdb", "libduckdb", "tinyint", "smallint", "utinyint", "usmallint", "uinteger", "ubigint", "hugeint", "uhugeint", "bignum", "sqlnull", "varchar", "appender", "kcov", "cobertura"]
+ignore_paths = []
