@@ -2,8 +2,20 @@
 # default value, so the existing values must be included too.
 # https://github.com/helix-editor/helix/blob/master/languages.toml
 
-# Extend scss language to include *.xcss file type
-# https://github.com/helix-editor/helix/blob/6f463dbeb323dfbebe63a1f73be6773a9c93d540/languages.toml#L884
+[language-server]
+biome = { command = "biome", args = ["lsp-proxy"] }
+
+# Extend scss language to include *.xcss files
 [[language]]
 name = "scss"
 file-types = ["scss", "xcss"]
+
+[[language]]
+name = "javascript"
+language-servers = [ "biome", "typescript-language-server" ]
+auto-format = true
+
+[[language]]
+name = "typescript"
+language-servers = [ "biome", "typescript-language-server" ]
+auto-format = true
