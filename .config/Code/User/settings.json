@@ -1,15 +1,8 @@
 {
-  "crashReporting.enabled": "off",
-  "telemetry.enableCrashReporter": false, // deprecated but used by extensions
-  "telemetry.enableTelemetry": false, // deprecated but used by extensions
-  "telemetry.feedback.enabled": false,
-  "telemetry.telemetryLevel": "off",
-  "update.mode": "none", // use linux package manager
   "window.autoDetectHighContrast": false,
-  "window.customTitleBarVisibility": "auto",
-  "window.titleBarStyle": "custom",
   "window.restoreWindows": "preserve",
-  "window.menuBarVisibility": "compact",
+  "window.titleBarStyle": "custom",
+  "window.menuBarVisibility": "classic",
   "workbench.activityBar.location": "top",
   "workbench.colorCustomizations": {
     "editorInlayHint.background": "#00000000",
@@ -35,24 +28,15 @@
   "explorer.confirmDragAndDrop": false,
   "explorer.confirmDelete": false,
   "editor.accessibilitySupport": "off",
-  "editor.aiStats.enabled": true, // EXPERIMENTAL
   "editor.bracketPairColorization.enabled": true,
-  // "editor.experimental.asyncTokenization": true,
-  // "editor.experimental.preferTreeSitter.ini": true,
-  // "editor.experimental.preferTreeSitter.typescript": true,
-  "editor.experimental.treeSitterTelemetry": false,
   "editor.folding": false,
-  // "editor.fontFamily": "'JetBrains Mono', monospace, 'Noto Emoji', 'Noto Color Emoji'",
-  // "editor.fontFamily": "'Monaspace Neon', monospace, 'Noto Emoji', 'Noto Color Emoji'",
-  "editor.fontFamily": "'Monaspace Neon Var', monospace, 'Noto Emoji', 'Noto Color Emoji'",
+  "editor.fontFamily": "'Monaspace Neon', monospace",
   // https://github.com/githubnext/monaspace#visual-studio-code
-  // "editor.fontLigatures": "'calt', 'liga', 'ss07', 'ss08'",
   "editor.fontLigatures": "'calt', 'liga'",
   "editor.fontSize": 15,
   "editor.guides.bracketPairs": "active",
   "editor.inlayHints.enabled": "onUnlessPressed",
   "editor.inlineSuggest.enabled": true,
-  // "editor.inlineSuggest.suppressSuggestions": true,
   "editor.minimap.enabled": true,
   "editor.minimap.renderCharacters": false,
   "editor.renderControlCharacters": true,
@@ -123,12 +107,12 @@
   "debug.allowBreakpointsEverywhere": false,
   "terminal.integrated.defaultProfile.linux": "bash",
   // "terminal.integrated.defaultProfile.linux": "sandbox",
-  // "terminal.integrated.profiles.linux": {
-  //   "sandbox": {
-  //     "path": "/home/max/.local/bin/sandbox.sh",
-  //     "args": []
-  //   }
-  // },
+  "terminal.integrated.profiles.linux": {
+    "sandbox": {
+      "path": "/home/max/.local/bin/sandbox.sh",
+      "args": []
+    }
+  },
   // "terminal.integrated.shellIntegration.enabled": false,
   "task.allowAutomaticTasks": "off",
   "task.autoDetect": "off",
@@ -156,12 +140,12 @@
   "typescript.inlayHints.variableTypes.enabled": true,
   "typescript.npm": "bun",
   "typescript.referencesCodeLens.enabled": true,
-  "typescript.surveys.enabled": false,
   "typescript.tsc.autoDetect": "off",
 
   "biome.enabled": false,
   "biome.requireConfiguration": true,
   "biome.suggestInstallingGlobally": false,
+  "githubPullRequests.pullBranch": "never",
   "harper.codeActions.ForceStable": true,
   "harper.dialect": "British",
   "harper.isolateEnglish": true,
@@ -171,23 +155,11 @@
   "zig.zls.path": "zls",
   "zig.zls.warnStyle": true,
 
-  // "[css][html][json][jsonc][markdown][scss][xml][yaml]": {
-  //   "editor.codeActionsOnSave": {
-  //     "source.organizeImports": "explicit",
-  //     "source.fixAll": "explicit"
-  //   },
-  //   "editor.defaultFormatter": "biomejs.biome"
-  // },
-  // "[javascript][javascriptreact][typescript][typescriptreact]": {
-  //   "editor.codeActionsOnSave": {
-  //     "source.sortImports": "never",
-  //     "source.organizeImports": "never",
-  //     "source.organizeImports.biome": "explicit",
-  //     "source.fixAll": "never"
-  //   },
-  //   "editor.defaultFormatter": "biomejs.biome"
-  // },
+  "[html]": {
+    "editor.defaultFormatter": "LorisCro.super",
+  },
   "[markdown]": {
+    "diffEditor.ignoreTrimWhitespace": false,
     "editor.lineNumbers": "interval",
     "editor.rulers": [80],
     "editor.wordWrap": "bounded",
@@ -198,6 +170,8 @@
       "other": "off"
     },
     "editor.renderWhitespace": "boundary",
+    "editor.unicodeHighlight.ambiguousCharacters": true,
+    "editor.unicodeHighlight.invisibleCharacters": true,
     "files.trimTrailingWhitespace": false
   },
   "[yaml]": {
@@ -212,59 +186,30 @@
     "editor.stickyScroll.defaultModel": "foldingProviderModel"
   },
 
-  "chat.agent.enabled": true,
-  // "github.copilot.enable": {
-  //   "*": true,
-  //   "plaintext": false,
-  //   "markdown": false,
-  //   "scminput": false
-  // },
-  // "github.copilot.chat.agent.thinkingTool": true,
-  // "github.copilot.chat.codesearch.enabled": true,
-  // "github.copilot.chat.completionContext.typescript.mode": "sidecar",
-  // "github.copilot.chat.editor.temporalContext.enabled": true,
-  // "github.copilot.chat.edits.temporalContext.enabled": true,
-  // "github.copilot.chat.followUps": "firstOnly",
-  // "github.copilot.chat.generateTests.codeLens": true,
-  // "github.copilot.chat.languageContext.fix.typescript.enabled": true,
-  // "github.copilot.chat.languageContext.inline.typescript.enabled": true,
-  // "github.copilot.chat.languageContext.typescript.enabled": true,
-  // "github.copilot.chat.localeOverride": "en",
-  // "github.copilot.chat.newWorkspaceCreation.enabled": true,
-  // "github.copilot.chat.scopeSelection": true,
-  // "github.copilot.chat.search.keywordSuggestions": true,
-  // "github.copilot.chat.search.semanticTextResults": true,
-  // "github.copilot.editor.enableCodeActions": true,
-  // "github.copilot.nextEditSuggestions.enabled": true,
-  // "github.copilot.nextEditSuggestions.fixes": true,
-  // "githubPullRequests.pullBranch": "never",
-  // "vsintellicode.java.completionsEnabled": false,
-  // "vsintellicode.modify.editor.suggestSelection": "choseToUpdateConfiguration",
-  // "vsintellicode.python.completionsEnabled": false,
-
-  // "chat.commandCenter.enabled": false,
-  "chat.disableAIFeatures": true, // disable built-in GitHub Copilot
-  "github.copilot.enable": { "*": false },
-  "github.copilot.editor.enableAutoCompletions": false,
-  "github.copilot.editor.enableCodeActions": false,
-  "github.copilot.nextEditSuggestions.enabled": false,
-  "github.copilot.renameSuggestions.triggerAutomatically": false,
-
-  "gitlens.keymap": "none",
+  "update.mode": "none", // use linux package manager
+  "telemetry.enableCrashReporter": false, // deprecated but used by extensions
+  "telemetry.enableTelemetry": false, // deprecated but used by extensions
+  "telemetry.feedback.enabled": false,
+  "telemetry.telemetryLevel": "off",
+  "lldb.suppressUpdateNotifications": true,
   "hardhat.telemetry": false,
   "liveshare.presence": true,
   "solidity.telemetry": false,
 
+  "chat.disableAIFeatures": true, // disable built-in GitHub Copilot
   "chat.mcp.gallery.enabled": true,
   "amp.url": "https://ampcode.com/",
   "amp.tab.enabled": true,
-  "amp.experimental.librarian": true,
-  "amp.experimental.reviewTool": true,
   "amp.tab.experimental.review": true,
-  "amp.tab.experimental.showHotStreakProgress": true,
   "amp.tab.experimental.unobtrusiveDiffs": true,
   "amp.tab.hoverDiagnosticSuggestions": true,
-  "lldb.suppressUpdateNotifications": true,
+  "amp.anthropic.thinking.enabled": true,
+  "amp.notifications.enabled": true,
+  "amp.review.separatePanel": true,
+  "amp.todos.enabled": true,
+  "amp.experimental.gitblame": true,
+  "amp.experimental.planMode": true,
+  "amp.experimental.promptAutocompleteMode": "tab",
   "amp.mcpServers": {
     "playwright": {
       "command": "bunx",
@@ -275,5 +220,43 @@
       ],
       "env": {}
     }
-  }
+  },
+  "amp.mcpTrustedServers": [
+    {
+      "serverName": "filesystem",
+      "specHash": "4ddd81102acaa56dc0d721106a3c6da3308161da65d72d94dca87b11c1443489",
+      "allow": true
+    },
+    {
+      "serverName": "playwright",
+      "specHash": "12f5d9511aaf96e5355a949667e0a177ceda58bf68b29005f260a90a3cbab576",
+      "allow": true
+    },
+    {
+      "serverName": "filesystem",
+      "specHash": "fca328ddc423c1fb18508182e731fda4275b74b1c847b9d3a6647ac69918179c",
+      "allow": true
+    }
+  ],
+  "amp.workspaces": [
+    {
+      "path": "/home/max/Projects/_packages/bun-duckdb",
+      "allowAllMcpServers": true
+    },
+    {
+      "path": "/home/max/Projects/new-tab",
+      "allowAllMcpServers": true
+    },
+    {
+      "path": "/home/max/Projects/_packages/stage1",
+      "allowAllMcpServers": true
+    }
+  ],
+
+  // Injected by superhtml extension
+  "superhtml.EnsureBuiltinHTMLExtensionIsDisabled": false,
+  "html.suggest.html5": false,
+  "html.autoClosingTags": false,
+  "html.hover.documentation": false,
+  "html.hover.references": false,
 }
