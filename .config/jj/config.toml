@@ -15,9 +15,19 @@ b = ["log", "-r", "@ | ancestors(remote_bookmarks().., 2) | trunk()"]
 l = ["log", "-r", "::@", "-T", "builtin_log_comfortable"]
 ll = ["log", "-r", "::@", "-T", 'builtin_log_comfortable ++ diff.stat(72) ++ "\n"']
 clone = ["git", "clone", "--colocate"]
-push = ["git", "push"]
 # TODO: Remove once sync PR lands: https://github.com/jj-vcs/jj/pull/6826
 sync = ["util", "exec", "--", "sh", "-c", "jj git fetch && jj rebase -d 'trunk()' --skip-emptied"]
+# # https://github.com/jj-vcs/jj/issues/1039#issuecomment-3498526645
+# pull = ["util", "exec", "--", "bash", "-c", """
+# if [ -z "$1" ]; then
+#   echo "missing branch"
+#   exit 1
+# fi
+# set -euo pipefail
+# jj git fetch -b $1
+# jj rebase -s "at_operation(@-, $1+) & mutable()" -d $1
+# """, ""]
+push = ["git", "push"]
 
 # https://github.com/sunshowers/dotfiles/blob/main/dot_jjconfig.toml
 s = ["show", "@-"]
