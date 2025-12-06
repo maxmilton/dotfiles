@@ -198,29 +198,31 @@
 
   "chat.disableAIFeatures": true, // disable built-in GitHub Copilot
   "chat.mcp.gallery.enabled": true,
-  "amp.url": "https://ampcode.com/",
-  "amp.tab.enabled": true,
-  "amp.tab.experimental.review": true,
-  "amp.tab.experimental.unobtrusiveDiffs": true,
-  "amp.tab.hoverDiagnosticSuggestions": true,
-  "amp.anthropic.thinking.enabled": true,
+  "amp.experimental.courseCorrection.enabled": true,
+  // "amp.experimental.dojoMode": true,
+  "amp.experimental.guidanceFilesInContext": true,
+  "amp.experimental.planMode": true,
+  "amp.experimental.reviewSubagent": true,
   "amp.notifications.enabled": true,
   "amp.review.separatePanel": true,
+  "amp.showCosts": true,
+  "amp.tab.enabled": true,
+  "amp.tab.experimental.showHotStreakProgress": true,
+  "amp.tab.experimental.unobtrusiveDiffs": true,
+  "amp.tab.hoverDiagnosticSuggestions": true,
   "amp.todos.enabled": true,
-  "amp.experimental.gitblame": true,
-  "amp.experimental.planMode": true,
-  "amp.experimental.promptAutocompleteMode": "tab",
-  "amp.mcpServers": {
-    "playwright": {
-      "command": "bunx",
-      "args": [
-        "@playwright/mcp",
-        "--headless",
-        "--isolated"
-      ],
-      "env": {}
-    }
-  },
+  "amp.url": "https://ampcode.com/",
+  // "amp.mcpServers": {
+  //   "playwright": {
+  //     "command": "bunx",
+  //     "args": [
+  //       "@playwright/mcp",
+  //       "--headless",
+  //       "--isolated"
+  //     ],
+  //     "env": {}
+  //   }
+  // },
   "amp.mcpTrustedServers": [
     {
       "serverName": "filesystem",
