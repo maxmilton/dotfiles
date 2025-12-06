@@ -1,120 +1,109 @@
-// Zed settings
-//
-// For information on how to configure Zed, see the Zed
-// documentation: https://zed.dev/docs/configuring-zed
-//
-// To see all of Zed's default settings without changing your
-// custom settings, run `zed: open default settings` from the
-// command palette (cmd-shift-p / ctrl-shift-p)
+// https://zed.dev/docs/configuring-zed
+// @see `zed: open default settings`
 {
-  "base_keymap": "Atom",
-  "icon_theme": "Catppuccin Mocha",
-  "theme": "Catppuccin Mocha",
-  "buffer_font_family": "CommitMono",
-  "buffer_font_size": 14,
-  "buffer_font_weight": 300,
-  // "buffer_font_features": {
-  //   "calt": false
-  // },
-  // "show_whitespaces": "boundary",
-  "inlay_hints": {
-    "enabled": true,
-    "show_value_hints": true,
-    "toggle_on_modifiers_press": {
-      "alt": true,
-      "control": true
-    }
-  },
-  "minimap": {
-    "show": "auto"
-  },
-  "wrap_guides": [
-    80,
-    100,
-    120
-  ],
-  "soft_wrap": "editor_width",
-  "agent": {
-    "default_model": {
-      "provider": "zed.dev",
-      "model": "claude-sonnet-4"
-    },
-    "model_parameters": [],
-    "always_allow_tool_actions": false,
-    "play_sound_when_agent_done": true,
-    "use_modifier_to_send": true
-  },
-  "context_servers": {},
-  "formatter": "language_server",
-  // "languages": {
-  //   "CSS": {
-  //     "prettier": {
-  //       "allowed": false
-  //     },
-  //     "formatter": {
-  //       "language_server": {
-  //         "name": "biome"
-  //       }
-  //     },
-  //     "code_actions_on_format": {
-  //       "source.fixAll.biome": true,
-  //       "source.organizeImports.biome": true
-  //     }
-  //   },
-  //   "SCSS": {
-  //     "prettier": {
-  //       "allowed": false
-  //     },
-  //     "formatter": {
-  //       "language_server": {
-  //         "name": "biome"
-  //       }
-  //     },
-  //     "code_actions_on_format": {
-  //       "source.fixAll.biome": true,
-  //       "source.organizeImports.biome": true
-  //     }
-  //   },
-  //   "JavaScript": {
-  //     "prettier": {
-  //       "allowed": false
-  //     },
-  //     "formatter": {
-  //       "language_server": {
-  //         "name": "biome"
-  //       }
-  //     },
-  //     "code_actions_on_format": {
-  //       "source.fixAll.biome": true,
-  //       "source.organizeImports.biome": true
-  //     }
-  //   },
-  //   "TypeScript": {
-  //     "prettier": {
-  //       "allowed": false
-  //     },
-  //     "formatter": {
-  //       "language_server": {
-  //         "name": "biome"
-  //       }
-  //     },
-  //     "code_actions_on_format": {
-  //       "source.fixAll.biome": true,
-  //       "source.organizeImports.biome": true
-  //     }
-  //   }
-  // },
-  "languages": {
-    "Zig": {
-      "language_servers": [
-        "zls",
-        "codebook",
-        "..."
-      ]
-    }
-  },
-  "telemetry": {
-    "diagnostics": false,
-    "metrics": false
-  }
+	"helix_mode": false,
+	"base_keymap": "Atom",
+	"icon_theme": "Catppuccin Mocha",
+	"theme": "Catppuccin Mocha",
+	"buffer_font_family": "CommitMono",
+	// "buffer_font_size": 14,
+	"buffer_font_weight": 300,
+	// "buffer_font_features": {
+	// 	"calt": false
+	// },
+	// "show_whitespaces": "boundary",
+	"diagnostics": {
+		"inline": {
+			"enabled": true
+		}
+	},
+	"inlay_hints": {
+		"enabled": true,
+		"show_value_hints": true,
+		"toggle_on_modifiers_press": {
+			"alt": true,
+			"control": true
+		}
+	},
+	"minimap": {
+		"show": "auto"
+	},
+	"wrap_guides": [80, 100, 120],
+	"soft_wrap": "editor_width",
+	"agent": {
+		"play_sound_when_agent_done": true,
+		"use_modifier_to_send": true
+	},
+	"formatter": "language_server",
+	// "language_servers": ["codebook", "..."],
+	"languages": {
+		"CSS": {
+			"code_actions_on_format": {
+				"source.organizeImports": true,
+				"source.organizeImports.biome": true,
+				"source.fixAll": true,
+				"source.fixAll.biome": true
+			},
+			"formatter": { "language_server": { "name": "biome" } },
+			"prettier": { "allowed": false }
+		},
+		"JSON": {
+			"code_actions_on_format": {
+				"source.organizeImports": true,
+				"source.organizeImports.biome": true,
+				"source.fixAll": true,
+				"source.fixAll.biome": true
+			},
+			"formatter": { "language_server": { "name": "biome" } },
+			"prettier": { "allowed": false }
+		},
+		"JSONC": {
+			"code_actions_on_format": {
+				"source.organizeImports": true,
+				"source.organizeImports.biome": true,
+				"source.fixAll": true,
+				"source.fixAll.biome": true
+			},
+			"formatter": { "language_server": { "name": "biome" } },
+			"prettier": { "allowed": false }
+		},
+		"Markdown": {
+			"soft_wrap": "bounded",
+			"prettier": { "allowed": false }
+		},
+		"JavaScript": {
+			"code_actions_on_format": {
+				"source.organizeImports": true,
+				"source.organizeImports.biome": true,
+				"source.fixAll": true,
+				"source.fixAll.biome": true
+			},
+			"formatter": { "language_server": { "name": "biome" } },
+			"prettier": { "allowed": false }
+		},
+		"TypeScript": {
+			"code_actions_on_format": {
+				"source.organizeImports": true,
+				"source.organizeImports.biome": true,
+				"source.fixAll": true,
+				"source.fixAll.biome": true
+			},
+			"formatter": { "language_server": { "name": "biome" } },
+			"prettier": { "allowed": false }
+		},
+		"TSX": {
+			"code_actions_on_format": {
+				"source.organizeImports": true,
+				"source.organizeImports.biome": true,
+				"source.fixAll": true,
+				"source.fixAll.biome": true
+			},
+			"formatter": { "language_server": { "name": "biome" } },
+			"prettier": { "allowed": false }
+		}
+	},
+	"telemetry": {
+		"diagnostics": false,
+		"metrics": false
+	}
 }
