@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "@biomejs/biome": "^2.3.8",
-    "@modelcontextprotocol/server-filesystem": "^2025.11.25",
+    "@modelcontextprotocol/server-filesystem": "^2026.0.0",
     "@playwright/mcp": "^0.0.50",
     "@sourcegraph/amp": "^0.0.1764964872-g324cf3",
     "bash-language-server": "^5.6.0",
