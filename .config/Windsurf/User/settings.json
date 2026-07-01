@@ -208,7 +208,7 @@
   "chat.mcp.gallery.enabled": true,
   "devin.acp.preferredAgent": "devin-cli",
   "devin.acp.enabledAgents": { "devin-cli": true },
-  "windsurf.allowCascadeAccessGitignoreFiles": true
+  "devin.allowCascadeAccessGitignoreFiles": true
   // "windsurf.marketplaceExtensionGalleryServiceURL": "https://marketplace.visualstudio.com/_apis/public/gallery",
   // "windsurf.marketplaceGalleryItemURL": "https://marketplace.visualstudio.com/items"
 }
