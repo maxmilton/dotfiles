@@ -16,3 +16,5 @@
 coverage/
 node_modules/
 test-results/
+
+**/.claude/settings.local.json
