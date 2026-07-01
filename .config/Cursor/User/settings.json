@@ -1,14 +1,9 @@
 {
-  "crashReporting.enabled": "off",
-  "telemetry.enableCrashReporter": false,
-  "telemetry.enableTelemetry": false,
-  "telemetry.feedback.enabled": false,
-  "telemetry.telemetryLevel": "off",
-  "update.mode": "none",
+  "window.autoDetectColorScheme": false,
   "window.autoDetectHighContrast": false,
-  "window.customTitleBarVisibility": "auto",
-  "window.titleBarStyle": "custom",
   "window.restoreWindows": "preserve",
+  "window.titleBarStyle": "custom",
+  "window.menuBarVisibility": "classic",
   "workbench.activityBar.location": "top",
   "workbench.colorCustomizations": {
     "editorInlayHint.background": "#00000000",
@@ -17,7 +12,7 @@
     "editorInlayHint.parameterForeground": "#40434C",
     "editorInlayHint.typeBackground": "#00000000",
     "editorInlayHint.typeForeground": "#40434C",
-    "editorRuler.foreground": "#333333",
+    "editorRuler.foreground": "#333333"
   },
   "workbench.colorTheme": "Catppuccin Mocha",
   "workbench.editor.decorations.colors": true,
@@ -33,11 +28,12 @@
   "breadcrumbs.enabled": true,
   "explorer.confirmDragAndDrop": false,
   "explorer.confirmDelete": false,
+  "explorer.confirmPasteNative": true,
   "editor.accessibilitySupport": "off",
   "editor.bracketPairColorization.enabled": true,
-  "editor.experimental.treeSitterTelemetry": false,
   "editor.folding": false,
-  "editor.fontFamily": "'Monaspace Neon Var', monospace, 'Noto Emoji', 'Noto Color Emoji'",
+  "editor.fontFamily": "'Monaspace Neon', monospace",
+  // https://github.com/githubnext/monaspace#visual-studio-code
   "editor.fontLigatures": "'calt', 'liga'",
   "editor.fontSize": 15,
   "editor.guides.bracketPairs": "active",
@@ -52,9 +48,9 @@
   "editor.semanticTokenColorCustomizations": {
     "rules": {
       "*.deprecated": {
-        "strikethrough": true,
-      },
-    },
+        "strikethrough": true
+      }
+    }
   },
   "editor.snippetSuggestions": "top",
   "editor.suggest.matchOnWordStartOnly": false,
@@ -62,18 +58,20 @@
   "editor.suggest.showStatusBar": true,
   "editor.suggestSelection": "first",
   "editor.tabSize": 2,
+  "editor.unicodeHighlight.ambiguousCharacters": true,
+  "editor.unicodeHighlight.invisibleCharacters": true,
   "editor.wordBasedSuggestions": "allDocuments",
   "editor.wordWrap": "on",
   "debug.confirmOnExit": "always",
   "diffEditor.ignoreTrimWhitespace": false,
   "extensions.ignoreRecommendations": true,
   "files.associations": {
-    ".env.*": "properties",
+    ".env.*": "properties"
   },
   "files.exclude": {
     "**/.*cache": true,
     "**/.git": true,
-    "**/.jj": true,
+    "**/.jj": true
   },
   "files.insertFinalNewline": true,
   "files.trimTrailingWhitespace": true,
@@ -98,7 +96,7 @@
     "**/test-results/**": true,
     "**/tmp/**": true,
     "**/var/**": true,
-    "**/zig-out/**": true,
+    "**/zig-out/**": true
   },
   "search.seedWithNearestWord": true,
   "search.smartCase": true,
@@ -113,12 +111,12 @@
   "debug.allowBreakpointsEverywhere": false,
   "terminal.integrated.defaultProfile.linux": "bash",
   // "terminal.integrated.defaultProfile.linux": "sandbox",
-  // "terminal.integrated.profiles.linux": {
-  //   "sandbox": {
-  //     "path": "/home/max/.local/bin/sandbox.sh",
-  //     "args": [],
-  //   },
-  // },
+  "terminal.integrated.profiles.linux": {
+    "sandbox": {
+      "path": "/home/max/.local/bin/sandbox.sh",
+      "args": []
+    }
+  },
   // "terminal.integrated.shellIntegration.enabled": false,
   "task.allowAutomaticTasks": "off",
   "task.autoDetect": "off",
@@ -146,25 +144,21 @@
   "typescript.inlayHints.variableTypes.enabled": true,
   "typescript.npm": "bun",
   "typescript.referencesCodeLens.enabled": true,
-  "typescript.surveys.enabled": false,
   "typescript.tsc.autoDetect": "off",
 
-  "biome.enabled": false,
   "biome.requireConfiguration": true,
   "biome.suggestInstallingGlobally": false,
-  "cursor.composer.shouldChimeAfterChatFinishes": true,
-  "cursor.cpp.disabledLanguages": ["plaintext", "markdown", "scminput"],
-  "cursor.cpp.enablePartialAccepts": true,
+  "claudeCode.preferredLocation": "panel",
+  "githubPullRequests.pullBranch": "never",
   "harper.codeActions.ForceStable": true,
-  "harper.dialect": "British",
-  "harper.isolateEnglish": true,
-  "redhat.telemetry.enabled": false,
+  // "harper.dialect": "British",
   "zig.path": "zig",
   "zig.zls.enabled": "on",
   "zig.zls.path": "zls",
   "zig.zls.warnStyle": true,
 
   "[markdown]": {
+    "diffEditor.ignoreTrimWhitespace": false,
     "editor.lineNumbers": "interval",
     "editor.rulers": [80],
     "editor.wordWrap": "bounded",
@@ -172,10 +166,16 @@
     "editor.quickSuggestions": {
       "comments": "off",
       "strings": "off",
-      "other": "off",
+      "other": "off"
     },
     "editor.renderWhitespace": "boundary",
-    "files.trimTrailingWhitespace": false,
+    "editor.unicodeHighlight.ambiguousCharacters": true,
+    "editor.unicodeHighlight.invisibleCharacters": true,
+    "files.trimTrailingWhitespace": false
+  },
+  "[plaintext]":  {
+    "editor.unicodeHighlight.ambiguousCharacters": true,
+    "editor.unicodeHighlight.invisibleCharacters": true
   },
   "[yaml]": {
     "editor.defaultFormatter": "redhat.vscode-yaml",
@@ -186,6 +186,35 @@
     "editor.formatOnSave": true,
     "editor.tabSize": 4,
     "editor.suggest.insertMode": "replace",
-    "editor.stickyScroll.defaultModel": "foldingProviderModel",
+    "editor.stickyScroll.defaultModel": "foldingProviderModel"
   },
+
+  "json.schemaDownload.trustedDomains": {
+    "https://schemastore.azurewebsites.net/": true,
+    "https://raw.githubusercontent.com/microsoft/vscode/": true,
+    "https://raw.githubusercontent.com/devcontainers/spec/": true,
+    "https://www.schemastore.org/": true,
+    "https://json.schemastore.org/": true,
+    "https://json-schema.org/": true,
+    "https://developer.microsoft.com/json-schemas/": true
+  },
+
+  "update.mode": "none", // use linux package manager
+  "telemetry.enableCrashReporter": false, // deprecated but used by extensions
+  "telemetry.enableTelemetry": false, // deprecated but used by extensions
+  "telemetry.feedback.enabled": false,
+  "telemetry.telemetryLevel": "off",
+  "hardhat.telemetry": false,
+  "liveshare.presence": true,
+  "lldb.suppressUpdateNotifications": true,
+  "redhat.telemetry.enabled": false,
+  "solidity.telemetry": false,
+
+  // "chat.disableAIFeatures": true, // disable built-in GitHub Copilot
+  "chat.mcp.gallery.enabled": true,
+  "cursor.composer.shouldChimeAfterChatFinishes": true,
+  "cursor.cpp.disabledLanguages": ["plaintext", "markdown", "scminput"],
+  "cursor.cpp.enablePartialAccepts": true,
+  "cursor.general.emailPrivacyEnabled": true,
+
 }

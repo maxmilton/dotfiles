@@ -1,4 +1,5 @@
 {
+  "window.autoDetectColorScheme": false,
   "window.autoDetectHighContrast": false,
   "window.restoreWindows": "preserve",
   "window.titleBarStyle": "custom",
@@ -27,6 +28,7 @@
   "breadcrumbs.enabled": true,
   "explorer.confirmDragAndDrop": false,
   "explorer.confirmDelete": false,
+  "explorer.confirmPasteNative": true,
   "editor.accessibilitySupport": "off",
   "editor.bracketPairColorization.enabled": true,
   "editor.folding": false,
@@ -56,6 +58,8 @@
   "editor.suggest.showStatusBar": true,
   "editor.suggestSelection": "first",
   "editor.tabSize": 2,
+  "editor.unicodeHighlight.ambiguousCharacters": true,
+  "editor.unicodeHighlight.invisibleCharacters": true,
   "editor.wordBasedSuggestions": "allDocuments",
   "editor.wordWrap": "on",
   "debug.confirmOnExit": "always",
@@ -142,21 +146,19 @@
   "typescript.referencesCodeLens.enabled": true,
   "typescript.tsc.autoDetect": "off",
 
-  "biome.enabled": false,
   "biome.requireConfiguration": true,
   "biome.suggestInstallingGlobally": false,
+  "claudeCode.preferredLocation": "panel",
   "githubPullRequests.pullBranch": "never",
   "harper.codeActions.ForceStable": true,
-  "harper.dialect": "British",
-  "harper.isolateEnglish": true,
-  "redhat.telemetry.enabled": false,
+  // "harper.dialect": "British",
   "zig.path": "zig",
   "zig.zls.enabled": "on",
   "zig.zls.path": "zls",
   "zig.zls.warnStyle": true,
 
   "[html]": {
-    "editor.defaultFormatter": "LorisCro.super",
+    "editor.defaultFormatter": "LorisCro.super"
   },
   "[markdown]": {
     "diffEditor.ignoreTrimWhitespace": false,
@@ -174,6 +176,10 @@
     "editor.unicodeHighlight.invisibleCharacters": true,
     "files.trimTrailingWhitespace": false
   },
+  "[plaintext]":  {
+    "editor.unicodeHighlight.ambiguousCharacters": true,
+    "editor.unicodeHighlight.invisibleCharacters": true
+  },
   "[yaml]": {
     "editor.defaultFormatter": "redhat.vscode-yaml",
     "editor.autoIndent": "advanced"
@@ -186,79 +192,34 @@
     "editor.stickyScroll.defaultModel": "foldingProviderModel"
   },
 
+  "json.schemaDownload.trustedDomains": {
+    "https://schemastore.azurewebsites.net/": true,
+    "https://raw.githubusercontent.com/microsoft/vscode/": true,
+    "https://raw.githubusercontent.com/devcontainers/spec/": true,
+    "https://www.schemastore.org/": true,
+    "https://json.schemastore.org/": true,
+    "https://json-schema.org/": true,
+    "https://developer.microsoft.com/json-schemas/": true
+  },
+
   "update.mode": "none", // use linux package manager
   "telemetry.enableCrashReporter": false, // deprecated but used by extensions
   "telemetry.enableTelemetry": false, // deprecated but used by extensions
   "telemetry.feedback.enabled": false,
   "telemetry.telemetryLevel": "off",
-  "lldb.suppressUpdateNotifications": true,
   "hardhat.telemetry": false,
   "liveshare.presence": true,
+  "lldb.suppressUpdateNotifications": true,
+  "redhat.telemetry.enabled": false,
   "solidity.telemetry": false,
 
-  "chat.disableAIFeatures": true, // disable built-in GitHub Copilot
+  // "chat.disableAIFeatures": true, // disable built-in GitHub Copilot
   "chat.mcp.gallery.enabled": true,
-  "amp.experimental.courseCorrection.enabled": true,
-  // "amp.experimental.dojoMode": true,
-  "amp.experimental.guidanceFilesInContext": true,
-  "amp.experimental.planMode": true,
-  "amp.experimental.reviewSubagent": true,
-  "amp.notifications.enabled": true,
-  "amp.review.separatePanel": true,
-  "amp.showCosts": true,
-  "amp.tab.enabled": true,
-  "amp.tab.experimental.showHotStreakProgress": true,
-  "amp.tab.experimental.unobtrusiveDiffs": true,
-  "amp.tab.hoverDiagnosticSuggestions": true,
-  "amp.todos.enabled": true,
-  "amp.url": "https://ampcode.com/",
-  // "amp.mcpServers": {
-  //   "playwright": {
-  //     "command": "bunx",
-  //     "args": [
-  //       "@playwright/mcp",
-  //       "--headless",
-  //       "--isolated"
-  //     ],
-  //     "env": {}
-  //   }
-  // },
-  "amp.mcpTrustedServers": [
-    {
-      "serverName": "filesystem",
-      "specHash": "4ddd81102acaa56dc0d721106a3c6da3308161da65d72d94dca87b11c1443489",
-      "allow": true
-    },
-    {
-      "serverName": "playwright",
-      "specHash": "12f5d9511aaf96e5355a949667e0a177ceda58bf68b29005f260a90a3cbab576",
-      "allow": true
-    },
-    {
-      "serverName": "filesystem",
-      "specHash": "fca328ddc423c1fb18508182e731fda4275b74b1c847b9d3a6647ac69918179c",
-      "allow": true
-    }
-  ],
-  "amp.workspaces": [
-    {
-      "path": "/home/max/Projects/_packages/bun-duckdb",
-      "allowAllMcpServers": true
-    },
-    {
-      "path": "/home/max/Projects/new-tab",
-      "allowAllMcpServers": true
-    },
-    {
-      "path": "/home/max/Projects/_packages/stage1",
-      "allowAllMcpServers": true
-    }
-  ],
 
-  // Injected by superhtml extension
+  // Injected by SuperHTML (LorisCro.super) extension
   "superhtml.EnsureBuiltinHTMLExtensionIsDisabled": false,
   "html.suggest.html5": false,
   "html.autoClosingTags": false,
   "html.hover.documentation": false,
-  "html.hover.references": false,
+  "html.hover.references": false
 }
