@@ -1,7 +1,10 @@
 // https://zed.dev/docs/configuring-zed
 // @see `zed: open default settings`
 {
-	"project_panel": {
+	"edit_predictions": {
+  "provider": "mercury"
+ },
+ "project_panel": {
   "dock": "left"
  },
  "outline_panel": {
@@ -44,7 +47,7 @@
 	"soft_wrap": "editor_width",
 	"agent": {
 		"dock": "right",
-  "play_sound_when_agent_done": true,
+  "play_sound_when_agent_done": "when_hidden",
 		"use_modifier_to_send": true
 	},
 	"formatter": "language_server",

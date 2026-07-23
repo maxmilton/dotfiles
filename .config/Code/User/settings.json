@@ -213,6 +213,7 @@
   // "chat.disableAIFeatures": true, // disable built-in GitHub Copilot
   "chat.mcp.gallery.enabled": true,
   "chat.viewSessions.orientation": "stacked",
+  "prettify-ts.maxCharacters": 10000,
 
   // // Injected by SuperHTML (LorisCro.super) extension
   // "superhtml.EnsureBuiltinHTMLExtensionIsDisabled": false,
