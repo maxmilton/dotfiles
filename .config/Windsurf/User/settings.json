@@ -142,7 +142,8 @@
 
   "biome.requireConfiguration": true,
   "biome.suggestInstallingGlobally": false,
-  "claudeCode.preferredLocation": "panel",
+  "claudeCode.preferredLocation": "sidebar",
+  "evenBetterToml.formatter.alignComments": false,
   "githubPullRequests.pullBranch": "never",
   "harper.codeActions.ForceStable": true,
   // "harper.dialect": "British",
@@ -166,7 +167,7 @@
     "editor.unicodeHighlight.invisibleCharacters": true,
     "files.trimTrailingWhitespace": false
   },
-  "[plaintext]":  {
+  "[plaintext]": {
     "editor.unicodeHighlight.ambiguousCharacters": true,
     "editor.unicodeHighlight.invisibleCharacters": true
   },
@@ -206,9 +207,13 @@
 
   // "chat.disableAIFeatures": true, // disable built-in GitHub Copilot
   "chat.mcp.gallery.enabled": true,
+  "chat.viewSessions.orientation": "stacked",
   "devin.acp.preferredAgent": "devin-cli",
-  "devin.acp.enabledAgents": { "devin-cli": true },
-  "devin.allowCascadeAccessGitignoreFiles": true
+  "devin.acp.enabledAgents": {
+    "devin-cli": true
+  },
+  "devin.allowCascadeAccessGitignoreFiles": true,
+  "windsurf.allowCascadeAccessGitignoreFiles": true
   // "windsurf.marketplaceExtensionGalleryServiceURL": "https://marketplace.visualstudio.com/_apis/public/gallery",
   // "windsurf.marketplaceGalleryItemURL": "https://marketplace.visualstudio.com/items"
 }

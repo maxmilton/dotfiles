@@ -20,6 +20,7 @@
   "workbench.editor.wrapTabs": true,
   "workbench.editor.historyBasedLanguageDetection": true,
   "workbench.enableExperiments": false,
+  "workbench.experimental.modernUI": true,
   "workbench.iconTheme": "catppuccin-mocha",
   "workbench.list.defaultFindMode": "highlight",
   "workbench.settings.enableNaturalLanguageSearch": false,
@@ -142,7 +143,8 @@
 
   "biome.requireConfiguration": true,
   "biome.suggestInstallingGlobally": false,
-  "claudeCode.preferredLocation": "panel",
+  "claudeCode.preferredLocation": "sidebar",
+  "evenBetterToml.formatter.alignComments": false,
   "githubPullRequests.pullBranch": "never",
   "harper.codeActions.ForceStable": true,
   // "harper.dialect": "British",
@@ -170,7 +172,7 @@
     "editor.unicodeHighlight.invisibleCharacters": true,
     "files.trimTrailingWhitespace": false
   },
-  "[plaintext]":  {
+  "[plaintext]": {
     "editor.unicodeHighlight.ambiguousCharacters": true,
     "editor.unicodeHighlight.invisibleCharacters": true
   },
@@ -210,11 +212,14 @@
 
   // "chat.disableAIFeatures": true, // disable built-in GitHub Copilot
   "chat.mcp.gallery.enabled": true,
+  "chat.viewSessions.orientation": "stacked",
 
   // // Injected by SuperHTML (LorisCro.super) extension
   // "superhtml.EnsureBuiltinHTMLExtensionIsDisabled": false,
   // "html.suggest.html5": false,
   // "html.autoClosingTags": false,
   // "html.hover.documentation": false,
-  // "html.hover.references": false
+  // "html.hover.references": false,
+
+  // "js/ts.experimental.useTsgo": true // EXPERIMENTAL: Use typescript v7
 }

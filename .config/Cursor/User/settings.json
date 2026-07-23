@@ -142,7 +142,8 @@
 
   "biome.requireConfiguration": true,
   "biome.suggestInstallingGlobally": false,
-  "claudeCode.preferredLocation": "panel",
+  "claudeCode.preferredLocation": "sidebar",
+  "evenBetterToml.formatter.alignComments": false,
   "githubPullRequests.pullBranch": "never",
   "harper.codeActions.ForceStable": true,
   // "harper.dialect": "British",
@@ -167,7 +168,7 @@
     "editor.unicodeHighlight.invisibleCharacters": true,
     "files.trimTrailingWhitespace": false
   },
-  "[plaintext]":  {
+  "[plaintext]": {
     "editor.unicodeHighlight.ambiguousCharacters": true,
     "editor.unicodeHighlight.invisibleCharacters": true
   },
@@ -207,6 +208,7 @@
 
   // "chat.disableAIFeatures": true, // disable built-in GitHub Copilot
   "chat.mcp.gallery.enabled": true,
+  "chat.viewSessions.orientation": "stacked",
   "cursor.composer.shouldChimeAfterChatFinishes": true,
   "cursor.cpp.disabledLanguages": ["plaintext", "markdown", "scminput"],
   "cursor.cpp.enablePartialAccepts": true,
