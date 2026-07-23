@@ -3,7 +3,7 @@ Name=Visual Studio Code
 Comment=Code Editing. Redefined.
 GenericName=Text Editor
 Exec=/usr/bin/code --ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-wayland-ime --wayland-text-input-version=3 %F
-Icon=visual-studio-code
+Icon=vscode
 Type=Application
 StartupNotify=false
 StartupWMClass=Code
@@ -17,4 +17,4 @@ Name=New Empty Window
 Name[ja]=新しい空のウィンドウ
 Name[ko]=새 빈 창
 Exec=/usr/bin/code --ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-wayland-ime --wayland-text-input-version=3 --new-window %F
-Icon=visual-studio-code
+Icon=vscode

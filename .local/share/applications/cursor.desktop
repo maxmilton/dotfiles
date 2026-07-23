@@ -1,0 +1,20 @@
+[Desktop Entry]
+Name=Cursor
+Comment=The AI Code Editor.
+GenericName=Text Editor
+Exec=/usr/share/cursor/cursor --ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-wayland-ime --wayland-text-input-version=3 %F
+Icon=co.anysphere.cursor
+Type=Application
+StartupNotify=false
+StartupWMClass=Cursor
+Categories=TextEditor;Development;IDE;
+MimeType=application/x-cursor-workspace;
+Actions=new-empty-window;
+Keywords=cursor;
+
+[Desktop Action new-empty-window]
+Name=New Empty Window
+Name[ja]=新しい空のウィンドウ
+Name[ko]=새 빈 창
+Exec=/usr/share/cursor/cursor --ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-wayland-ime --wayland-text-input-version=3 --new-window %F
+Icon=co.anysphere.cursor

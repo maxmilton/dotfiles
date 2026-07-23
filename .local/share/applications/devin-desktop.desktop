@@ -1,0 +1,25 @@
+[Desktop Entry]
+Name=Devin
+Comment=Tomorrow's Editor, Today.
+Actions=new-empty-window;
+Categories=TextEditor;Development;IDE;
+Exec=/usr/bin/devin-desktop --ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-wayland-ime --wayland-text-input-version=3 %F
+GenericName=Text Editor
+Icon=devin-desktop
+Keywords=vscode;
+MimeType=application/x-devin-desktop-workspace;
+NoDisplay=false
+Path=
+PrefersNonDefaultGPU=false
+StartupNotify=false
+StartupWMClass=Devin
+Terminal=false
+TerminalOptions=
+Type=Application
+X-KDE-SubstituteUID=false
+X-KDE-Username=
+
+[Desktop Action new-empty-window]
+Name=New Empty Window
+Exec=/usr/bin/devin-desktop --ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-wayland-ime --wayland-text-input-version=3 --new-window %F
+Icon=devin-desktop
