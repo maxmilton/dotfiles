@@ -4,7 +4,14 @@ theme = "catppuccin_mocha"
 
 [editor]
 mouse = false
+bufferline = "multiple"
+cursorline = true
 rulers = [80, 100]
+
+# recommended at end of: https://docs.helix-editor.com/editor.html
+end-of-line-diagnostics = "hint"
+[editor.inline-diagnostics]
+cursor-line = "warning" # show warnings and errors on the cursorline inline
 
 [editor.soft-wrap]
 enable = true
@@ -21,7 +28,7 @@ display-inlay-hints = true
 [keys.normal]
 C-s = ":w"
 "C-/" = "toggle_comments"
-h = ":toggle lsp.display-inlay-hints"
 
 [keys.normal.space]
-W = [":toggle soft-wrap.enable", ":redraw"]
+W = ":toggle soft-wrap.enable"
+H = ":toggle lsp.display-inlay-hints"

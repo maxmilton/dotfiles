@@ -5,6 +5,11 @@
 [language-server]
 biome = { command = "biome", args = ["lsp-proxy"] }
 
+[[language]]
+name = "markdown"
+text-width = 80
+soft-wrap = { wrap-at-text-width = true }
+
 # Extend scss language to include *.xcss files
 [[language]]
 name = "scss"
