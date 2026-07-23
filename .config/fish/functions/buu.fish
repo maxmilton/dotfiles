@@ -6,5 +6,7 @@ function buu --description "Update bun dependencies interactively"
         --write \
         --no-install \
         --ignore-paths='**/*.bak/**' \
+        --maturity-period=7 \
+        --maturity-period-exclude='@maxmilton/*,bugbox,stage1' \
         latest $argv
 end
