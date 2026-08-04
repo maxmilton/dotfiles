@@ -1,9 +1,53 @@
+# https://docs.helix-editor.com/master/languages.html
 # When extending a built-in language, options like 'file-types' override the
 # default value, so the existing values must be included too.
 # https://github.com/helix-editor/helix/blob/master/languages.toml
 
-[language-server]
-biome = { command = "biome", args = ["lsp-proxy"] }
+[language-server.biome]
+command = "bunx"
+args = ["--no-install", "biome", "lsp-proxy"]
+required-root-patterns = ["biome.json", "biome.jsonc"]
+
+[language-server.oxlint]
+command = "bunx"
+args = ["--no-install", "oxlint", "--lsp"]
+required-root-patterns = [
+  ".oxlintrc.json",
+  ".oxlintrc.jsonc",
+  # "oxlint.config.ts",
+  # "oxlint.config.mts",
+]
+
+[language-server.oxfmt]
+command = "bunx"
+args = ["--no-install", "oxfmt", "--lsp"]
+required-root-patterns = [
+  ".oxfmtrc.json",
+  ".oxfmtrc.jsonc",
+  # "oxfmt.config.ts",
+  # "oxfmt.config.mts",
+]
+
+# TODO: Remove once natively supported: https://github.com/helix-editor/helix/pull/16026
+[language-server.tsc]
+command = "tsc"
+args = ["--lsp", "--stdio"]
+[language-server.tsc.config.typescript]
+format.enabled = false
+inlayHints.enumMemberValues.enabled = true
+inlayHints.functionLikeReturnTypes.enabled = true
+inlayHints.parameterTypes.enabled = true
+inlayHints.parameterNames.enabled = "all"
+inlayHints.propertyDeclarationTypes.enabled = true
+inlayHints.variableTypes.enabled = true
+[language-server.tsc.config.javascript]
+format.enabled = false
+inlayHints.enumMemberValues.enabled = true
+inlayHints.functionLikeReturnTypes.enabled = true
+inlayHints.parameterTypes.enabled = true
+inlayHints.parameterNames.enabled = "all"
+inlayHints.propertyDeclarationTypes.enabled = true
+inlayHints.variableTypes.enabled = true
 
 [[language]]
 name = "markdown"
@@ -17,10 +61,46 @@ file-types = ["scss", "xcss"]
 
 [[language]]
 name = "javascript"
-language-servers = [ "biome", "typescript-language-server" ]
+roots = [
+  "biome.json",
+  "biome.jsonc",
+  ".oxlintrc.json",
+  ".oxlintrc.jsonc",
+  # "oxlint.config.ts",
+  # "oxlint.config.mts",
+  ".oxfmtrc.json",
+  ".oxfmtrc.jsonc",
+  # "oxfmt.config.ts",
+  # "oxfmt.config.mts",
+  "package.json",
+]
+language-servers = [
+  { name = "tsc", except-features = ["format"] },
+  "biome",
+  { name = "oxlint", except-features = ["format"] },
+  { name = "oxfmt", only-features = ["format"] },
+]
 auto-format = true
 
 [[language]]
 name = "typescript"
-language-servers = [ "biome", "typescript-language-server" ]
+roots = [
+  "biome.json",
+  "biome.jsonc",
+  ".oxlintrc.json",
+  ".oxlintrc.jsonc",
+  # "oxlint.config.ts",
+  # "oxlint.config.mts",
+  ".oxfmtrc.json",
+  ".oxfmtrc.jsonc",
+  # "oxfmt.config.ts",
+  # "oxfmt.config.mts",
+  "package.json",
+]
+language-servers = [
+  { name = "tsc", except-features = ["format"] },
+  "biome",
+  { name = "oxlint", except-features = ["format"] },
+  { name = "oxfmt", only-features = ["format"] },
+]
 auto-format = true
