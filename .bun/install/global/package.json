@@ -1,8 +1,7 @@
 {
   "dependencies": {
-    "@playwright/mcp": "^0.0.78",
-    "npm": "^12.0.1",
-    "typescript": "^7.0.2",
-    "typescript-language-server": "^5.3.0"
+    "@playwright/mcp": "^0.0.79",
+    "npm": "^12.0.2",
+    "typescript": "^7.0.2"
   }
 }
