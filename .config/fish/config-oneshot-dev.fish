@@ -32,10 +32,6 @@ if test -d "$HOME"/develop/flutter/bin
     end
 end
 
-if test -d "$HOME"/.cargo/bin
-    fish_add_path "$HOME"/.cargo/bin
-end
-
 if test -d "$HOME"/.cache/rebar3/bin
     fish_add_path "$HOME"/.cache/rebar3/bin
 end
@@ -46,6 +42,10 @@ end
 
 if test -d "$HOME"/.foundry/bin
     fish_add_path "$HOME"/.foundry/bin
+end
+
+if test -d "$HOME"/.cargo/bin
+    fish_add_path "$HOME"/.cargo/bin
 end
 
 # if test -d "$HOME/.local/share/pnpm"
@@ -61,6 +61,10 @@ if test -d "$HOME"/.bun/bin
 end
 
 fish_add_path "$HOME"/.local/bin
+
+# if test -f "$HOME"/.grok/bin/grok
+#     ln -s "$HOME"/.grok/bin/grok "$HOME"/.local/bin/grok
+# end
 
 set -Ux DO_NOT_TRACK 1
 set -Ux EDITOR helix

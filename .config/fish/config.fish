@@ -26,7 +26,7 @@ abbr gg git
 abbr g 'git s'
 abbr j 'jj st'
 
-abbr bup 'bun upgrade; bun update -g --latest; claude upgrade; codex update; amp update'
+abbr bup 'bun upgrade; bun update -g --latest'
 abbr bu 'bun update -ir --latest --minimum-release-age=604800'
 abbr bi 'bun install'
 abbr br 'rm -f bun.lock; rm -rf **/node_modules; bun install -f'
