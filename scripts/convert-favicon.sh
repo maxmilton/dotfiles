@@ -28,10 +28,11 @@ optimize_png() {
   pngquant -f --quality=75-95 --speed 1 "$input" --output "$temp" || die "pngquant failed"
 
   # Step 2: oxipng (lossless, max compression, strip metadata)
-  oxipng -o max --strip all "$temp" || die "oxipng failed"
+  # oxipng -o max --strip all "$temp" || die "oxipng failed"
+  oxipng --zopfli -o max --strip all --out "$output" "$temp" || die "oxipng failed"
 
   # Step 3: zopflipng (final max compression)
-  zopflipng -y -m --filters=0meb --lossy_8bit --lossy_transparent "$temp" "$output" || die "zopflipng failed"
+  # zopflipng -y -m --filters=0meb --lossy_8bit --lossy_transparent "$temp" "$output" || die "zopflipng failed"
 }
 
 # Optimize logo
