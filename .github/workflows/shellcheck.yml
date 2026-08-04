@@ -5,9 +5,9 @@ on:
     branches:
       - master
     paths:
+      - ".github/workflows/shellcheck.yml"
       - "**.sh"
       - "**.fish"
-      - ".github/workflows/shellcheck.yml"
   pull_request:
   merge_group:
   workflow_dispatch:

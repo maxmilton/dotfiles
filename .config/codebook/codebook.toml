@@ -1,4 +1,27 @@
-dictionaries = ["en_us", "en_gb"]
-flag_words = ["todo", "fixme"]
-words = ["duckdb", "libduckdb", "tinyint", "smallint", "utinyint", "usmallint", "uinteger", "ubigint", "hugeint", "uhugeint", "bignum", "sqlnull", "varchar", "appender", "kcov", "cobertura"]
-ignore_paths = []
+dictionaries = [
+    "en_us",
+    "en_gb",
+]
+words = [
+    "appender",
+    "bignum",
+    "cobertura",
+    "duckdb",
+    "hugeint",
+    "kcov",
+    "libduckdb",
+    "oxlint",
+    "smallint",
+    "sqlnull",
+    "tinyint",
+    "ubigint",
+    "uhugeint",
+    "uinteger",
+    "usmallint",
+    "utinyint",
+    "varchar",
+]
+flag_words = [
+    "todo",
+    "fixme",
+]
