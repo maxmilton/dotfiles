@@ -20,6 +20,7 @@
   "workbench.editor.wrapTabs": true,
   "workbench.editor.historyBasedLanguageDetection": true,
   "workbench.enableExperiments": false,
+  "workbench.experimental.modernUI": true,
   "workbench.iconTheme": "catppuccin-mocha",
   "workbench.list.defaultFindMode": "highlight",
   "workbench.settings.enableNaturalLanguageSearch": false,
@@ -31,6 +32,7 @@
   "explorer.confirmPasteNative": true,
   "editor.accessibilitySupport": "off",
   "editor.bracketPairColorization.enabled": true,
+  "editor.copyWithSyntaxHighlighting": false,
   "editor.folding": false,
   "editor.fontFamily": "'Monaspace Neon', monospace",
   // https://github.com/githubnext/monaspace#visual-studio-code
@@ -147,6 +149,7 @@
   "githubPullRequests.pullBranch": "never",
   "harper.codeActions.ForceStable": true,
   // "harper.dialect": "British",
+  "prettify-ts.maxCharacters": 4000,
   "zig.path": "zig",
   "zig.zls.enabled": "on",
   "zig.zls.path": "zls",
@@ -192,7 +195,9 @@
     "https://schemastore.azurewebsites.net/": true,
     "https://raw.githubusercontent.com/catppuccin/vscode/": true,
     "https://raw.githubusercontent.com/devcontainers/spec/": true,
-    "https://raw.githubusercontent.com/microsoft/vscode/": true
+    "https://raw.githubusercontent.com/microsoft/vscode/": true,
+    "https://docs.renovatebot.com/": true,
+    "https://dprint.dev/schemas/": true
   },
 
   "update.mode": "none", // use linux package manager
