@@ -3,5 +3,7 @@
   "zig_exe_path": "/home/max/.local/bin/zig-latest/zig",
   "zig_lib_path": "/home/max/.local/bin/zig-latest/lib",
   "warn_style": true,
+  "inlay_hints_exclude_single_argument": false,
+  "inlay_hints_hide_redundant_param_names": true,
   "inlay_hints_hide_redundant_param_names_last_token": true
 }
