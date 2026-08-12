@@ -5,6 +5,7 @@
 # jj git fetch
 # jj rebase -d 'bookmarks(master)' --skip-emptied
 # jj rebase -d 'bookmarks(next)' --skip-emptied
+# jj simplify-parents -r @
 
 # TIP: What is immutable?: https://github.com/jj-vcs/jj/discussions/5669#discussioncomment-12178856
 
