@@ -12,7 +12,7 @@
     "editorInlayHint.parameterForeground": "#40434C",
     "editorInlayHint.typeBackground": "#00000000",
     "editorInlayHint.typeForeground": "#40434C",
-    "editorRuler.foreground": "#333333"
+    "editorRuler.foreground": "#333333",
   },
   "workbench.colorTheme": "Catppuccin Mocha",
   "workbench.editor.decorations.colors": true,
@@ -50,9 +50,9 @@
   "editor.semanticTokenColorCustomizations": {
     "rules": {
       "*.deprecated": {
-        "strikethrough": true
-      }
-    }
+        "strikethrough": true,
+      },
+    },
   },
   "editor.snippetSuggestions": "top",
   "editor.suggest.matchOnWordStartOnly": false,
@@ -67,13 +67,14 @@
   "debug.confirmOnExit": "always",
   "diffEditor.ignoreTrimWhitespace": false,
   "extensions.ignoreRecommendations": true,
+  "explorer.excludeGitIgnore": false,
   "files.associations": {
-    ".env.*": "properties"
+    ".env.*": "properties",
   },
   "files.exclude": {
     "**/.*cache": true,
     "**/.git": true,
-    "**/.jj": true
+    "**/.jj": true,
   },
   "files.insertFinalNewline": true,
   "files.trimTrailingWhitespace": true,
@@ -98,7 +99,11 @@
     "**/test-results/**": true,
     "**/tmp/**": true,
     "**/var/**": true,
-    "**/zig-out/**": true
+    "**/zig-out/**": true,
+    "**/zig-pkg/**": true,
+  },
+  "search.exclude": {
+    "**/.*cache": true,
   },
   "search.seedWithNearestWord": true,
   "search.smartCase": true,
@@ -116,8 +121,8 @@
   "terminal.integrated.profiles.linux": {
     "sandbox": {
       "path": "/home/max/.local/bin/sandbox.sh",
-      "args": []
-    }
+      "args": [],
+    },
   },
   // "terminal.integrated.shellIntegration.enabled": false,
   "task.allowAutomaticTasks": "off",
@@ -167,27 +172,27 @@
     "editor.quickSuggestions": {
       "comments": "off",
       "strings": "off",
-      "other": "off"
+      "other": "off",
     },
     "editor.renderWhitespace": "boundary",
     "editor.unicodeHighlight.ambiguousCharacters": true,
     "editor.unicodeHighlight.invisibleCharacters": true,
-    "files.trimTrailingWhitespace": false
+    "files.trimTrailingWhitespace": false,
   },
   "[plaintext]": {
     "editor.unicodeHighlight.ambiguousCharacters": true,
-    "editor.unicodeHighlight.invisibleCharacters": true
+    "editor.unicodeHighlight.invisibleCharacters": true,
   },
   "[yaml]": {
-    "editor.defaultFormatter": "redhat.vscode-yaml",
-    "editor.autoIndent": "advanced"
+    // "editor.defaultFormatter": "redhat.vscode-yaml",
+    "editor.autoIndent": "advanced",
   },
   "[zig]": {
     "editor.defaultFormatter": "ziglang.vscode-zig",
     "editor.formatOnSave": true,
     "editor.tabSize": 4,
     "editor.suggest.insertMode": "replace",
-    "editor.stickyScroll.defaultModel": "foldingProviderModel"
+    "editor.stickyScroll.defaultModel": "foldingProviderModel",
   },
 
   "json.schemaDownload.trustedDomains": {
@@ -199,8 +204,9 @@
     "https://raw.githubusercontent.com/catppuccin/vscode/": true,
     "https://raw.githubusercontent.com/devcontainers/spec/": true,
     "https://raw.githubusercontent.com/microsoft/vscode/": true,
+    "https://raw.githubusercontent.com/zigtools/zls/": true,
     "https://docs.renovatebot.com/": true,
-    "https://dprint.dev/schemas/": true
+    "https://dprint.dev/schemas/": true,
   },
 
   "update.mode": "none", // use linux package manager
@@ -215,8 +221,17 @@
   "solidity.telemetry": false,
 
   // "chat.disableAIFeatures": true, // disable built-in GitHub Copilot
+  "chat.agent.sandbox.enabled": "on",
+  "chat.agent.sandbox.fileSystem.userConfiguredPaths": {
+    "readonlyPaths": ["/home/max/.local/bin/zig-latest/**", "/home/max/.local/bin/zig-*/**"],
+  }, // TODO: Remove? vscode v1.134.0
   "chat.mcp.gallery.enabled": true,
+  "chat.stickyScroll.enabled": true,
+  "chat.experimental.stickyScroll.enabled": true,
   "chat.viewSessions.orientation": "stacked",
+  "diffEditor.renderSideBySide": true,
+  "harper.dialect": "Australian",
+  "git.openRepositoryInParentFolders": "always",
 
   // // Injected by SuperHTML (LorisCro.super) extension
   // "superhtml.EnsureBuiltinHTMLExtensionIsDisabled": false,
