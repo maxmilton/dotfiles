@@ -20,8 +20,8 @@ if test (uname -s) = Darwin
     end
 end
 
-if test -d "$HOME"/.fly/bin
-    fish_add_path "$HOME"/.fly/bin
+if test -f "$HOME"/.fly/bin/flyctl
+    ln -sfnv "$HOME"/.fly/bin/flyctl "$HOME"/.local/bin/fly
 end
 
 if test -d "$HOME"/develop/flutter/bin
@@ -48,11 +48,6 @@ if test -d "$HOME"/.cargo/bin
     fish_add_path "$HOME"/.cargo/bin
 end
 
-# if test -d "$HOME/.local/share/pnpm"
-#     fish_add_path "$HOME"/.local/share/pnpm
-#     set -U PNPM_HOME "$HOME"/.local/share/pnpm
-# end
-
 if test -d "$HOME"/.bun/bin
     fish_add_path "$HOME"/.bun/bin
     set -U BUN_INSTALL "$HOME"/.bun
@@ -62,12 +57,9 @@ end
 
 fish_add_path "$HOME"/.local/bin
 
-# if test -f "$HOME"/.grok/bin/grok
-#     ln -s "$HOME"/.grok/bin/grok "$HOME"/.local/bin/grok
-# end
-
 set -Ux DO_NOT_TRACK 1
-set -Ux EDITOR helix
+set -Ux EDITOR vi
+set -Ux VISUAL hx
 set -Ux ELECTRON_OZONE_PLATFORM_HINT auto
 
 if test -f "$XDG_RUNTIME_DIR"/ssh-agent.socket

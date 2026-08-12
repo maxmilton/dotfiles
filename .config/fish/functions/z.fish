@@ -1,18 +1,61 @@
 # Generated with: jump shell fish --bind=z
 
 function __jump_add --on-variable PWD
-  status --is-command-substitution; and return
-  jump chdir
+    status --is-command-substitution; and return
+    jump chdir
 end
 
 function __jump_hint
-  set -l term (string replace -r '^z ' '' -- (commandline -cp))
-  jump hint "$term"
+    set -l term (string replace -r '^z ' '' -- (commandline -cp))
+    jump hint "$term"
 end
 
 function z
-  set -l dir (jump cd "$argv")
-  test -d "$dir"; and cd "$dir"
+    set -l dir (jump cd "$argv")
+    test -d "$dir"; and cd "$dir"
 end
 
 complete --command z --exclusive --arguments '(__jump_hint)'
+
+# function __jump_add --on-variable PWD
+#     status --is-command-substitution; and return
+#     jump chdir
+# end
+
+# function __jump_hint
+#     set -l term (commandline --cut-at-cursor --current-token)
+#     set -l local_dirs (complete --do-complete "cd $term" | string match --regex -- '.*/$')
+
+#     if test (count $local_dirs) -gt 0
+#         printf '%s\n' $local_dirs
+#     else if not string match -q '*/*' -- $term
+#         jump hint "$term" | head -1
+#     end
+# end
+
+# function __jump_base_dir
+#     set -l base_dir $JUMP_BASE_DIR
+#     if test -z "$base_dir"
+#         set base_dir "$(command git rev-parse --show-toplevel 2>/dev/null)"
+#     end
+#     echo "$base_dir"
+# end
+
+# function z
+#     switch "$argv[1]"
+#         case ".."
+#             builtin cd ..
+#         case -
+#             builtin cd -
+#         case "."
+#             set argv[1] (__jump_base_dir)
+#             set -l dir (jump cd $argv)
+#             test -d "$dir"; and builtin cd "$dir"
+#         case '*'
+#             set -l dir (jump cd $argv)
+#             test -d "$dir"; and builtin cd "$dir"
+#     end
+# end
+
+# complete --command z --erase
+# complete --command z --no-files --arguments '(__jump_hint)'

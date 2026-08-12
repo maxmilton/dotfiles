@@ -1,8 +1,11 @@
-function ggg
-    set -l branch (git branch --sort=-committerdate --format "%(refname:short)" | fzy --lines max --query="$argv")
-    if test -n "$branch"
-        git switch "$branch"
-    else
-        return 1
-    end
+function ggg --description 'Interactive git switch branch'
+    set -l branch (
+        git branch --color=always --no-column --sort=-committerdate |
+        fzy --lines=max --query="$argv"
+    )
+    or return
+
+    set branch (string replace -ra '^[*+ ] |\x1b\[[0-?]*[ -/]*[@-~]' '' -- "$branch")
+
+    git switch --merge -- "$branch"
 end

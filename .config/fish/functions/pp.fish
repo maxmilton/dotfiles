@@ -4,14 +4,18 @@ function __pp_msg
     set_color normal
 end
 
-function pp
+function pp --description 'Update system'
     if ! isatty stdout
         echo 'Must be run with stdout attached to a terminal, exiting'
         return 1
     end
 
     __pp_msg 'Updating system...'
-    paru -Syu; or return
+    set -l update_args -Syu
+    if contains -- -f $argv
+        set update_args -Syyu
+    end
+    paru $update_args; or return
 
     if test -d /home/max/.machines/brave
         __pp_msg 'Updating brave container'
@@ -73,6 +77,11 @@ function pp
         sudo systemd-nspawn --capability=CAP_IPC_LOCK -D /var/lib/machines/alpine sh -c 'apk upgrade'; or return
     end
 
+    if command -q codex
+        __pp_msg 'Updating AI: codex'
+        codex update; or return
+    end
+
     if command -q claude
         __pp_msg 'Updating AI: claude'
         claude upgrade; or return
@@ -86,11 +95,6 @@ function pp
     if command -q grok
         __pp_msg 'Updating AI: grok'
         grok update; or return
-    end
-
-    if command -q codex
-        __pp_msg 'Updating AI: codex'
-        codex update; or return
     end
 
     __pp_msg 'Updating system firmware...'
