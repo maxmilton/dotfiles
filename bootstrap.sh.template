@@ -9,9 +9,15 @@ script_dir=$(CDPATH='' cd -- "$(dirname -- "$0")" && pwd -P)
 umask 077
 
 # mkdir -vp ~/.bun/install/global
+# mkdir -vp ~/.claude/docs
+# mkdir -vp ~/.claude/rules
+# mkdir -vp ~/.codex
 # mkdir -vp ~/.config/amp
+# mkdir -vp ~/.config/ccache
 # mkdir -vp ~/.config/Code/User
 # mkdir -vp ~/.config/Cursor/User
+mkdir -vp ~/.config/pacman
+mkdir -vp ~/.config/paru
 # mkdir -vp ~/.config/Windsurf/User
 mkdir -vp ~/.config/fish/functions
 mkdir -vp ~/.config/ghostty/themes
@@ -19,6 +25,7 @@ mkdir -vp ~/.config/helix
 # mkdir -vp ~/.config/ion
 mkdir -vp ~/.config/jj
 # mkdir -vp ~/.config/mpv
+# mkdir -vp ~/.config/yt-dlp/plugins/smart-subs/yt_dlp_plugins/extractor
 # mkdir -vp ~/.config/zed
 mkdir -vp ~/.gnupg/private-keys-v1.d
 mkdir -vp ~/.local/bin
@@ -26,7 +33,12 @@ mkdir -vp ~/.local/share/applications
 mkdir -vp ~/.ssh
 
 # ln -vbs "${script_dir}/.bun/install/global/package.json" ~/.bun/install/global/package.json
+# ln -vbs "${script_dir}/_.claude/docs/expect-type.md" ~/.claude/docs/expect-type.md
+# ln -vbs "${script_dir}/_.claude/rules/testing.md" ~/.claude/rules/testing.md
+# ln -vbs "${script_dir}/_.claude/CLAUDE.md" ~/.claude/CLAUDE.md
+# ln -vbs "${script_dir}/_.codex/AGENTS.md" ~/.codex/AGENTS.md
 # ln -vbs "${script_dir}/.config/amp/settings.json" ~/.config/amp/settings.json
+# ln -vbs "${script_dir}/.config/ccache/ccache.conf" ~/.config/ccache/ccache.conf
 # ln -vbs "${script_dir}/.config/Code/User/keybindings.json" ~/.config/Code/User/keybindings.json
 # ln -vbs "${script_dir}/.config/Code/User/settings.json" ~/.config/Code/User/settings.json
 # ln -vbs "${script_dir}/.config/Cursor/User/keybindings.json" ~/.config/Cursor/User/keybindings.json
@@ -41,23 +53,30 @@ ln -vbs "${script_dir}/.config/fish/functions/clr.fish" ~/.config/fish/functions
 ln -vbs "${script_dir}/.config/fish/functions/dux.fish" ~/.config/fish/functions/dux.fish
 ln -vbs "${script_dir}/.config/fish/functions/get.fish" ~/.config/fish/functions/get.fish
 ln -vbs "${script_dir}/.config/fish/functions/ggg.fish" ~/.config/fish/functions/ggg.fish
+# ln -vbs "${script_dir}/.config/fish/functions/ggpp.fish" ~/.config/fish/functions/ggpp.fish
 # ln -vbs "${script_dir}/.config/fish/functions/gz.fish" ~/.config/fish/functions/gz.fish
 ln -vbs "${script_dir}/.config/fish/functions/hh.fish" ~/.config/fish/functions/hh.fish
+# ln -vbs "${script_dir}/.config/fish/functions/kbd-color.fish" ~/.config/fish/functions/kbd-color.fish
 ln -vbs "${script_dir}/.config/fish/functions/kk.fish" ~/.config/fish/functions/kk.fish
 ln -vbs "${script_dir}/.config/fish/functions/lsport.fish" ~/.config/fish/functions/lsport.fish
 ln -vbs "${script_dir}/.config/fish/functions/multicd.fish" ~/.config/fish/functions/multicd.fish
 # ln -vbs "${script_dir}/.config/fish/functions/pp.fish" ~/.config/fish/functions/pp.fish
 ln -vbs "${script_dir}/.config/fish/functions/ssh.fish" ~/.config/fish/functions/ssh.fish
 # ln -vbs "${script_dir}/.config/fish/functions/z.fish" ~/.config/fish/functions/z.fish
+# ln -vbs "${script_dir}/.config/fish/functions/ziz.fish" ~/.config/fish/functions/ziz.fish
 ln -vbs "${script_dir}/.config/ghostty/config" ~/.config/ghostty/config
 ln -vbs "${script_dir}/.config/ghostty/themes/catppuccin-mocha" ~/.config/ghostty/themes/catppuccin-mocha
 ln -vbs "${script_dir}/.config/helix/config.toml" ~/.config/helix/config.toml
 ln -vbs "${script_dir}/.config/helix/languages.toml" ~/.config/helix/languages.toml
 # ln -vbs "${script_dir}/.config/ion/initrc" ~/.config/ion/initrc
 ln -vbs "${script_dir}/.config/jj/config.toml" ~/.config/jj/config.toml
+# ln -vbs "${script_dir}/.config/mpv/scripts" ~/.config/mpv/scripts
+# ln -vbs "${script_dir}/.config/mpv/shaders" ~/.config/mpv/shaders
 # ln -vbs "${script_dir}/.config/mpv/input.conf" ~/.config/mpv/input.conf
 # ln -vbs "${script_dir}/.config/mpv/mpv.conf" ~/.config/mpv/mpv.conf
-# ln -vbs "${script_dir}/.config/mpv/shaders" ~/.config/mpv/shaders
+ln -vbs "${script_dir}/.config/pacman/makepkg.conf" ~/.config/pacman/makepkg.conf
+ln -vbs "${script_dir}/.config/paru/paru.conf" ~/.config/paru/paru.conf
+# ln -vbs "${script_dir}/.config/yt-dlp/plugins/smart-subs/yt_dlp_plugins/extractor/smart_subs.py" ~/.config/yt-dlp/plugins/smart-subs/yt_dlp_plugins/extractor/smart_subs.py
 # ln -vbs "${script_dir}/.config/zed/keymap.json" ~/.config/zed/keymap.json
 # ln -vbs "${script_dir}/.config/zed/settings.json" ~/.config/zed/settings.json
 # ln -vbs "${script_dir}/.config/zls.json" ~/.config/zls.json
@@ -71,9 +90,10 @@ ln -vbs "${script_dir}/.gnupg/gpg.conf" ~/.gnupg/gpg.conf
 # ln -vbs "${script_dir}/.local/bin/gn" ~/.local/bin/gn # gnome session launcher
 # ln -vbs "${script_dir}/.local/bin/librewolf.sh" ~/.local/bin/librewolf.sh
 # ln -vbs "${script_dir}/.local/bin/lutris.sh" ~/.local/bin/lutris.sh
-# ln -vbs "${script_dir}/.local/bin/mpv-wrapped.sh" ~/.local/bin/mpv
+# ln -vbs "${script_dir}/.local/bin/mpv-sandbox.sh" ~/.local/bin/mpv
 # ln -vbs "${script_dir}/.local/bin/sandbox.sh" ~/.local/bin/sandbox.sh
 # ln -vbs "${script_dir}/.local/bin/steam.sh" ~/.local/bin/steam.sh
+# ln -vbs "${script_dir}/.local/bin/shcheck.sh" ~/.local/bin/shcheck
 # ln -vbs "${script_dir}/.local/bin/sudo" ~/.local/bin/sudo
 # ln -vbs "${script_dir}/.local/bin/sysboot.sh" ~/.local/bin/sysboot.sh
 # ln -vbs "${script_dir}/.local/bin/vms.sh" ~/.local/bin/vms.sh
@@ -87,6 +107,7 @@ ln -vbs "${script_dir}/.gnupg/gpg.conf" ~/.gnupg/gpg.conf
 # ln -vbs "${script_dir}/.local/share/applications/windsurf.desktop" ~/.local/share/applications/windsurf.desktop
 # ln -vbs "${script_dir}/.bash_profile" ~/.bash_profile
 ln -vbs "${script_dir}/.bashrc" ~/.bashrc
+# ln -vbs "${script_dir}/.bunfig.toml" ~/.bunfig.toml
 ln -vbs "${script_dir}/.curlrc" ~/.curlrc
 # ln -vbs "${script_dir}/.duckdbrc" ~/.duckdbrc
 ln -vbs "${script_dir}/.gitattributes" ~/.gitattributes
