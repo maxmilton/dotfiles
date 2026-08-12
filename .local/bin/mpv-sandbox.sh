@@ -36,6 +36,7 @@ exec bwrap \
   --ro-bind "$XDG_RUNTIME_DIR/pipewire-0" "$XDG_RUNTIME_DIR/pipewire-0" \
   --clearenv \
   --setenv HOME "$HOME" \
+  --setenv PATH /usr/bin \
   --setenv LC_ALL C.UTF-8 \
   --setenv WAYLAND_DISPLAY "$WAYLAND_DISPLAY" \
   --setenv XDG_RUNTIME_DIR "$XDG_RUNTIME_DIR" \
