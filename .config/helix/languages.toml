@@ -11,22 +11,12 @@ required-root-patterns = ["biome.json", "biome.jsonc"]
 [language-server.oxlint]
 command = "bunx"
 args = ["--no-install", "oxlint", "--lsp"]
-required-root-patterns = [
-  ".oxlintrc.json",
-  ".oxlintrc.jsonc",
-  # "oxlint.config.ts",
-  # "oxlint.config.mts",
-]
+required-root-patterns = [".oxlintrc.json", ".oxlintrc.jsonc", "oxlint.config.ts", "oxlint.config.mts"]
 
 [language-server.oxfmt]
 command = "bunx"
 args = ["--no-install", "oxfmt", "--lsp"]
-required-root-patterns = [
-  ".oxfmtrc.json",
-  ".oxfmtrc.jsonc",
-  # "oxfmt.config.ts",
-  # "oxfmt.config.mts",
-]
+required-root-patterns = [".oxfmtrc.json", ".oxfmtrc.jsonc", "oxfmt.config.ts", "oxfmt.config.mts"]
 
 # TODO: Remove once natively supported: https://github.com/helix-editor/helix/pull/16026
 [language-server.tsc]
@@ -61,19 +51,6 @@ file-types = ["scss", "xcss"]
 
 [[language]]
 name = "javascript"
-roots = [
-  "biome.json",
-  "biome.jsonc",
-  ".oxlintrc.json",
-  ".oxlintrc.jsonc",
-  # "oxlint.config.ts",
-  # "oxlint.config.mts",
-  ".oxfmtrc.json",
-  ".oxfmtrc.jsonc",
-  # "oxfmt.config.ts",
-  # "oxfmt.config.mts",
-  "package.json",
-]
 language-servers = [
   { name = "tsc", except-features = ["format"] },
   "biome",
@@ -84,19 +61,6 @@ auto-format = true
 
 [[language]]
 name = "typescript"
-roots = [
-  "biome.json",
-  "biome.jsonc",
-  ".oxlintrc.json",
-  ".oxlintrc.jsonc",
-  # "oxlint.config.ts",
-  # "oxlint.config.mts",
-  ".oxfmtrc.json",
-  ".oxfmtrc.jsonc",
-  # "oxfmt.config.ts",
-  # "oxfmt.config.mts",
-  "package.json",
-]
 language-servers = [
   { name = "tsc", except-features = ["format"] },
   "biome",
