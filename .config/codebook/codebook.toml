@@ -3,16 +3,20 @@ dictionaries = [
     "en_gb",
 ]
 words = [
+    "CRM",
     "appender",
     "bignum",
     "cobertura",
+    "deinit",
     "duckdb",
     "hugeint",
     "kcov",
     "libduckdb",
+    "oxfmt",
     "oxlint",
     "smallint",
     "sqlnull",
+    "threadlocal",
     "tinyint",
     "ubigint",
     "uhugeint",
@@ -20,8 +24,5 @@ words = [
     "usmallint",
     "utinyint",
     "varchar",
-]
-flag_words = [
-    "todo",
-    "fixme",
+    "zon",
 ]

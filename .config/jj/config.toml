@@ -40,6 +40,7 @@ bookmark-advance-to = "@-" # squash based workflow
 
 [ui]
 default-command = "log" # "log" = "jj", "status" = "j" shell alias
+editor = "helix"
 pager = ":builtin"
 merge-editor = "mergiraf"
 

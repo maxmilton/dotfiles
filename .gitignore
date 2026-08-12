@@ -1,3 +1,4 @@
+__pycache__/
 # Local machine specific configuration
 /bootstrap.sh
 /bootstrap-root.sh
