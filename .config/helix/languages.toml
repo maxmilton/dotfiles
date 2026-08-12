@@ -68,3 +68,26 @@ language-servers = [
   { name = "oxfmt", only-features = ["format"] },
 ]
 auto-format = true
+
+# Fall back to ini for any undefined .conf file
+# TODO: Periodically check upstream languages.toml for "conf" language
+# definition, as we don't want to override it.
+[[language]]
+name = "conf"
+scope = "source.conf"
+file-types = ["conf"]
+comment-tokens = "#"
+grammar = "ini"
+
+# FIXME: Remove once PR is merged and released: https://github.com/helix-editor/helix/pull/16365
+[[language]]
+name = "jsonc"
+file-types = [
+  "jsonc",
+  { glob = "{t,j}sconfig.json" },
+  { glob = "bun.lock" },
+  { glob = ".devcontainer.json" },
+  { glob = "devcontainer.json" },
+  { glob = ".vscode/*.json" },
+  "code-workspace",
+]
