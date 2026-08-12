@@ -1,0 +1,9 @@
+- Prefer data-oriented design and simple concrete implementations.
+- Prefer removing runtime work over making runtime work faster; move invariant work to compile time or precomputation when practical.
+- When tradeoffs are otherwise comparable, optimize for runtime performance and final artifact size.
+- Follow YAGNI principles.
+- When changing behaviour consider relevant tests.
+- Zig: target current master syntax. Treat `~/.local/bin/zig-latest/lib/std` as the source of truth. Inspect directly when relevant; don’t rely on search snippets or memory for source details.
+- TypeScript: target modern runtimes and APIs.
+- Use bun not node, bunx not npx.
+- Do not touch `*.bak` files/dirs.
