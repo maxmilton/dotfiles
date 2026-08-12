@@ -1,0 +1,10 @@
+"$schema" = "https://www.schemastore.org/bunfig.json"
+
+[install]
+# auto = "disable"
+# production = true
+# ignoreScripts = true
+minimumReleaseAge = 604800 # 7 days
+
+# [install.security]
+# scanner = "@socketsecurity/bun-security-scanner"
