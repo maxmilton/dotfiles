@@ -5,16 +5,18 @@ on:
     branches:
       - master
     paths:
+      - ".github/workflows/audit.yml"
       - ".bun/**"
   pull_request:
-  merge_group:
   workflow_dispatch:
   schedule:
-    - cron: "28 6 * * 4"
+    - cron: "23 21 * * 3"
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.event.pull_request.head.label || github.run_id }}
-  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.run_id }}
+  cancel-in-progress: true
+
+permissions: {}
 
 defaults:
   run:
@@ -28,10 +30,32 @@ jobs:
     permissions:
       contents: read
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
-      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          bun-version: latest
-      # audit needs a lockfile so generate one first
+          persist-credentials: false
+      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2.2.0
+        with:
+          bun-version-file: .bun-version
+      # The `bun audit` command needs a lockfile
       - run: bun install --lockfile-only
       - run: bun audit
+
+  security:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2.2.0
+        with:
+          bun-version-file: .bun-version
+      # The `bun pm scan` command needs a lockfile
+      - run: bun install --lockfile-only
+      - name: Enable bun security scanner
+        run: |
+          printf '\n[install.security]\nscanner = "@socketsecurity/bun-security-scanner"\n' >> bunfig.toml
+      - run: bun add -d @socketsecurity/bun-security-scanner
+      - run: bun pm scan

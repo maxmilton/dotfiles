@@ -8,14 +8,31 @@ on:
   merge_group:
   workflow_dispatch:
   schedule:
-    - cron: "28 6 * * 4"
+    - cron: "25 14 * * 3"
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.event.pull_request.head.label || github.run_id }}
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+permissions: {}
 
 jobs:
   analyze:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - language: actions
+            build-mode: none
+          # - language: c-cpp
+          #   build-mode: auto
+          #   packs: githubsecuritylab/codeql-cpp-queries
+          # - language: javascript-typescript
+          #   build-mode: none
+          #   packs: githubsecuritylab/codeql-javascript-queries
+          - language: python
+            build-mode: none
+            packs: githubsecuritylab/codeql-python-queries
     name: analyze (${{ matrix.language }})
     runs-on: ubuntu-latest
     timeout-minutes: 10
@@ -24,22 +41,19 @@ jobs:
       contents: read
       packages: read
       security-events: write
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - language: actions
-            build-mode: none
-          # - language: c-cpp
-          #   build-mode: none
-          # - language: javascript-typescript
-          #   build-mode: none
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
-      - uses: github/codeql-action/init@8aad20d150bbac5944a9f9d289da16a4b0d87c1e # v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: github/codeql-action/init@24c54180a607b1449ed407dd24f251e4e9147c8d # v4.38.3
         with:
           languages: ${{ matrix.language }}
           build-mode: ${{ matrix.build-mode }}
           queries: security-and-quality
-      - uses: github/codeql-action/autobuild@8aad20d150bbac5944a9f9d289da16a4b0d87c1e # v4
-      - uses: github/codeql-action/analyze@8aad20d150bbac5944a9f9d289da16a4b0d87c1e # v4
+          # https://github.com/GitHubSecurityLab/CodeQL-Community-Packs/blob/main/configs/synthetics.yml
+          packs: ${{ matrix.packs }}
+          # https://docs.github.com/en/code-security/reference/code-scanning/workflow-configuration-options#extending-codeql-coverage-with-threat-models
+          config: |
+            threat-models: local
+      - uses: github/codeql-action/autobuild@24c54180a607b1449ed407dd24f251e4e9147c8d # v4.38.3
+      - uses: github/codeql-action/analyze@24c54180a607b1449ed407dd24f251e4e9147c8d # v4.38.3

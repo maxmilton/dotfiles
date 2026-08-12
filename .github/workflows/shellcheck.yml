@@ -4,19 +4,15 @@ on:
   push:
     branches:
       - master
-    paths:
-      - ".github/workflows/shellcheck.yml"
-      - "**.sh"
-      - "**.fish"
   pull_request:
   merge_group:
   workflow_dispatch:
-  schedule:
-    - cron: "28 6 * * 4"
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.event.pull_request.head.label || github.run_id }}
-  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.run_id }}
+  cancel-in-progress: true
+
+permissions: {}
 
 defaults:
   run:
@@ -29,8 +25,64 @@ jobs:
     permissions:
       contents: read
     steps:
-      - run: sudo apt-get update && sudo apt-get install -y fish shellcheck
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
-      - run: shellcheck -ax **/*.sh
-      - run: fish --no-execute **/*.fish
-      - run: fish_indent --check **/*.fish
+      - name: Install ShellCheck
+        env:
+          # renovate: depName=koalaman/shellcheck
+          SHELLCHECK_VERSION: v0.11.0
+          SHELLCHECK_SHA256: 8c3be12b05d5c177a04c29e3c78ce89ac86f1595681cab149b65b97c4e227198
+        run: |
+          tool_dir="$RUNNER_TEMP/shellcheck"
+          mkdir -p "$tool_dir"
+          curl --fail --silent --show-error --location --retry 3 \
+            "https://github.com/koalaman/shellcheck/releases/download/$SHELLCHECK_VERSION/shellcheck-$SHELLCHECK_VERSION.linux.x86_64.tar.xz" \
+            --output "$tool_dir/archive.tar.xz"
+          printf '%s  %s\n' "$SHELLCHECK_SHA256" "$tool_dir/archive.tar.xz" | sha256sum --check --strict
+          tar -xJf "$tool_dir/archive.tar.xz" -C "$tool_dir" --strip-components=1 \
+            "shellcheck-$SHELLCHECK_VERSION/shellcheck"
+          echo "$tool_dir" >> "$GITHUB_PATH"
+          "$tool_dir/shellcheck" --version
+
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Check shell scripts
+        run: .local/bin/shcheck.sh
+
+  fishcheck:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    steps:
+      - name: Install fish
+        env:
+          # renovate: depName=fish-shell/fish-shell
+          FISH_VERSION: 4.9.3
+          FISH_SHA256: 8f643d10ad1abb0ef7072764c01ceb5cf61b2d373fda400cf60f0bad69b7e095
+        run: |
+          tool_dir="$RUNNER_TEMP/fish"
+          mkdir -p "$tool_dir"
+          curl --fail --silent --show-error --location --retry 3 \
+            "https://github.com/fish-shell/fish-shell/releases/download/$FISH_VERSION/fish-$FISH_VERSION-linux-x86_64.tar.xz" \
+            --output "$tool_dir/archive.tar.xz"
+          printf '%s  %s\n' "$FISH_SHA256" "$tool_dir/archive.tar.xz" | sha256sum --check --strict
+          tar -xJf "$tool_dir/archive.tar.xz" -C "$tool_dir" fish
+          ln -s fish "$tool_dir/fish_indent"
+          echo "$tool_dir" >> "$GITHUB_PATH"
+          "$tool_dir/fish" --version
+          "$tool_dir/fish_indent" --version
+
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Check fish syntax
+        run: |
+          git ls-files -z -- '*.fish' |
+            xargs -0 -r -n 1 fish --no-config --no-execute
+
+      - name: Check fish formatting
+        run: |
+          git ls-files -z -- '*.fish' |
+            xargs -0 -r fish_indent --check
