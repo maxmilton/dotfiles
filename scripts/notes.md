@@ -20,25 +20,21 @@ rg --no-ignore --hidden
 rg --context 3 --max-columns 80 --max-columns-preview
 ```
 
+> NOTE: DO NOT USE fd, it can't filter out executable files or filter perms.
+
 ```sh
-# recursively set directory permissions to 700
-fd --type d --hidden --no-ignore --exec chmod -c 700 {}
+# recursively set directory permissions to max 700
+/usr/bin/find -O3 . -type d -perm /077 -exec chmod -c go-rwx {} +
 ```
 
 ```sh
-# DO NOT USE; fd can't filter out executable files
-# recursively set ALL file permissions to 600
-#fd --type f --hidden --no-ignore --exec chmod -c 600 {}
+# recursively set file permissions to max 600 (excluding executables)
+/usr/bin/find -O3 . -type f ! -executable -perm /077 -exec chmod -c go-rwx {} +
 ```
 
 ```sh
-# recursively set file permissions to 600 (excluding executables)
-find -O3 . -type f ! -executable -exec chmod -c 600 {} \;
-```
-
-```sh
-# recursively set file permissions to 700 (executables only)
-fd --type x --hidden --no-ignore --exec chmod -c 700 {}
+# recursively set file permissions to max 700 (executables only)
+/usr/bin/find -O3 . -type f -perm /111 -perm /077 -exec chmod -c go-rwx {} +
 ```
 
 ```sh
@@ -71,6 +67,11 @@ fd --type directory --hidden --no-ignore-vcs --exec /bin/rm -rf {} \; node_modul
 ```sh
 # remove yarn-error.log files recursively
 fd --type file --hidden --exec /bin/rm -rf {} \; yarn-error.log .
+```
+
+```sh
+# Remove all but the latest 1 installable package from AUR
+paccache -rk1 -c ~/.cache/paru/pkg
 ```
 
 ```sh
