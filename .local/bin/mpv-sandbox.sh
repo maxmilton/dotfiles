@@ -1,5 +1,6 @@
 #!/usr/bin/busybox sh
 # Secure mpv wrapper using Bubblewrap
+# shellcheck disable=SC3023
 set -Eeu
 
 export XDG_RUNTIME_DIR="${XDG_RUNTIME_DIR:-/run/user/$(id -u)}"

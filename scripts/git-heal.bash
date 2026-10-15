@@ -52,4 +52,6 @@ heal() {
 }
 export -f heal
 
+# "$1" is intentionally expanded by the child Bash process.
+# shellcheck disable=SC2016
 fd -HI --prune -t d -t f -E node_modules '^\.git$' "${@:-.}" -x bash -c 'heal "$1"' _ {}

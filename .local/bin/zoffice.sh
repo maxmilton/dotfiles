@@ -18,4 +18,4 @@ pkexec systemd-nspawn \
   --setenv=XDG_SESSION_TYPE=wayland \
   --setenv=XDG_RUNTIME_DIR="$XDG_RUNTIME_DIR" \
   --as-pid2 \
-    /usr/bin/libreoffice --nologo $@
+    /usr/bin/libreoffice --nologo "$@"

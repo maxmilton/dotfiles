@@ -16,4 +16,4 @@ pkexec systemd-nspawn \
   --setenv=XDG_SESSION_TYPE=wayland \
   --setenv=MOZ_ENABLE_WAYLAND=1 \
   --as-pid2 \
-    /usr/bin/librewolf $@
+    /usr/bin/librewolf "$@"

@@ -1,4 +1,5 @@
 #!/usr/bin/busybox sh
+# shellcheck disable=SC3023
 set -euo pipefail
 
 # Sandboxed shell for AI agents to run commands in VS Code

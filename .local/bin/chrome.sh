@@ -15,4 +15,4 @@ pkexec systemd-nspawn \
   --setenv=WAYLAND_DISPLAY=/run/user/host/wayland-0 \
   --setenv=XDG_SESSION_TYPE=wayland \
   --as-pid2 \
-    /usr/bin/google-chrome-unstable --ozone-platform-hint=wayland --ozone-platform=wayland --enable-features=UseOzonePlatform,WaylandWindowDecorations --enable-wayland-ime --wayland-text-input-version=3 $@
+    /usr/bin/google-chrome-unstable --ozone-platform-hint=wayland --ozone-platform=wayland --enable-features=UseOzonePlatform,WaylandWindowDecorations --enable-wayland-ime --wayland-text-input-version=3 "$@"

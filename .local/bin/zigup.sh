@@ -71,7 +71,7 @@ else
     for version_pattern in '^[0-9]+\.[0-9]+\.[0-9]+$' '^[0-9]+\.[0-9]+\.[0-9]+-dev\.[0-9]+\+[[:xdigit:]]+$'; do
       find "${INSTALL_DIR}" -mindepth 1 -maxdepth 1 -type d -name "zig-${REPO_ARCH}-*" -printf '%f\0' | \
         while IFS= read -r -d '' installation; do
-          if [[ "${installation#zig-${REPO_ARCH}-}" =~ ${version_pattern} ]]; then
+          if [[ "${installation#"zig-${REPO_ARCH}-"}" =~ ${version_pattern} ]]; then
             printf '%s\0' "${installation}"
           fi
         done | \

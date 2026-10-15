@@ -21,7 +21,7 @@ else
     --overlay=/home/max/Projects::/home/max/Projects \
     --overlay=/run/media/max/Store::/mnt/Store \
     --directory=/var/lib/machines/cachyos \
-    --boot $ephemeral
+    --boot "$ephemeral"
 
   # TODO: Use when it's possible to specify bind/overlay owner uid or there's a
   # workaround... but keep in mind performance overhead and security issues.

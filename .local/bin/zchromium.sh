@@ -16,4 +16,4 @@ pkexec systemd-nspawn \
   --setenv=XDG_SESSION_TYPE=wayland \
   --as-pid2 \
   --ephemeral \
-    /usr/bin/chromium --ozone-platform-hint=wayland --ozone-platform=wayland --enable-features=UseOzonePlatform,WaylandWindowDecorations --enable-wayland-ime --wayland-text-input-version=3 $@
+    /usr/bin/chromium --ozone-platform-hint=wayland --ozone-platform=wayland --enable-features=UseOzonePlatform,WaylandWindowDecorations --enable-wayland-ime --wayland-text-input-version=3 "$@"

@@ -21,7 +21,7 @@ else
     --bind="$HOME"/Downloads:/home/max/Downloads \
     --overlay="$HOME"/Projects::/home/max/Projects \
     --overlay=/run/media/max/Store::/mnt/Store \
-    --boot $ephemeral
+    --boot "$ephemeral"
 
     # TODO: Use when it's possible to specify bind/overlay owner uid or there's a workaround
     # --private-users=pick \

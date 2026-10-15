@@ -1,4 +1,5 @@
-PS1='$([ $? != 0 ] && echo "\033[01;31m$? ")$(if [ $(id -u) -eq 0 ];then echo "\033[01;31m\h\033[01;34m \w \$";else echo "\033[01;32m\u@\h\033[01;34m \w #";fi)\033[00m '
+_S=' ' w='\h';[ "$(id -u)" = 0 ]||w='\[\e[32m\]\u@\h'
+PS1='\[\e[1;31m\]${?#0}${_S#?${?#0}}'$w'\[\e[34m\] \w \$\[\e[m\] ';unset w
 export LS_COLORS='ex=00:su=00:sg=00:ca=00:'
 export EDITOR='busybox vi'
 alias ls='ls --color=auto'

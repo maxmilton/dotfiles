@@ -5,4 +5,4 @@ yt-dlp \
   --sponsorblock-mark all \
   --sponsorblock-remove default \
   --extract-audio \
-  $@
+  "$@"

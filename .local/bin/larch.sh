@@ -20,7 +20,7 @@ else
     --bind=/home/max/Downloads \
     --overlay=/home/max/Projects::/home/max/Projects \
     --directory=/var/lib/machines/arch \
-    --boot $ephemeral
+    --boot "$ephemeral"
 
   # TODO: Use when it's possible to specify bind/overlay owner uid or there's a workaround
   # --private-users=pick \

@@ -9,4 +9,4 @@ pkexec systemd-nspawn \
   --bind=/tmp/.X11-unix/X0 \
   --bind-ro=/usr/share/fonts \
   --bind="$HOME"/Downloads:/home/max/Downloads \
-  --boot --ephemeral $@
+  --boot --ephemeral "$@"

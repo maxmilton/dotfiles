@@ -18,6 +18,8 @@ done
 
 tmp=
 
+# Invoked by the EXIT trap below.
+# shellcheck disable=SC2329
 cleanup() {
   [[ -z $tmp ]] || rm -f -- "$tmp"
 }

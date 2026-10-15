@@ -10,5 +10,5 @@ pkexec systemd-nspawn \
   --bind=/tmp/.X11-unix/X0 \
   --bind-ro=/usr/share/fonts \
   --bind="${HOME}/Downloads":/home/xxxx/Downloads \
-  --boot --ephemeral $@
+  --boot --ephemeral "$@"
   # --bind-ro="${HOME}/Projects":/home/xxxx/Projects \
