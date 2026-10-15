@@ -10,12 +10,13 @@ from unittest.mock import patch
 from yt_dlp import YoutubeDL
 from yt_dlp.extractor.youtube import YoutubeIE
 from yt_dlp.postprocessor.ffmpeg import FFmpegEmbedSubtitlePP
+
 from yt_dlp_plugins.extractor.smart_subs import (
-    _SmartSubsYoutubeIE,
     _manual_track,
     _native_lang,
     _original_auto_track,
     _select_tracks,
+    _SmartSubsYoutubeIE,
     _translation_track,
 )
 
@@ -26,7 +27,9 @@ def _track(name):
 
 class TrackSelectionTest(unittest.TestCase):
     def test_manual_track_prefers_exact_then_deterministic_variant(self):
-        self.assertEqual(_manual_track({"en-GB": [], "en": [], "en-US": []}, "en"), "en")
+        self.assertEqual(
+            _manual_track({"en-GB": [], "en": [], "en-US": []}, "en"), "en"
+        )
         self.assertEqual(_manual_track({"en-US": [], "en-GB": []}, "en"), "en-GB")
         self.assertIsNone(_manual_track({"eng": [], "ko": []}, "en"))
 
@@ -160,7 +163,9 @@ class FullSelectionTest(unittest.TestCase):
             auto["ko"][0]["name"],
             "Korean [auto-translated native ASR (en-US-orig)]",
         )
-        self.assertEqual(info["automatic_captions"]["en-US-orig"][0]["name"], "en original")
+        self.assertEqual(
+            info["automatic_captions"]["en-US-orig"][0]["name"], "en original"
+        )
         self.assertIn("ASR", decisions["ko"])
 
     def test_korean_manual_source_is_used_for_english_translation(self):
@@ -461,7 +466,9 @@ class YtDlpIntegrationTest(unittest.TestCase):
         self.assertEqual(set(result["automatic_captions"]), {"en", "ko"})
         messages = [call.args[0] for call in write_debug.call_args_list]
         self.assertTrue(any("native language: en" in message for message in messages))
-        self.assertTrue(any("ko: automatic translation" in message for message in messages))
+        self.assertTrue(
+            any("ko: automatic translation" in message for message in messages)
+        )
 
     def test_process_subtitles_receives_only_exact_wrapper_languages(self):
         info = {
@@ -502,8 +509,8 @@ class YtDlpIntegrationTest(unittest.TestCase):
 )
 class EmbeddedSubtitleTest(unittest.TestCase):
     def test_embedded_title_and_handler_name_preserve_provenance(self):
-        with tempfile.TemporaryDirectory() as directory:
-            directory = Path(directory)
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            directory = Path(temporary_directory)
             video = directory / "video.mkv"
             subtitle = directory / "subtitle.vtt"
             subtitle.write_text(
