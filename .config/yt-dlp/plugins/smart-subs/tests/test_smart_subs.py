@@ -437,8 +437,8 @@ class FullSelectionTest(unittest.TestCase):
         for info in cases:
             with self.subTest(info=info):
                 manual, auto, _, _, _ = _select_tracks(info)
-                self.assertTrue(set(manual) <= {"en", "ko"})
-                self.assertTrue(set(auto) <= {"en", "ko"})
+                self.assertLessEqual(set(manual), {"en", "ko"})
+                self.assertLessEqual(set(auto), {"en", "ko"})
                 self.assertTrue(set(manual).isdisjoint(auto))
 
 
@@ -589,8 +589,8 @@ class LiveYoutubeTest(unittest.TestCase):
         manual = set(info.get("subtitles") or {})
         auto = set(info.get("automatic_captions") or {})
 
-        self.assertTrue(manual <= {"en", "ko"})
-        self.assertTrue(auto <= {"en", "ko"})
+        self.assertLessEqual(manual, {"en", "ko"})
+        self.assertLessEqual(auto, {"en", "ko"})
         self.assertTrue(manual.isdisjoint(auto))
         self.assertEqual(manual | auto, {"en", "ko"})
 
