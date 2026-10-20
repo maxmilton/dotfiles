@@ -1,100 +1,103 @@
-# Type testing with `expectTypeOf`
+# Type tests with `expectTypeOf`
 
-Bun's vendored `expect-type`, measured on bun-types 1.3.14 — re-measure rather
-than trust these if that version moves. Source of truth is
-`node_modules/.bun/bun-types@*/node_modules/bun-types/vendor/expect-type/index.d.ts`.
+Type-test public type contracts, inference, and rejected inputs, alongside runtime tests; neither replaces the other. Only the typecheck (`tsc --noEmit`, e.g. `bun run lint:ts`) checks them: `bun test` runs them as no-ops, so make sure the tsconfig includes the test files. Examples use stage1's APIs.
 
-Type assertions can only fail under `tsc` (`bun run lint:ts`). A green `bun test`
-proves nothing about them, so lint is load-bearing.
+## Structure
+- One `types` test per `describe` is the exception to one behaviour per test: tsc reports every failing assertion separately. Type assertions inside a runtime test don't count toward its `expect.assertions(n)`.
+- Check functions through `.parameters` and `.returns`, specializing with instantiation expressions (`fn<Concrete>`); use `expectTypeOf<Type>()` for aliases, indexed access, and utility types.
+- Open with `not.toBeAny()` and `toBeFunction()`, and guard extracted returns with `not.toBeAny()` and `not.toBeNever()`. Equality already rejects both, but the guards name the cause, and `toExtend` would accept `any`. They can't see a nested `any` such as `Row<any>`.
 
-**Guard against vacuity first.** `any` and `never` make every later assertion
-pass. Lead with `expectTypeOf(x).not.toBeAny()`, and `toBeFunction()` before
-`.parameters`/`.returns`; pin a return with `.returns.not.toBeAny()` and
-`.not.toBeNever()` before asserting its shape.
-
-**Extractor methods return `undefined` at runtime** — `omit`, `pick`, `extract`,
-`exclude`, `map`, `parameter`, `toHaveProperty`, `toBeCallableWith`. Chaining
-off one throws a `TypeError` while `tsc` still reports the line as passing.
-Only the getters are safe to chain: `parameters`, `returns`,
-`items`, `branded`, `constructorParameters` (unions constructor overloads,
-same erasure caveat as `.parameters` below). Use the equivalent type operator
-with the no-argument overload instead — `expectTypeOf<Omit<R, "ref">>()`,
-`expectTypeOf<R["ref"]>()`.
-
-**`.parameters` / `.returns` union every overload** (`OverloadParameters` /
-`OverloadReturnTypes`), rather than taking the last signature the way
-`Parameters<T>` does. An overload set `{ (): A; (x: X): B }` gives parameters
-`[] | [X]` and returns `A | B` — so a `never` return contributed by one
-overload vanishes into the union. To pin one overload, extract it as a type:
+## Matchers
+- `toEqualTypeOf` pins the whole contract: keep related fields in one check, and preserve readonly, optional entries, intersections, deferred `T[K]`, and nested generics. Never simplify an expected type, or switch matchers, because it's hard to write.
+- `toExtend` checks assignability: extra properties, narrower types, and narrowed method parameters (bivariance) all pass, so it never proves equality.
+- `toMatchObjectType` strictly checks a chosen subset, but only of object-literal types; interfaces and class instances are compared whole. Pin their subset with `expectTypeOf<Pick<T, "a" | "b">>().toEqualTypeOf<…>()`, since `Pick` keeps `readonly` (including get-only accessors), which `T["a"]` loses.
+- `toBeVoid()` also accepts `undefined`, so pair it with `not.toBeUndefined()`.
+- Under `exactOptionalPropertyTypes`, optional parameters need `?:` and `| undefined`: `[options?: CompileOptions | undefined]`.
+- An exported alias is code under test: equality with it proves the API uses it, not what it is. Pin its shape structurally too, or test it once on its own, and check public re-exports separately:
 
 ```ts
-type NoArgReturn<T> = T extends { (): infer R; (...args: never[]): unknown } ? R : never;
+expectTypeOf(compileNoMacro).returns.toEqualTypeOf<CompileResult<Refs>>();
+expectTypeOf(compileNoMacro).returns.toEqualTypeOf<{
+  html: string;
+  k: readonly string[];
+  d: readonly number[] & InferRefs<Refs>;
+  ref: Readonly<Record<string, `@${string}`>>;
+  success: boolean;
+}>();
 ```
 
-**A generic class's `.prototype` instantiates its type parameters as `any`,
-not as their constraints** — so `expectTypeOf(C.prototype.method)` assertions are near-vacuous, and
-`.returns.not.toBeAny()` still passes when the return is `Row<any>`. Only
-*method-level* generics erase to constraints. Assert on an instantiated member
-type instead: `expectTypeOf<C<Concrete>["method"]>()`.
+- The same goes for an unexported type named through its consumer (`type View = Parameters<typeof collect>[1]`): add a structural check such as `.parameters.toExtend<[root: Node, view: Node]>()`, and test producer–consumer compatibility.
 
-**`.parameters` / `.returns` / `ReturnType<typeof fn>` erase generics** —
-every type parameter resolves to its constraint, or `unknown` when
-unconstrained (and a default, `<T extends Node = Element>`, is ignored — only
-checkable at a call site). An unconstrained `T` degrades further: `keyof T`
-collapses to `never`, and the signature stops matching `ReturnType`, whose
-false branch is `any`. Assertions on a generic function pass while saying
-nothing about it.
+## Generics and inference
+Extraction (`.parameters`, `.returns`, `ReturnType<typeof fn>`) erases type parameters to their constraints, or `unknown`; defaults apply only at call sites. Check the extracted contract, the default or inferred call result, and an explicit specialization, where each matters:
 
-Add instantiated assertions beside the erased ones, via instantiation
-expressions — `expectTypeOf<ReturnType<typeof create<"div">>>()`,
-`expectTypeOf<typeof clone<HTMLLIElement>>()`. These are zero-runtime. To
-prove such an assertion can fail, mutate a generic's return to its own
-constraint: the erased assertion stays green and only the instantiated one
-reddens.
+```ts
+test("types", () => {
+  expect.assertions(0);
+  expectTypeOf(h).not.toBeAny();
+  expectTypeOf(h).toBeFunction();
+  expectTypeOf(h).parameters.toEqualTypeOf<[html: string]>();
+  expectTypeOf(h).returns.not.toBeAny();
+  expectTypeOf(h).returns.not.toBeNever();
+  // Extraction uses the Node constraint; calls use the Element default.
+  expectTypeOf(h).returns.toEqualTypeOf<ChildNode & Node>();
+  expectTypeOf(h("<div></div>")).toEqualTypeOf<ChildNode & Element>();
+  expectTypeOf(h<HTMLDivElement>).returns.toEqualTypeOf<ChildNode & HTMLDivElement>();
+});
+```
 
-Other matcher limits:
+Specialization doesn't prove contextual inference. Assert unannotated callback parameters, and give properties distinct types so an accidental union shows:
 
-- A *type-parameter* constraint reds in type position: `// @ts-expect-error` +
-  `expectTypeOf<ReturnType<typeof create<"nope">>>()`. Zero-runtime, and an
-  unused directive is `TS2578`, so it reds if the rejection stops working
-  rather than passing silently. A *parameter-value* constraint that exists to
-  reject (`initialState: T & { on?: never }`) instead needs a real
-  `@ts-expect-error`ed call site, e.g. `store({ on: 1 })`:
-  `.not.toBeCallableWith` types as `never`, `toBeCallableWith` cannot be
-  negated at all, and its own doc says it will likely fail on generics. Either
-  way, a directive reds when the rejection it covers breaks — but a directive
-  placed on a *positive* assertion silently absorbs a different, unrelated
-  failure instead. When the cause is tooling rather than the code, pin it
-  positively (`expectTypeOf(fn).returns.toBeAny()`) so it reddens — prompting
-  removal — once the tooling improves, rather than masking it with
-  `@ts-expect-error`.
-- `toExtend` compares methods bivariantly, so it still passes when a method
-  parameter narrows. Use `Pick<C, …>` + `toEqualTypeOf` when parameter types
-  are the contract.
-- Neither `toEqualTypeOf` nor `toMatchObjectType` can equate a *deferred* mapped
-  type with a written object literal. Pin `keyof T` separately and use
-  `toExtend` for the values.
-- `toEqualTypeOf` rejects an intersection against its equivalent flattened
-  object (`{a:1}&{b:2}` vs `{a:1;b:2}`). `.branded.toEqualTypeOf` is the
-  permissive check — upstream flags it as slow and prone to making tsc give
-  up, so use it sparingly.
-- A type that is not exported cannot be named on the right-hand side of an
-  assertion. Pin it against a known supertype with `toExtend`, or invert the
-  direction: `expectTypeOf<[number]>().toExtend<Parameters<typeof fn>>()`.
-- `expectTypeOf(C.prototype.method)` and `expectTypeOf(C.staticMethod)` trip
-  oxlint's `typescript/unbound-method`; wrap the block in
-  `oxlint-disable`/`oxlint-enable`. `C.prototype[Symbol.dispose]` does not
-  trip it.
-- **`toMatchObjectType` does not narrow against a class** — given three of a
-  class's members it demanded all nine (`TS2740`). Use
-  `expectTypeOf<Pick<C, "a" | "b">>().toEqualTypeOf<…>()` — homomorphic, so it
-  carries `readonly` through, which is how you pin a get-only accessor as
-  read-only. `expectTypeOf<C["a"]>()` cannot say that.
-- **`not.toBeConstructibleWith` types as `never`.** To pin a private
-  constructor use `not.toExtend<new (...args: never[]) => C>()`: tsc will not
-  assign a private constructor type to a public one, and the bottom function
-  type keeps it about privacy rather than the constructor's parameters. Prefer
-  it to a `@ts-expect-error`ed `new C()`, which is not zero-runtime.
-- An expected optional parameter entry needs **both** `?:` and `| undefined`
-  under `exactOptionalPropertyTypes`; dropping either fails as an unrelated
-  `TS2554`.
+```ts
+const key = Symbol();
+const state = store({ count: 0, label: "", [key]: true });
+state.on("count", (value, prev) => {
+  expectTypeOf(value).toEqualTypeOf<number>();
+  expectTypeOf(prev).toEqualTypeOf<number>();
+});
+state.on(key, (value) => {
+  expectTypeOf(value).toEqualTypeOf<boolean>();
+});
+// @ts-expect-error - unknown state key
+state.on("missing", () => {});
+// @ts-expect-error - count handlers receive numbers
+state.on("count", (_value: string) => {});
+```
+
+Test inference across producer and consumer APIs inside a typed, never-invoked callback, so tsc checks real calls without fabricated data or execution:
+
+```ts
+interface FooBar {
+  foo: HTMLDivElement;
+  bar: Text;
+}
+expectTypeOf((meta: CompileResult<FooBar>) => {
+  expectTypeOf(collect(document, meta.k, meta.d)).toEqualTypeOf<FooBar>();
+  expectTypeOf(collect<{ foo: Node }>(document, meta.k, meta.d)).toEqualTypeOf<{ foo: Node }>();
+  // @ts-expect-error - metadata does not contain baz
+  collect<FooBar & { baz: Comment }>(document, meta.k, meta.d);
+}).toBeFunction();
+```
+
+- Use interfaces as type arguments: they lack implicit index signatures, so they catch constraints that only object-literal types satisfy.
+- Add focused regressions for key order and large mapped types; a small happy-path specialization won't catch them.
+
+## Rejections and execution
+- Reject invalid inputs with `@ts-expect-error - <reason>` on the narrowest line, so an unrelated error can't satisfy it; never `@ts-ignore`, which can't fail. An unused directive (TS2578) means the rejection stopped working.
+- Check generic constraints by instantiation (`expectTypeOf(collect<{ foo: string }>)`), and parameter-value constraints with a call inside a never-invoked callback.
+- Never suppress a failing positive assertion; characterize the limitation positively, then pin the concrete contract. Erasure turns `reconcileKeyed`'s `keyof T` into `never` and its extracted return into `any`, so its test asserts `.returns.toBeAny()` (labelled characterization) and pins item, node, and `void` return types on an instantiated signature.
+- Matcher arguments execute; type arguments don't. `expectTypeOf(fn())` calls `fn`. `expectTypeOf(fn<Concrete>)` and `expectTypeOf(() => fn()).returns` don't; the latter also selects an overload or applies a generic default.
+- Prove a suspicious assertion with a type mutation (widen a generic return to its constraint, break a key-specific callback type, drop a promised `readonly`), then run the typecheck.
+
+## Tool limits
+Checked on Bun 1.4.4 with TypeScript 6.0.3 and 7.0.2. On other versions, re-verify a limit before relying on it: read the vendored declarations (`bun-types/vendor/expect-type/`) and probe the runtime in Bun.
+
+- Properties chain: `parameters`, `returns`, `items`, `branded`, `constructorParameters`, `thisParameter`, `instance`, `resolves`, `guards`, and `asserts`; so does `.map()`, whose callback never runs.
+- These methods return `undefined` at runtime, so never chain them: `parameter`, `pick`, `omit`, `extract`, `exclude`, `toHaveProperty`, `toBeCallableWith`, `toBeConstructibleWith`. Use indexed access or utility types instead: `expectTypeOf<Result["ref"]>()`, `expectTypeOf<Pick<Result, "ref">>()`.
+- `toBeCallableWith` checks the erased signature, so it can't infer a generic's type parameters from the arguments: call it on an instantiation, or test the real call in a never-invoked callback. Negated `toBeCallableWith` and `toBeConstructibleWith` are typed `never`; use `@ts-expect-error`.
+- `.parameters`, `.returns`, and `.constructorParameters` union all overloads; `Parameters` and `ReturnType` take the last. A `never` return vanishes from the union, so check individual calls where it matters.
+- Equality is representation-sensitive: `{ a: 1 } & { b: 2 }` doesn't equal `{ a: 1; b: 2 }`. Keep the intersection; use `.branded.toEqualTypeOf` only when structural equivalence is the contract, since it's slow and gives up on deeply nested types.
+
+## Classes
+- A generic class's prototype instantiates its parameters as `any`, so `expectTypeOf(C.prototype.method).returns.not.toBeAny()` passes on `Row<any>`. Use `expectTypeOf<C<Concrete>["method"]>()`, which also avoids unbound-method lint suppressions.
+- Assert a private constructor with `expectTypeOf(C).not.toExtend<new (...args: never[]) => C>()`: it fails for a public constructor and never runs `new C()`.

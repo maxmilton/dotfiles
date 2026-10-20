@@ -1,11 +1,1 @@
-- Prefer data-oriented design
-- Move invariant work from runtime to compile time
-- Optimize for runtime performance and final artifact size
-- Follow YAGNI principles
-- Follow XP values, principals, and practices
-- Minimize unnecessary tool input, generated code, and prose without sacrificing correctness or clarity
-- When changing behaviour consider relevant tests
-- Zig: target current master syntax
-- TypeScript: target modern runtimes and APIs
-- Use bun not node, bunx not npx
-- Do not touch `*.bak` files/dirs
+@~/.codex/AGENTS.md
