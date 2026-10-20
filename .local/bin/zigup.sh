@@ -33,7 +33,7 @@ type shasum >/dev/null 2>&1 || die "shasum is required but not available"
 
 msg "Getting version info..."
 
-msg "Current install: $([[ -x "${INSTALL_DIR}/zig-latest/zig" ]] && "${INSTALL_DIR}/zig-latest/zig" version || echo none)"
+msg "Current install: $([[ -x "${INSTALL_DIR}/zig-current/zig" ]] && "${INSTALL_DIR}/zig-current/zig" version || echo none)"
 
 repo=$(curl -s "${REPO_URL}" | jq -e --arg version "${REPO_VERSION}" --arg arch "${REPO_ARCH}" '
   (if $version == "stable" then
@@ -53,7 +53,7 @@ version=${filename%.tar.xz}
 test "${tarball:0:27}" == "https://ziglang.org/builds/" || test "${tarball:0:29}" == "https://ziglang.org/download/" || die "Unexpected download path"
 test -z "${version}" && die "Failed to extract version info"
 
-if test "${INSTALL_DIR}/zig-latest/zig" -ef "${INSTALL_DIR}/${version}/zig"; then
+if test "${INSTALL_DIR}/zig-current/zig" -ef "${INSTALL_DIR}/${version}/zig"; then
   success "${version} is already the latest version"
 else
   msg "Updating to ${version}"
@@ -85,9 +85,9 @@ else
     done
   fi
 
-  rm -rf "${INSTALL_DIR?}/zig-latest" "${INSTALL_DIR:?}/${BIN_NAME:?}" || die "Failed to remove old symlinks"
-  ln -s "${version}" "${INSTALL_DIR}/zig-latest" || die "Failed to set new symlink"
-  ln -s zig-latest/zig "${INSTALL_DIR}/${BIN_NAME}" || die "Failed to set new symlink"
+  rm -rf "${INSTALL_DIR?}/zig-current" "${INSTALL_DIR:?}/${BIN_NAME:?}" || die "Failed to remove old symlinks"
+  ln -s "${version}" "${INSTALL_DIR}/zig-current" || die "Failed to set new symlink"
+  ln -s zig-current/zig "${INSTALL_DIR}/${BIN_NAME}" || die "Failed to set new symlink"
 
-  success "Installed version: $("${INSTALL_DIR}/zig-latest/zig" version)"
+  success "Installed version: $("${INSTALL_DIR}/zig-current/zig" version)"
 fi

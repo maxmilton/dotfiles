@@ -7,7 +7,7 @@
       "args": [
         "@modelcontextprotocol/server-filesystem",
         "/home/max/Projects",
-        "/home/max/.local/bin/zig-latest"
+        "/home/max/.local/bin/zig-current"
       ]
     },
     "playwright": {

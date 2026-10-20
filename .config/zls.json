@@ -1,7 +1,7 @@
 {
   "$schema": "https://raw.githubusercontent.com/zigtools/zls/refs/heads/master/schema.json",
-  "zig_exe_path": "/home/max/.local/bin/zig-latest/zig",
-  "zig_lib_path": "/home/max/.local/bin/zig-latest/lib",
+  "zig_exe_path": "/home/max/.local/bin/zig-current/zig",
+  "zig_lib_path": "/home/max/.local/bin/zig-current/lib",
   "warn_style": true,
   "inlay_hints_exclude_single_argument": false,
   "inlay_hints_hide_redundant_param_names": true,

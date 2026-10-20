@@ -223,7 +223,7 @@
   // "chat.disableAIFeatures": true, // disable built-in GitHub Copilot
   "chat.agent.sandbox.enabled": "on",
   "chat.agent.sandbox.fileSystem.userConfiguredPaths": {
-    "readonlyPaths": ["/home/max/.local/bin/zig-latest/**", "/home/max/.local/bin/zig-*/**"],
+    "readonlyPaths": ["/home/max/.local/bin/zig-current/**", "/home/max/.local/bin/zig-*/**"],
   }, // TODO: Remove? vscode v1.134.0
   "chat.mcp.gallery.enabled": true,
   "chat.stickyScroll.enabled": true,
