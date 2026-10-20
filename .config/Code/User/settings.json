@@ -66,6 +66,8 @@
   "editor.wordWrap": "on",
   "debug.confirmOnExit": "always",
   "diffEditor.ignoreTrimWhitespace": false,
+  "diffEditor.renderSideBySide": true,
+  "diffEditor.useInlineViewWhenSpaceIsLimited": true,
   "extensions.ignoreRecommendations": true,
   "explorer.excludeGitIgnore": false,
   "files.associations": {
@@ -113,6 +115,7 @@
   "git.detectSubmodules": false,
   "git.enableCommitSigning": true,
   "git.mergeEditor": false,
+  "git.openRepositoryInParentFolders": "always",
   "git.suggestSmartCommit": false,
   "scm.alwaysShowRepositories": true,
   "debug.allowBreakpointsEverywhere": false,
@@ -153,16 +156,13 @@
   "evenBetterToml.formatter.alignComments": false,
   "githubPullRequests.pullBranch": "never",
   "harper.codeActions.ForceStable": true,
-  // "harper.dialect": "British",
+  "harper.dialect": "Australian",
   "prettify-ts.maxCharacters": 4000,
   "zig.path": "zig",
   "zig.zls.enabled": "on",
   "zig.zls.path": "zls",
   "zig.zls.warnStyle": true,
 
-  // "[html]": {
-  //   "editor.defaultFormatter": "LorisCro.super"
-  // },
   "[markdown]": {
     "diffEditor.ignoreTrimWhitespace": false,
     "editor.lineNumbers": "interval",
@@ -204,9 +204,9 @@
     "https://raw.githubusercontent.com/catppuccin/vscode/": true,
     "https://raw.githubusercontent.com/devcontainers/spec/": true,
     "https://raw.githubusercontent.com/microsoft/vscode/": true,
+    "https://raw.githubusercontent.com/oxc-project/oxc/": true,
     "https://raw.githubusercontent.com/zigtools/zls/": true,
     "https://docs.renovatebot.com/": true,
-    "https://dprint.dev/schemas/": true,
   },
 
   "update.mode": "none", // use linux package manager
@@ -228,15 +228,5 @@
   "chat.mcp.gallery.enabled": true,
   "chat.stickyScroll.enabled": true,
   "chat.experimental.stickyScroll.enabled": true,
-  "chat.viewSessions.orientation": "stacked",
-  "diffEditor.renderSideBySide": true,
-  "harper.dialect": "Australian",
-  "git.openRepositoryInParentFolders": "always",
-
-  // // Injected by SuperHTML (LorisCro.super) extension
-  // "superhtml.EnsureBuiltinHTMLExtensionIsDisabled": false,
-  // "html.suggest.html5": false,
-  // "html.autoClosingTags": false,
-  // "html.hover.documentation": false,
-  // "html.hover.references": false,
+  "chat.viewSessions.orientation": "stacked"
 }
