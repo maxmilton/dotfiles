@@ -90,7 +90,7 @@ expectTypeOf((meta: CompileResult<FooBar>) => {
 - Prove a suspicious assertion with a type mutation (widen a generic return to its constraint, break a key-specific callback type, drop a promised `readonly`), then run the typecheck.
 
 ## Tool limits
-Checked on Bun 1.4.4 with TypeScript 6.0.3 and 7.0.2. On other versions, re-verify a limit before relying on it: read the vendored declarations (`bun-types/vendor/expect-type/`) and probe the runtime in Bun.
+stage1's `test/unit/expect-type.test.ts` pins these limits and the matcher behaviour above; when it fails after an upgrade, update this doc to match. Elsewhere, re-verify a limit before relying on it: read the vendored declarations (`bun-types/vendor/expect-type/`) and probe the runtime in Bun.
 
 - Properties chain: `parameters`, `returns`, `items`, `branded`, `constructorParameters`, `thisParameter`, `instance`, `resolves`, `guards`, and `asserts`; so does `.map()`, whose callback never runs.
 - These methods return `undefined` at runtime, so never chain them: `parameter`, `pick`, `omit`, `extract`, `exclude`, `toHaveProperty`, `toBeCallableWith`, `toBeConstructibleWith`. Use indexed access or utility types instead: `expectTypeOf<Result["ref"]>()`, `expectTypeOf<Pick<Result, "ref">>()`.
