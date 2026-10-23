@@ -10,7 +10,6 @@ from unittest.mock import patch
 from yt_dlp import YoutubeDL
 from yt_dlp.extractor.youtube import YoutubeIE
 from yt_dlp.postprocessor.ffmpeg import FFmpegEmbedSubtitlePP
-
 from yt_dlp_plugins.extractor.smart_subs import (
     _manual_track,
     _native_lang,
