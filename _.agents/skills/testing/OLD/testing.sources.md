@@ -1,6 +1,5 @@
 ---
 paths:
-  - "**/testing.sources.md"
 ---
 
 # Testing background

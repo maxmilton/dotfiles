@@ -1,4 +1,6 @@
 ---
+name: testing
+description: Required rules for creating, editing, deleting, or reviewing tests (*.test.ts, *.spec.ts, test/**). Read before touching any test file.
 paths:
   - "**/*.{test,spec}.ts"
   - "test/**"
@@ -6,7 +8,7 @@ paths:
 
 # Testing
 
-Project instructions win on conflict; propose before deviating.
+Project instructions override on conflict; propose before deviating.
 Goal: a test fails exactly when promised behaviour breaks, and its output alone says what broke.
 
 ## What to test
@@ -21,7 +23,7 @@ Goal: a test fails exactly when promised behaviour breaks, and its output alone 
 - One behaviour per test: split outcomes that can fail independently; extra assertions only guard the main one or complete a symmetric pair. Measure setup cost before citing it to merge tests.
 - Name scenario and outcome; `describe` names the subject. An "and" means two tests unless the outcome is indivisible.
 - Assert only promised results, fields, order, and effects, never private calls, source shape, or incidental sequence; use full equality at most once per complex object, on its common case.
-- Every test calls `expect.assertions(n)`; type checks share one `types` test per `describe`, with `n = 0`. Read `~/.claude/docs/expect-type.md` before using `expectTypeOf`.
+- Every test calls `expect.assertions(n)`; type checks share one `types` test per `describe`, with `n = 0`. Read `~/.agents/skills/testing/expect-type.md` before using `expectTypeOf`.
 - Inline single-use values; a helper needs several callers and a readability gain.
 - Comment only what a reader might wrongly "fix" (a deliberate wait or bound, a `test.serial` mark, an unusual oracle or fixture, a false-positive guard), in one line, with the version only if the reason is version-specific; never restate code.
 - Label non-specification tests as regression, characterization, or accepted tradeoff; never invent a label.
