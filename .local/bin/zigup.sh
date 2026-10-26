@@ -4,6 +4,7 @@ trap cleanup SIGINT SIGTERM ERR EXIT
 
 # Zig Update; Download a specific Zig release or the latest stable release or the latest master build.
 # Usage: zigup.sh [master|stable|<version>] (defaults to master)
+# Versions may be exact (0.15.1) or partial (0.15 or 0) for the latest matching stable release.
 # Inspired by: https://gist.github.com/MasterQ32/1f27081d8a7dd109fc290bd6729d97a8
 
 # INSTALL_DIR=/usr/local/bin
@@ -36,10 +37,11 @@ msg "Getting version info..."
 msg "Current install: $([[ -x "${INSTALL_DIR}/zig-current/zig" ]] && "${INSTALL_DIR}/zig-current/zig" version || echo none)"
 
 repo=$(curl -s "${REPO_URL}" | jq -e --arg version "${REPO_VERSION}" --arg arch "${REPO_ARCH}" '
-  (if $version == "stable" then
+  (if $version == "stable" or ($version | test("^[0-9]+(\\.[0-9]+)?$")) then
     keys | map(select(test("^[0-9]+\\.[0-9]+\\.[0-9]+$")))
+    | map(select($version == "stable" or startswith($version + ".")))
     | max_by(split(".") | map(tonumber))
-    | . // error("No stable releases found")
+    | . // error("No matching stable releases found")
   else $version end) as $selected
   | .[$selected][$arch] // empty
 ') || die "Failed to acquire version info for ${REPO_VERSION}"
