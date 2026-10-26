@@ -17,7 +17,11 @@ coverage/
 node_modules/
 test-results/
 
-.claude/settings.local.json
-.claude/worktrees/
+# AI
+AGENTS.override.md
 CLAUDE.local.md
-AGENTS.local.md
+**/.agents/**/*.local.*
+**/.claude/**/*.local.*
+**/.claude/*-local/
+**/.claude/.cc-writes/
+**/.claude/worktrees/

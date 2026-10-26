@@ -32,8 +32,6 @@
 [branch]
 	sort = -committerdate
 [core]
-	attributesfile = ~/.gitattributes
-	excludesfile = ~/.gitignore
 	untrackedCache = true # faster `git status`
 	whitespace = space-before-tab,-indent-with-non-tab,trailing-space # treat unwanted whitespace as an error
 [color]

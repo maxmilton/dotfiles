@@ -16,15 +16,16 @@ umask 077
 # mkdir -vp ~/.config/ccache
 # mkdir -vp ~/.config/Code/User
 # mkdir -vp ~/.config/Cursor/User
-mkdir -vp ~/.config/pacman
-mkdir -vp ~/.config/paru
 # mkdir -vp ~/.config/Windsurf/User
 mkdir -vp ~/.config/fish/functions
+mkdir -vp ~/.config/git
 mkdir -vp ~/.config/ghostty/themes
 mkdir -vp ~/.config/helix
 # mkdir -vp ~/.config/ion
 mkdir -vp ~/.config/jj
 # mkdir -vp ~/.config/mpv
+mkdir -vp ~/.config/pacman
+mkdir -vp ~/.config/paru
 # mkdir -vp ~/.config/yt-dlp/plugins/smart-subs/yt_dlp_plugins/extractor
 # mkdir -vp ~/.config/zed
 mkdir -vp ~/.gnupg/private-keys-v1.d
@@ -64,6 +65,8 @@ ln -vbs "${script_dir}/.config/fish/functions/multicd.fish" ~/.config/fish/funct
 ln -vbs "${script_dir}/.config/fish/functions/ssh.fish" ~/.config/fish/functions/ssh.fish
 # ln -vbs "${script_dir}/.config/fish/functions/z.fish" ~/.config/fish/functions/z.fish
 # ln -vbs "${script_dir}/.config/fish/functions/ziz.fish" ~/.config/fish/functions/ziz.fish
+# ln -vbs "${script_dir}/.config/git/attributes.json" ~/.config/git/attributes.json
+# ln -vbs "${script_dir}/.config/git/ignore.json" ~/.config/git/ignore.json
 ln -vbs "${script_dir}/.config/ghostty/config" ~/.config/ghostty/config
 ln -vbs "${script_dir}/.config/ghostty/themes/catppuccin-mocha" ~/.config/ghostty/themes/catppuccin-mocha
 ln -vbs "${script_dir}/.config/helix/config.toml" ~/.config/helix/config.toml
