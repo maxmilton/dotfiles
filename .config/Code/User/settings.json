@@ -110,6 +110,7 @@
   "search.seedWithNearestWord": true,
   "search.smartCase": true,
   "search.quickOpen.includeSymbols": false,
+  "search.useGlobalIgnoreFiles": true,
   "git.autofetch": true,
   "git.confirmSync": false,
   "git.detectSubmodules": false,

@@ -1,8 +1,7 @@
 "$schema" = "https://www.schemastore.org/bunfig.json"
 
 [install]
-# auto = "disable"
-# production = true
+auto = "disable"
 # ignoreScripts = true
 minimumReleaseAge = 604800 # 7 days
 
