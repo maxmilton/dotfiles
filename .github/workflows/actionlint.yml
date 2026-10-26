@@ -24,6 +24,13 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: 3.x
+      - run: python -m pip install "ruff==${RUFF_VERSION}"
+        env:
+          # renovate: datasource=pypi depName=ruff
+          RUFF_VERSION: 0.17.2
       - name: Install actionlint
         env:
           # renovate: depName=rhysd/actionlint
@@ -43,10 +50,6 @@ jobs:
           curl --fail --silent --show-error --location --retry 3 \
             https://raw.githubusercontent.com/rhysd/actionlint/main/.github/actionlint-matcher.json \
             --output "$RUNNER_TEMP/actionlint-matcher.json"
-      - run: pipx install "ruff==${RUFF_VERSION}"
-        env:
-          # renovate: datasource=pypi depName=ruff
-          RUFF_VERSION: 0.17.0
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
