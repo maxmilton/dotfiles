@@ -83,11 +83,13 @@ class TrackSelectionTest(unittest.TestCase):
 class NativeLanguageTest(unittest.TestCase):
     def test_original_captions_are_primary_evidence(self):
         info = {
-            "formats": [{
-                "acodec": "opus",
-                "language": "ko",
-                "language_preference": 10,
-            }],
+            "formats": [
+                {
+                    "acodec": "opus",
+                    "language": "ko",
+                    "language_preference": 10,
+                }
+            ],
         }
 
         native, source = _native_lang(info, {"en-US-orig": []})
@@ -107,11 +109,13 @@ class NativeLanguageTest(unittest.TestCase):
 
     def test_marked_audio_resolves_ambiguous_original_captions(self):
         info = {
-            "formats": [{
-                "acodec": "opus",
-                "language": "ko-KR",
-                "language_preference": 10,
-            }],
+            "formats": [
+                {
+                    "acodec": "opus",
+                    "language": "ko-KR",
+                    "language_preference": 10,
+                }
+            ],
         }
 
         self.assertEqual(
@@ -155,12 +159,9 @@ class FullSelectionTest(unittest.TestCase):
 
         self.assertEqual(manual, {})
         self.assertEqual(native, "en-US")
+        self.assertEqual(auto["en"][0]["name"], "English [original ASR (en-US-orig)]")
         self.assertEqual(
-            auto["en"][0]["name"], "English [original ASR (en-US-orig)]"
-        )
-        self.assertEqual(
-            auto["ko"][0]["name"],
-            "Korean [auto-translated native ASR (en-US-orig)]",
+            auto["ko"][0]["name"], "Korean [auto-translated native ASR (en-US-orig)]"
         )
         self.assertEqual(
             info["automatic_captions"]["en-US-orig"][0]["name"], "en original"
@@ -169,11 +170,13 @@ class FullSelectionTest(unittest.TestCase):
 
     def test_korean_manual_source_is_used_for_english_translation(self):
         info = {
-            "formats": [{
-                "acodec": "opus",
-                "language": "ko",
-                "language_preference": 10,
-            }],
+            "formats": [
+                {
+                    "acodec": "opus",
+                    "language": "ko",
+                    "language_preference": 10,
+                }
+            ],
             "subtitles": {"ko-KR": _track("manual Korean")},
             "automatic_captions": {
                 "en-ko-KR": _track("English from manual Korean"),
@@ -209,9 +212,7 @@ class FullSelectionTest(unittest.TestCase):
 
         self.assertEqual(set(manual), {"en", "ko"})
         self.assertEqual(auto, {})
-        self.assertEqual(
-            manual["en"][0]["name"], "English [uploader captions (en-GB)]"
-        )
+        self.assertEqual(manual["en"][0]["name"], "English [uploader captions (en-GB)]")
 
     def test_third_language_asr_translates_both_targets(self):
         info = {
@@ -232,11 +233,13 @@ class FullSelectionTest(unittest.TestCase):
 
     def test_third_language_manual_source_fills_only_missing_target(self):
         info = {
-            "formats": [{
-                "acodec": "opus",
-                "language": "fr-FR",
-                "language_preference": 10,
-            }],
+            "formats": [
+                {
+                    "acodec": "opus",
+                    "language": "fr-FR",
+                    "language_preference": 10,
+                }
+            ],
             "subtitles": {
                 "en": _track("manual English"),
                 "fr-FR": _track("manual French"),
@@ -288,11 +291,13 @@ class FullSelectionTest(unittest.TestCase):
 
     def test_third_language_without_native_caption_keeps_manual_targets_only(self):
         info = {
-            "formats": [{
-                "acodec": "opus",
-                "language": "ja",
-                "language_preference": 10,
-            }],
+            "formats": [
+                {
+                    "acodec": "opus",
+                    "language": "ja",
+                    "language_preference": 10,
+                }
+            ],
             "subtitles": {"en": _track("manual English")},
             "automatic_captions": {
                 "en": _track("translated English"),
@@ -476,30 +481,30 @@ class YtDlpIntegrationTest(unittest.TestCase):
                 "ko-orig": _track("Korean original"),
                 "en-ko": _track("English from manual Korean"),
             },
-            "formats": [{
-                "acodec": "opus",
-                "language": "ko",
-                "language_preference": 10,
-            }],
+            "formats": [
+                {
+                    "acodec": "opus",
+                    "language": "ko",
+                    "language_preference": 10,
+                }
+            ],
         }
         manual, auto, _, _, _ = _select_tracks(info)
-        ydl = YoutubeDL({
-            "quiet": True,
-            "subtitlesformat": "vtt/best",
-            "subtitleslangs": ["en", "ko"],
-            "writeautomaticsub": True,
-            "writesubtitles": True,
-        })
+        ydl = YoutubeDL(
+            {
+                "quiet": True,
+                "subtitlesformat": "vtt/best",
+                "subtitleslangs": ["en", "ko"],
+                "writeautomaticsub": True,
+                "writesubtitles": True,
+            }
+        )
 
         requested = ydl.process_subtitles("video-id", manual, auto)
 
         self.assertEqual(set(requested), {"en", "ko"})
-        self.assertEqual(
-            requested["en"]["name"], "English [uploader captions (en-US)]"
-        )
-        self.assertEqual(
-            requested["ko"]["name"], "Korean [original ASR (ko-orig)]"
-        )
+        self.assertEqual(requested["en"]["name"], "English [uploader captions (en-US)]")
+        self.assertEqual(requested["ko"]["name"], "Korean [original ASR (ko-orig)]")
 
 
 @unittest.skipUnless(
@@ -519,10 +524,14 @@ class EmbeddedSubtitleTest(unittest.TestCase):
             subprocess.run(
                 [
                     shutil.which("ffmpeg"),
-                    "-f", "lavfi",
-                    "-i", "color=c=black:s=16x16:r=1",
-                    "-t", "1",
-                    "-c:v", "ffv1",
+                    "-f",
+                    "lavfi",
+                    "-i",
+                    "color=c=black:s=16x16:r=1",
+                    "-t",
+                    "1",
+                    "-c:v",
+                    "ffv1",
                     "-y",
                     str(video),
                 ],
@@ -531,20 +540,26 @@ class EmbeddedSubtitleTest(unittest.TestCase):
             )
 
             name = "English [uploader captions (en)]"
-            FFmpegEmbedSubtitlePP(YoutubeDL({"quiet": True})).run({
-                "ext": "mkv",
-                "filepath": str(video),
-                "requested_subtitles": {
-                    "en": {"ext": "vtt", "filepath": str(subtitle), "name": name},
-                },
-            })
+            FFmpegEmbedSubtitlePP(YoutubeDL({"quiet": True})).run(
+                {
+                    "ext": "mkv",
+                    "filepath": str(video),
+                    "requested_subtitles": {
+                        "en": {"ext": "vtt", "filepath": str(subtitle), "name": name},
+                    },
+                }
+            )
             result = subprocess.run(
                 [
                     shutil.which("ffprobe"),
-                    "-v", "error",
-                    "-select_streams", "s",
-                    "-show_entries", "stream_tags=language,title,handler_name",
-                    "-of", "json",
+                    "-v",
+                    "error",
+                    "-select_streams",
+                    "s",
+                    "-show_entries",
+                    "stream_tags=language,title,handler_name",
+                    "-of",
+                    "json",
                     str(video),
                 ],
                 check=True,
@@ -612,9 +627,7 @@ class LiveYoutubeTest(unittest.TestCase):
         "set SMART_SUBS_OTHER_URL to run this live test",
     )
     def test_other_native_video(self):
-        self._assert_bilingual_output(
-            self._extract(os.environ["SMART_SUBS_OTHER_URL"])
-        )
+        self._assert_bilingual_output(self._extract(os.environ["SMART_SUBS_OTHER_URL"]))
 
 
 if __name__ == "__main__":

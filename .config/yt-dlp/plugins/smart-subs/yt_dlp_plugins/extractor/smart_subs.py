@@ -142,7 +142,9 @@ def _select_tracks(info):
         # 1. Uploader-provided target-language captions.
         if key := _manual_track(manual, dst):
             selected_manual[dst] = _label_tracks(
-                manual[key], dst, f"uploader captions ({key})",
+                manual[key],
+                dst,
+                f"uploader captions ({key})",
             )
             decisions[dst] = f"uploader captions {key}"
             continue
@@ -154,7 +156,9 @@ def _select_tracks(info):
                 key = dst
             if key is not None:
                 selected_auto[dst] = _label_tracks(
-                    auto[key], dst, f"original ASR ({key})",
+                    auto[key],
+                    dst,
+                    f"original ASR ({key})",
                 )
                 decisions[dst] = f"original automatic captions {key}"
                 continue
@@ -178,11 +182,12 @@ def _select_tracks(info):
             if translation := _unconfirmed_translation_track(auto, manual, dst):
                 key, source_key = translation
                 selected_auto[dst] = _label_tracks(
-                    auto[key], dst, f"auto-translated uploader captions ({source_key})",
+                    auto[key],
+                    dst,
+                    f"auto-translated uploader captions ({source_key})",
                 )
                 decisions[dst] = (
-                    f"automatic translation {key} from "
-                    f"unconfirmed uploader captions {source_key}"
+                    f"automatic translation {key} from unconfirmed uploader captions {source_key}"  # noqa: E501
                 )
                 continue
 

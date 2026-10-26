@@ -1,3 +1,5 @@
+# "$schema" = "https://www.schemastore.org/ruff.json"
+
 [lint]
 select = ["E", "F", "I", "B", "UP", "SIM", "PERF", "RUF"]
 ignore = ["SIM102"]
