@@ -1,4 +1,4 @@
-"$schema" = "https://www.schemastore.org/bunfig.json"
+#:schema https://www.schemastore.org/bunfig.json
 
 [install]
 auto = "disable"
