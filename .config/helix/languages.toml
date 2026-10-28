@@ -18,6 +18,24 @@ command = "bunx"
 args = ["--no-install", "oxfmt", "--lsp"]
 required-root-patterns = [".oxfmtrc.json", ".oxfmtrc.jsonc", "oxfmt.config.ts", "oxfmt.config.mts"]
 
+# TODO: Use bun instead of oxc once released: https://github.com/oven-sh/bun/pull/46885
+# [language-server.bunlint]
+# command = "bun"
+# args = ["lint", "--no-script", "--lsp"]
+# required-root-patterns = ["bunfig.toml", ".oxlintrc.json", ".oxlintrc.jsonc", "oxlint.config.ts", "oxlint.config.mts"]
+
+# [language-server.bunfmt]
+# command = "bun"
+# args = ["fmt", "--no-script", "--lsp"]
+# required-root-patterns = ["bunfig.toml", ".oxfmtrc.json", ".oxfmtrc.jsonc", "oxfmt.config.ts", "oxfmt.config.mts"]
+
+# TODO: Look out for final implementation; Seems like fmt will do both fmt and
+# lint for lsp according to: https://github.com/oven-sh/bun/pull/46885/changes#diff-8dc107c6417f8c1b829d943bbbf041778989c47306ebb8223ca71a3e85134a70
+# [language-server.bun]
+# command = "bun"
+# args = ["fmt", "--no-script", "--lsp"]
+# required-root-patterns = ["bunfig.toml", "bun.lock"]
+
 # TODO: Remove once natively supported: https://github.com/helix-editor/helix/pull/16026
 [language-server.tsc]
 command = "tsc"
@@ -56,6 +74,7 @@ language-servers = [
   "biome",
   { name = "oxlint", except-features = ["format"] },
   { name = "oxfmt", only-features = ["format"] },
+  # "bun",
 ]
 auto-format = true
 
@@ -66,6 +85,7 @@ language-servers = [
   "biome",
   { name = "oxlint", except-features = ["format"] },
   { name = "oxfmt", only-features = ["format"] },
+  # "bun",
 ]
 auto-format = true
 
