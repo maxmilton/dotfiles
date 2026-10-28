@@ -77,24 +77,11 @@ function pp --description 'Update system'
         sudo systemd-nspawn --capability=CAP_IPC_LOCK -D /var/lib/machines/alpine sh -c 'apk upgrade'; or return
     end
 
-    if command -q codex
-        __pp_msg 'Updating AI: codex'
-        codex update; or return
-    end
-
-    if command -q claude
-        __pp_msg 'Updating AI: claude'
-        claude upgrade; or return
-    end
-
-    if command -q amp
-        __pp_msg 'Updating AI: amp'
-        amp update; or return
-    end
-
-    if command -q grok
-        __pp_msg 'Updating AI: grok'
-        grok update; or return
+    for tool in codex claude copilot amp fx grok
+        if command -q $tool
+            __pp_msg "Updating AI: $tool"
+            $tool update; or return
+        end
     end
 
     __pp_msg 'Updating system firmware...'
