@@ -56,7 +56,7 @@ test "${tarball:0:27}" == "https://ziglang.org/builds/" || test "${tarball:0:29}
 test -z "${version}" && die "Failed to extract version info"
 
 if test "${INSTALL_DIR}/zig-current/zig" -ef "${INSTALL_DIR}/${version}/zig"; then
-  success "${version} is already the latest version"
+  success "${version} is already the current version"
 else
   msg "Updating to ${version}"
 
