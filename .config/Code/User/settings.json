@@ -229,5 +229,11 @@
   "chat.mcp.gallery.enabled": true,
   "chat.stickyScroll.enabled": true,
   "chat.experimental.stickyScroll.enabled": true,
-  "chat.viewSessions.orientation": "stacked"
+  "chat.viewSessions.orientation": "stacked",
+
+  "chat.agentHost.claudeAgent.enabled": true,
+  "chat.agentHost.codexAgent.enabled": true,
+  "chat.editor.codex.preferAgentHost": true,
+  "chat.agentHost.allowSignedOutWhenUsable": true,
+  "chat.agentSessions.showExternal": "last30Days",
 }
