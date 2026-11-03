@@ -35,12 +35,12 @@ function pp --description 'Update system'
     #         --needed --nodeps librewolf-bin; or return
     # end
 
-    if test -d /home/max/.machines/chrome
-        __pp_msg 'Updating chrome container'
-        paru -Su \
-            --root /home/max/.machines/chrome \
-            --cachedir /var/cache/pacman/pkg; or return
-    end
+    # if test -d /home/max/.machines/chrome
+    #     __pp_msg 'Updating chrome container'
+    #     paru -Su \
+    #         --root /home/max/.machines/chrome \
+    #         --cachedir /var/cache/pacman/pkg; or return
+    # end
 
     if test -d /home/max/.machines/dev
         __pp_msg 'Updating dev container'
