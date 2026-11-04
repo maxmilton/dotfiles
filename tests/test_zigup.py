@@ -193,7 +193,7 @@ class ZigupTest(unittest.TestCase):
         binary.write_text(
             f'#!/bin/bash\n[[ "$1" == -VHQm && -s "$2.minisig" && "$3" == -P && '
             '"$4" == RWSGOq2NVecA2UPNdBUZykf1CCb147pkmdtYxgb3Ti+JO/wCYvhbAb/U '
-            ']] || exit 2\n'
+            "]] || exit 2\n"
             f"printf '%s\\n' {shlex.quote(comment)}\n"
             f"exit {status}\n"
         )
