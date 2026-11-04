@@ -45,7 +45,8 @@ class ZigupTest(unittest.TestCase):
                   printf "%s\\n" "$1" >> "$FIXTURE_DOWNLOADS"
                   [[ "$FIXTURE_DOWNLOAD_FAILURE" == 0 ]] || exit 1
                   cp -- "$FIXTURE_ARCHIVE" "$3"
-                elif [[ "$1" == -fL && "$2" == "$FIXTURE_URL.minisig" && "$3" == -o ]]; then
+                elif [[ "$1" == -fL &&
+                        "$2" == "$FIXTURE_URL.minisig" && "$3" == -o ]]; then
                   printf "%s\\n" "$2" >> "$FIXTURE_DOWNLOADS"
                   [[ ! -e "$FIXTURE_INDEX.fail-signature" ]] || exit 1
                   printf signature > "$4"
@@ -191,7 +192,8 @@ class ZigupTest(unittest.TestCase):
         binary = self.commands / "minisign"
         binary.write_text(
             f'#!/bin/bash\n[[ "$1" == -VHQm && -s "$2.minisig" && "$3" == -P && '
-            '"$4" == RWSGOq2NVecA2UPNdBUZykf1CCb147pkmdtYxgb3Ti+JO/wCYvhbAb/U ]] || exit 2\n'
+            '"$4" == RWSGOq2NVecA2UPNdBUZykf1CCb147pkmdtYxgb3Ti+JO/wCYvhbAb/U '
+            ']] || exit 2\n'
             f"printf '%s\\n' {shlex.quote(comment)}\n"
             f"exit {status}\n"
         )
