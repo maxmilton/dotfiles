@@ -57,7 +57,22 @@ class ZigupTest(unittest.TestCase):
         )
         curl.chmod(0o755)
         # Hide host minisign while retaining the real CLI dependencies.
-        for name in ("xz", "bash", "cat", "cp", "mkdir", "rm", "jq", "stat", "tar", "find", "sort", "head", "ln", "perl"):
+        for name in (
+            "xz",
+            "bash",
+            "cat",
+            "cp",
+            "mkdir",
+            "rm",
+            "jq",
+            "stat",
+            "tar",
+            "find",
+            "sort",
+            "head",
+            "ln",
+            "perl",
+        ):
             executable = shutil.which(name)
             if executable:
                 (self.commands / name).symlink_to(executable)
@@ -170,13 +185,15 @@ class ZigupTest(unittest.TestCase):
 
     def enable_minisign(self, status=0, comment=None):
         if comment is None:
-            comment = "timestamp:1760215991\tfile:zig-x86_64-linux-0.17.0.tar.xz\thashed"
+            comment = (
+                "timestamp:1760215991\tfile:zig-x86_64-linux-0.17.0.tar.xz\thashed"
+            )
         binary = self.commands / "minisign"
         binary.write_text(
             f'#!/bin/bash\n[[ "$1" == -VHQm && -s "$2.minisig" && "$3" == -P && '
             '"$4" == RWSGOq2NVecA2UPNdBUZykf1CCb147pkmdtYxgb3Ti+JO/wCYvhbAb/U ]] || exit 2\n'
             f"printf '%s\\n' {shlex.quote(comment)}\n"
-            f'exit {status}\n'
+            f"exit {status}\n"
         )
         binary.chmod(0o755)
 
@@ -205,7 +222,9 @@ class ZigupTest(unittest.TestCase):
     def test_missing_minisign_warns_and_installs(self):
         self.release("0.17.0", cached=False)
         result = self.assert_selected("0.17.0", "0.17.0")
-        self.assertIn("Skipping signature verification: minisign is not available", result.stderr)
+        self.assertIn(
+            "Skipping signature verification: minisign is not available", result.stderr
+        )
         self.assertEqual(self.downloads.read_text(), f"{self.archive_url}\n")
 
     def test_signature_failure_preserves_installations(self):
