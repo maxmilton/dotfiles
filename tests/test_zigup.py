@@ -45,6 +45,10 @@ class ZigupTest(unittest.TestCase):
                   printf "%s\\n" "$1" >> "$FIXTURE_DOWNLOADS"
                   [[ "$FIXTURE_DOWNLOAD_FAILURE" == 0 ]] || exit 1
                   cp -- "$FIXTURE_ARCHIVE" "$3"
+                elif [[ "$1" == -fL && "$2" == "$FIXTURE_URL.minisig" && "$3" == -o ]]; then
+                  printf "%s\\n" "$2" >> "$FIXTURE_DOWNLOADS"
+                  [[ ! -e "$FIXTURE_INDEX.fail-signature" ]] || exit 1
+                  printf signature > "$4"
                 else
                   echo "Unexpected network request" >&2
                   exit 1
@@ -52,6 +56,11 @@ class ZigupTest(unittest.TestCase):
                 """)
         )
         curl.chmod(0o755)
+        # Hide host minisign while retaining the real CLI dependencies.
+        for name in ("xz", "bash", "cat", "cp", "mkdir", "rm", "jq", "stat", "tar", "find", "sort", "head", "ln", "perl"):
+            executable = shutil.which(name)
+            if executable:
+                (self.commands / name).symlink_to(executable)
         self.releases = {}
         self.archive = self.root / "release.tar.xz"
         self.archive_url = ""
@@ -88,7 +97,7 @@ class ZigupTest(unittest.TestCase):
             ["/bin/bash", str(self.script), *arguments],
             env={
                 "HOME": str(self.root),
-                "PATH": f"{self.commands}:/usr/bin:/bin",
+                "PATH": str(self.commands),
                 "FIXTURE_INDEX": str(self.index),
                 "FIXTURE_URL": self.archive_url,
                 "FIXTURE_ARCHIVE": str(self.archive),
@@ -158,6 +167,57 @@ class ZigupTest(unittest.TestCase):
         self.assert_active("0.15.1")
         self.assertEqual(self.installation_contents(), before)
         self.assertFalse((self.root / "tmp").exists())
+
+    def enable_minisign(self, status=0, comment=None):
+        if comment is None:
+            comment = "timestamp:1760215991\tfile:zig-x86_64-linux-0.17.0.tar.xz\thashed"
+        binary = self.commands / "minisign"
+        binary.write_text(
+            f'#!/bin/bash\n[[ "$1" == -VHQm && -s "$2.minisig" && "$3" == -P && '
+            '"$4" == RWSGOq2NVecA2UPNdBUZykf1CCb147pkmdtYxgb3Ti+JO/wCYvhbAb/U ]] || exit 2\n'
+            f"printf '%s\\n' {shlex.quote(comment)}\n"
+            f'exit {status}\n'
+        )
+        binary.chmod(0o755)
+
+    def test_signature_verified_before_install(self):
+        self.enable_minisign()
+        self.release("0.17.0", cached=False)
+        result = self.assert_selected("0.17.0", "0.17.0")
+        self.assertNotIn("Signature verified", result.stdout + result.stderr)
+        self.assertIn(f"{self.archive_url}.minisig\n", self.downloads.read_text())
+
+    def test_signature_filename_mismatch_preserves_installations(self):
+        self.enable_minisign(comment="timestamp:1760215991\tfile:other.tar.xz\thashed")
+        self.release("0.17.0", cached=False)
+        self.assert_update_failed("Signature filename mismatch")
+
+    def test_signature_filename_missing_preserves_installations(self):
+        self.enable_minisign(comment="timestamp:1760215991\thashed")
+        self.release("0.17.0", cached=False)
+        self.assert_update_failed("Signature filename mismatch")
+
+    def test_signature_filename_empty_preserves_installations(self):
+        self.enable_minisign(comment="timestamp:1760215991\tfile:\thashed")
+        self.release("0.17.0", cached=False)
+        self.assert_update_failed("Signature filename mismatch")
+
+    def test_missing_minisign_warns_and_installs(self):
+        self.release("0.17.0", cached=False)
+        result = self.assert_selected("0.17.0", "0.17.0")
+        self.assertIn("Skipping signature verification: minisign is not available", result.stderr)
+        self.assertEqual(self.downloads.read_text(), f"{self.archive_url}\n")
+
+    def test_signature_failure_preserves_installations(self):
+        self.enable_minisign(1)
+        self.release("0.17.0", cached=False)
+        self.assert_update_failed("Failed to verify signature")
+
+    def test_signature_download_failure_preserves_installations(self):
+        self.enable_minisign()
+        self.release("0.17.0", cached=False)
+        Path(f"{self.index}.fail-signature").touch()
+        self.assert_update_failed("Failed to download signature")
 
     def test_minor_selects_numeric_highest_patch(self):
         for version in ("0.15.9", "0.15.10", "0.15.2", "0.16.0"):
@@ -235,7 +295,7 @@ class ZigupTest(unittest.TestCase):
         self.release("0.15.2")
         self.activate("0.15.2")
         result = self.assert_selected("0.15.2", "0.15.2")
-        self.assertIn("is already the latest version", result.stderr)
+        self.assertIn("is already the current version", result.stderr)
         self.assertEqual(self.downloads.read_text(), "")
 
     def test_fresh_install_extracts_executable_and_selects_it(self):
@@ -264,14 +324,18 @@ class ZigupTest(unittest.TestCase):
         self.assert_update_failed("Failed to download")
 
     def test_checksum_failure_preserves_active_installation_and_cache(self):
+        self.enable_minisign()
         metadata = self.release("0.17.0", cached=False)
         metadata["shasum"] = "0" * 64
         self.assert_update_failed("Failed to verify checksum")
+        self.assertNotIn(".minisig", self.downloads.read_text())
 
     def test_size_mismatch_preserves_active_installation_and_cache(self):
+        self.enable_minisign()
         metadata = self.release("0.17.0", cached=False)
         metadata["size"] = str(self.archive.stat().st_size + 1)
         self.assert_update_failed("Download size mismatch")
+        self.assertNotIn(".minisig", self.downloads.read_text())
 
     def test_extraction_failure_preserves_active_installation_and_cache(self):
         metadata = self.release("0.17.0", cached=False)

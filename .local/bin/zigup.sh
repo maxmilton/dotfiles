@@ -67,6 +67,17 @@ else
     echo "${shasum}  ${TMP_DIR}/${filename}" | shasum -c - || die "Failed to verify checksum"
     test "${size}" -eq "$(stat -c '%s' "${TMP_DIR}/${filename}")" || die "Download size mismatch"
 
+    if command -v minisign >/dev/null 2>&1; then
+      curl -fL "${tarball}.minisig" -o "${TMP_DIR}/${filename}.minisig" || die "Failed to download signature"
+      trusted_comment=$(minisign -VHQm "${TMP_DIR}/${filename}" -P "RWSGOq2NVecA2UPNdBUZykf1CCb147pkmdtYxgb3Ti+JO/wCYvhbAb/U") || die "Failed to verify signature"
+      signed_filename=${trusted_comment#*$'\tfile:'}
+      signed_filename=${signed_filename%%$'\t'*}
+      test "${signed_filename}" == "${filename}" || die "Signature filename mismatch"
+    else
+      printf '\033[33mwarning: \033[0m' >&2
+      msg "Skipping signature verification: minisign is not available"
+    fi
+
     tar --no-ignore-command-error -xJC "${INSTALL_DIR}" -f "${TMP_DIR}/${filename}" || die "Failed to extract"
 
     # Keep the 5 latest releases and 5 latest master builds, plus the selected version
